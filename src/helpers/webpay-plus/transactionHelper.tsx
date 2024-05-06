@@ -8,7 +8,7 @@ export const generateRandomTransactionData = (
   const buyOrder = "O-" + Math.floor(Math.random() * 10000) + 1;
   const sessionId = "S-" + Math.floor(Math.random() * 10000) + 1;
   const amount = Math.floor(Math.random() * 1000) + 1001;
-  const returnUrl = `${protocol}://${host}/webpay_plus/commit`;
+  const returnUrl = `${protocol}://${host}/webpay-plus/commit`;
 
   return {
     buyOrder,
