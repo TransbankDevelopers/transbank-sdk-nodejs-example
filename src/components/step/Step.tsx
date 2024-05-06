@@ -4,7 +4,7 @@ import { Text, TextType } from "../text/Text";
 export type StepProps = {
   code?: string;
   stepTitle: string;
-  content: React.ReactNode;
+  content: string | React.ReactNode;
 };
 
 export const Step = (props: StepProps) => {
