@@ -7,6 +7,7 @@ import {
 import { Route } from "@/types/menu";
 import { usePathname } from "next/navigation";
 import cx from "classnames";
+import Link from "next/link";
 
 export type MenuItemProps = {
   title: string;
@@ -22,7 +23,10 @@ const MenuItem = (props: MenuItemProps) => {
       </span>
       {props.routes.map((item, idx) => {
         return (
-          <span
+          <Link
+            href={{
+              pathname: item.path,
+            }}
             className={cx(
               "text-tbk-black px-3 hover:text-tbk-red hover:cursor-pointer",
               {
@@ -32,7 +36,7 @@ const MenuItem = (props: MenuItemProps) => {
             key={idx}
           >
             {item.name}
-          </span>
+          </Link>
         );
       })}
     </div>
@@ -40,9 +44,7 @@ const MenuItem = (props: MenuItemProps) => {
 };
 
 export const Menu = () => {
-  const path = usePathname();
-
-  console.log(path);
+  const path = usePathname() || "/";
   return (
     <div className="border-r border-tbk-border flex flex-col gap-y-14">
       <MenuItem
