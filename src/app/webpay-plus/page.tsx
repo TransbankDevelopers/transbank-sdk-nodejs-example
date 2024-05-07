@@ -7,7 +7,7 @@ import {
 import { Button, ButtonTypes } from "@/components/button/Button";
 import { Card } from "@/components/card/Card";
 import { Layout } from "@/components/layout/Layout";
-import { getCreateTRXSteps } from "@/helpers/webpay-plus/steps/create";
+import { getCreateTRXSteps } from "@/app/webpay-plus/content/steps/create";
 import Head from "next/head";
 import { createTransaction } from "../lib/webpay-plus/data";
 

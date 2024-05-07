@@ -1,5 +1,5 @@
 import { StepProps } from "@/components/step/Step";
-import * as refundSnippets from "@/helpers/webpay-plus/snippets/refund";
+import * as refundSnippets from "@/app/webpay-plus/content/snippets/refund";
 import { Text } from "@/components/text/Text";
 import { TBKRefundTransactionResponse } from "@/types/transactions";
 

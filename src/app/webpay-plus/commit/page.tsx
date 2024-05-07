@@ -1,6 +1,6 @@
 import { Route } from "@/types/menu";
 import { Layout } from "@/components/layout/Layout";
-import { getCommitSteps } from "@/helpers/webpay-plus/steps/commit";
+import { getCommitSteps } from "@/app/webpay-plus/content/steps/commit";
 import Head from "next/head";
 import { commitTransaction } from "@/app/lib/webpay-plus/data";
 import { NextPageProps } from "@/types/general";

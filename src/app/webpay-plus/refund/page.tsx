@@ -1,7 +1,7 @@
 import { Route } from "@/types/menu";
 import { Layout } from "@/components/layout/Layout";
 import Head from "next/head";
-import { getRefundTRXSteps } from "@/helpers/webpay-plus/steps/refund";
+import { getRefundTRXSteps } from "@/app/webpay-plus/content/steps/refund";
 import { NextPageProps } from "@/types/general";
 import { refundTransaction } from "@/app/lib/webpay-plus/data";
 

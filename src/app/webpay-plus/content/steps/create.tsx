@@ -1,8 +1,11 @@
 import { StepProps } from "@/components/step/Step";
 import { StartTransactionData } from "@/types/transactions";
-import * as createSnippets from "@/helpers/webpay-plus/snippets/create";
+import * as createSnippets from "@/app/webpay-plus/content/snippets/create";
 import { Table } from "@/components/table/Table";
-import { getColumnDefinition, getColumnValues } from "../transactionHelper";
+import {
+  getColumnDefinition,
+  getColumnValues,
+} from "../../../../helpers/webpay-plus/transactionHelper";
 import { Text } from "@/components/text/Text";
 
 export const getCreateTRXSteps = (

@@ -1,6 +1,6 @@
 import { StepProps } from "@/components/step/Step";
 import { TBKCommitTransactionResponse } from "@/types/transactions";
-import * as commitSnippets from "@/helpers/webpay-plus/snippets/commit";
+import * as commitSnippets from "@/app/webpay-plus/content/snippets/commit";
 import { Text } from "@/components/text/Text";
 
 export const getCommitSteps = (
