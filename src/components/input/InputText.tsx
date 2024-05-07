@@ -2,7 +2,8 @@ import { useState } from "react";
 import cx from "classnames";
 
 export type InputTextProps = {
-  value: string;
+  label: string;
+  value: string | number;
   onChange: (value: string) => void;
 };
 
@@ -27,7 +28,7 @@ export const InputText = (props: InputTextProps) => {
           "ease-in duration-300": !isFocused,
         })}
       >
-        Token
+        {props.label}
       </span>
       <input
         type="text"
