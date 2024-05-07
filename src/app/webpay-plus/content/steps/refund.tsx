@@ -4,7 +4,8 @@ import { Text } from "@/components/text/Text";
 import { TBKRefundTransactionResponse } from "@/types/transactions";
 
 export const getRefundTRXSteps = (
-  refundResult: TBKRefundTransactionResponse
+  refundResult: TBKRefundTransactionResponse,
+  amount: string
 ): StepProps[] => {
   return [
     {
@@ -35,7 +36,7 @@ export const getRefundTRXSteps = (
           </div>
         </div>
       ),
-      code: refundSnippets.getStepOne(),
+      code: refundSnippets.getStepOne(amount),
     },
     {
       stepTitle: "Paso 2: Respuesta",

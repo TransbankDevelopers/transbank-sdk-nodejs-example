@@ -1,8 +1,8 @@
 import { TBKRefundTransactionResponse } from "@/types/transactions";
 
-export const getStepOne = () => {
+export const getStepOne = (amount: string) => {
   return `// Token: 01ab8fb16e5dee67fcc392b97d679a01d29b77b4cd8b9ee6ade278203feee1b4
-// Amount: 1421
+// Amount: ${amount}
 const refundRequest = await (new WebpayPlus.Transaction()).refund(token, amount);`;
 };
 
