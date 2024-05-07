@@ -11,6 +11,7 @@ const config: Config = {
       colors: {
         "tbk-white": "#FCFDFE",
         "tbk-red": "#D5006C",
+        "tbk-red-dark": "#CC0066",
         "tbk-light-red": "#d5006c0d",
         "tbk-border": "#E7EBF3",
         "tbk-grey": "#828EA5",
