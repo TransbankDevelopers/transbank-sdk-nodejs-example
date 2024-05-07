@@ -10,13 +10,15 @@ import { HelpMenu } from "./HelpMenu";
 export type LayoutProps = {
   actualBread: Route[];
   activeRoute: string;
-  steps: StepProps[];
+  steps?: StepProps[];
   pageTitle: string;
   pageDescription: string | React.ReactNode;
   additionalContent?: React.ReactNode;
+  showQuestions?: boolean;
 };
 
 export const Layout = (props: LayoutProps) => {
+  const { steps = [], showQuestions = true } = props;
   return (
     <div className="flex flex-col">
       <Header />
@@ -31,7 +33,7 @@ export const Layout = (props: LayoutProps) => {
             <Text>{props.pageDescription}</Text>
           </div>
           <div className="flex flex-col gap-8">
-            {props.steps.map((step, idx) => (
+            {steps.map((step, idx) => (
               <Step
                 key={idx}
                 stepTitle={step.stepTitle}
@@ -41,9 +43,11 @@ export const Layout = (props: LayoutProps) => {
             ))}
             {props.additionalContent}
           </div>
-          <div className="my-12">
-            <Questions />
-          </div>
+          {showQuestions && (
+            <div className="my-14">
+              <Questions />
+            </div>
+          )}
         </div>
         <HelpMenu />
       </div>
