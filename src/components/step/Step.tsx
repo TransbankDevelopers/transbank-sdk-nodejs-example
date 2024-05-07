@@ -13,7 +13,7 @@ export const Step = (props: StepProps) => {
       <Text type={TextType.SECTION_TITLE}>{props.stepTitle}</Text>
       <Text>{props.content}</Text>
       {props.code && (
-        <div className="my-4">
+        <div className="mt-6">
           <Snippet code={props.code} removeTopPadding />
         </div>
       )}
