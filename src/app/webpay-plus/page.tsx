@@ -4,15 +4,12 @@ import {
   StartTransactionData,
   TBKCreateTransactionResponse,
 } from "@/types/transactions";
-import { generateRandomTransactionData } from "@/helpers/webpay-plus/transactionHelper";
-import { GetServerSidePropsContext, GetServerSidePropsResult } from "next";
-import { WebpayPlus } from "transbank-sdk";
-import { useState } from "react";
 import { Button, ButtonTypes } from "@/components/button/Button";
 import { Card } from "@/components/card/Card";
 import { Layout } from "@/components/layout/Layout";
 import { getCreateTRXSteps } from "@/helpers/webpay-plus/steps/create";
 import Head from "next/head";
+import { createTransaction } from "../lib/webpay-plus/data";
 
 const actualBread: Route[] = [
   {
@@ -28,13 +25,8 @@ const actualBread: Route[] = [
 export type CreateTRXProps = TBKCreateTransactionResponse &
   StartTransactionData;
 
-export default function CreateTransaction(props: CreateTRXProps) {
-  const [tokenInput, setTokenInput] = useState(props.token);
-
-  const handleTokenInputChange = (value: string) => {
-    setTokenInput(value);
-  };
-
+export default async function CreateTransaction() {
+  const trxData = await createTransaction();
   return (
     <>
       <Head>
@@ -48,20 +40,16 @@ export default function CreateTransaction(props: CreateTRXProps) {
     Transbank en el siguiente paso."
         actualBread={actualBread}
         activeRoute="/webpay-plus"
-        steps={getCreateTRXSteps(props.token, props)}
+        steps={getCreateTRXSteps(trxData.token, trxData)}
         additionalContent={
           <Card className="flex-col">
             <span className="font-medium text-sm mb-8">
               Formulario de redirección
             </span>
-            <InputText
-              label="Token"
-              value={tokenInput}
-              onChange={handleTokenInputChange}
-            />
+            <InputText label="Token" value={trxData.token} />
             <div className="flex justify-end mt-6">
-              <form action={props.url} method="POST">
-                <input type="hidden" name="token_ws" value={tokenInput} />
+              <form action={trxData.url} method="POST">
+                <input type="hidden" name="token_ws" value={trxData.token} />
                 <Button
                   text="PAGAR"
                   className="max-w-[94px]"
@@ -75,35 +63,3 @@ export default function CreateTransaction(props: CreateTRXProps) {
     </>
   );
 }
-
-export const getServerSideProps = async (
-  context: GetServerSidePropsContext
-): Promise<GetServerSidePropsResult<CreateTRXProps>> => {
-  const protocol = context.req.headers["x-forwarded-proto"] || "http"; // https://github.com/vercel/next.js/issues/2469
-  const host = context.req.headers.host || "localhost:3000";
-  const startTransactionData = generateRandomTransactionData(
-    protocol as string,
-    host
-  );
-
-  const createResponse: TBKCreateTransactionResponse | null =
-    await new WebpayPlus.Transaction(WebpayPlus.getDefaultOptions()).create(
-      startTransactionData.buyOrder,
-      startTransactionData.sessionId,
-      startTransactionData.amount,
-      startTransactionData.returnUrl
-    );
-
-  if (!createResponse) {
-    return {
-      notFound: true,
-    };
-  }
-
-  return {
-    props: {
-      ...startTransactionData,
-      ...createResponse,
-    },
-  };
-};

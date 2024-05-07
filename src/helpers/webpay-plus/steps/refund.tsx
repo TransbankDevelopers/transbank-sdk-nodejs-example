@@ -1,8 +1,11 @@
 import { StepProps } from "@/components/step/Step";
 import * as refundSnippets from "@/helpers/webpay-plus/snippets/refund";
 import { Text } from "@/components/text/Text";
+import { TBKRefundTransactionResponse } from "@/types/transactions";
 
-export const getRefundTRXSteps = (): StepProps[] => {
+export const getRefundTRXSteps = (
+  refundResult: TBKRefundTransactionResponse
+): StepProps[] => {
   return [
     {
       stepTitle: "Paso 1: Petición",
@@ -43,7 +46,7 @@ export const getRefundTRXSteps = (): StepProps[] => {
           Parcial.
         </Text>
       ),
-      code: refundSnippets.getStepTwo(),
+      code: refundSnippets.getStepTwo(refundResult),
     },
   ];
 };

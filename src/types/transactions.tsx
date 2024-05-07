@@ -40,3 +40,21 @@ export type TBKTransactionStatusResponse = Omit<
   TBKCommitTransactionResponse,
   "card_detail" | "authorization_code" | "payment_type_code" | "response_code"
 >;
+
+export enum TBKRefundTypes {
+  NULLIFIED = "NULLIFIED",
+  REVERSED = "REVERSED",
+}
+
+export type TBKRefundTransactionResponse =
+  | {
+      type: TBKRefundTypes;
+      balance: number;
+      authorization_code: string;
+      response_code: number;
+      authorization_date: string;
+      nullified_amount: number;
+    }
+  | {
+      type: TBKRefundTypes;
+    };

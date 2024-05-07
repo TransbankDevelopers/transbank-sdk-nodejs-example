@@ -1,12 +1,7 @@
 import { Header } from "@/components/layout/Header";
 import { Menu } from "@/components/layout/Menu";
-import { Text, TextType } from "@/components/text/Text";
-import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { Route } from "@/types/menu";
-import { Step } from "@/components/step/Step";
 import { HelpMenu } from "@/components/layout/HelpMenu";
-import { webpayPlusCreateSnippets } from "@/helpers/webpay-plus/snippets/create";
-import { Table } from "@/components/table/Table";
 
 const actualBread: Route[] = [
   {

@@ -1,14 +1,16 @@
+"use client";
 import { useState } from "react";
 import cx from "classnames";
 
 export type InputTextProps = {
   label: string;
   value: string | number;
-  onChange: (value: string) => void;
+  onChange?: (value: string) => void;
 };
 
 export const InputText = (props: InputTextProps) => {
   const [isFocused, setIsFocused] = useState(false);
+  const { onChange = () => {} } = props;
 
   const handleOnFocus = () => {
     setIsFocused(true);
@@ -35,7 +37,7 @@ export const InputText = (props: InputTextProps) => {
         onFocus={handleOnFocus}
         onBlur={handleOnBlur}
         value={props.value}
-        onChange={(e) => props.onChange(e.target.value)}
+        onChange={(e) => onChange(e.target.value)}
         className={cx(
           "bg-transparent outline-none pb-1 pl-1 font-medium text-sm",
           {

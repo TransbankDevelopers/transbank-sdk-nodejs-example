@@ -1,8 +1,9 @@
 import { Route } from "@/types/menu";
-import { GetServerSidePropsContext, GetServerSidePropsResult } from "next";
 import { Layout } from "@/components/layout/Layout";
 import Head from "next/head";
 import { getRefundTRXSteps } from "@/helpers/webpay-plus/steps/refund";
+import { NextPageProps } from "@/types/general";
+import { refundTransaction } from "@/app/lib/webpay-plus/data";
 
 const actualBread: Route[] = [
   {
@@ -19,7 +20,14 @@ const actualBread: Route[] = [
   },
 ];
 
-export default function RefundTransaction() {
+export default async function RefundTransaction({
+  searchParams,
+}: NextPageProps) {
+  const { token_ws, amount } = searchParams;
+  const refundResult = await refundTransaction(
+    token_ws as string,
+    Number(amount)
+  );
   return (
     <>
       <Head>
@@ -32,26 +40,8 @@ export default function RefundTransaction() {
         Anulación o Anulación Parcial.`}
         actualBread={actualBread}
         activeRoute="/webpay-plus/refund"
-        steps={getRefundTRXSteps()}
+        steps={getRefundTRXSteps(refundResult)}
       />
     </>
   );
 }
-
-export const getServerSideProps = async (
-  context: GetServerSidePropsContext
-): Promise<GetServerSidePropsResult<any>> => {
-  const { token_ws = null } = context.query;
-
-  if (!token_ws) {
-    return {
-      props: {
-        missingToken: true,
-      },
-    };
-  }
-
-  return {
-    props: {},
-  };
-};
