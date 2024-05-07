@@ -11,7 +11,7 @@ import { useState } from "react";
 import { Button, ButtonTypes } from "@/components/button/Button";
 import { Card } from "@/components/card/Card";
 import { Layout } from "@/components/layout/Layout";
-import { getCreateTRXSteps } from "@/helpers/webpay-plus/steps/createSteps";
+import { getCreateTRXSteps } from "@/helpers/webpay-plus/steps/create";
 import Head from "next/head";
 
 const actualBread: Route[] = [
