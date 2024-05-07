@@ -11,10 +11,10 @@ export const Step = (props: StepProps) => {
   return (
     <div className="flex flex-col">
       <Text type={TextType.SECTION_TITLE}>{props.stepTitle}</Text>
-      <Text>{props.content}</Text>
+      {props.content}
       {props.code && (
         <div className="mt-6">
-          <Snippet code={props.code} removeTopPadding />
+          <Snippet code={props.code} />
         </div>
       )}
     </div>
