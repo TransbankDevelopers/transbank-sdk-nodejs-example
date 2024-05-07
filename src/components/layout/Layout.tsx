@@ -30,7 +30,7 @@ export const Layout = (props: LayoutProps) => {
             <Text type={TextType.PAGE_TITLE}>{props.pageTitle}</Text>
             <Text>{props.pageDescription}</Text>
           </div>
-          <div className="flex flex-col gap-y-4">
+          <div className="flex flex-col gap-8">
             {props.steps.map((step, idx) => (
               <Step
                 key={idx}
