@@ -30,7 +30,7 @@ const MenuItem = (props: MenuItemProps) => {
             className={cx(
               "text-tbk-black px-3 hover:text-tbk-red hover:cursor-pointer",
               {
-                "text-tbk-red": props.actualPath === item.path,
+                "text-tbk-red": props.actualPath.includes(item.path),
               }
             )}
             key={idx}
