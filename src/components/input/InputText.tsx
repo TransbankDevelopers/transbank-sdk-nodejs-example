@@ -4,7 +4,7 @@ import cx from "classnames";
 export type InputTextProps = {
   label: string;
   value: string | number;
-  onChange: (value: string) => void;
+  onChange?: (value: string) => void;
 };
 
 export const InputText = (props: InputTextProps) => {
@@ -17,6 +17,8 @@ export const InputText = (props: InputTextProps) => {
   const handleOnBlur = () => {
     setIsFocused(false);
   };
+
+  const { onChange = () => {} } = props;
 
   return (
     <div className="flex flex-col">
@@ -35,7 +37,7 @@ export const InputText = (props: InputTextProps) => {
         onFocus={handleOnFocus}
         onBlur={handleOnBlur}
         value={props.value}
-        onChange={(e) => props.onChange(e.target.value)}
+        onChange={(e) => onChange(e.target.value)}
         className={cx(
           "bg-transparent outline-none pb-1 pl-1 font-medium text-sm",
           {

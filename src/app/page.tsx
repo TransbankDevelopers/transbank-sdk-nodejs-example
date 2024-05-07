@@ -1,12 +1,8 @@
 import { Header } from "@/components/layout/Header";
 import { Menu } from "@/components/layout/Menu";
-import { Text, TextType } from "@/components/text/Text";
-import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { Route } from "@/types/menu";
-import { Step } from "@/components/step/Step";
 import { HelpMenu } from "@/components/layout/HelpMenu";
-import { webpayPlusCreateSnippets } from "@/helpers/webpay-plus/snippets/create";
-import { Table } from "@/components/table/Table";
+import { headers } from "next/headers";
 
 const actualBread: Route[] = [
   {
@@ -20,6 +16,8 @@ const actualBread: Route[] = [
 ];
 
 export default function Home() {
+  const headersList = headers();
+  const hostname = headersList.get("x-forwarded-proto");
   return (
     <div className="flex flex-col">
       <Header />
@@ -27,6 +25,7 @@ export default function Home() {
         <Menu />
         <div className="pl-20 pr-12 mt-10 flex flex-col">
           <span>Home</span>
+          <div>host: {hostname}</div>
         </div>
         <HelpMenu />
       </div>
