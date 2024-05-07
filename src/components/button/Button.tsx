@@ -15,7 +15,7 @@ export type ButtonProps = {
   variant?: ButtonVariant;
   className?: string;
   type?: ButtonTypes;
-  onClick?: () => {};
+  onClick?: () => void;
 };
 
 export const Button = (props: ButtonProps) => {
