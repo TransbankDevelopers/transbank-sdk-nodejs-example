@@ -15,6 +15,7 @@ export type ButtonProps = {
   variant?: ButtonVariant;
   className?: string;
   type?: ButtonTypes;
+  onClick?: () => {};
 };
 
 export const Button = (props: ButtonProps) => {
@@ -24,10 +25,11 @@ export const Button = (props: ButtonProps) => {
   return (
     <button
       type={buttonType}
+      onClick={props.onClick}
       className={cx(
         "cursor-pointer",
         {
-          "h-[40px] px-14 bg-tbk-red rounded flex items-center justify-center":
+          "h-[40px] px-14 bg-tbk-red rounded flex items-center justify-center hover:bg-tbk-red-dark":
             variant === ButtonVariant.PRIMARY,
           "h-[46px] px-14 border border-tbk-red rounded-2lg flex items-center justify-center text-base":
             variant === ButtonVariant.SECONDARY,
