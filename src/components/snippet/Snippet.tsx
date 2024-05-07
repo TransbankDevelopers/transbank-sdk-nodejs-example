@@ -11,7 +11,6 @@ export type SnippetProps = {
   code: string;
   language?: SnippetLanguage;
   showLineNumbers?: boolean;
-  removeTopPadding?: boolean;
 };
 
 export const Snippet = (props: SnippetProps) => {
@@ -25,7 +24,6 @@ export const Snippet = (props: SnippetProps) => {
       customStyle={{
         padding: "12px",
         borderRadius: "0px",
-        ...(props.removeTopPadding && { paddingTop: "0px" }),
       }}
     />
   );
