@@ -15,8 +15,9 @@ export const getCreateTRXSteps = (
   return [
     {
       stepTitle: "Paso 1: Petición",
+      stepId: "peticion",
       content: (
-        <div className="flex flex-col gap-y-3">
+        <div className="step-1">
           <Text>
             1. Comienza por importar la librería WebpayPlus en tu proyecto.
           </Text>
@@ -30,6 +31,7 @@ export const getCreateTRXSteps = (
     },
     {
       stepTitle: "Paso 2: Respuesta",
+      stepId: "respuesta",
       content: (
         <Text>
           Una vez que hayas creado la transacción, aquí encontrarás los datos de
@@ -40,6 +42,7 @@ export const getCreateTRXSteps = (
     },
     {
       stepTitle: "Paso 3: Creación del formulario",
+      stepId: "form",
       content: (
         <Text>
           Utiliza estos datos de respuesta para redireccionar al usuario al
@@ -51,8 +54,9 @@ export const getCreateTRXSteps = (
     },
     {
       stepTitle: "Ejemplo",
+      stepId: "ejemplo",
       content: (
-        <div className="flex flex-col gap-8">
+        <div className="step-example">
           <Text>
             Para llevar a cabo una transacción de compra en nuestro sistema,
             primero debemos crear la transacción. Utilizaremos los siguientes
