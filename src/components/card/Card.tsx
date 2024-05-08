@@ -1,4 +1,5 @@
 import cx from "classnames";
+import "./Card.css";
 
 export type CardProps = {
   children: React.ReactNode;
@@ -9,12 +10,7 @@ export const Card = (props: CardProps) => {
   const { className = "" } = props;
 
   return (
-    <div
-      className={cx(
-        "shadow-tbk-shadow-2 flex p-8 mt-4 mb-8 text-black",
-        className
-      )}
-    >
+    <div className={cx("tbk-shadow-2 tbk-card", className)}>
       {props.children}
     </div>
   );

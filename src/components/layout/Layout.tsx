@@ -2,10 +2,11 @@ import { Route } from "@/types/menu";
 import { Breadcrumbs } from "./Breadcrumbs";
 import { Header } from "./Header";
 import { Menu } from "./Menu";
-import { Text, TextType } from "../text/Text";
+import { Text } from "../text/Text";
 import { Step, StepProps } from "../step/Step";
 import { Questions } from "../questions/Questions";
 import { Navigation, NavigationItem } from "./Navigation";
+import "./Layout.css";
 
 export type LayoutProps = {
   actualBread: Route[];
@@ -21,19 +22,19 @@ export type LayoutProps = {
 export const Layout = (props: LayoutProps) => {
   const { steps = [], showQuestions = true, navigationItems = [] } = props;
   return (
-    <div className="flex flex-col">
+    <div className="flex-col">
       <Header />
-      <div className="grid grid-cols-[280px,1fr,248px] px-24 py-10">
+      <div className="tbk-layout-body">
         <Menu />
-        <div className="pl-20 pr-12 mt-10 flex flex-col overflow-auto">
+        <div className="tbk-layout-content">
           <div className="mb-6">
             <Breadcrumbs items={props.actualBread} active={props.activeRoute} />
           </div>
-          <div className="mb-8 flex flex-col">
-            <Text type={TextType.PAGE_TITLE}>{props.pageTitle}</Text>
+          <div className="mb-8 flex-col">
+            <h1>{props.pageTitle}</h1>
             <Text>{props.pageDescription}</Text>
           </div>
-          <div className="flex flex-col gap-8">
+          <div className="flex-col gap-8">
             {steps.map((step, idx) => (
               <Step
                 key={idx}
@@ -53,7 +54,7 @@ export const Layout = (props: LayoutProps) => {
         </div>
         <Navigation items={navigationItems} />
       </div>
-      <div className="bg-tbk-black-bg h-[200px]"></div>
+      <div className="tbk-layout-footer"></div>
     </div>
   );
 };

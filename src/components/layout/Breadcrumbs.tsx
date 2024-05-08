@@ -3,6 +3,7 @@ import RightChevron from "@/assets/svg/right-chevron.svg";
 import { Route } from "@/types/menu";
 import cx from "classnames";
 import Link from "next/link";
+import "./Breadcrumbs.css";
 
 export type BreadcrumbsProps = {
   items: Route[];
@@ -11,12 +12,12 @@ export type BreadcrumbsProps = {
 
 export const Breadcrumbs = (props: BreadcrumbsProps) => {
   return (
-    <div className="flex items-center gap-x-3 text-tbk-black-2 text-sm">
+    <div className="breadcrumbs-container">
       {props.items.map((item, index) => (
-        <div className="flex gap-x-3" key={index}>
+        <div className="breadcrumbs-items" key={item.path}>
           <Link
             className={cx({
-              "text-tbk-red": item.path === props.active,
+              "current-breadcrumb": item.path === props.active,
             })}
             href={{
               pathname: item.path,

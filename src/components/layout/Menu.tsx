@@ -8,6 +8,7 @@ import { Route } from "@/types/menu";
 import { usePathname } from "next/navigation";
 import cx from "classnames";
 import Link from "next/link";
+import "./Menu.css";
 
 export type MenuItemProps = {
   title: string;
@@ -17,22 +18,17 @@ export type MenuItemProps = {
 
 const MenuItem = (props: MenuItemProps) => {
   return (
-    <div className="flex flex-col gap-y-6 px-2">
-      <span className="text-lg text-tbk-grey mb-3 font-bold">
-        {props.title}
-      </span>
+    <div className="tbk-menu-item-container">
+      <span className="tbk-menu-item-text">{props.title}</span>
       {props.routes.map((item, idx) => {
         return (
           <Link
             href={{
               pathname: item.path,
             }}
-            className={cx(
-              "text-tbk-black px-3 hover:text-tbk-red hover:cursor-pointer",
-              {
-                "text-tbk-red": props.actualPath.includes(item.path),
-              }
-            )}
+            className={cx("tbk-menu-item", {
+              active: props.actualPath.includes(item.path),
+            })}
             key={idx}
           >
             {item.name}
@@ -46,7 +42,7 @@ const MenuItem = (props: MenuItemProps) => {
 export const Menu = () => {
   const path = usePathname() || "/";
   return (
-    <div className="border-r border-tbk-border flex flex-col gap-y-14">
+    <div className="tbk-menu">
       <MenuItem
         title="Webpay Plus"
         actualPath={path}

@@ -1,0 +1,28 @@
+.tbk-label {
+  padding-left: 0.25rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  color: var(--tbk-grey);
+}
+
+.tbk-label.focus {
+  color: var(--tbk-red);
+}
+
+.tbk-input-text {
+  padding-bottom: 0.25rem;
+  padding-left: 0.25rem;
+  outline-style: none;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  background-color: transparent;
+  border-color: var(--tbk-border-blue);
+  border-bottom-width: 1px;
+}
+
+.tbk-input-text.focus {
+  border-color: var(--tbk-red);
+  border-bottom-width: 2px;
+}

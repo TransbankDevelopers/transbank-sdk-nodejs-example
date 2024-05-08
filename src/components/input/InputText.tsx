@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import cx from "classnames";
+import "./InputText.css";
 
 export type InputTextProps = {
   label: string;
@@ -21,13 +22,11 @@ export const InputText = (props: InputTextProps) => {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex-col">
       <span
-        className={cx("text-tbk-grey text-sm font-medium pl-1", {
+        className={cx("tbk-label", {
           "mb-2": isFocused || props.value !== "",
-          "text-tbk-red": isFocused,
-          "ease-out duration-300": isFocused,
-          "ease-in duration-300": !isFocused,
+          focus: isFocused,
         })}
       >
         {props.label}
@@ -38,15 +37,9 @@ export const InputText = (props: InputTextProps) => {
         onBlur={handleOnBlur}
         value={props.value}
         onChange={(e) => onChange(e.target.value)}
-        className={cx(
-          "bg-transparent outline-none pb-1 pl-1 font-medium text-sm",
-          {
-            "!border-tbk-red": isFocused,
-            "border-tbk-border-blue": !isFocused,
-            "border-b-2": isFocused,
-            "border-b": !isFocused,
-          }
-        )}
+        className={cx("tbk-input-text", {
+          focus: isFocused,
+        })}
       />
     </div>
   );
