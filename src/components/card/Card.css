@@ -1,0 +1,7 @@
+.tbk-card {
+  display: flex;
+  padding: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  color: var(--tbk-black);
+}

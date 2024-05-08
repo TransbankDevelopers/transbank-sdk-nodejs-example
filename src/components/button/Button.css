@@ -1,0 +1,28 @@
+.tbk-button {
+  display: flex;
+  padding-left: 3.5rem;
+  padding-right: 3.5rem;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  background-color: var(--tbk-red);
+  color: white;
+}
+
+.tbk-button.primary {
+  border-radius: 0.25rem;
+  height: 40px;
+}
+
+.tbk-button.primary:hover {
+  background-color: var(--tbk-red-dark);
+}
+
+.tbk-button.secondaty {
+  border: 1px solid var(--tbk-red);
+  color: var(--tbk-red);
+  background-color: white;
+  line-height: 1.5rem;
+  height: 46px;
+  border-radius: 10px;
+}

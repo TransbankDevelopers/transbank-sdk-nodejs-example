@@ -1,4 +1,5 @@
 import cx from "classnames";
+import "./Button.css";
 
 export enum ButtonVariant {
   PRIMARY = "primary",
@@ -27,14 +28,12 @@ export const Button = (props: ButtonProps) => {
       type={buttonType}
       onClick={props.onClick}
       className={cx(
-        "cursor-pointer",
+        "tbk-button",
         {
-          "h-[40px] px-14 bg-tbk-red rounded flex items-center justify-center hover:bg-tbk-red-dark":
-            variant === ButtonVariant.PRIMARY,
-          "h-[46px] px-14 border border-tbk-red rounded-2lg flex items-center justify-center text-base":
-            variant === ButtonVariant.SECONDARY,
+          primary: variant === ButtonVariant.PRIMARY,
+          secondaty: variant === ButtonVariant.SECONDARY,
         },
-        props.className || ""
+        props.className
       )}
     >
       <span

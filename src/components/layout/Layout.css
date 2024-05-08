@@ -1,0 +1,22 @@
+.tbk-layout-body {
+  display: grid;
+  grid-template-columns: 280px 1fr 248px;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+  padding-left: 6rem;
+  padding-right: 6rem;
+}
+
+.tbk-layout-content {
+  display: flex;
+  overflow: auto;
+  padding-right: 3rem;
+  padding-left: 5rem;
+  margin-top: 2.5rem;
+  flex-direction: column;
+}
+
+.tbk-layout-footer {
+  height: 200px;
+  background-color: var(--tbk-black-bg);
+}

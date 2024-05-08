@@ -10,7 +10,7 @@ export type StepProps = {
 
 export const Step = (props: StepProps) => {
   return (
-    <div className="flex flex-col" id={props.stepId}>
+    <div className="flex-col" id={props.stepId}>
       <Text type={TextType.SECTION_TITLE}>{props.stepTitle}</Text>
       {props.content}
       {props.code && (
