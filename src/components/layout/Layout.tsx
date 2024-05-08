@@ -15,11 +15,11 @@ export type LayoutProps = {
   pageDescription: string | React.ReactNode;
   additionalContent?: React.ReactNode;
   showQuestions?: boolean;
-  navigationItems: NavigationItem[];
+  navigationItems?: NavigationItem[];
 };
 
 export const Layout = (props: LayoutProps) => {
-  const { steps = [], showQuestions = true } = props;
+  const { steps = [], showQuestions = true, navigationItems = [] } = props;
   return (
     <div className="flex flex-col">
       <Header />
@@ -51,7 +51,7 @@ export const Layout = (props: LayoutProps) => {
             </div>
           )}
         </div>
-        <Navigation items={props.navigationItems} />
+        <Navigation items={navigationItems} />
       </div>
       <div className="bg-tbk-black-bg h-[200px]"></div>
     </div>
