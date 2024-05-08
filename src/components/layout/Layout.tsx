@@ -5,7 +5,7 @@ import { Menu } from "./Menu";
 import { Text, TextType } from "../text/Text";
 import { Step, StepProps } from "../step/Step";
 import { Questions } from "../questions/Questions";
-import { HelpMenu } from "./HelpMenu";
+import { Navigation, NavigationItem } from "./Navigation";
 
 export type LayoutProps = {
   actualBread: Route[];
@@ -15,6 +15,7 @@ export type LayoutProps = {
   pageDescription: string | React.ReactNode;
   additionalContent?: React.ReactNode;
   showQuestions?: boolean;
+  navigationItems: NavigationItem[];
 };
 
 export const Layout = (props: LayoutProps) => {
@@ -37,6 +38,7 @@ export const Layout = (props: LayoutProps) => {
               <Step
                 key={idx}
                 stepTitle={step.stepTitle}
+                stepId={step.stepId}
                 content={step.content}
                 code={step.code}
               />
@@ -49,7 +51,7 @@ export const Layout = (props: LayoutProps) => {
             </div>
           )}
         </div>
-        <HelpMenu />
+        <Navigation items={props.navigationItems} />
       </div>
       <div className="bg-tbk-black-bg h-[200px]"></div>
     </div>
