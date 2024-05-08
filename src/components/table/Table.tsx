@@ -1,3 +1,5 @@
+import "./Table.css";
+
 export type ColumnDefinition = {
   header: string;
   accessor: string;
@@ -15,27 +17,21 @@ export type TableProps = {
 
 export const Table = (props: TableProps) => {
   return (
-    <div className="flex flex-col text-tbk-black-2">
-      <div className="h-[56px] flex justify-between bg-tbk-table-header">
+    <div className="table-container">
+      <div className="header">
         {props.columns.map((column, index) => (
-          <div
-            key={index}
-            className="w-[50%] flex justify-center items-center border-r border-b border-tbk-border-blue"
-          >
-            <span className="font-bold text-tbk-red">{column.header}</span>
+          <div key={index} className="column">
+            <span>{column.header}</span>
           </div>
         ))}
       </div>
       <div>
         {props.rows.map((row, index) => (
-          <div
-            key={index}
-            className="h-[56px] flex justify-between items-center border-b border-tbk-border-blue text-sm"
-          >
-            <div className="w-[50%] h-full flex pl-4 items-center border-r border-tbk-border-blue">
+          <div key={index} className="row">
+            <div className="cell">
               <span>{row.field}</span>
             </div>
-            <div className="w-[50%] h-full flex pl-4 items-center border-r border-tbk-border-blue">
+            <div className="cell">
               <span>{row.value}</span>
             </div>
           </div>
