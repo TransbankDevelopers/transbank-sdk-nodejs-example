@@ -11,7 +11,7 @@ export const getRefundTRXSteps = (
     {
       stepTitle: "Paso 1: Petición",
       content: (
-        <div className="flex flex-col gap-4">
+        <div className="step-1">
           <Text>
             Para llevar a cabo el reembolso, necesitas proporcionar el token de
             la transacción y el monto que deseas reversar. Si anulas el monto
@@ -20,14 +20,14 @@ export const getRefundTRXSteps = (
           </Text>
           <div>
             <Text>Algunas consideraciones a tener en cuenta:</Text>
-            <ul className="list-disc px-4 text-base text-tbk-black-2">
+            <ul className="list">
               <li>
                 No es posible realizar Anulaciones Parciales en pagos con
                 cuotas.
               </li>
               <li>No se admiten reembolsos de compras en cuotas.</li>
             </ul>
-            <div className="mt-4">
+            <div className="link-to-terms">
               <Text>
                 En este link podrás ver mayor información sobre las condiciones
                 y casos para anular o reversar transacciones.{" "}
