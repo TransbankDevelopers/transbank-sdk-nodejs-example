@@ -4,12 +4,13 @@ import { Text, TextType } from "../text/Text";
 export type StepProps = {
   code?: string;
   stepTitle: string;
+  stepId?: string;
   content: string | React.ReactNode;
 };
 
 export const Step = (props: StepProps) => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col" id={props.stepId}>
       <Text type={TextType.SECTION_TITLE}>{props.stepTitle}</Text>
       {props.content}
       {props.code && (
