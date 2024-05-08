@@ -1,3 +1,4 @@
+import "./page.css";
 import { Route } from "@/types/menu";
 import { InputText } from "@/components/input/InputText";
 import {
@@ -10,6 +11,7 @@ import { Layout } from "@/components/layout/Layout";
 import { getCreateTRXSteps } from "@/app/webpay-plus/content/steps/create";
 import Head from "next/head";
 import { createTransaction } from "../lib/webpay-plus/data";
+import { NavigationItem } from "@/components/layout/Navigation";
 
 const actualBread: Route[] = [
   {
@@ -19,6 +21,25 @@ const actualBread: Route[] = [
   {
     name: "Webpay Plus",
     path: "/webpay-plus",
+  },
+];
+
+const navigationItems: NavigationItem[] = [
+  {
+    title: "Petición",
+    sectionId: "peticion",
+  },
+  {
+    title: "Respuesta",
+    sectionId: "respuesta",
+  },
+  {
+    title: "Creación del formulario",
+    sectionId: "form",
+  },
+  {
+    title: "Ejemplo",
+    sectionId: "ejemplo",
   },
 ];
 
@@ -40,19 +61,18 @@ export default async function CreateTransaction() {
     Transbank en el siguiente paso."
         actualBread={actualBread}
         activeRoute="/webpay-plus"
+        navigationItems={navigationItems}
         steps={getCreateTRXSteps(trxData.token, trxData)}
         additionalContent={
-          <Card className="flex-col">
-            <span className="font-medium text-sm mb-8">
-              Formulario de redirección
-            </span>
+          <Card className="card-pay">
+            <span className="title">Formulario de redirección</span>
             <InputText label="Token" value={trxData.token} />
-            <div className="flex justify-end mt-6">
+            <div className="button-container">
               <form action={trxData.url} method="POST">
                 <input type="hidden" name="token_ws" value={trxData.token} />
                 <Button
                   text="PAGAR"
-                  className="max-w-[94px]"
+                  className="button"
                   type={ButtonTypes.SUBMIT}
                 />
               </form>
