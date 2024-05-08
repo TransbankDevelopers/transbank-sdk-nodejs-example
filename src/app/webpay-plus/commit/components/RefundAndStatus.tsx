@@ -28,21 +28,21 @@ export const RefundAndStatus = ({ token, amount }: RefundAndStatusProps) => {
   };
 
   return (
-    <Card className="justify-between">
+    <Card className="refund-card">
       <InputText
         label="Monto a reembolsar:"
         value={refundAmount}
         onChange={handleRefund}
       />
-      <div className="flex flex-col gap-4 items-end">
+      <div className="button-container">
         <Button
           text="REEMBOLSAR"
-          className="px-4"
+          className="button"
           onClick={handleGoToTRXRefund}
         />
         <Button
           text="CONSULTAR ESTADO"
-          className="px-4"
+          className="button"
           onClick={handleGoToTRXStatus}
         />
       </div>

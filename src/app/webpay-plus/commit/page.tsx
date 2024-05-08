@@ -1,3 +1,4 @@
+import "./page.css";
 import { Route } from "@/types/menu";
 import { Layout } from "@/components/layout/Layout";
 import { getCommitSteps } from "@/app/webpay-plus/content/steps/commit";

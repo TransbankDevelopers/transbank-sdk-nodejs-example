@@ -42,18 +42,18 @@ export const getCommitSteps = (
     {
       stepTitle: "¡Listo!",
       content: (
-        <div className="flex flex-col gap-4">
+        <div className="step-ready">
           <Text>
             Con la confirmación exitosa, ya puedes mostrar al usuario una página
             de éxito de la transacción, proporcionándole la tranquilidad de que
             el proceso ha sido completado con éxito.
           </Text>
-          <div className="flex flex-col gap-2">
+          <div className="instructions">
             <Text>
               Después de confirmar la transacción, podrás realizar otras
               operaciones útiles:
             </Text>
-            <ul className="list-disc px-6 text-base text-tbk-black-2">
+            <ul className="list">
               <li>
                 <b>Reembolsar:</b> Puedes reversar o anular el pago según
                 ciertas condiciones comerciales.
