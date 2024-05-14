@@ -48,7 +48,6 @@ export type CreateTRXProps = TBKCreateTransactionResponse &
 
 export default async function CreateWebpyMallTransaction() {
   const trxData = await createMallTransaction();
-  console.log({ trxData });
 
   return (
     <>
