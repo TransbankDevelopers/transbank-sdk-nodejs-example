@@ -3,6 +3,13 @@ import {
   StartTransactionData,
   StartTransactionDataMall,
 } from "@/types/transactions";
+import { TBKTransactionStatus, TransactionDetail } from "@/types/transactions";
+
+export const isSomeTransactionRejected = (details: TransactionDetail[]) => {
+  return details.some(
+    (detail) => detail.status === TBKTransactionStatus.FAILED
+  );
+};
 
 export const generateRandomTransactionData = (
   protocol: string,
