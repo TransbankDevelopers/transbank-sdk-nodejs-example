@@ -5,6 +5,17 @@ export type StartTransactionData = {
   returnUrl: string;
 };
 
+export type StartTransactionDataMall = {
+  commerceCode: string;
+  buyOrder: string;
+  returnUrl: string;
+  amount: number;
+  childBuyOrder: string;
+  childBuyOrder2: string;
+  amount2: number;
+  sessionId: string;
+};
+
 export type TBKCreateTransactionResponse = {
   token: string;
   url: string;
