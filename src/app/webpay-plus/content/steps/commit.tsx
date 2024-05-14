@@ -1,5 +1,8 @@
 import { StepProps } from "@/components/step/Step";
-import { TBKCommitTransactionResponse } from "@/types/transactions";
+import {
+  TBKCommitTransactionResponse,
+  TBKTransactionStatus,
+} from "@/types/transactions";
 import * as commitSnippets from "@/app/webpay-plus/content/snippets/commit";
 import { Text } from "@/components/text/Text";
 
@@ -7,7 +10,7 @@ export const getCommitSteps = (
   token: string,
   commitResponse: TBKCommitTransactionResponse
 ): StepProps[] => {
-  return [
+  const steps: StepProps[] = [
     {
       stepTitle: "Paso 1: Datos recibidos",
       content: (
@@ -39,7 +42,10 @@ export const getCommitSteps = (
       ),
       code: commitSnippets.getStepThree(commitResponse),
     },
-    {
+  ];
+
+  if (commitResponse.status === TBKTransactionStatus.AUTHORIZED) {
+    steps.push({
       stepTitle: "¡Listo!",
       content: (
         <div className="step-ready">
@@ -66,6 +72,8 @@ export const getCommitSteps = (
           </div>
         </div>
       ),
-    },
-  ];
+    });
+  }
+
+  return steps;
 };
