@@ -47,7 +47,7 @@ export type CreateTRXProps = TBKCreateTransactionResponse &
   StartTransactionData;
 
 export default async function CreateTransaction() {
-  const trxData = await createTransaction();
+  const trxData = await createTransaction("/webpay-plus/commit");
   return (
     <>
       <Head>
