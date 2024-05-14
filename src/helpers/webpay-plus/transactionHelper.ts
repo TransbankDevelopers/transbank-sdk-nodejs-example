@@ -3,12 +3,13 @@ import { StartTransactionData } from "@/types/transactions";
 
 export const generateRandomTransactionData = (
   protocol: string,
-  host: string
+  host: string,
+  returnRoute: string
 ): StartTransactionData => {
   const buyOrder = "O-" + Math.floor(Math.random() * 10000) + 1;
   const sessionId = "S-" + Math.floor(Math.random() * 10000) + 1;
   const amount = Math.floor(Math.random() * 1000) + 1001;
-  const returnUrl = `${protocol}://${host}/webpay-plus/commit`;
+  const returnUrl = `${protocol}://${host}${returnRoute}`;
 
   return {
     buyOrder,
