@@ -6,6 +6,7 @@ import { getStatusTRXSteps } from "../../content/steps/status";
 import { getStatusTransaction } from "@/app/lib/webpay-plus/data";
 import { getErrorAbortedSteps } from "../../content/steps/error-aborted";
 import { TBKAbortedResponse } from "@/types/transactions";
+import { getWebpayPlusDeferredOptions } from "@/app/lib/webpay-plus-deferred/data";
 
 const actualBread: Route[] = [
   {
@@ -28,7 +29,8 @@ export type AbortedViewProps = {
 
 export const AbortedView = async (props: AbortedViewProps) => {
   const statusResponse = await getStatusTransaction(
-    props.abortedResponse.TBK_TOKEN
+    props.abortedResponse.TBK_TOKEN,
+    getWebpayPlusDeferredOptions()
   );
   return (
     <>
