@@ -37,7 +37,7 @@ export default async function StatusTransactionView({
         Sin embargo, una vez pasados los 7 días, ya no podrás revisar su estado.`}
         actualBread={actualBread}
         activeRoute="/webpay-plus/status"
-        steps={getStatusTRXSteps(trxStatus)}
+        steps={getStatusTRXSteps(token_ws as string, trxStatus)}
       />
     </>
   );
