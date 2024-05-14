@@ -4,13 +4,14 @@ import { Card } from "@/components/card/Card";
 import { InputText } from "@/components/input/InputText";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { RefundAndStatusProps } from "@/types/transactions";
 
-export type RefundAndStatusProps = {
-  token: string;
-  amount: string | number;
-};
-
-export const RefundAndStatus = ({ token, amount }: RefundAndStatusProps) => {
+export const RefundAndStatus = ({
+  token,
+  amount,
+  buyOrder,
+  commerceCode,
+}: RefundAndStatusProps) => {
   const router = useRouter();
   const [refundAmount, setRefundAmount] = useState<number>(Number(amount || 0));
 
@@ -24,7 +25,9 @@ export const RefundAndStatus = ({ token, amount }: RefundAndStatusProps) => {
   };
 
   const handleGoToTRXRefund = () => {
-    router.push(`/webpay-plus/refund?token_ws=${token}&amount=${refundAmount}`);
+    router.push(
+      `/webpay-plus/refund?token_ws=${token}&amount=${refundAmount}&buyOrder=${buyOrder}&commerceCode=${commerceCode}`
+    );
   };
 
   return (
