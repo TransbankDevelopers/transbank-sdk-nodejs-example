@@ -1,11 +1,11 @@
 import { StepProps } from "@/components/step/Step";
-import { TBKCommitTransactionResponse } from "@/types/transactions";
-import * as commitSnippets from "@/app/webpay-plus/content/snippets/commit";
+import { TBKMallCommitTransactionResponse } from "@/types/transactions";
+import * as commitSnippets from "@/app/webpay-mall/content/snippets/commit";
 import { Text } from "@/components/text/Text";
 
 export const getCommitSteps = (
   token: string,
-  commitResponse: TBKCommitTransactionResponse
+  commitResponse: TBKMallCommitTransactionResponse
 ): StepProps[] => {
   return [
     {

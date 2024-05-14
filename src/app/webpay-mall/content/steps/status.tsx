@@ -4,6 +4,7 @@ import * as statusSnippets from "@/app/webpay-plus/content/snippets/status";
 import { Text } from "@/components/text/Text";
 
 export const getStatusTRXSteps = (
+  token_ws: string,
   trxData: TBKTransactionStatusResponse
 ): StepProps[] => {
   return [
@@ -16,7 +17,7 @@ export const getStatusTRXSteps = (
           llamada al SDK.
         </Text>
       ),
-      code: statusSnippets.getStepOne(),
+      code: statusSnippets.getStepOne(token_ws),
     },
     {
       stepTitle: "Paso 2: Respuesta",
