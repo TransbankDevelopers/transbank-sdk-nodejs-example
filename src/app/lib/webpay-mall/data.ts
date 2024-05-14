@@ -1,15 +1,36 @@
 import { generateRandomTransactionDataMall } from "@/helpers/webpay-plus/transactionHelper";
+import { SearchParams } from "@/types/general";
 import {
+  CommitMallTransactionResult,
   StartTransactionDataMall,
-  TBKCommitTransactionResponse,
+  TBKCallbackType,
+  TBKMallCommitTransactionResponse,
   TBKCreateTransactionResponse,
   TBKTransactionStatusResponse,
 } from "@/types/transactions";
 import { headers } from "next/headers";
-import { WebpayPlus, TransactionDetail } from "transbank-sdk";
+import { WebpayPlus, TransactionDetail, Options } from "transbank-sdk";
 
 export type CreateTransactionResult = TBKCreateTransactionResponse &
   StartTransactionDataMall;
+
+const getCallbackType = (parameters: SearchParams): TBKCallbackType => {
+  const { token_ws, TBK_TOKEN, TBK_ORDEN_COMPRA, TBK_ID_SESION } = parameters;
+
+  if (token_ws && !(TBK_TOKEN && TBK_ORDEN_COMPRA && TBK_ID_SESION)) {
+    return TBKCallbackType.COMMIT_OK;
+  }
+
+  if (TBK_ID_SESION && TBK_ORDEN_COMPRA && !TBK_TOKEN) {
+    return TBKCallbackType.TIMEOUT;
+  }
+
+  if (TBK_ID_SESION && TBK_ORDEN_COMPRA && TBK_TOKEN) {
+    return TBKCallbackType.ABORTED;
+  }
+
+  return TBKCallbackType.INVALID_PAYMENT;
+};
 
 export const createMallTransaction =
   async (): Promise<CreateTransactionResult> => {
@@ -51,36 +72,77 @@ export const createMallTransaction =
     };
   };
 
-export type CommitTransactionResult = {
-  commitResponse: TBKCommitTransactionResponse;
-};
-
 export const commitTransaction = async (
-  token_ws: string
-): Promise<CommitTransactionResult> => {
-  const commitResponse: TBKCommitTransactionResponse =
-    await new WebpayPlus.Transaction(WebpayPlus.getDefaultOptions()).commit(
-      token_ws as string
-    );
+  parametersReceivedByTBK: SearchParams,
+  options?: Options
+): Promise<CommitMallTransactionResult> => {
+  const callbackType = getCallbackType(parametersReceivedByTBK);
+
+  if (callbackType === TBKCallbackType.COMMIT_OK) {
+    const commitResponse: TBKMallCommitTransactionResponse =
+      await new WebpayPlus.MallTransaction(
+        options ?? WebpayPlus.getDefaultOptions()
+      ).commit(parametersReceivedByTBK.token_ws as string);
+
+    return {
+      type: TBKCallbackType.COMMIT_OK,
+      commitResponse,
+    };
+  }
+
+  if (callbackType === TBKCallbackType.ABORTED) {
+    const { TBK_TOKEN, TBK_ORDEN_COMPRA, TBK_ID_SESION } =
+      parametersReceivedByTBK;
+
+    return {
+      type: TBKCallbackType.ABORTED,
+      abortedResponse: {
+        TBK_TOKEN: TBK_TOKEN as string,
+        TBK_ORDEN_COMPRA: TBK_ORDEN_COMPRA as string,
+        TBK_ID_SESION: TBK_ID_SESION as string,
+      },
+    };
+  }
+
+  if (callbackType === TBKCallbackType.TIMEOUT) {
+    const { TBK_ORDEN_COMPRA, TBK_ID_SESION } = parametersReceivedByTBK;
+
+    return {
+      type: TBKCallbackType.TIMEOUT,
+      timeoutResponse: {
+        TBK_ORDEN_COMPRA: TBK_ORDEN_COMPRA as string,
+        TBK_ID_SESION: TBK_ID_SESION as string,
+      },
+    };
+  }
 
   return {
-    commitResponse,
+    type: callbackType,
   };
 };
 
-export const getStatusTransaction = async (token_ws: string) => {
+export const getStatusTransaction = async (
+  token_ws: string,
+  options?: Options
+) => {
   const trxStatus: TBKTransactionStatusResponse =
-    await new WebpayPlus.Transaction(WebpayPlus.getDefaultOptions()).status(
-      token_ws as string
-    );
+    await new WebpayPlus.MallTransaction(
+      options ?? WebpayPlus.getDefaultOptions()
+    ).status(token_ws as string);
 
   return trxStatus;
 };
 
-export const refundTransaction = async (token_ws: string, amount: number) => {
-  const refundResponse = await new WebpayPlus.Transaction(
-    WebpayPlus.getDefaultOptions()
-  ).refund(token_ws as string, amount);
+export const refundTransaction = async (
+  token_ws: string,
+  amount: number,
+  buyOrder: string,
+  commerceCode: string,
+  options?: Options
+) => {
+  const refundResponse = await new WebpayPlus.MallTransaction(
+    options ?? WebpayPlus.getDefaultOptions()
+  ).refund(token_ws as string, buyOrder, commerceCode, amount);
 
   return refundResponse;
 };
