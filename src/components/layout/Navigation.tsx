@@ -46,6 +46,10 @@ export const Navigation = (props: NavigationProps) => {
     };
   }, [props.items]);
 
+  if (!props.items.length) {
+    return null;
+  }
+
   return (
     <div className="nav-container">
       <div className="content">
