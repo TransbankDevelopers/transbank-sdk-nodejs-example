@@ -28,7 +28,7 @@ export type AbortedViewProps = {
 
 export const AbortedView = async (props: AbortedViewProps) => {
   const statusResponse = await getStatusTransaction(
-    props.abortedResponse.token_ws
+    props.abortedResponse.TBK_TOKEN
   );
   return (
     <>
@@ -54,7 +54,7 @@ export const AbortedView = async (props: AbortedViewProps) => {
               pageTitle="Consulta de Estado de Transacción"
               pageDescription="Puedes solicitar el estado de una transacción hasta 7 días después de su realización. No hay límite de solicitudes de este tipo durante ese período. Sin embargo, después de pasar los 7 días, ya no podrás revisar el estado de la transacción."
               steps={getStatusTRXSteps(
-                props.abortedResponse.token_ws,
+                props.abortedResponse.TBK_TOKEN,
                 statusResponse
               )}
             />

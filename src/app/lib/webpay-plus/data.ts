@@ -81,13 +81,12 @@ export const commitTransaction = async (
   }
 
   if (callbackType === TBKCallbackType.ABORTED) {
-    const { token_ws, TBK_TOKEN, TBK_ORDEN_COMPRA, TBK_ID_SESION } =
+    const { TBK_TOKEN, TBK_ORDEN_COMPRA, TBK_ID_SESION } =
       parametersReceivedByTBK;
 
     return {
       type: TBKCallbackType.ABORTED,
       abortedResponse: {
-        token_ws: token_ws as string,
         TBK_TOKEN: TBK_TOKEN as string,
         TBK_ORDEN_COMPRA: TBK_ORDEN_COMPRA as string,
         TBK_ID_SESION: TBK_ID_SESION as string,

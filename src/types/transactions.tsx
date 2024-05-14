@@ -61,7 +61,6 @@ export type TBKRefundTransactionResponse =
     };
 
 export type TBKAbortedResponse = {
-  token_ws: string;
   TBK_TOKEN: string;
   TBK_ORDEN_COMPRA: string;
   TBK_ID_SESION: string;
