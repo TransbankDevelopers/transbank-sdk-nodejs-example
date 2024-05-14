@@ -12,6 +12,7 @@ export type TBKCreateTransactionResponse = {
 
 export enum TBKTransactionStatus {
   AUTHORIZED = "AUTHORIZED",
+  FAILED = "FAILED",
 }
 
 export type TBKCardDetail = {
@@ -24,7 +25,7 @@ export enum PaymentTypeCode {
 
 export type TBKCommitTransactionResponse = {
   amount: number;
-  status: TBKTransactionStatus.AUTHORIZED;
+  status: TBKTransactionStatus;
   buy_order: string;
   session_id: string;
   card_detail: TBKCardDetail;
@@ -58,3 +59,37 @@ export type TBKRefundTransactionResponse =
   | {
       type: TBKRefundTypes;
     };
+
+export type TBKAbortedResponse = {
+  token_ws: string;
+  TBK_TOKEN: string;
+  TBK_ORDEN_COMPRA: string;
+  TBK_ID_SESION: string;
+};
+
+export type TBKTimeoutResponse = {
+  TBK_ID_SESION: string;
+  TBK_ORDEN_COMPRA: string;
+};
+
+export type CommitTransactionResult = {
+  commitResponse?: TBKCommitTransactionResponse;
+  abortedResponse?: TBKAbortedResponse;
+  timeoutResponse?: TBKTimeoutResponse;
+  type: TBKCallbackType;
+};
+
+export enum TBKCallbackType {
+  COMMIT_OK = "commit_ok",
+  TIMEOUT = "timeout",
+  ABORTED = "aborted",
+  REJECTED = "rejected",
+  INVALID_PAYMENT = "invalid_payment",
+}
+
+export type TBKCaptureTransactionResponse = {
+  authorization_code: string;
+  authorization_date: string;
+  captured_amount: number;
+  response_code: number;
+};
