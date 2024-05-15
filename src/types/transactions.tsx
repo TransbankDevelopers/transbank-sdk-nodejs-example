@@ -74,6 +74,16 @@ export type TBKTransactionStatusResponse = Omit<
   "card_detail" | "authorization_code" | "payment_type_code" | "response_code"
 >;
 
+export type TBKMallTransactionStatusResponse = {
+  vci: string;
+  details: TransactionDetail[];
+  buy_order: string;
+  session_id: string;
+  card_detail: TBKCardDetail;
+  accounting_date: string;
+  transaction_date: string;
+};
+
 export enum TBKRefundTypes {
   NULLIFIED = "NULLIFIED",
   REVERSED = "REVERSED",

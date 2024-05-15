@@ -6,7 +6,7 @@ import {
   TBKCallbackType,
   TBKMallCommitTransactionResponse,
   TBKCreateTransactionResponse,
-  TBKTransactionStatusResponse,
+  TBKMallTransactionStatusResponse,
 } from "@/types/transactions";
 import { headers } from "next/headers";
 import { WebpayPlus, TransactionDetail, Options } from "transbank-sdk";
@@ -125,7 +125,7 @@ export const getStatusTransaction = async (
   token_ws: string,
   options?: Options
 ) => {
-  const trxStatus: TBKTransactionStatusResponse =
+  const trxStatus: TBKMallTransactionStatusResponse =
     await new WebpayPlus.MallTransaction(
       options ?? WebpayPlus.getDefaultOptions()
     ).status(token_ws as string);
