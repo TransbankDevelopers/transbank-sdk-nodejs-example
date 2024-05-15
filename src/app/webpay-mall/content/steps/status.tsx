@@ -1,11 +1,11 @@
 import { StepProps } from "@/components/step/Step";
-import { TBKTransactionStatusResponse } from "@/types/transactions";
-import * as statusSnippets from "@/app/webpay-plus/content/snippets/status";
+import { TBKMallTransactionStatusResponse } from "@/types/transactions";
+import * as statusSnippets from "@/app/webpay-mall/content/snippets/status";
 import { Text } from "@/components/text/Text";
 
 export const getStatusTRXSteps = (
   token_ws: string,
-  trxData: TBKTransactionStatusResponse
+  trxData: TBKMallTransactionStatusResponse
 ): StepProps[] => {
   return [
     {
