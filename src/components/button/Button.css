@@ -9,6 +9,11 @@
   color: white;
 }
 
+.tbk-button.small-button {
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
 .tbk-button.primary {
   border-radius: 0.25rem;
   height: 40px;

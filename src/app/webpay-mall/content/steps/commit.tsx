@@ -10,6 +10,7 @@ export const getCommitSteps = (
   return [
     {
       stepTitle: "Paso 1: Datos recibidos",
+      stepId: "confirmar",
       content: (
         <Text>
           Después de completar el flujo en el formulario de pago, recibirás un
@@ -41,6 +42,7 @@ export const getCommitSteps = (
     },
     {
       stepTitle: "¡Listo!",
+      stepId: "consultas",
       content: (
         <div className="step-ready">
           <Text>
