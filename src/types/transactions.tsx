@@ -75,11 +75,9 @@ export type TBKTransactionStatusResponse = Omit<
 >;
 
 export type TBKMallTransactionStatusResponse = {
-  vci: string;
   details: TransactionDetail[];
   buy_order: string;
   session_id: string;
-  card_detail: TBKCardDetail;
   accounting_date: string;
   transaction_date: string;
 };

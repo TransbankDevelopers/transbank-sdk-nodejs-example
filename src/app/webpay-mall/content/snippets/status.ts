@@ -8,18 +8,10 @@ const statusResponse = await (new WebpayPlus.Transaction()).status(token);`;
 export const getStepTwo = (
   commitResponse: TBKMallTransactionStatusResponse
 ) => {
-  const {
-    buy_order,
-    session_id,
-    accounting_date,
-    transaction_date,
-    details,
-    vci,
-    card_detail,
-  } = commitResponse;
+  const { buy_order, session_id, accounting_date, transaction_date, details } =
+    commitResponse;
   return `
   {
-    vci: "${vci}",
     details: [
       {
         amount: "${details[0].amount}",
@@ -44,9 +36,6 @@ export const getStepTwo = (
     ],
     buy_order: "${buy_order}",
     session_id: "${session_id}",
-    card_detail: {
-      card_number: "${card_detail.card_number}"
-    },
     accounting_date: "${accounting_date}",
     transaction_date: "${transaction_date}"
   }
