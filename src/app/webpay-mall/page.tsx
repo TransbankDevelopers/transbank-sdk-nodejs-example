@@ -55,7 +55,7 @@ export default async function CreateWebpyMallTransaction() {
         <title>Transbank SDK Node - Create Transaction</title>
       </Head>
       <Layout
-        pageTitle="Webpay Mall - Creación de transacción diferida"
+        pageTitle="Webpay Mall - Creación de transacción Mall"
         pageDescription="En esta etapa, se procederá a la creación de una transacción con el fin de obtener un identificador único. Esto nos permitirá redirigir al Tarjetahabiente hacia el formulario de pago en el siguiente paso."
         actualBread={actualBread}
         activeRoute="/webpay-mall"
