@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { RefundAndStatusProps } from "@/types/transactions";
 
-export const RefundAndStatus = ({
+export const RefundCard = ({
   token,
   amount,
   buyOrder,
@@ -20,18 +20,17 @@ export const RefundAndStatus = ({
     setRefundAmount(parseFloat(value));
   };
 
-  const handleGoToTRXStatus = () => {
-    router.push(`/webpay-plus/status?token_ws=${token}`);
-  };
-
   const handleGoToTRXRefund = () => {
     router.push(
-      `/webpay-plus/refund?token_ws=${token}&amount=${refundAmount}&buyOrder=${buyOrder}&commerceCode=${commerceCode}`
+      `/webpay-mall/refund?token_ws=${token}&amount=${refundAmount}&buyOrder=${buyOrder}&commerceCode=${commerceCode}`
     );
   };
 
   return (
     <Card className="refund-card">
+      <div className="refund-card-title">
+        Orden De Compra <span className="value">{`${buyOrder}`}</span>
+      </div>
       <InputText
         label="Monto a reembolsar:"
         value={refundAmount}
@@ -40,13 +39,8 @@ export const RefundAndStatus = ({
       <div className="button-container">
         <Button
           text="REEMBOLSAR"
-          className="button"
+          className="small-button"
           onClick={handleGoToTRXRefund}
-        />
-        <Button
-          text="CONSULTAR ESTADO"
-          className="button"
-          onClick={handleGoToTRXStatus}
         />
       </div>
     </Card>
