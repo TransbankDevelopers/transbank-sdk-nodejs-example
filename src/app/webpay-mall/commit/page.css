@@ -20,19 +20,25 @@
 
 .refund-card {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
 }
 
 .refund-card .button-container {
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  align-items: flex-end;
+  justify-content: center;
+  margin-top: 20px;
 }
 
-.refund-card .button-container .button {
-  padding-left: 1rem;
-  padding-right: 1rem;
+.refund-card-title {
+  display: inline-block;
+  text-align: center;
+  font-size: 1.5rem;
+  color: var(--tbk-grey-2);
+  margin-bottom: 15px;
+}
+
+.refund-card-title .value {
+  font-weight: bold;
 }
 
 .aborted-status {

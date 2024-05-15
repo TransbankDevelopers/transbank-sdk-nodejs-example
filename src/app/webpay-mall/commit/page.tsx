@@ -5,7 +5,8 @@ import { getCommitSteps } from "@/app/webpay-mall/content/steps/commit";
 import Head from "next/head";
 import { commitTransaction } from "@/app/lib/webpay-mall/data";
 import { NextPageProps, SearchParams } from "@/types/general";
-import { RefundAndStatus } from "./components/RefundAndStatus";
+import { RefundCard } from "./components/RefundCard";
+import { StatusButton } from "./components/StatusButton";
 import { AbortedView } from "./error/aborted";
 import {
   TBKAbortedResponse,
@@ -16,6 +17,7 @@ import {
 
 import { TimeoutView } from "./error/timeout";
 import { isSomeTransactionRejected } from "@/helpers/webpay-plus/transactionHelper";
+import { NavigationItem } from "@/components/layout/Navigation";
 
 const getActualBread = (isRejected: boolean): Route[] => {
   return [
@@ -33,6 +35,17 @@ const getActualBread = (isRejected: boolean): Route[] => {
     },
   ];
 };
+
+const navigationItems: NavigationItem[] = [
+  {
+    title: "Confirmar transacción",
+    sectionId: "confirmar",
+  },
+  {
+    title: "Otras consultas",
+    sectionId: "consultas",
+  },
+];
 
 const commitedContent = {
   title: "Webpay Mall - Confirmar transacción",
@@ -96,6 +109,7 @@ export default async function CommitTransactionPage({
         pageTitle={content.title}
         pageDescription={content.description}
         actualBread={getActualBread(isTransactionRejected)}
+        navigationItems={navigationItems}
         activeRoute="/webpay-mall/commit"
         steps={getCommitSteps(
           token_ws as string,
@@ -105,7 +119,7 @@ export default async function CommitTransactionPage({
           !isTransactionRejected && (
             <>
               {commitResponse?.details.map((detail) => (
-                <RefundAndStatus
+                <RefundCard
                   key={detail.buy_order}
                   token={token_ws as string}
                   amount={detail.amount as number}
@@ -113,6 +127,7 @@ export default async function CommitTransactionPage({
                   commerceCode={detail.commerce_code as string}
                 />
               ))}
+              <StatusButton token={token_ws as string} />
             </>
           )
         }
