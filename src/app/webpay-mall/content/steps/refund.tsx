@@ -14,9 +14,11 @@ export const getRefundTRXSteps = (
         <div className="step-1">
           <Text>
             Para llevar a cabo el reembolso, necesitas proporcionar el token de
-            la transacción y el monto que deseas reversar. Si anulas el monto
-            total, podría ser una Reversa o Anulación, dependiendo de ciertas
-            condiciones, o una Anulación Parcial si el monto es menor al total.
+            la transacción, el monto que quieres reversar, el código de comercio
+            de la tienda hijo y el orden de compra del detalle de la
+            transacción. Si anulas el monto total, podría ser una Reversa o
+            Anulación, dependiendo de ciertas condiciones, o una Anulación
+            Parcial si el monto es menor al total.
           </Text>
           <div>
             <Text>Algunas consideraciones a tener en cuenta:</Text>
@@ -29,8 +31,16 @@ export const getRefundTRXSteps = (
             </ul>
             <div className="link-to-terms">
               <Text>
-                En este link podrás ver mayor información sobre las condiciones
-                y casos para anular o reversar transacciones.{" "}
+                En este{" "}
+                <a
+                  className="tbk-link"
+                  href="https://www.transbankdevelopers.cl/producto/webpay#anulaciones-y-reversas"
+                  target="_blank"
+                >
+                  link
+                </a>{" "}
+                podrás ver mayor información sobre las condiciones y casos para
+                anular o reversar transacciones.
               </Text>
             </div>
           </div>
