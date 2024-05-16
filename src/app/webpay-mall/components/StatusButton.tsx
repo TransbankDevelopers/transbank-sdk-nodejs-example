@@ -4,8 +4,9 @@ import { useRouter } from "next/navigation";
 
 export type StatusButtonProps = {
   token: string;
+  className?: string;
 };
-export const StatusButton = ({ token }: StatusButtonProps) => {
+export const StatusButton = ({ token, className }: StatusButtonProps) => {
   const router = useRouter();
 
   const handleGoToTRXStatus = () => {
@@ -13,7 +14,7 @@ export const StatusButton = ({ token }: StatusButtonProps) => {
   };
 
   return (
-    <div className="flex-start">
+    <div className={`flex-start ${className}`}>
       <Button text="CONSULTAR ESTADO" onClick={handleGoToTRXStatus} />
     </div>
   );

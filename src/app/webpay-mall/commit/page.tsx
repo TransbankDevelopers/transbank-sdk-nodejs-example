@@ -4,9 +4,9 @@ import { Layout } from "@/components/layout/Layout";
 import { getCommitSteps } from "@/app/webpay-mall/content/steps/commit";
 import Head from "next/head";
 import { commitTransaction } from "@/app/lib/webpay-mall/data";
-import { NextPageProps, SearchParams } from "@/types/general";
+import { NextPageProps } from "@/types/general";
 import { RefundCard } from "./components/RefundCard";
-import { StatusButton } from "./components/StatusButton";
+import { StatusButton } from "@/app/webpay-mall/components/StatusButton";
 import { AbortedView } from "./error/aborted";
 import {
   TBKAbortedResponse,
@@ -77,7 +77,7 @@ export default async function CommitTransactionPage({
 }: NextPageProps) {
   const { token_ws } = searchParams;
   const { type, commitResponse, abortedResponse, timeoutResponse } =
-    await commitTransaction(searchParams as SearchParams);
+    await commitTransaction(searchParams);
 
   if (type === TBKCallbackType.ABORTED) {
     return (
@@ -122,9 +122,9 @@ export default async function CommitTransactionPage({
                 <RefundCard
                   key={detail.buy_order}
                   token={token_ws as string}
-                  amount={detail.amount as number}
-                  buyOrder={detail.buy_order as string}
-                  commerceCode={detail.commerce_code as string}
+                  amount={detail.amount}
+                  buyOrder={detail.buy_order}
+                  commerceCode={detail.commerce_code}
                 />
               ))}
               <StatusButton token={token_ws as string} />

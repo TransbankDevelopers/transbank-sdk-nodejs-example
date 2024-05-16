@@ -5,6 +5,7 @@ import Head from "next/head";
 import { getRefundTRXSteps } from "@/app/webpay-mall/content/steps/refund";
 import { NextPageProps } from "@/types/general";
 import { refundTransaction } from "@/app/lib/webpay-mall/data";
+import { StatusButton } from "@/app/webpay-mall/components/StatusButton";
 
 const actualBread: Route[] = [
   {
@@ -44,6 +45,9 @@ export default async function RefundTransaction({
         actualBread={actualBread}
         activeRoute="/webpay-mall/refund"
         steps={getRefundTRXSteps(refundResult, amount as string)}
+        additionalContent={
+          <StatusButton className="mt-6" token={token_ws as string} />
+        }
       />
     </>
   );
