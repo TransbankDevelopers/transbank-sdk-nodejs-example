@@ -38,21 +38,21 @@ export const createMallTransaction =
     const protocol = headersList.get("x-forwarded-proto") || "http"; // https://github.com/vercel/next.js/issues/2469
     const host = headersList.get("host") || "localhost:3000";
 
-    const StartTransactionDataMall = generateRandomTransactionDataMall(
+    const randomTransactionDataMall = generateRandomTransactionDataMall(
       protocol as string,
       host
     );
 
     const details = [
       new TransactionDetail(
-        StartTransactionDataMall.amount,
-        StartTransactionDataMall.commerceCode,
-        StartTransactionDataMall.childBuyOrder
+        randomTransactionDataMall.amount,
+        randomTransactionDataMall.commerceCode,
+        randomTransactionDataMall.childBuyOrder
       ),
       new TransactionDetail(
-        StartTransactionDataMall.amount2,
-        StartTransactionDataMall.commerceCode,
-        StartTransactionDataMall.childBuyOrder2
+        randomTransactionDataMall.amount2,
+        randomTransactionDataMall.commerceCode,
+        randomTransactionDataMall.childBuyOrder2
       ),
     ];
 
@@ -60,14 +60,14 @@ export const createMallTransaction =
       await new WebpayPlus.MallTransaction(
         WebpayPlus.getDefaultOptions()
       ).create(
-        StartTransactionDataMall.buyOrder,
-        StartTransactionDataMall.sessionId,
-        StartTransactionDataMall.returnUrl,
+        randomTransactionDataMall.buyOrder,
+        randomTransactionDataMall.sessionId,
+        randomTransactionDataMall.returnUrl,
         details
       );
 
     return {
-      ...StartTransactionDataMall,
+      ...randomTransactionDataMall,
       ...createResponse,
     };
   };
