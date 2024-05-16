@@ -73,6 +73,11 @@ h2 {
   flex-direction: column;
 }
 
+.flex-start {
+  display: flex;
+  justify-content: flex-start;
+}
+
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -96,4 +101,44 @@ h2 {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
+}
+
+/* card */
+.card-pay {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-pay .title {
+  font-weight: 500;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-pay .button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+
+.card-pay .button-container .button {
+  max-width: 94px;
+}
+
+/* Step 1 */
+
+.step-1 {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.step-example {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.tbk-link {
+  color: var(--tbk-red);
 }

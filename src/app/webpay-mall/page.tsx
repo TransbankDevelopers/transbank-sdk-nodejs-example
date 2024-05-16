@@ -1,3 +1,4 @@
+// import "./page.css";
 import { Route } from "@/types/menu";
 import { InputText } from "@/components/input/InputText";
 import {
@@ -7,9 +8,9 @@ import {
 import { Button, ButtonTypes } from "@/components/button/Button";
 import { Card } from "@/components/card/Card";
 import { Layout } from "@/components/layout/Layout";
-import { getCreateTRXSteps } from "@/app/webpay-plus/content/steps/create";
+import { getCreateTRXSteps } from "@/app/webpay-mall/content/steps/create";
 import Head from "next/head";
-import { createTransaction } from "../lib/webpay-plus/data";
+import { createMallTransaction } from "@/app/lib/webpay-mall/data";
 import { NavigationItem } from "@/components/layout/Navigation";
 
 const actualBread: Route[] = [
@@ -18,8 +19,8 @@ const actualBread: Route[] = [
     path: "/",
   },
   {
-    name: "Webpay Plus",
-    path: "/webpay-plus",
+    name: "Webpay Mall",
+    path: "/webpay-mall",
   },
 ];
 
@@ -45,21 +46,19 @@ const navigationItems: NavigationItem[] = [
 export type CreateTRXProps = TBKCreateTransactionResponse &
   StartTransactionData;
 
-export default async function CreateTransaction() {
-  const trxData = await createTransaction("/webpay-plus/commit");
+export default async function CreateWebpyMallTransaction() {
+  const trxData = await createMallTransaction();
+
   return (
     <>
       <Head>
         <title>Transbank SDK Node - Create Transaction</title>
       </Head>
       <Layout
-        pageTitle="Webpay Plus - Creación de transacción"
-        pageDescription="En esta etapa, se procederá a la creación de una transacción con
-    el fin de obtener un identificador único. Esto nos permitirá
-    redirigir al Tarjetahabiente hacia el formulario de pago de
-    Transbank en el siguiente paso."
+        pageTitle="Webpay Mall - Creación de transacción Mall"
+        pageDescription="En esta etapa, se procederá a la creación de una transacción con el fin de obtener un identificador único. Esto nos permitirá redirigir al Tarjetahabiente hacia el formulario de pago en el siguiente paso."
         actualBread={actualBread}
-        activeRoute="/webpay-plus"
+        activeRoute="/webpay-mall"
         navigationItems={navigationItems}
         steps={getCreateTRXSteps(trxData.token, trxData)}
         additionalContent={

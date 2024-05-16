@@ -5,6 +5,17 @@ export type StartTransactionData = {
   returnUrl: string;
 };
 
+export type StartTransactionDataMall = {
+  commerceCode: string;
+  buyOrder: string;
+  returnUrl: string;
+  amount: number;
+  childBuyOrder: string;
+  childBuyOrder2: string;
+  amount2: number;
+  sessionId: string;
+};
+
 export type TBKCreateTransactionResponse = {
   token: string;
   url: string;
@@ -37,10 +48,39 @@ export type TBKCommitTransactionResponse = {
   installments_number: number;
 };
 
+export type TransactionDetail = {
+  amount: number;
+  status: string;
+  authorization_code: string;
+  payment_type_code: string;
+  response_code: number;
+  installments_number: number;
+  commerce_code: string;
+  buy_order: string;
+};
+
+export type TBKMallCommitTransactionResponse = {
+  vci: string;
+  details: TransactionDetail[];
+  buy_order: string;
+  session_id: string;
+  card_detail: TBKCardDetail;
+  accounting_date: string;
+  transaction_date: string;
+};
+
 export type TBKTransactionStatusResponse = Omit<
   TBKCommitTransactionResponse,
   "card_detail" | "authorization_code" | "payment_type_code" | "response_code"
 >;
+
+export type TBKMallTransactionStatusResponse = {
+  details: TransactionDetail[];
+  buy_order: string;
+  session_id: string;
+  accounting_date: string;
+  transaction_date: string;
+};
 
 export enum TBKRefundTypes {
   NULLIFIED = "NULLIFIED",
@@ -77,6 +117,12 @@ export type CommitTransactionResult = {
   timeoutResponse?: TBKTimeoutResponse;
   type: TBKCallbackType;
 };
+export type CommitMallTransactionResult = {
+  commitResponse?: TBKMallCommitTransactionResponse;
+  abortedResponse?: TBKAbortedResponse;
+  timeoutResponse?: TBKTimeoutResponse;
+  type: TBKCallbackType;
+};
 
 export enum TBKCallbackType {
   COMMIT_OK = "commit_ok",
@@ -91,4 +137,11 @@ export type TBKCaptureTransactionResponse = {
   authorization_date: string;
   captured_amount: number;
   response_code: number;
+};
+
+export type RefundAndStatusProps = {
+  token: string;
+  amount: number;
+  buyOrder: string;
+  commerceCode: string;
 };

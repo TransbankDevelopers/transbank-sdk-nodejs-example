@@ -7,7 +7,7 @@ export type ColumnDefinition = {
 
 export type ColumnValues = {
   field: string;
-  value: string | number;
+  value: string | number | string[];
 };
 
 export type TableProps = {
@@ -31,8 +31,13 @@ export const Table = (props: TableProps) => {
             <div className="cell">
               <span>{row.field}</span>
             </div>
+
             <div className="cell">
-              <span>{row.value}</span>
+              {Array.isArray(row.value) ? (
+                row.value.map((value) => <span key={value}>{value}</span>)
+              ) : (
+                <span>{row.value}</span>
+              )}
             </div>
           </div>
         ))}
