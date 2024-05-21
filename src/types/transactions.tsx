@@ -145,3 +145,11 @@ export type RefundAndStatusProps = {
   buyOrder: string;
   commerceCode: string;
 };
+
+export type CaptureProps = {
+  token: string;
+  amount: number;
+  buyOrder: string;
+  commerceCode: string;
+  authorizationCode: string;
+};

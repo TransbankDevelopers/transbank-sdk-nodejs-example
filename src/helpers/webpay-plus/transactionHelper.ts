@@ -53,6 +53,31 @@ export const generateRandomTransactionDataMall = (
   };
 };
 
+export const generateRandomTransactionDataMallDeferred = (
+  protocol: string,
+  host: string
+): StartTransactionDataMall => {
+  const commerceCode = "597055555582";
+  const buyOrder = "O-" + Math.floor(Math.random() * 10000) + 1;
+  const childBuyOrder = "O-" + Math.floor(Math.random() * 10000) + 1;
+  const childBuyOrder2 = "O-" + Math.floor(Math.random() * 10000) + 1;
+  const amount = Math.floor(Math.random() * 1000) + 1001;
+  const amount2 = Math.floor(Math.random() * 1000) + 1001;
+  const sessionId = "S-" + Math.floor(Math.random() * 10000) + 1;
+  const returnUrl = `${protocol}://${host}/webpay-mall-diferido/commit`;
+
+  return {
+    commerceCode,
+    childBuyOrder,
+    childBuyOrder2,
+    amount2,
+    buyOrder,
+    sessionId,
+    amount,
+    returnUrl,
+  };
+};
+
 export const getColumnValues = (
   props: StartTransactionData
 ): ColumnValues[] => {
