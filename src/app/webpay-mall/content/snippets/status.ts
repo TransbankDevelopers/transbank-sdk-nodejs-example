@@ -2,7 +2,7 @@ import { TBKMallTransactionStatusResponse } from "@/types/transactions";
 
 export const getStepOne = (token_ws: string) => {
   return `// Token: ${token_ws}
-const statusResponse = await (new WebpayPlus.Transaction()).status(token);`;
+const statusResponse = await (new WebpayPlus.MallTransaction()).status(token);`;
 };
 
 export const getStepTwo = (
