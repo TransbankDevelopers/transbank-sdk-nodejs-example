@@ -15,7 +15,7 @@ export const webpayPlusRoutes: Route[] = [
   },
   {
     name: "Webpay Mall Diferido",
-    path: "/webpay-mall-deferred",
+    path: "/webpay-mall-diferido",
   },
 ];
 
