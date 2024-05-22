@@ -1,5 +1,7 @@
 import { Route } from "./types/menu";
 
+export const localStorageUserKey = "tbk-user";
+
 export const webpayPlusRoutes: Route[] = [
   {
     name: "Webpay Plus",
