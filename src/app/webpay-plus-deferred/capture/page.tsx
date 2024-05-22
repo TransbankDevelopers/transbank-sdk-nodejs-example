@@ -2,7 +2,7 @@ import "./page.css";
 import { Layout } from "@/components/layout/Layout";
 import Head from "next/head";
 import { NextPageProps } from "@/types/general";
-import { RefundAndStatus } from "@/app/webpay-plus/commit/components/RefundAndStatus";
+import { RefundAndStatus } from "@/app/webpay-plus-deferred/commit/components/RefundAndStatus";
 import { getCaptureSteps } from "../content/steps/capture";
 import { captureTransaction } from "@/app/lib/webpay-plus-deferred/data";
 import { TBKCaptureTransactionResponse } from "@/types/transactions";
