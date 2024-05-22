@@ -16,14 +16,31 @@ export type StartTransactionDataMall = {
   sessionId: string;
 };
 
+export type StartTransactionDataOneclickMall = {
+  email: string;
+  userName: string;
+  returnUrl: string;
+  showReturnUrl?: boolean;
+};
+
+export type ExtraProps = {
+  showReturnUrl?: boolean;
+};
+
 export type TBKCreateTransactionResponse = {
   token: string;
   url: string;
 };
 
+export type TBKCreateOneclickMallTransactionResponse = {
+  token: string;
+  url_webpay: string;
+};
+
 export enum TBKTransactionStatus {
   AUTHORIZED = "AUTHORIZED",
   FAILED = "FAILED",
+  CAPTURED = "CAPTURED",
 }
 
 export type TBKCardDetail = {
@@ -76,8 +93,9 @@ export type TBKTransactionStatusResponse = Omit<
 
 export type TBKMallTransactionStatusResponse = {
   details: TransactionDetail[];
+  session_id?: string;
   buy_order: string;
-  session_id: string;
+  card_detail?: TBKCardDetail;
   accounting_date: string;
   transaction_date: string;
 };
@@ -111,6 +129,10 @@ export type TBKTimeoutResponse = {
   TBK_ORDEN_COMPRA: string;
 };
 
+export type TBKMallTimeoutResponse = {
+  response_code: number;
+};
+
 export type CommitTransactionResult = {
   commitResponse?: TBKCommitTransactionResponse;
   abortedResponse?: TBKAbortedResponse;
@@ -139,6 +161,14 @@ export type TBKCaptureTransactionResponse = {
   response_code: number;
 };
 
+export type TBKFinishInscriptionResponse = {
+  response_code: number;
+  tbk_user: string;
+  authorization_code: string;
+  card_type: string;
+  card_number: string;
+};
+
 export type RefundAndStatusProps = {
   token: string;
   amount: number;
@@ -152,4 +182,18 @@ export type CaptureProps = {
   buyOrder: string;
   commerceCode: string;
   authorizationCode: string;
+};
+
+export type TBKAuthorizeTransactionResponse = {
+  details: TransactionDetail[];
+  buy_order: string;
+  card_detail: TBKCardDetail;
+  accounting_date: string;
+  transaction_date: string;
+};
+
+export type TBKRefundResponseType = "NULLIFIED" | "REVERSED" | string;
+
+export type TBKRefundMallTransactionResponse = {
+  type: TBKRefundResponseType;
 };

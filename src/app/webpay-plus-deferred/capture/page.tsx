@@ -43,7 +43,7 @@ export default async function CaptureTransaction({
         pageDescription="En este paso debemos capturar la transacción para realmente capturar el dinero que habia sido previamente reservado al hacer la transacción"
         actualBread={actualBread}
         activeRoute="/webpay-plus-deferred/capture"
-        steps={getCaptureSteps(commitResponse)}
+        steps={getCaptureSteps(token_ws as string, commitResponse)}
         additionalContent={
           <RefundAndStatus
             token={token_ws as string}

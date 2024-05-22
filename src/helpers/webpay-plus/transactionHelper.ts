@@ -2,6 +2,7 @@ import { ColumnDefinition, ColumnValues } from "@/components/table/Table";
 import {
   StartTransactionData,
   StartTransactionDataMall,
+  StartTransactionDataOneclickMall,
 } from "@/types/transactions";
 import { TBKTransactionStatus, TransactionDetail } from "@/types/transactions";
 
@@ -78,6 +79,22 @@ export const generateRandomTransactionDataMallDeferred = (
   };
 };
 
+export const generateRandomTransactionDataOneclickMall = (
+  protocol: string,
+  host: string
+): StartTransactionDataOneclickMall => {
+  const randomNumber = Math.floor(Math.random() * 100000) + 1;
+  const userName = "User-" + randomNumber;
+  const email = "user." + randomNumber + "@example.cl";
+  const returnUrl = `${protocol}://${host}/oneclick-mall/finish`;
+
+  return {
+    userName,
+    email,
+    returnUrl,
+  };
+};
+
 export const getColumnValues = (
   props: StartTransactionData
 ): ColumnValues[] => {
@@ -133,6 +150,49 @@ export const getColumnMallValues = (
       ],
     },
   ];
+};
+
+export const getColumnOneclickMallValues = (
+  props: StartTransactionDataOneclickMall
+): ColumnValues[] => {
+  const { showReturnUrl = true } = props;
+  const values = [
+    {
+      field: "Nombre de usuario (userName)",
+      value: props.userName,
+    },
+    {
+      field: "Email",
+      value: props.email,
+    },
+  ];
+
+  if (showReturnUrl) {
+    values.push({
+      field: "URL de respuesta (responseUrl)",
+      value: props.returnUrl,
+    });
+  }
+
+  return values;
+};
+
+export const getColumnFinishOneclickMallValues = (
+  userName: string,
+  TBK_USER: string
+): ColumnValues[] => {
+  const values = [
+    {
+      field: "Nombre de usuario (username)",
+      value: userName,
+    },
+    {
+      field: "TBK User (tbk_user)",
+      value: TBK_USER,
+    },
+  ];
+
+  return values;
 };
 
 export const getColumnDefinition = (): ColumnDefinition[] => {
