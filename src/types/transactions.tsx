@@ -177,11 +177,14 @@ export type RefundAndStatusProps = {
 };
 
 export type CaptureProps = {
-  token: string;
+  token?: string;
   amount: number;
+  parentBuyOrder?: string;
   buyOrder: string;
   commerceCode: string;
   authorizationCode: string;
+  isWebpay?: boolean;
+  showCommerceCode?: boolean;
 };
 
 export type TBKAuthorizeTransactionResponse = {
