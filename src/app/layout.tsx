@@ -15,6 +15,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <title>Transbank SDK</title>
+      </head>
       <body className={roboto.className}>
         <NextNProgress color="#D5006C" height={4} />
         {children}
