@@ -81,12 +81,15 @@ export const generateRandomTransactionDataMallDeferred = (
 
 export const generateRandomTransactionDataOneclickMall = (
   protocol: string,
-  host: string
+  host: string,
+  isDeferred: boolean
 ): StartTransactionDataOneclickMall => {
   const randomNumber = Math.floor(Math.random() * 100000) + 1;
   const userName = "User-" + randomNumber;
   const email = "user." + randomNumber + "@example.cl";
-  const returnUrl = `${protocol}://${host}/oneclick-mall/finish`;
+  const returnUrl = `${protocol}://${host}/oneclick-mall${
+    isDeferred ? "-deferred" : ""
+  }/finish`;
 
   return {
     userName,
