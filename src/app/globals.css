@@ -73,6 +73,10 @@ h2 {
   flex-direction: column;
 }
 
+.flex-gap-6 {
+  gap: 1.5rem;
+}
+
 .flex-start {
   display: flex;
   justify-content: flex-start;
@@ -90,12 +94,29 @@ h2 {
   margin-top: 1.5rem;
 }
 
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.mt-8 {
+  margin-top: 2rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
 .mb-8 {
   margin-bottom: 2rem;
 }
 
 .gap-8 {
   gap: 2rem;
+}
+
+.mx-4 {
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .text-xs {
