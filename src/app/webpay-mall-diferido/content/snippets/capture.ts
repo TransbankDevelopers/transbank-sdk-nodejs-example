@@ -1,7 +1,8 @@
 import { TBKCaptureTransactionResponse } from "@/types/transactions";
 
-export const getStepOne = () => {
-  return `const captureResponse = await (new WebpayPlus.Transaction()).capture(
+export const getStepOne = (token: string) => {
+  return `//token: ${token}
+  const captureResponse = await (new WebpayPlus.Transaction()).capture(
   token,
   buyOrder,
   authorizationCode,
@@ -9,11 +10,11 @@ export const getStepOne = () => {
 );`;
 };
 
-export const getStepTwo = (commitResponse: TBKCaptureTransactionResponse) => {
+export const getStepTwo = (captureResponse: TBKCaptureTransactionResponse) => {
   return `{
-"authorization_code": "${commitResponse.authorization_code}",
-"authorization_date": "${commitResponse.authorization_date}",
-"captured_amount": ${commitResponse.captured_amount},
-"response_code": ${commitResponse.response_code}
+"authorization_code": "${captureResponse.authorization_code}",
+"authorization_date": "${captureResponse.authorization_date}",
+"captured_amount": ${captureResponse.captured_amount},
+"response_code": ${captureResponse.response_code}
 }`;
 };

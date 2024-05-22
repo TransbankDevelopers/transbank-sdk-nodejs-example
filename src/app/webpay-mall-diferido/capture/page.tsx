@@ -4,9 +4,8 @@ import Head from "next/head";
 import { NextPageProps } from "@/types/general";
 import { StatusButton } from "@/app/webpay-mall-diferido/components/StatusButton";
 import { RefundCard } from "@/app/webpay-mall-diferido/components/RefundCard";
-import { getCaptureSteps } from "@/app/webpay-plus-deferred/content/steps/capture";
+import { getCaptureSteps } from "@/app/webpay-mall-diferido/content/steps/capture";
 import { captureTransaction } from "@/app/lib/webpay-mall-diferido/data";
-import { TBKCaptureTransactionResponse } from "@/types/transactions";
 
 const actualBread = [
   {
