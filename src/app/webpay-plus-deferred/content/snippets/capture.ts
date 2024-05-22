@@ -10,11 +10,11 @@ export const getStepOne = (token: string) => {
 );`;
 };
 
-export const getStepTwo = (captureResponse: TBKCaptureTransactionResponse) => {
+export const getStepTwo = (commitResponse: TBKCaptureTransactionResponse) => {
   return `{
-"authorization_code": "${captureResponse.authorization_code}",
-"authorization_date": "${captureResponse.authorization_date}",
-"captured_amount": ${captureResponse.captured_amount},
-"response_code": ${captureResponse.response_code}
+"authorization_code": "${commitResponse.authorization_code}",
+"authorization_date": "${commitResponse.authorization_date}",
+"captured_amount": ${commitResponse.captured_amount},
+"response_code": ${commitResponse.response_code}
 }`;
 };
