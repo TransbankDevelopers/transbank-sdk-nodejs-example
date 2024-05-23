@@ -17,6 +17,13 @@ export type MenuItemProps = {
 };
 
 const MenuItem = (props: MenuItemProps) => {
+  const [, basePath] = props.actualPath.split("/");
+
+  const isActive = (item: Route) => {
+    const [, path] = item.path.split("/");
+
+    return basePath === path;
+  };
   return (
     <div className="tbk-menu-item-container">
       <span className="tbk-menu-item-text">{props.title}</span>
@@ -27,7 +34,7 @@ const MenuItem = (props: MenuItemProps) => {
               pathname: item.path,
             }}
             className={cx("tbk-menu-item", {
-              active: props.actualPath.includes(item.path),
+              active: isActive(item),
             })}
             key={idx}
           >
