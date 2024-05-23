@@ -5,6 +5,7 @@ import { InputText } from "@/components/input/InputText";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { CaptureProps } from "@/types/transactions";
+import { Text, TextVariant } from "@/components/text/Text";
 
 export const CaptureCard = ({
   token,
@@ -12,6 +13,9 @@ export const CaptureCard = ({
   buyOrder,
   commerceCode,
   authorizationCode,
+  isWebpay = true,
+  showCommerceCode = false,
+  parentBuyOrder,
 }: CaptureProps) => {
   const router = useRouter();
   const [captureAmount, setCaptureAmount] = useState<number>(
@@ -19,20 +23,47 @@ export const CaptureCard = ({
   );
 
   const handleRefund = (value: string) => {
-    // if (isNaN(parseFloat(value))) return;
-    // setCaptureAmount(parseFloat(value));
+    if (isNaN(Number(value))) return;
+    setCaptureAmount(Number(value));
   };
 
   const handleGoToTRXCapture = () => {
     router.push(
-      `/webpay-mall-diferido/capture?token_ws=${token}&captureAmount=${captureAmount}&buyOrder=${buyOrder}&childCommerceCode=${commerceCode}&authorizationCode=${authorizationCode}`
+      `/${
+        isWebpay ? "webpay-mall-diferido" : "oneclick-mall-deferred"
+      }/capture?${
+        isWebpay ? `token=${token}&` : ""
+      }captureAmount=${captureAmount}&buyOrder=${
+        parentBuyOrder ?? buyOrder
+      }&childCommerceCode=${commerceCode}&authorizationCode=${authorizationCode}${
+        parentBuyOrder ? `&childBuyOrder=${buyOrder}` : ""
+      }`
     );
   };
 
   return (
     <Card className="refund-card">
-      <div className="refund-card-title">
-        Orden De Compra <span className="value">{`${buyOrder}`}</span>
+      <div>
+        {showCommerceCode ? (
+          <>
+            <Text
+              className="refund-card-title-alt"
+              variant={TextVariant.PARAGRAPH}
+            >
+              Codigo de Comercio: <b>{commerceCode}</b>
+            </Text>
+            <Text
+              className="refund-card-title-alt"
+              variant={TextVariant.PARAGRAPH}
+            >
+              Orden de Compra: <b>{buyOrder}</b>
+            </Text>
+          </>
+        ) : (
+          <div className="refund-card-title">
+            Orden De Compra <span className="value">{`${buyOrder}`}</span>
+          </div>
+        )}
       </div>
       <InputText
         label="Monto a Capturar:"
