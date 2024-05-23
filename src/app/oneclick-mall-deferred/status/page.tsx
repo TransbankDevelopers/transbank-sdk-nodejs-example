@@ -12,12 +12,12 @@ const actualBread: Route[] = [
     path: "/",
   },
   {
-    name: "Webpay Oneclick",
-    path: "/oneclick-mall",
+    name: "Webpay Oneclick Mall Diferido",
+    path: "/oneclick-mall-deferred",
   },
   {
     name: "Estado de transacción",
-    path: "/oneclick-mall/status",
+    path: "/oneclick-mall-deferred/status",
   },
 ];
 
@@ -36,17 +36,20 @@ export default async function StatusTransactionView({
   searchParams,
 }: NextPageProps) {
   const { buy_order } = searchParams;
-  const trxStatus = await getStatusOneclickMallTransaction(buy_order as string);
+  const trxStatus = await getStatusOneclickMallTransaction(
+    buy_order as string,
+    true
+  );
   return (
     <>
       <Head>
         <title>Transbank SDK Node - Estado de transacción</title>
       </Head>
       <Layout
-        pageTitle="Webpay Oneclick Mall - Estado de transacción"
+        pageTitle="Webpay Oneclick Mall Diferido - Estado de transacción"
         pageDescription={`Con esta operación, puedes solicitar el estado actual de una transacción en cualquier momento.`}
         actualBread={actualBread}
-        activeRoute="/oneclick-mall/status"
+        activeRoute="/oneclick-mall-deferred/status"
         steps={getStatusTRXSteps(buy_order as string, trxStatus)}
         navigationItems={navigationItems}
       />
