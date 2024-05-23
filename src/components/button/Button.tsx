@@ -25,27 +25,34 @@ export type ButtonProps = {
 export const Button = (props: ButtonProps) => {
   const variant = props.variant || ButtonVariant.PRIMARY;
   const buttonType = props.type || ButtonTypes.BUTTON;
+  const textClassName = cx({
+    "text-white text-sm font-medium": variant === ButtonVariant.PRIMARY,
+    "text-base text-tbk-red underline": variant === ButtonVariant.SECONDARY,
+  });
+  const buttonClassName = cx(
+    "tbk-button",
+    {
+      primary: variant === ButtonVariant.PRIMARY,
+      secondaty: variant === ButtonVariant.SECONDARY,
+    },
+    props.className
+  );
+
+  if (props.link) {
+    return (
+      <Link href={props.link} className={buttonClassName}>
+        <span className={textClassName}>{props.text}</span>
+      </Link>
+    );
+  }
 
   return (
     <button
       type={buttonType}
       onClick={props.onClick}
-      className={cx(
-        "tbk-button",
-        {
-          primary: variant === ButtonVariant.PRIMARY,
-          secondaty: variant === ButtonVariant.SECONDARY,
-        },
-        props.className
-      )}
+      className={buttonClassName}
     >
-      <span
-        className={cx({
-          "text-white text-sm font-medium": variant === ButtonVariant.PRIMARY,
-          "text-base text-tbk-red underline":
-            variant === ButtonVariant.SECONDARY,
-        })}
-      >
+      <span className={textClassName}>
         {props.link ? <Link href={props.link}>{props.text}</Link> : props.text}
       </span>
     </button>
