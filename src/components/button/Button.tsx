@@ -1,5 +1,7 @@
 import cx from "classnames";
 import "./Button.css";
+import Link from "next/link";
+import { Url } from "next/dist/shared/lib/router/router";
 
 export enum ButtonVariant {
   PRIMARY = "primary",
@@ -16,6 +18,7 @@ export type ButtonProps = {
   variant?: ButtonVariant;
   className?: string;
   type?: ButtonTypes;
+  link?: Url;
   onClick?: () => void;
 };
 
@@ -43,7 +46,7 @@ export const Button = (props: ButtonProps) => {
             variant === ButtonVariant.SECONDARY,
         })}
       >
-        {props.text}
+        {props.link ? <Link href={props.link}>{props.text}</Link> : props.text}
       </span>
     </button>
   );
