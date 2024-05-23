@@ -12,7 +12,7 @@ export const getErrorAbortedSteps = (
       content: (
         <Text>
           Después de que el usuario anule la compra en el formulario de pago,
-          recibirás un POST con la siguiente información:
+          recibirás un GET con la siguiente información:
         </Text>
       ),
       code: abortedSnippets.getStepOne(abortedResponse),

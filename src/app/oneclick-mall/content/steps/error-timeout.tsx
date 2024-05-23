@@ -12,7 +12,7 @@ export const getErrorTimeoutSteps = (
       content: (
         <Text>
           Después de 10 minutos en el que no se haya recibido ninguna acción o
-          interacción del usuario, recibirás un POST con la siguiente
+          interacción del usuario, recibirás un GET con la siguiente
           información:
         </Text>
       ),

@@ -20,7 +20,7 @@ export const getFinishInscritionSteps = (
       content: (
         <Text>
           Después de finalizar el flujo en el formulario de inscripción,
-          recibirás un POST con la siguiente información:
+          recibirás un GET con la siguiente información:
         </Text>
       ),
       code: finishInscriptionSnippets.getStepOne(token),
