@@ -15,7 +15,7 @@ const getActualBread = (): Route[] => {
       path: "/",
     },
     {
-      name: "Webpay Oneclick",
+      name: "Webpay Oneclick Mall Diferido",
       path: "/oneclick-mall-deferred",
     },
     {
