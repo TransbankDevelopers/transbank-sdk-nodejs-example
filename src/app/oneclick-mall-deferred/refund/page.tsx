@@ -12,12 +12,12 @@ const actualBread: Route[] = [
     path: "/",
   },
   {
-    name: "Webpay Mall",
-    path: "/oneclick-mall",
+    name: "Webpay Oneclick Mall Diferido",
+    path: "/oneclick-mall-deferred",
   },
   {
     name: "Reembolsar",
-    path: "/oneclick-mall/refund",
+    path: "/oneclick-mall-deferred/refund",
   },
 ];
 
@@ -32,6 +32,7 @@ export default async function RefundTransaction({
     childCommerceCode: child_commerce_code as string,
     childBuyOrder: child_buy_order as string,
     amount: Number(amount as string),
+    isDeferred: true,
   });
 
   return (
@@ -40,10 +41,10 @@ export default async function RefundTransaction({
         <title>Transbank SDK Node - Reembolsar transacción</title>
       </Head>
       <Layout
-        pageTitle="Webpay Oneclick Mall - Reembolsar"
+        pageTitle="Webpay Oneclick Mall Diferido - Reembolsar"
         pageDescription={`Esta operación te permite solicitar el reembolso del dinero al tarjeta habiente, considerando el monto y el tiempo transcurrido. El resultado puede ser una Reversa, Anulación, o Anulación parcial, dependiendo de ciertas condiciones.`}
         actualBread={actualBread}
-        activeRoute="/oneclick-mall/refund"
+        activeRoute="/oneclick-mall-deferred/refund"
         steps={getRefundTRXSteps(
           refundResult,
           amount as string,
