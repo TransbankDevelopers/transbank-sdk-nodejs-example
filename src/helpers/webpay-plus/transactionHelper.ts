@@ -82,7 +82,7 @@ export const generateRandomTransactionDataMallDeferred = (
 export const generateRandomTransactionDataOneclickMall = (
   protocol: string,
   host: string,
-  isDeferred: boolean
+  isDeferred = false
 ): StartTransactionDataOneclickMall => {
   const randomNumber = Math.floor(Math.random() * 100000) + 1;
   const userName = "User-" + randomNumber;
