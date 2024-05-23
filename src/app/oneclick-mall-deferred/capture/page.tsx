@@ -5,10 +5,10 @@ import Head from "next/head";
 import { NextPageProps } from "@/types/general";
 import { NavigationItem } from "@/components/layout/Navigation";
 import { captureOneclickMallDeferredTransaction } from "@/app/lib/oneclick-mall-deferred/data";
-import { getCaptureSteps } from "@/app/webpay-mall-diferido/content/steps/capture";
 import { MallRefundCard } from "@/app/oneclick-mall/authorize/components/MallRefundCard";
 import { MallStatusButton } from "@/app/oneclick-mall/authorize/components/MallStatusButton";
 import { TransactionDetail } from "@/types/transactions";
+import { getCaptureSteps } from "../content/steps/capture";
 
 const getActualBread = (): Route[] => {
   return [
@@ -73,7 +73,7 @@ export default async function AuthorizeTransactionPage({
         actualBread={getActualBread()}
         navigationItems={navigationItems}
         activeRoute="/oneclick-mall-deferred/capture"
-        steps={getCaptureSteps(trxData)}
+        steps={getCaptureSteps(childBuyOrder as string, trxData)}
         additionalContent={
           <>
             <MallRefundCard
