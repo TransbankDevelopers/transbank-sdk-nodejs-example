@@ -15,6 +15,7 @@ import {
   TBKFinishInscriptionResponse,
   TBKRefundMallTransactionResponse,
 } from "@/types/transactions";
+import { getOneclickMallDeferredOptions } from "../oneclick-mall-deferred/data";
 
 export type CreateTransactionResult = TBKCreateOneclickMallTransactionResponse &
   StartTransactionDataOneclickMall;
@@ -30,15 +31,6 @@ type RefundOneClickMallTransactionProps = {
 export const getOneclickMallOptions = () => {
   return new Options(
     IntegrationCommerceCodes.ONECLICK_MALL,
-    IntegrationApiKeys.WEBPAY,
-    Environment.Integration
-  );
-};
-
-// TODO: check if this function needs to be moved to a different file in the future
-export const getOneclickMallDeferredOptions = () => {
-  return new Options(
-    IntegrationCommerceCodes.ONECLICK_MALL_DEFERRED,
     IntegrationApiKeys.WEBPAY,
     Environment.Integration
   );

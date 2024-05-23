@@ -1,5 +1,10 @@
-import { Oneclick } from "transbank-sdk";
-import { getOneclickMallDeferredOptions } from "../oneclick-mall/data";
+import {
+  Environment,
+  IntegrationApiKeys,
+  IntegrationCommerceCodes,
+  Oneclick,
+  Options,
+} from "transbank-sdk";
 import { TBKCaptureTransactionResponse } from "@/types/transactions";
 
 export type CaptureOneclickMallDeferredProps = {
@@ -7,6 +12,14 @@ export type CaptureOneclickMallDeferredProps = {
   childBuyOrder: string;
   authorizationCode: string;
   captureAmount: number;
+};
+
+export const getOneclickMallDeferredOptions = () => {
+  return new Options(
+    IntegrationCommerceCodes.ONECLICK_MALL_DEFERRED,
+    IntegrationApiKeys.WEBPAY,
+    Environment.Integration
+  );
 };
 
 export const captureOneclickMallDeferredTransaction = async (
