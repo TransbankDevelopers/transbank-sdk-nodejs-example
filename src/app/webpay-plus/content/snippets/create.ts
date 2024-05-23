@@ -1,16 +1,14 @@
 export const getStepOne = () => {
-  return `// ES5
-const WebpayPlus = require('transbank-sdk').WebpayPlus;
-const TransactionDetail = require("transbank-sdk").TransactionDetail;
-
-// ES6
-import { WebpayPlus  } from 'transbank-sdk'; 
-import { TransactionDetail } from 'transbank-sdk';
-
-const details = [new TransactionDetail(1229, "597055555582", "O-76341")];
+  return `const WebpayPlus = require('transbank-sdk').WebpayPlus; // ES5
+import { WebpayPlus } from 'transbank-sdk'; // ES6
 
 // Es necesario ejecutar dentro de una función async para utilizar await
-const createResponse = await (new WebpayPlus.MallTransaction()).create(buyOrder, sessionId, details,  returnUrl);`;
+const createResponse = await (new WebpayPlus.Transaction()).create(
+  buyOrder, 
+  sessionId, 
+  amount, 
+  returnUrl
+);`;
 };
 
 export const getStepTwo = (token: string) => {
