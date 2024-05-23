@@ -30,7 +30,7 @@ const getActualBread = (isRejected: boolean): Route[] => {
       path: "/webpay-mall-diferido",
     },
     {
-      name: isRejected ? "" : "Confirmar transacción",
+      name: isRejected ? "Rechazo bancario" : "Confirmar transacción",
       path: "/webpay-mall-diferido/commit",
     },
   ];
