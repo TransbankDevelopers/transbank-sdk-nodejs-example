@@ -86,9 +86,10 @@ export default async function AuthorizeTransactionPage({
                   commerce_code: childCommerceCode as string,
                 } as TransactionDetail
               }
+              isDeferred
             />
 
-            <MallStatusButton buyOrder={buyOrder as string} />
+            <MallStatusButton buyOrder={buyOrder as string} isDeferred />
           </>
         }
       />
