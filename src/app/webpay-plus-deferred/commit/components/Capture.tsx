@@ -3,7 +3,6 @@ import { Button, ButtonTypes } from "@/components/button/Button";
 import { Card } from "@/components/card/Card";
 import { InputText } from "@/components/input/InputText";
 import { TBKCommitTransactionResponse } from "@/types/transactions";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export type CaptureProps = {
@@ -12,16 +11,21 @@ export type CaptureProps = {
 };
 
 export const Capture = (props: CaptureProps) => {
-  const router = useRouter();
   const { token_ws, commitResponse } = props;
   const [refundAmount, setRefundAmount] = useState<number>(
     Number(props.commitResponse.amount || 0)
   );
 
-  const handleNavigateToCapture = () => {
-    router.push(
-      `/webpay-plus-deferred/capture?token_ws=${token_ws}&buyOrder=${commitResponse?.buy_order}&authorizationCode=${commitResponse?.authorization_code}&captureAmount=${refundAmount}`
-    );
+  const getTRXCaptureLink = () => {
+    return {
+      pathname: `/webpay-plus-deferred/capture`,
+      query: {
+        token_ws: token_ws,
+        buyOrder: commitResponse?.buy_order,
+        authorizationCode: commitResponse?.authorization_code,
+        captureAmount: refundAmount,
+      },
+    };
   };
 
   const handleCaptureAmountChange = (value: string) => {
@@ -45,7 +49,7 @@ export const Capture = (props: CaptureProps) => {
           text="CAPTURAR"
           className="button"
           type={ButtonTypes.SUBMIT}
-          onClick={handleNavigateToCapture}
+          link={getTRXCaptureLink()}
         />
       </div>
     </Card>

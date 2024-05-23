@@ -10,9 +10,10 @@ import { Card } from "@/components/card/Card";
 import { Text } from "@/components/text/Text";
 import { Button } from "@/components/button/Button";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import { localStorageUserKey } from "@/consts";
 import { InputText } from "@/components/input/InputText";
+import { redirect } from "next/navigation";
+import { Url } from "next/dist/shared/lib/router/router";
 
 export type ContentOneclickProps = {
   actualBread: Route[];
@@ -22,7 +23,6 @@ export type ContentOneclickProps = {
 };
 
 export const ContentOneClickMall = (props: ContentOneclickProps) => {
-  const router = useRouter();
   const [userName, setUserName] = useState("User-XXXX");
   const [installments, setInstallments] = useState<number>(0);
   const [amount, setAmount] = useState<number>(
@@ -36,16 +36,26 @@ export const ContentOneClickMall = (props: ContentOneclickProps) => {
     }
   }, []);
 
-  const handleRemoveUser = () => {
-    router.push(
-      `/oneclick-mall-deferred/remove-user?tbk_user=${props.trxData.tbk_user}&user_name=${userName}`
-    );
+  const getRemoveUserLink = (): Url => {
+    return {
+      pathname: `/oneclick-mall-deferred/remove-user`,
+      query: {
+        tbk_user: props.trxData.tbk_user,
+        user_name: userName,
+      },
+    };
   };
 
-  const handleAuthorizeTransaction = () => {
-    router.push(
-      `/oneclick-mall-deferred/authorize?tbk_user=${props.trxData.tbk_user}&user_name=${userName}&amount=${amount}&installments=${installments}`
-    );
+  const getAuthorizationLink = (): Url => {
+    return {
+      pathname: `/oneclick-mall-deferred/authorize`,
+      query: {
+        tbk_user: props.trxData.tbk_user,
+        user_name: userName,
+        amount: amount,
+        installments: installments,
+      },
+    };
   };
 
   const handleAmountChange = (value: string) => {
@@ -99,10 +109,10 @@ export const ContentOneClickMall = (props: ContentOneclickProps) => {
                 </div>
 
                 <div className="button-container">
-                  <Button text="BORRAR USUARIO" onClick={handleRemoveUser} />
+                  <Button text="BORRAR USUARIO" link={getRemoveUserLink()} />
                   <Button
                     text="AUTORIZAR UN PAGO"
-                    onClick={handleAuthorizeTransaction}
+                    link={getAuthorizationLink()}
                   />
                 </div>
               </div>

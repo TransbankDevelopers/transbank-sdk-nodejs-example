@@ -20,10 +20,16 @@ export const RefundCard = ({
     setRefundAmount(parseFloat(value));
   };
 
-  const handleGoToTRXRefund = () => {
-    router.push(
-      `/webpay-mall/refund?token_ws=${token}&amount=${refundAmount}&buyOrder=${buyOrder}&commerceCode=${commerceCode}`
-    );
+  const getTRXRefundLink = () => {
+    return {
+      pathname: `/webpay-mall/refund`,
+      query: {
+        token_ws: token,
+        amount: refundAmount,
+        buyOrder: buyOrder,
+        commerceCode: commerceCode,
+      },
+    };
   };
 
   return (
@@ -40,7 +46,7 @@ export const RefundCard = ({
         <Button
           text="REEMBOLSAR"
           className="small-button"
-          onClick={handleGoToTRXRefund}
+          link={getTRXRefundLink()}
         />
       </div>
     </Card>

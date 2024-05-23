@@ -2,7 +2,6 @@
 import { Button } from "@/components/button/Button";
 import { Card } from "@/components/card/Card";
 import { InputText } from "@/components/input/InputText";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export type RefundAndStatusProps = {
@@ -11,7 +10,6 @@ export type RefundAndStatusProps = {
 };
 
 export const RefundAndStatus = ({ token, amount }: RefundAndStatusProps) => {
-  const router = useRouter();
   const [refundAmount, setRefundAmount] = useState<number>(Number(amount || 0));
 
   const handleRefund = (value: string) => {
@@ -19,12 +17,23 @@ export const RefundAndStatus = ({ token, amount }: RefundAndStatusProps) => {
     setRefundAmount(parseFloat(value));
   };
 
-  const handleGoToTRXStatus = () => {
-    router.push(`/webpay-plus/status?token_ws=${token}`);
+  const getTRXStatusLink = () => {
+    return {
+      pathname: `/webpay-plus/status?token_ws=${token}`,
+      query: {
+        token_ws: token,
+      },
+    };
   };
 
-  const handleGoToTRXRefund = () => {
-    router.push(`/webpay-plus/refund?token_ws=${token}&amount=${refundAmount}`);
+  const getTRXRefundLink = () => {
+    return {
+      pathname: `/webpay-plus/refund`,
+      query: {
+        token_ws: token,
+        amount: refundAmount,
+      },
+    };
   };
 
   return (
@@ -38,12 +47,12 @@ export const RefundAndStatus = ({ token, amount }: RefundAndStatusProps) => {
         <Button
           text="REEMBOLSAR"
           className="button"
-          onClick={handleGoToTRXRefund}
+          link={getTRXRefundLink()}
         />
         <Button
           text="CONSULTAR ESTADO"
           className="button"
-          onClick={handleGoToTRXStatus}
+          link={getTRXStatusLink()}
         />
       </div>
     </Card>

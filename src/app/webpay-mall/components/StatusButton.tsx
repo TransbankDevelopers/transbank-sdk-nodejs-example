@@ -9,13 +9,18 @@ export type StatusButtonProps = {
 export const StatusButton = ({ token, className }: StatusButtonProps) => {
   const router = useRouter();
 
-  const handleGoToTRXStatus = () => {
-    router.push(`/webpay-mall/status?token_ws=${token}`);
+  const getTRXStatusLink = () => {
+    return {
+      pathname: `/webpay-mall/status`,
+      query: {
+        token_ws: token,
+      },
+    };
   };
 
   return (
     <div className={`flex-start ${className}`}>
-      <Button text="CONSULTAR ESTADO" onClick={handleGoToTRXStatus} />
+      <Button text="CONSULTAR ESTADO" link={getTRXStatusLink()} />
     </div>
   );
 };

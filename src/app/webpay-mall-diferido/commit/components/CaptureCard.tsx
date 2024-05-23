@@ -27,18 +27,30 @@ export const CaptureCard = ({
     setCaptureAmount(Number(value));
   };
 
-  const handleGoToTRXCapture = () => {
-    router.push(
-      `/${
-        isWebpay ? "webpay-mall-diferido" : "oneclick-mall-deferred"
-      }/capture?${
-        isWebpay ? `token=${token}&` : ""
-      }captureAmount=${captureAmount}&buyOrder=${
-        parentBuyOrder ?? buyOrder
-      }&childCommerceCode=${commerceCode}&authorizationCode=${authorizationCode}${
-        parentBuyOrder ? `&childBuyOrder=${buyOrder}` : ""
-      }`
-    );
+  const getTRXCaptureLink = () => {
+    const urlLink = isWebpay
+      ? "/webpay-mall-diferido"
+      : "/oneclick-mall-deferred";
+
+    const query: Record<string, string | number> = {
+      captureAmount,
+      buyOrder: parentBuyOrder ?? buyOrder,
+      childCommerceCode: commerceCode,
+      authorizationCode,
+    };
+
+    if (isWebpay) {
+      query.token = token as string;
+    }
+
+    if (parentBuyOrder) {
+      query.childBuyOrder = buyOrder;
+    }
+
+    return {
+      pathname: `${urlLink}/capture`,
+      query,
+    };
   };
 
   return (
@@ -74,7 +86,7 @@ export const CaptureCard = ({
         <Button
           text="Capturar"
           className="small-button"
-          onClick={handleGoToTRXCapture}
+          link={getTRXCaptureLink()}
         />
       </div>
     </Card>

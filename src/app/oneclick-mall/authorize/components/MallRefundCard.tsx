@@ -3,7 +3,6 @@ import { Button } from "@/components/button/Button";
 import { Card } from "@/components/card/Card";
 import { InputText } from "@/components/input/InputText";
 import { TransactionDetail } from "@/types/transactions";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export type MallRefundCardProps = {
@@ -13,7 +12,6 @@ export type MallRefundCardProps = {
 };
 
 export const MallRefundCard = (props: MallRefundCardProps) => {
-  const router = useRouter();
   const { isDeferred = false } = props;
   const [refundAmount, setRefundAmount] = useState<number>(
     Number(props.detail.amount || 0)
@@ -24,14 +22,16 @@ export const MallRefundCard = (props: MallRefundCardProps) => {
     setRefundAmount(parseFloat(value));
   };
 
-  const handleGoToTRXRefund = () => {
-    router.push(
-      `/oneclick-mall${isDeferred ? "-deferred" : ""}/refund?buy_order=${
-        props.buyOrder
-      }&child_commerce_code=${props.detail.commerce_code}&child_buy_order=${
-        props.detail.buy_order
-      }&amount=${refundAmount}`
-    );
+  const getTRXRefundLink = () => {
+    return {
+      pathname: `/oneclick-mall${isDeferred ? "-deferred" : ""}/refund`,
+      query: {
+        buy_order: props.buyOrder,
+        child_commerce_code: props.detail.commerce_code,
+        child_buy_order: props.detail.buy_order,
+        amount: refundAmount,
+      },
+    };
   };
 
   return (
@@ -56,7 +56,7 @@ export const MallRefundCard = (props: MallRefundCardProps) => {
         <Button
           text="REEMBOLSAR"
           className="small-button"
-          onClick={handleGoToTRXRefund}
+          link={getTRXRefundLink()}
         />
       </div>
     </Card>
