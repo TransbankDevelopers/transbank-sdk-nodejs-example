@@ -24,6 +24,7 @@ type RefundOneClickMallTransactionProps = {
   childCommerceCode: string;
   childBuyOrder: string;
   amount: number;
+  isDeferred?: boolean;
 };
 
 export const getOneclickMallOptions = () => {
@@ -44,7 +45,7 @@ export const getOneclickMallDeferredOptions = () => {
 };
 
 export const createOneclickMallTransaction = async (
-  isDeferred?: boolean
+  isDeferred = false
 ): Promise<CreateTransactionResult> => {
   const headersList = headers();
   const protocol = headersList.get("x-forwarded-proto") || "http"; // https://github.com/vercel/next.js/issues/2469
@@ -78,12 +79,12 @@ export const finishOneclickMallTransaction = async (
 
 export const removeUserInscriptionOneclick = async (
   tbkUser: string,
-  userName: string
+  userName: string,
+  isDeferred = false
 ) => {
-  return await new Oneclick.MallInscription(getOneclickMallOptions()).delete(
-    tbkUser,
-    userName
-  );
+  return await new Oneclick.MallInscription(
+    isDeferred ? getOneclickMallDeferredOptions() : getOneclickMallOptions()
+  ).delete(tbkUser, userName);
 };
 
 export const authorizeOneClickMallTransaction = async (
@@ -128,17 +129,26 @@ export const authorizeOneClickMallTransaction = async (
 export const refundOneClickMallTransaction = async (
   params: RefundOneClickMallTransactionProps
 ): Promise<TBKRefundMallTransactionResponse> => {
-  const { buyOrder, childCommerceCode, childBuyOrder, amount } = params;
+  const {
+    buyOrder,
+    childCommerceCode,
+    childBuyOrder,
+    amount,
+    isDeferred = false,
+  } = params;
 
   const refundRequest = await new Oneclick.MallTransaction(
-    getOneclickMallOptions()
+    isDeferred ? getOneclickMallDeferredOptions() : getOneclickMallOptions()
   ).refund(buyOrder, childCommerceCode, childBuyOrder, amount);
 
   return refundRequest;
 };
 
-export const getStatusOneclickMallTransaction = async (buyOrder: string) => {
-  return await new Oneclick.MallTransaction(getOneclickMallOptions()).status(
-    buyOrder
-  );
+export const getStatusOneclickMallTransaction = async (
+  buyOrder: string,
+  isDeferred?: boolean
+) => {
+  return await new Oneclick.MallTransaction(
+    isDeferred ? getOneclickMallDeferredOptions() : getOneclickMallOptions()
+  ).status(buyOrder);
 };
