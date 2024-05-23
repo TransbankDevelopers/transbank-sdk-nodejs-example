@@ -12,7 +12,7 @@ const actualBread: Route[] = [
     path: "/",
   },
   {
-    name: "Webpay Oneclick",
+    name: "Webpay Oneclick Mall Diferido",
     path: "/oneclick-mall",
   },
   {
@@ -32,7 +32,11 @@ export default async function RemoveUserInscriptionOneClick({
   searchParams,
 }: NextPageProps) {
   const { tbk_user, user_name } = searchParams;
-  await removeUserInscriptionOneclick(tbk_user as string, user_name as string);
+  await removeUserInscriptionOneclick(
+    tbk_user as string,
+    user_name as string,
+    true
+  );
 
   return (
     <>
