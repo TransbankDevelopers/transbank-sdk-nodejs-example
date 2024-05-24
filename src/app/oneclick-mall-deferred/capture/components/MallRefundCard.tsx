@@ -20,16 +20,14 @@ export const MallRefundCard = (props: MallRefundCardProps) => {
     setRefundAmount(parseFloat(value));
   };
 
-  const getTRXRefundLink = () => {
-    return {
-      pathname: `/oneclick-mall/refund`,
-      query: {
-        buy_order: props.buyOrder,
-        child_commerce_code: props.detail.commerce_code,
-        child_buy_order: props.detail.buy_order,
-        amount: refundAmount,
-      },
-    };
+  const refundLink = {
+    pathname: `/oneclick-mall/refund`,
+    query: {
+      buy_order: props.buyOrder,
+      child_commerce_code: props.detail.commerce_code,
+      child_buy_order: props.detail.buy_order,
+      amount: refundAmount,
+    },
   };
 
   return (
@@ -51,11 +49,7 @@ export const MallRefundCard = (props: MallRefundCardProps) => {
         />
       </div>
       <div className="button-container">
-        <Button
-          text="REEMBOLSAR"
-          className="small-button"
-          link={getTRXRefundLink()}
-        />
+        <Button text="REEMBOLSAR" className="small-button" link={refundLink} />
       </div>
     </Card>
   );

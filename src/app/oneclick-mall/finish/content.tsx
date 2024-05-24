@@ -29,24 +29,20 @@ export const ContentOneClickMall = (props: ContentOneclickProps) => {
     }
   }, []);
 
-  const getRemoveUserLink = () => {
-    return {
-      pathname: `/oneclick-mall/remove-user`,
-      query: {
-        tbk_user: props.trxData.tbk_user,
-        user_name: userName,
-      },
-    };
+  const removeUserLink = {
+    pathname: `/oneclick-mall/remove-user`,
+    query: {
+      tbk_user: props.trxData.tbk_user,
+      user_name: userName,
+    },
   };
 
-  const getTRXAuthorizationLink = () => {
-    return {
-      pathname: `/oneclick-mall/authorize`,
-      query: {
-        tbk_user: props.trxData.tbk_user,
-        user_name: userName,
-      },
-    };
+  const authorizationLink = {
+    pathname: `/oneclick-mall/authorize`,
+    query: {
+      tbk_user: props.trxData.tbk_user,
+      user_name: userName,
+    },
   };
 
   return (
@@ -77,11 +73,8 @@ export const ContentOneClickMall = (props: ContentOneclickProps) => {
               </div>
 
               <div className="button-container">
-                <Button text="BORRAR USUARIO" link={getRemoveUserLink()} />
-                <Button
-                  text="AUTORIZAR UN PAGO"
-                  link={getTRXAuthorizationLink()}
-                />
+                <Button text="BORRAR USUARIO" link={removeUserLink} />
+                <Button text="AUTORIZAR UN PAGO" link={authorizationLink} />
               </div>
             </Card>
           </div>

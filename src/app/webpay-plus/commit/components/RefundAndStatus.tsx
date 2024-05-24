@@ -17,23 +17,19 @@ export const RefundAndStatus = ({ token, amount }: RefundAndStatusProps) => {
     setRefundAmount(parseFloat(value));
   };
 
-  const getTRXStatusLink = () => {
-    return {
-      pathname: `/webpay-plus/status?token_ws=${token}`,
-      query: {
-        token_ws: token,
-      },
-    };
+  const statusLink = {
+    pathname: `/webpay-plus/status?token_ws=${token}`,
+    query: {
+      token_ws: token,
+    },
   };
 
-  const getTRXRefundLink = () => {
-    return {
-      pathname: `/webpay-plus/refund`,
-      query: {
-        token_ws: token,
-        amount: refundAmount,
-      },
-    };
+  const refundLink = {
+    pathname: `/webpay-plus/refund`,
+    query: {
+      token_ws: token,
+      amount: refundAmount,
+    },
   };
 
   return (
@@ -44,16 +40,8 @@ export const RefundAndStatus = ({ token, amount }: RefundAndStatusProps) => {
         onChange={handleRefund}
       />
       <div className="button-container">
-        <Button
-          text="REEMBOLSAR"
-          className="button"
-          link={getTRXRefundLink()}
-        />
-        <Button
-          text="CONSULTAR ESTADO"
-          className="button"
-          link={getTRXStatusLink()}
-        />
+        <Button text="REEMBOLSAR" className="button" link={refundLink} />
+        <Button text="CONSULTAR ESTADO" className="button" link={statusLink} />
       </div>
     </Card>
   );

@@ -36,26 +36,22 @@ export const ContentOneClickMall = (props: ContentOneclickProps) => {
     }
   }, []);
 
-  const getRemoveUserLink = (): Url => {
-    return {
-      pathname: `/oneclick-mall-deferred/remove-user`,
-      query: {
-        tbk_user: props.trxData.tbk_user,
-        user_name: userName,
-      },
-    };
+  const removeUserLink = {
+    pathname: `/oneclick-mall-deferred/remove-user`,
+    query: {
+      tbk_user: props.trxData.tbk_user,
+      user_name: userName,
+    },
   };
 
-  const getAuthorizationLink = (): Url => {
-    return {
-      pathname: `/oneclick-mall-deferred/authorize`,
-      query: {
-        tbk_user: props.trxData.tbk_user,
-        user_name: userName,
-        amount: amount,
-        installments: installments,
-      },
-    };
+  const authorizationLink = {
+    pathname: `/oneclick-mall-deferred/authorize`,
+    query: {
+      tbk_user: props.trxData.tbk_user,
+      user_name: userName,
+      amount: amount,
+      installments: installments,
+    },
   };
 
   const handleAmountChange = (value: string) => {
@@ -109,11 +105,8 @@ export const ContentOneClickMall = (props: ContentOneclickProps) => {
                 </div>
 
                 <div className="button-container">
-                  <Button text="BORRAR USUARIO" link={getRemoveUserLink()} />
-                  <Button
-                    text="AUTORIZAR UN PAGO"
-                    link={getAuthorizationLink()}
-                  />
+                  <Button text="BORRAR USUARIO" link={removeUserLink} />
+                  <Button text="AUTORIZAR UN PAGO" link={authorizationLink} />
                 </div>
               </div>
             </Card>

@@ -22,16 +22,14 @@ export const MallRefundCard = (props: MallRefundCardProps) => {
     setRefundAmount(parseFloat(value));
   };
 
-  const getTRXRefundLink = () => {
-    return {
-      pathname: `/oneclick-mall${isDeferred ? "-deferred" : ""}/refund`,
-      query: {
-        buy_order: props.buyOrder,
-        child_commerce_code: props.detail.commerce_code,
-        child_buy_order: props.detail.buy_order,
-        amount: refundAmount,
-      },
-    };
+  const trxRefundLink = {
+    pathname: `/oneclick-mall${isDeferred ? "-deferred" : ""}/refund`,
+    query: {
+      buy_order: props.buyOrder,
+      child_commerce_code: props.detail.commerce_code,
+      child_buy_order: props.detail.buy_order,
+      amount: refundAmount,
+    },
   };
 
   return (
@@ -56,7 +54,7 @@ export const MallRefundCard = (props: MallRefundCardProps) => {
         <Button
           text="REEMBOLSAR"
           className="small-button"
-          link={getTRXRefundLink()}
+          link={trxRefundLink}
         />
       </div>
     </Card>

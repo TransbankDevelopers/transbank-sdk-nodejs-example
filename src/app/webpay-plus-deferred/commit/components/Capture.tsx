@@ -16,16 +16,14 @@ export const Capture = (props: CaptureProps) => {
     Number(props.commitResponse.amount || 0)
   );
 
-  const getTRXCaptureLink = () => {
-    return {
-      pathname: `/webpay-plus-deferred/capture`,
-      query: {
-        token_ws: token_ws,
-        buyOrder: commitResponse?.buy_order,
-        authorizationCode: commitResponse?.authorization_code,
-        captureAmount: refundAmount,
-      },
-    };
+  const captureLink = {
+    pathname: `/webpay-plus-deferred/capture`,
+    query: {
+      token_ws: token_ws,
+      buyOrder: commitResponse?.buy_order,
+      authorizationCode: commitResponse?.authorization_code,
+      captureAmount: refundAmount,
+    },
   };
 
   const handleCaptureAmountChange = (value: string) => {
@@ -49,7 +47,7 @@ export const Capture = (props: CaptureProps) => {
           text="CAPTURAR"
           className="button"
           type={ButtonTypes.SUBMIT}
-          link={getTRXCaptureLink()}
+          link={captureLink}
         />
       </div>
     </Card>
