@@ -2,7 +2,6 @@
 import { Button } from "@/components/button/Button";
 import { Card } from "@/components/card/Card";
 import { InputText } from "@/components/input/InputText";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { CaptureProps } from "@/types/transactions";
 import { Text, TextVariant } from "@/components/text/Text";
@@ -17,7 +16,6 @@ export const CaptureCard = ({
   showCommerceCode = false,
   parentBuyOrder,
 }: CaptureProps) => {
-  const router = useRouter();
   const [captureAmount, setCaptureAmount] = useState<number>(
     Number(amount || 0)
   );
@@ -27,18 +25,30 @@ export const CaptureCard = ({
     setCaptureAmount(Number(value));
   };
 
-  const handleGoToTRXCapture = () => {
-    router.push(
-      `/${
-        isWebpay ? "webpay-mall-diferido" : "oneclick-mall-deferred"
-      }/capture?${
-        isWebpay ? `token=${token}&` : ""
-      }captureAmount=${captureAmount}&buyOrder=${
-        parentBuyOrder ?? buyOrder
-      }&childCommerceCode=${commerceCode}&authorizationCode=${authorizationCode}${
-        parentBuyOrder ? `&childBuyOrder=${buyOrder}` : ""
-      }`
-    );
+  const getCaptureLink = () => {
+    const urlLink = isWebpay
+      ? "/webpay-mall-diferido"
+      : "/oneclick-mall-deferred";
+
+    const query: Record<string, string | number> = {
+      captureAmount,
+      buyOrder: parentBuyOrder ?? buyOrder,
+      childCommerceCode: commerceCode,
+      authorizationCode,
+    };
+
+    if (isWebpay) {
+      query.token = token as string;
+    }
+
+    if (parentBuyOrder) {
+      query.childBuyOrder = buyOrder;
+    }
+
+    return {
+      pathname: `${urlLink}/capture`,
+      query,
+    };
   };
 
   return (
@@ -74,7 +84,7 @@ export const CaptureCard = ({
         <Button
           text="Capturar"
           className="small-button"
-          onClick={handleGoToTRXCapture}
+          link={getCaptureLink()}
         />
       </div>
     </Card>

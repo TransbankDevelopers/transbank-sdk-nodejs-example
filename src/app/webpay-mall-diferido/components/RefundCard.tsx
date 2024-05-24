@@ -2,7 +2,6 @@
 import { Button } from "@/components/button/Button";
 import { Card } from "@/components/card/Card";
 import { InputText } from "@/components/input/InputText";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { RefundAndStatusProps } from "@/types/transactions";
 
@@ -12,7 +11,6 @@ export const RefundCard = ({
   buyOrder,
   commerceCode,
 }: RefundAndStatusProps) => {
-  const router = useRouter();
   const [refundAmount, setRefundAmount] = useState<number>(Number(amount || 0));
 
   const handleRefund = (value: string) => {
@@ -20,10 +18,16 @@ export const RefundCard = ({
     setRefundAmount(parseFloat(value));
   };
 
-  const handleGoToTRXRefund = () => {
-    router.push(
-      `/webpay-mall-diferido/refund?token_ws=${token}&amount=${refundAmount}&buyOrder=${buyOrder}&commerceCode=${commerceCode}`
-    );
+  const getTRXRefund = () => {
+    return {
+      pathname: "/webpay-mall-diferido/refund",
+      query: {
+        token_ws: token,
+        amount: refundAmount,
+        buyOrder,
+        commerceCode,
+      },
+    };
   };
 
   return (
@@ -40,7 +44,7 @@ export const RefundCard = ({
         <Button
           text="REEMBOLSAR"
           className="small-button"
-          onClick={handleGoToTRXRefund}
+          link={getTRXRefund()}
         />
       </div>
     </Card>

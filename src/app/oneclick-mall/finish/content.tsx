@@ -10,7 +10,6 @@ import { Card } from "@/components/card/Card";
 import { Text } from "@/components/text/Text";
 import { Button } from "@/components/button/Button";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import { localStorageUserKey } from "@/consts";
 
 export type ContentOneclickProps = {
@@ -21,7 +20,6 @@ export type ContentOneclickProps = {
 };
 
 export const ContentOneClickMall = (props: ContentOneclickProps) => {
-  const router = useRouter();
   const [userName, setUserName] = useState("User-XXXX");
 
   useEffect(() => {
@@ -31,16 +29,20 @@ export const ContentOneClickMall = (props: ContentOneclickProps) => {
     }
   }, []);
 
-  const handleRemoveUser = () => {
-    router.push(
-      `/oneclick-mall/remove-user?tbk_user=${props.trxData.tbk_user}&user_name=${userName}`
-    );
+  const removeUserLink = {
+    pathname: `/oneclick-mall/remove-user`,
+    query: {
+      tbk_user: props.trxData.tbk_user,
+      user_name: userName,
+    },
   };
 
-  const handleAuthorizeTransaction = () => {
-    router.push(
-      `/oneclick-mall/authorize?tbk_user=${props.trxData.tbk_user}&user_name=${userName}`
-    );
+  const authorizationLink = {
+    pathname: `/oneclick-mall/authorize`,
+    query: {
+      tbk_user: props.trxData.tbk_user,
+      user_name: userName,
+    },
   };
 
   return (
@@ -71,11 +73,8 @@ export const ContentOneClickMall = (props: ContentOneclickProps) => {
               </div>
 
               <div className="button-container">
-                <Button text="BORRAR USUARIO" onClick={handleRemoveUser} />
-                <Button
-                  text="AUTORIZAR UN PAGO"
-                  onClick={handleAuthorizeTransaction}
-                />
+                <Button text="BORRAR USUARIO" link={removeUserLink} />
+                <Button text="AUTORIZAR UN PAGO" link={authorizationLink} />
               </div>
             </Card>
           </div>

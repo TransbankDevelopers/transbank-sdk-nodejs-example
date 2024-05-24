@@ -1,7 +1,7 @@
 "use client";
 import { Roboto } from "next/font/google";
-import NextNProgress from "nextjs-progressbar";
 import "./globals.css";
+import NextTopLoader from "nextjs-toploader";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -19,7 +19,7 @@ export default function RootLayout({
         <title>Transbank SDK</title>
       </head>
       <body className={roboto.className}>
-        <NextNProgress color="#D5006C" height={4} />
+        <NextTopLoader color="#D5006C" />
         {children}
       </body>
     </html>
