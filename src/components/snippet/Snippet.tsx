@@ -1,6 +1,10 @@
 "use client";
 import React from "react";
-import { CopyBlock, dracula } from "react-code-blocks";
+import Image from "next/image";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import "./Snippet.css";
 
 export enum SnippetLanguage {
   PYTHON = "python",
@@ -15,16 +19,18 @@ export type SnippetProps = {
 
 export const Snippet = (props: SnippetProps) => {
   return (
-    <CopyBlock
-      text={props.code}
-      language={props.language || SnippetLanguage.JAVASCRIPT}
-      showLineNumbers={props.showLineNumbers || false}
-      codeBlock
-      theme={dracula}
-      customStyle={{
-        padding: "12px",
-        borderRadius: "0px",
-      }}
-    />
+    <div className="snipet-container">
+      <button className="Copy-button">
+        <CopyToClipboard text={props.code}>
+          <Image src="/copy.svg" alt="copy icon" width={16} height={16} />
+        </CopyToClipboard>
+      </button>
+      <SyntaxHighlighter
+        language={props.language || SnippetLanguage.JAVASCRIPT}
+        style={oneDark}
+      >
+        {props.code}
+      </SyntaxHighlighter>
+    </div>
   );
 };

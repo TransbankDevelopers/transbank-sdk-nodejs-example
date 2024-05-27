@@ -9,12 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/react-copy-to-clipboard": "^5.0.7",
+    "@types/react-syntax-highlighter": "^15.5.13",
     "classnames": "^2.5.1",
     "next": "14.2.3",
     "nextjs-toploader": "^1.6.12",
     "react": "^18",
-    "react-code-blocks": "^0.1.6",
+    "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18",
+    "react-syntax-highlighter": "^15.5.0",
     "transbank-sdk": "^5.0.0"
   },
   "devDependencies": {

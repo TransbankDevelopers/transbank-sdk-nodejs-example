@@ -38,7 +38,7 @@ export const CaptureCard = ({
     };
 
     if (isWebpay) {
-      query.token = token as string;
+      query.token_ws = token as string;
     }
 
     if (parentBuyOrder) {
