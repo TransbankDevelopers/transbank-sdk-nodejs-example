@@ -2,6 +2,7 @@ import { StepProps } from "@/components/step/Step";
 import * as refundSnippets from "@/app/webpay-plus/content/snippets/refund";
 import { Text } from "@/components/text/Text";
 import { TBKRefundTransactionResponse } from "@/types/transactions";
+import Link from "next/link";
 
 export const getRefundTRXSteps = (
   refundResult: TBKRefundTransactionResponse,
@@ -29,8 +30,15 @@ export const getRefundTRXSteps = (
             </ul>
             <div className="link-to-terms">
               <Text>
-                En este link podrás ver mayor información sobre las condiciones
-                y casos para anular o reversar transacciones.{" "}
+                En{" "}
+                <Link
+                  className="tbk-link tbk-link-alt"
+                  href="https://transbankdevelopers.cl/producto/webpay#anulaciones-y-reversas"
+                >
+                  este link
+                </Link>{" "}
+                podrás ver mayor información sobre las condiciones y casos para
+                anular o reversar transacciones.{" "}
               </Text>
             </div>
           </div>

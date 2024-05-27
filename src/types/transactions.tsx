@@ -41,6 +41,7 @@ export enum TBKTransactionStatus {
   AUTHORIZED = "AUTHORIZED",
   FAILED = "FAILED",
   CAPTURED = "CAPTURED",
+  CONSTRAINTS_VIOLATED = "CONSTRAINTS_VIOLATED",
 }
 
 export type TBKCardDetail = {
@@ -177,11 +178,14 @@ export type RefundAndStatusProps = {
 };
 
 export type CaptureProps = {
-  token: string;
+  token?: string;
   amount: number;
+  parentBuyOrder?: string;
   buyOrder: string;
   commerceCode: string;
   authorizationCode: string;
+  isWebpay?: boolean;
+  showCommerceCode?: boolean;
 };
 
 export type TBKAuthorizeTransactionResponse = {
