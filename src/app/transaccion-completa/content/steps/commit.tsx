@@ -1,9 +1,9 @@
 import { StepProps } from "@/components/step/Step";
-import { TBKFullTxResponse } from "@/types/transactions";
+import { TBKFullTxCommitResponse } from "@/types/transactions";
 import * as commitSnippets from "@/app/transaccion-completa/content/snippets/commit";
 
 export const getCommitSteps = (
-  commitResponse: TBKFullTxResponse
+  commitResponse: TBKFullTxCommitResponse
 ): StepProps[] => {
   return [
     {

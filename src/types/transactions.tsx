@@ -93,6 +93,20 @@ export type TBKMallCommitTransactionResponse = {
   transaction_date: string;
 };
 
+export type TBKFullTxCommitResponse = {
+  amount: number;
+  status: string;
+  buy_order: string;
+  session_id: string;
+  card_detail: TBKCardDetail;
+  accounting_date: string;
+  transaction_date: string;
+  authorization_code: string;
+  payment_type_code: string;
+  response_code: number;
+  installments_number: number;
+};
+
 export type TBKTransactionStatusResponse = Omit<
   TBKCommitTransactionResponse,
   "card_detail" | "authorization_code" | "payment_type_code" | "response_code"

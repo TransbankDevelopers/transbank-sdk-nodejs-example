@@ -1,4 +1,4 @@
-import { TBKFullTxResponse } from "@/types/transactions";
+import { TBKFullTxCommitResponse } from "@/types/transactions";
 
 export const getStepOne = () => {
   return `const TransaccionCompleta = require('transbank-sdk').TransaccionCompleta; // CommonJS
@@ -12,7 +12,7 @@ const commitResponse = await (new TransaccionCompleta.Transaction()).commit(
 );`;
 };
 
-export const getStepTwo = (commitResponse: TBKFullTxResponse) => {
+export const getStepTwo = (commitResponse: TBKFullTxCommitResponse) => {
   return `{
   "amount":${commitResponse.amount},
   "status": "${commitResponse.status}",
