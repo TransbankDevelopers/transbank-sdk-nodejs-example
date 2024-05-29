@@ -5,8 +5,11 @@ import "./InputText.css";
 
 export type InputTextProps = {
   label: string;
+  name?: string;
+  maxLength?: number;
   value: string | number;
-  onChange?: (value: string) => void;
+  onChange?: (value: string, name?: string) => void;
+  onFocus?: (name: string) => void;
 };
 
 export const InputText = (props: InputTextProps) => {
@@ -15,6 +18,9 @@ export const InputText = (props: InputTextProps) => {
 
   const handleOnFocus = () => {
     setIsFocused(true);
+    if (props.onFocus && props.name) {
+      props.onFocus(props.name);
+    }
   };
 
   const handleOnBlur = () => {
@@ -33,10 +39,12 @@ export const InputText = (props: InputTextProps) => {
       </span>
       <input
         type="text"
+        name={props.name}
+        maxLength={props.maxLength}
         onFocus={handleOnFocus}
         onBlur={handleOnBlur}
         value={props.value}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={(e) => onChange(e.target.value, e.target.name)}
         className={cx("tbk-input-text", {
           focus: isFocused,
         })}
