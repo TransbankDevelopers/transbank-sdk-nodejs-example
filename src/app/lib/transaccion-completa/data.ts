@@ -1,6 +1,4 @@
 import { generateRandomTxCompletaData } from "@/helpers/webpay-plus/transactionHelper";
-import { SearchParams } from "@/types/general";
-import { TBKCallbackType } from "@/types/transactions";
 import {
   Options,
   IntegrationCommerceCodes,
@@ -8,24 +6,6 @@ import {
   Environment,
   TransaccionCompleta,
 } from "transbank-sdk";
-
-const getCallbackType = (parameters: SearchParams): TBKCallbackType => {
-  const { token_ws, TBK_TOKEN, TBK_ORDEN_COMPRA, TBK_ID_SESION } = parameters;
-
-  if (token_ws && !(TBK_TOKEN && TBK_ORDEN_COMPRA && TBK_ID_SESION)) {
-    return TBKCallbackType.COMMIT_OK;
-  }
-
-  if (TBK_ID_SESION && TBK_ORDEN_COMPRA && !TBK_TOKEN) {
-    return TBKCallbackType.TIMEOUT;
-  }
-
-  if (TBK_ID_SESION && TBK_ORDEN_COMPRA && TBK_TOKEN) {
-    return TBKCallbackType.ABORTED;
-  }
-
-  return TBKCallbackType.INVALID_PAYMENT;
-};
 
 export const getWebpatMallDeferredOptions = () => {
   return new Options(
@@ -74,4 +54,12 @@ export const commitTxCompleteTransaction = async (
   );
 
   return commitResponse;
+};
+
+export const statusTxCompleteTransaction = async (token: string) => {
+  const statusResponse = await new TransaccionCompleta.Transaction(
+    getWebpatMallDeferredOptions()
+  ).status(token);
+
+  return statusResponse;
 };

@@ -121,6 +121,21 @@ export type TBKMallTransactionStatusResponse = {
   transaction_date: string;
 };
 
+export type TBKFullTxStatusResponse = {
+  amount: number;
+  status: string;
+  balance: number;
+  buy_order: string;
+  session_id: string;
+  card_detail: TBKCardDetail;
+  accounting_date: string;
+  transaction_date: string;
+  authorization_code: string;
+  payment_type_code: string;
+  response_code: number;
+  installments_number: number;
+};
+
 export enum TBKRefundTypes {
   NULLIFIED = "NULLIFIED",
   REVERSED = "REVERSED",
