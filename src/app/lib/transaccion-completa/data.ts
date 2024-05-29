@@ -40,12 +40,6 @@ export const createTxCompleteTransaction = async (
   cardNumber: string,
   cardExpirationDate: string
 ) => {
-  console.log("createTxCompleteTransaction -> cvv", cvv);
-  console.log("createTxCompleteTransaction -> cardNumber", cardNumber);
-  console.log(
-    "createTxCompleteTransaction -> cardExpirationDate",
-    cardExpirationDate
-  );
   const RandomTxCompletaData = generateRandomTxCompletaData();
   const createResponse = await new TransaccionCompleta.Transaction(
     getWebpatMallDeferredOptions()
@@ -62,4 +56,22 @@ export const createTxCompleteTransaction = async (
     ...RandomTxCompletaData,
     ...createResponse,
   };
+};
+
+export const commitTxCompleteTransaction = async (
+  token: string,
+  idQueryInstallments: string,
+  deferred_period_index: string,
+  grace_period: boolean
+) => {
+  const commitResponse = await new TransaccionCompleta.Transaction(
+    getWebpatMallDeferredOptions()
+  ).commit(
+    token,
+    Number(idQueryInstallments),
+    Number(deferred_period_index),
+    grace_period
+  );
+
+  return commitResponse;
 };
