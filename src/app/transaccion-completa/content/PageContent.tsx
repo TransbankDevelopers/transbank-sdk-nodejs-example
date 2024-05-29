@@ -6,7 +6,6 @@ import { NavigationItem } from "@/components/layout/Navigation";
 import { CreditCard } from "@/components/creditcard/CreditCard";
 import { useState } from "react";
 import { Focused } from "react-credit-cards-2";
-import { createTxCompleteTransaction } from "@/app/lib/transaccion-completa/data";
 
 export type CreatePageContentProps = {
   actualBread: Route[];
