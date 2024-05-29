@@ -1,3 +1,9 @@
+export type StartTxCompletedData = {
+  buyOrder: string;
+  sessionId: string;
+  amount: number;
+};
+
 export type StartTransactionData = {
   buyOrder: string;
   sessionId: string;
