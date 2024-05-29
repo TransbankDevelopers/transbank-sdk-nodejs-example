@@ -1,4 +1,3 @@
-// import "./page.css";
 import { Route } from "@/types/menu";
 import Head from "next/head";
 import { Layout } from "@/components/layout/Layout";
