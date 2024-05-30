@@ -3,11 +3,11 @@ import { Route } from "@/types/menu";
 import { Layout } from "@/components/layout/Layout";
 import Head from "next/head";
 import { NextPageProps } from "@/types/general";
-import { MallRefundCard } from "./components/MallRefundCard";
+import { MallRefundCard } from "../../../components/mall-refund-card/MallRefundCard";
 import { NavigationItem } from "@/components/layout/Navigation";
 import { authorizeOneClickMallTransaction } from "@/app/lib/oneclick-mall/data";
 import { getAuthorizeSteps } from "../content/steps/authorize";
-import { MallStatusButton } from "./components/MallStatusButton";
+import { MallStatusButton } from "../../../components/mall-status-button/MallStatusButton";
 
 const getActualBread = (): Route[] => {
   return [

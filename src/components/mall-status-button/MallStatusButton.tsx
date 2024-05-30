@@ -2,19 +2,25 @@
 import { Button } from "@/components/button/Button";
 
 export type MallStatusButtonProps = {
-  buyOrder: string;
+  token?: string;
+  buyOrder?: string;
   isDeferred?: boolean;
+  productLink?: string;
 };
 export const MallStatusButton = (props: MallStatusButtonProps) => {
-  const { isDeferred = false } = props;
+  const { isDeferred = false, productLink = "/oneclick-mall" } = props;
 
   const getTRXStatusLink = () => {
-    const url = isDeferred ? "/oneclick-mall-deferred" : "/oneclick-mall";
+    const url = `${productLink}${isDeferred ? "-deferred" : ""}`;
+    const query = props.token
+      ? { token_ws: props.token }
+      : {
+          buy_order: props.buyOrder,
+        };
+
     return {
       pathname: `${url}/status`,
-      query: {
-        buy_order: props.buyOrder,
-      },
+      query,
     };
   };
 

@@ -3,7 +3,7 @@ import { Route } from "@/types/menu";
 import { Layout } from "@/components/layout/Layout";
 import { TBKFinishInscriptionResponse } from "@/types/transactions";
 import { getErrorRejectedSteps } from "../../content/steps/error-rejected";
-import { MallStatusButton } from "../../authorize/components/MallStatusButton";
+import { MallStatusButton } from "../../../../components/mall-status-button/MallStatusButton";
 
 const actualBread: Route[] = [
   {

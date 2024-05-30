@@ -171,6 +171,26 @@ h2 {
   text-decoration: underline;
 }
 
+/* Confirmar */
+
+.commit-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.commit-card .button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.list {
+  list-style: disc;
+  padding: 0px 20px;
+}
+
 /* card dual button */
 
 .tbk-tx-card {

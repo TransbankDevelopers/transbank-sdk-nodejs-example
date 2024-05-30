@@ -4,15 +4,18 @@ import { Card } from "@/components/card/Card";
 import { InputText } from "@/components/input/InputText";
 import { TransactionDetail } from "@/types/transactions";
 import { useState } from "react";
+import "./MallRefundCard.css";
 
 export type MallRefundCardProps = {
   buyOrder: string;
   detail: TransactionDetail;
   isDeferred?: boolean;
+  productLink?: string;
+  token?: string;
 };
 
 export const MallRefundCard = (props: MallRefundCardProps) => {
-  const { isDeferred = false } = props;
+  const { isDeferred = false, productLink = "/oneclick-mall" } = props;
   const [refundAmount, setRefundAmount] = useState<number>(
     Number(props.detail.amount || 0)
   );
@@ -23,12 +26,13 @@ export const MallRefundCard = (props: MallRefundCardProps) => {
   };
 
   const trxRefundLink = {
-    pathname: `/oneclick-mall${isDeferred ? "-deferred" : ""}/refund`,
+    pathname: `${productLink}${isDeferred ? "-deferred" : ""}/refund`,
     query: {
       buy_order: props.buyOrder,
       child_commerce_code: props.detail.commerce_code,
       child_buy_order: props.detail.buy_order,
       amount: refundAmount,
+      token_ws: props.token,
     },
   };
 
@@ -46,7 +50,7 @@ export const MallRefundCard = (props: MallRefundCardProps) => {
         />
         <InputText
           label="Monto a reembolsar:"
-          value={props.detail.amount}
+          value={refundAmount}
           onChange={handleRefund}
         />
       </div>

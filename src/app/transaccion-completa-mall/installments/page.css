@@ -1,0 +1,23 @@
+.step-ready {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.step-ready .instructions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.step-ready .instructions .list {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  list-style-type: disc;
+}
+
+.aborted-status {
+  margin-top: 2rem;
+}

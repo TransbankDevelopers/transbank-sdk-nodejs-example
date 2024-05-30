@@ -1,3 +1,5 @@
+import { TransactionDetail as TBKTransactionDetail } from "transbank-sdk";
+
 export type StartTxCompletedData = {
   buyOrder: string;
   sessionId: string;
@@ -241,4 +243,15 @@ export type TBKRefundResponseType = "NULLIFIED" | "REVERSED" | string;
 
 export type TBKRefundMallTransactionResponse = {
   type: TBKRefundResponseType;
+};
+
+export type CreateFullTransactionMallResponse = {
+  token: string;
+  details: TBKTransactionDetail[];
+};
+
+export type TBKInstallmentsFullTransactionResponse = {
+  installments_amount: number;
+  id_query_installments: number;
+  deferred_periods: any[];
 };
