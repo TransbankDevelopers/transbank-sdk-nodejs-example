@@ -3,23 +3,34 @@ import { Layout } from "@/components/layout/Layout";
 import Head from "next/head";
 import { Route } from "@/types/menu";
 import { NavigationItem } from "@/components/layout/Navigation";
-import { CreditCard } from "@/components/creditcard/CreditCard";
-import { useState } from "react";
+import {
+  CreditCard,
+  CreditCardState,
+} from "@/components/creditcard/CreditCard";
+import { useEffect, useRef, useState } from "react";
 import { Focused } from "react-credit-cards-2";
+import Link from "next/link";
 
 export type PageContentProps = {
   actualBread: Route[];
   navigationItems: NavigationItem[];
 };
 
+const DEFAULT_CREDIT_CARD_VALUES: CreditCardState = {
+  number: "4111 1111 1111 1111",
+  expiry: "0826",
+  cvc: "123",
+  name: "Ariel Cardenas",
+  focus: "number",
+};
+
 export const PageContent = (props: PageContentProps) => {
-  const [cardState, setCardState] = useState<CreditCard>({
-    number: "",
-    expiry: "",
-    cvc: "",
-    name: "Ariel Cardenas",
-    focus: "number",
-  });
+  const linkRef = useRef<HTMLAnchorElement>(null);
+  const [cardState, setCardState] = useState<CreditCardState>(
+    DEFAULT_CREDIT_CARD_VALUES
+  );
+  const [token, setToken] = useState<string | null>();
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const handleInputChange = (value: string, name: string) => {
     setCardState((prev) => ({ ...prev, [name]: value }));
@@ -32,6 +43,47 @@ export const PageContent = (props: PageContentProps) => {
     }));
   };
 
+  const commitLink = () => {
+    const query = errorMessage
+      ? { error_message: errorMessage }
+      : { token_ws: token };
+
+    return {
+      pathname: "/full-transaction-mall/create",
+      query,
+    };
+  };
+
+  const onPay = async () => {
+    const creditCard: CreditCard = {
+      number: cardState.number,
+      expiry: cardState.expiry,
+      cvc: cardState.cvc,
+      name: cardState.name,
+    };
+
+    const request = await fetch("/api/full-transaction-mall/create", {
+      method: "POST",
+      body: JSON.stringify(creditCard),
+    });
+
+    if (!request.ok) {
+      const error = await request.text();
+      setErrorMessage(error);
+      return;
+    }
+
+    const token = await request.text();
+
+    setToken(token);
+  };
+
+  useEffect(() => {
+    if (!token && !errorMessage) return;
+
+    linkRef.current?.click();
+  }, [token, errorMessage]);
+
   return (
     <>
       <Head>
@@ -41,17 +93,22 @@ export const PageContent = (props: PageContentProps) => {
         pageTitle="Transacción Completa Mall - Formulario"
         pageDescription="En esta primera etapa necesitas obtener los datos esenciales de la tarjeta de crédito del titular. Utiliza el formulario para recolectar esta información de manera segura."
         actualBread={props.actualBread}
-        activeRoute="/fulltransaction-mall"
+        activeRoute="/full-transaction-mall"
         navigationItems={props.navigationItems}
         additionalContent={
-          <CreditCard
-            {...cardState}
-            onPay={() => {
-              //
-            }}
-            handleInputChange={handleInputChange}
-            handleInputFocus={handleInputFocus}
-          />
+          <>
+            <Link
+              href={commitLink()}
+              ref={linkRef}
+              style={{ display: "none" }}
+            />
+            <CreditCard
+              {...cardState}
+              handleInputChange={handleInputChange}
+              handleInputFocus={handleInputFocus}
+              onPay={onPay}
+            />
+          </>
         }
       />
     </>
