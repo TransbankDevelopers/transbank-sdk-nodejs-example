@@ -1,7 +1,7 @@
 import { Card } from "../card/Card";
 import Cards, { Focused } from "react-credit-cards-2";
 import { InputText } from "../input/InputText";
-import { Button, ButtonTypes } from "../button/Button";
+import { Button } from "../button/Button";
 import "react-credit-cards-2/dist/es/styles-compiled.css";
 import "./CreditCard.css";
 import Image from "next/image";
@@ -19,7 +19,19 @@ export type CreditCardState = {
   focus: Focused;
 } & CreditCard;
 
+type queryType = {
+  cardNumber: string;
+  cvv: string;
+  cardExpirationDate: string;
+};
+
+type linkToType = {
+  pathname: string;
+  query: queryType;
+};
+
 export type CreditCardProps = {
+  linkTo: linkToType;
   onPay?: () => void;
   handleInputChange: (value: string, name: string) => void;
   handleInputFocus: (name: string) => void;

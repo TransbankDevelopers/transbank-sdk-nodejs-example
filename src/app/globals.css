@@ -119,6 +119,10 @@ h2 {
   margin-right: 1rem;
 }
 
+.font-bold {
+  font-weight: 700;
+}
+
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
@@ -185,4 +189,28 @@ h2 {
 .list {
   list-style: disc;
   padding: 0px 20px;
+}
+
+/* card dual button */
+
+.tbk-tx-card {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tbk-tx-card.column-card {
+  flex-direction: column;
+  gap: 30px;
+}
+
+.tbk-tx-card .button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-end;
+}
+
+.tbk-tx-card .button-container .button {
+  padding-left: 1rem;
+  padding-right: 1rem;
 }

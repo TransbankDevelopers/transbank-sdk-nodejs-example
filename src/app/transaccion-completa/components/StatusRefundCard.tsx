@@ -4,13 +4,13 @@ import { Card } from "@/components/card/Card";
 import { InputText } from "@/components/input/InputText";
 import { useState } from "react";
 
-export type RefundAndStatusProps = {
+export type ConfirmCardProps = {
   token: string;
-  amount: string | number;
+  amount: number;
 };
 
-export const RefundAndStatus = ({ token, amount }: RefundAndStatusProps) => {
-  const [refundAmount, setRefundAmount] = useState<number>(Number(amount || 0));
+export const StatusRefundCard = ({ token, amount }: ConfirmCardProps) => {
+  const [refundAmount, setRefundAmount] = useState<number>(amount || 0);
 
   const handleRefund = (value: string) => {
     if (isNaN(parseFloat(value))) return;
@@ -18,29 +18,29 @@ export const RefundAndStatus = ({ token, amount }: RefundAndStatusProps) => {
   };
 
   const statusLink = {
-    pathname: "/webpay-plus/status",
+    pathname: `/transaccion-completa/status`,
     query: {
-      token_ws: token,
+      token: token,
     },
   };
 
-  const refundLink = {
-    pathname: "/webpay-plus/refund",
+  const refundmentsLinks = {
+    pathname: `/transaccion-completa/refund`,
     query: {
-      token_ws: token,
+      token: token,
       amount: refundAmount,
     },
   };
 
   return (
-    <Card className="refund-card">
+    <Card className="tbk-tx-card">
       <InputText
-        label="Monto a reembolsar:"
+        label="N° de cuotas"
         value={refundAmount}
         onChange={handleRefund}
       />
       <div className="button-container">
-        <Button text="REEMBOLSAR" className="button" link={refundLink} />
+        <Button text="REEMBOLSAR" className="button" link={refundmentsLinks} />
         <Button text="CONSULTAR ESTADO" className="button" link={statusLink} />
       </div>
     </Card>
