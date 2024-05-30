@@ -6,13 +6,13 @@ import { cookies } from "next/headers";
 
 export async function POST(req: NextApiRequest) {
   const cookiesStore = cookies();
-  const chunks = [];
+  const jsonChunks = [];
 
   for await (const chunk of req.body) {
-    chunks.push(chunk);
+    jsonChunks.push(chunk);
   }
 
-  const body = JSON.parse(Buffer.concat(chunks).toString());
+  const body = JSON.parse(Buffer.concat(jsonChunks).toString());
 
   if (!body) {
     console.log("No credit card data found");
