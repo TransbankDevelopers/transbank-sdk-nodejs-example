@@ -3,7 +3,10 @@ import { Layout } from "@/components/layout/Layout";
 import Head from "next/head";
 import { Route } from "@/types/menu";
 import { NavigationItem } from "@/components/layout/Navigation";
-import { CreditCard } from "@/components/creditcard/CreditCard";
+import {
+  CreditCard,
+  CreditCardState,
+} from "@/components/creditcard/CreditCard";
 import { useState } from "react";
 import { Focused } from "react-credit-cards-2";
 
@@ -13,7 +16,7 @@ export type CreatePageContentProps = {
 };
 
 export function PageContent(props: CreatePageContentProps) {
-  const [cardState, setCardState] = useState<CreditCard>({
+  const [cardState, setCardState] = useState<CreditCardState>({
     number: "4051885600446623",
     expiry: "11/23",
     cvc: "123",
