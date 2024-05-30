@@ -63,3 +63,14 @@ export const statusTxCompleteTransaction = async (token: string) => {
 
   return statusResponse;
 };
+
+export const refundTxCompleteTransaction = async (
+  token: string,
+  amount: number
+) => {
+  const refundRequest = await new TransaccionCompleta.Transaction(
+    getWebpatMallDeferredOptions()
+  ).refund(token, amount);
+
+  return refundRequest;
+};

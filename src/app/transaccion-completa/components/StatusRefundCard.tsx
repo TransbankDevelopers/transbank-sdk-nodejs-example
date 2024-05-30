@@ -28,7 +28,7 @@ export const StatusRefundCard = ({ token, amount }: ConfirmCardProps) => {
     pathname: `/transaccion-completa/refund`,
     query: {
       token: token,
-      installments: refundAmount,
+      amount: refundAmount,
     },
   };
 
