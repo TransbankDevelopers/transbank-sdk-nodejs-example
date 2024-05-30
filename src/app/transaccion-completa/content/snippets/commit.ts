@@ -8,7 +8,7 @@ const commitResponse = await (new TransaccionCompleta.Transaction()).commit(
   token,
   idQueryInstallments,(opcional)
   deferred_period_index, (opcional)
-  grace_period (opcional)
+  grace_period, (opcional)
 );`;
 };
 
