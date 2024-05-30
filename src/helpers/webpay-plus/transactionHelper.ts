@@ -3,6 +3,7 @@ import {
   StartTransactionData,
   StartTransactionDataMall,
   StartTransactionDataOneclickMall,
+  StartTxCompletedData,
 } from "@/types/transactions";
 import { TBKTransactionStatus, TransactionDetail } from "@/types/transactions";
 
@@ -10,6 +11,18 @@ export const isSomeTransactionRejected = (details: TransactionDetail[]) => {
   return details.some(
     (detail) => detail.status === TBKTransactionStatus.FAILED
   );
+};
+
+export const generateRandomTxCompletaData = (): StartTxCompletedData => {
+  const buyOrder = "O-" + Math.floor(Math.random() * 10000) + 1;
+  const sessionId = "S-" + Math.floor(Math.random() * 10000) + 1;
+  const amount = Math.floor(Math.random() * 1000) + 1001;
+
+  return {
+    buyOrder,
+    sessionId,
+    amount,
+  };
 };
 
 export const generateRandomTransactionData = (
@@ -29,6 +42,7 @@ export const generateRandomTransactionData = (
     returnUrl,
   };
 };
+
 export const generateRandomTransactionDataMall = (
   protocol: string,
   host: string
@@ -209,4 +223,23 @@ export const getColumnDefinition = (): ColumnDefinition[] => {
       accessor: "value",
     },
   ];
+};
+
+type CardExpiry = {
+  month: string;
+  year: string;
+};
+
+export const getCardExpiry = (expiry: string): CardExpiry => {
+  if (expiry.includes("/")) {
+    const [month, year] = expiry.split("/");
+    return {
+      month: month.padStart(2, "0"),
+      year: year.padStart(2, "0"),
+    };
+  }
+  return {
+    month: expiry.slice(0, 2),
+    year: expiry.slice(2),
+  };
 };

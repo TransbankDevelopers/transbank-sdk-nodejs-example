@@ -35,11 +35,11 @@ export const webpayOneClickRoutes: Route[] = [
 export const webpayFullTransactionRoutes: Route[] = [
   {
     name: "Transacción Completa",
-    path: "/full-transaction",
+    path: "/transaccion-completa",
   },
   {
     name: "Transacción Completa Diferido",
-    path: "/full-transaction-deferred",
+    path: "/transaccion-completa-diferido",
   },
   {
     name: "Transacción Completa Mall",
