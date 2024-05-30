@@ -40,18 +40,11 @@ export const createTxCompleteTransaction = async (
 
 export const commitTxCompleteTransaction = async (
   token: string,
-  idQueryInstallments: string,
-  deferred_period_index: string,
-  grace_period: boolean
+  idQueryInstallments: string
 ) => {
   const commitResponse = await new TransaccionCompleta.Transaction(
     getWebpatMallDeferredOptions()
-  ).commit(
-    token,
-    Number(idQueryInstallments),
-    Number(deferred_period_index),
-    grace_period
-  );
+  ).commit(token, Number(idQueryInstallments));
 
   return commitResponse;
 };
@@ -73,4 +66,15 @@ export const refundTxCompleteTransaction = async (
   ).refund(token, amount);
 
   return refundRequest;
+};
+
+export const consultInstallmentsCompleteTransaction = async (
+  token: string,
+  installments: number
+) => {
+  const installmentsResponse = await new TransaccionCompleta.Transaction(
+    getWebpatMallDeferredOptions()
+  ).installments(token, installments);
+
+  return installmentsResponse;
 };

@@ -36,14 +36,11 @@ const navigationItems: NavigationItem[] = [
 export default async function CommitWebpaytxfullPage({
   searchParams,
 }: NextPageProps) {
-  const { token, idQueryInstallments, deferred_period_index, grace_period } =
-    searchParams;
+  const { token, idQueryInstallments } = searchParams;
 
   const commitResponse = await commitTxCompleteTransaction(
     token as string,
-    idQueryInstallments as string,
-    deferred_period_index as string,
-    !!grace_period as boolean
+    idQueryInstallments as string
   );
 
   return (

@@ -178,6 +178,11 @@ h2 {
   justify-content: space-between;
 }
 
+.tbk-tx-card.column-card {
+  flex-direction: column;
+  gap: 30px;
+}
+
 .tbk-tx-card .button-container {
   display: flex;
   flex-direction: column;
