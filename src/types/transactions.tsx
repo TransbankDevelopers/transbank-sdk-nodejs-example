@@ -231,6 +231,12 @@ export type TBKAuthorizeTransactionResponse = {
   transaction_date: string;
 };
 
+export type InstallmentsFullTXResponse = {
+  installments_amount: number;
+  id_query_installments: number;
+  deferred_periods: string[];
+};
+
 export type TBKRefundResponseType = "NULLIFIED" | "REVERSED" | string;
 
 export type TBKRefundMallTransactionResponse = {
