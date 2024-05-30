@@ -6,6 +6,7 @@ import {
   Environment,
   TransaccionCompleta,
 } from "transbank-sdk";
+import { getCardExpiry } from "@/helpers/webpay-plus/transactionHelper";
 
 export const getWebpatMallDeferredOptions = () => {
   return new Options(
@@ -20,6 +21,7 @@ export const createTxCompleteTransaction = async (
   cardNumber: string,
   cardExpirationDate: string
 ) => {
+  const cardExpiration = getCardExpiry(cardExpirationDate);
   const RandomTxCompletaData = generateRandomTxCompletaData();
   const createResponse = await new TransaccionCompleta.Transaction(
     getWebpatMallDeferredOptions()
@@ -29,7 +31,7 @@ export const createTxCompleteTransaction = async (
     RandomTxCompletaData.amount,
     cvv,
     cardNumber,
-    cardExpirationDate
+    `${cardExpiration.year}/${cardExpiration.month}`
   );
 
   return {
