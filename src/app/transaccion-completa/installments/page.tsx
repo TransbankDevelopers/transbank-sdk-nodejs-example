@@ -1,4 +1,3 @@
-// import "./page.css";
 import { Route } from "@/types/menu";
 import {
   StartTransactionData,
