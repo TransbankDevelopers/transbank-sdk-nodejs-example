@@ -9,6 +9,7 @@ export const getStatusTRXSteps = (
   return [
     {
       stepTitle: "Paso 1: Petición",
+      stepId: "peticion",
       content: (
         <p>
           Para llevar a cabo la solicitud de estado, necesitarás el token
@@ -21,6 +22,7 @@ export const getStatusTRXSteps = (
     },
     {
       stepTitle: "Paso 2: Respuesta",
+      stepId: "respuesta",
       content: (
         <p>
           Transbank responderá con la siguiente información. Asegúrate de
