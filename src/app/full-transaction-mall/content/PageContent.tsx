@@ -17,7 +17,7 @@ export type PageContentProps = {
 };
 
 const DEFAULT_CREDIT_CARD_VALUES: CreditCardState = {
-  number: "4111 1111 1111 1111",
+  number: "4051 8856 0044 6623",
   expiry: "0826",
   cvc: "123",
   name: "Ariel Cardenas",
