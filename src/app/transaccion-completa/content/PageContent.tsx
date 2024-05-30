@@ -14,9 +14,9 @@ export type CreatePageContentProps = {
 
 export function PageContent(props: CreatePageContentProps) {
   const [cardState, setCardState] = useState<CreditCard>({
-    number: "",
-    expiry: "",
-    cvc: "",
+    number: "4051885600446623",
+    expiry: "11/23",
+    cvc: "123",
     name: "Ariel Cardenas",
     focus: "number",
   });
