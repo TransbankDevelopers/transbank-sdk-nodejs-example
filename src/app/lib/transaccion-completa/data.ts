@@ -22,20 +22,20 @@ export const createTxCompleteTransaction = async (
   cardExpirationDate: string
 ) => {
   const cardExpiration = getCardExpiry(cardExpirationDate);
-  const RandomTxCompletaData = generateRandomTxCompletaData();
+  const randomTxCompletaData = generateRandomTxCompletaData();
   const createResponse = await new TransaccionCompleta.Transaction(
     getWebpatMallDeferredOptions()
   ).create(
-    RandomTxCompletaData.buyOrder,
-    RandomTxCompletaData.sessionId,
-    RandomTxCompletaData.amount,
+    randomTxCompletaData.buyOrder,
+    randomTxCompletaData.sessionId,
+    randomTxCompletaData.amount,
     cvv,
     cardNumber,
     `${cardExpiration.year}/${cardExpiration.month}`
   );
 
   return {
-    ...RandomTxCompletaData,
+    ...randomTxCompletaData,
     ...createResponse,
   };
 };
