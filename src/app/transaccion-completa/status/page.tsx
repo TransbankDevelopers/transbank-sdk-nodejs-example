@@ -32,7 +32,7 @@ const navigationItems: NavigationItem[] = [
   },
 ];
 
-export default async function CommitWebpaytxfullPage({
+export default async function StatusWebpaytxfullPage({
   searchParams,
 }: NextPageProps) {
   const { token } = searchParams;
