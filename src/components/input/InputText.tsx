@@ -10,11 +10,12 @@ export type InputTextProps = {
   value: string | number;
   onChange?: (value: string, name?: string) => void;
   onFocus?: (name: string) => void;
+  isNumber?: boolean;
 };
 
 export const InputText = (props: InputTextProps) => {
   const [isFocused, setIsFocused] = useState(false);
-  const { onChange = () => {} } = props;
+  const { onChange = () => {}, isNumber = false } = props;
 
   const handleOnFocus = () => {
     setIsFocused(true);
@@ -38,7 +39,7 @@ export const InputText = (props: InputTextProps) => {
         {props.label}
       </span>
       <input
-        type="text"
+        type={isNumber ? "number" : "text"}
         name={props.name}
         maxLength={props.maxLength}
         onFocus={handleOnFocus}
