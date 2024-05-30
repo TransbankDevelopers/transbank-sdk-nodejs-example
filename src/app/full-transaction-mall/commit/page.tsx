@@ -14,6 +14,7 @@ import { localStorageFullTransactionDetails } from "@/consts";
 import { TransactionDetail } from "transbank-sdk";
 import { MallRefundCard } from "@/components/mall-refund-card/MallRefundCard";
 import { MallStatusButton } from "@/components/mall-status-button/MallStatusButton";
+import { ErrorContent } from "../create/errorContent";
 
 const navigationItems: NavigationItem[] = [
   {
@@ -52,8 +53,13 @@ export default async function CommitFullTransactionMallPage({
   const data = cookiesStore.get(localStorageFullTransactionDetails);
 
   if (!data) {
-    console.log("No data found");
-    return;
+    return (
+      <ErrorContent
+        errorMessage="No data found"
+        productPage="/full-transaction-mall"
+        actualRoute="/commit"
+      />
+    );
   }
 
   const installmentsData = id_query_installments
