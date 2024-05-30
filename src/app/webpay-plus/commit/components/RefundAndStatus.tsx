@@ -18,14 +18,14 @@ export const RefundAndStatus = ({ token, amount }: RefundAndStatusProps) => {
   };
 
   const statusLink = {
-    pathname: `/webpay-plus/status?token_ws=${token}`,
+    pathname: "/webpay-plus/status",
     query: {
       token_ws: token,
     },
   };
 
   const refundLink = {
-    pathname: `/webpay-plus/refund`,
+    pathname: "/webpay-plus/refund",
     query: {
       token_ws: token,
       amount: refundAmount,

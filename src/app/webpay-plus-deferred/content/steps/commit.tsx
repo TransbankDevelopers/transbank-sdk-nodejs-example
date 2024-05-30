@@ -16,7 +16,7 @@ export const getCommitSteps = (
       content: (
         <Text>
           Después de completar el flujo en el formulario de pago, recibirás un
-          POST con la siguiente información:
+          GET con la siguiente información:
         </Text>
       ),
       code: commitSnippets.getStepOne(token),
