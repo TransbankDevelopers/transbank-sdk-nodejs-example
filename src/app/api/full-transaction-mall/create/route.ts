@@ -15,8 +15,11 @@ export async function POST(req: NextApiRequest) {
   const body = JSON.parse(Buffer.concat(jsonChunks).toString());
 
   if (!body) {
-    console.log("No credit card data found");
-    return;
+    const errorMessage = "No credit card data found";
+    console.log(errorMessage);
+    return new Response(errorMessage, {
+      status: 500,
+    });
   }
 
   const requiredFields = ["number", "expiry", "cvc", "name"];
