@@ -9,11 +9,11 @@ const actualBread: Route[] = [
   },
   {
     name: "Webpay Transaccion Completa",
-    path: "/full-transaction-mall",
+    path: "/transaccion-completa-mall",
   },
   {
     name: "Formulario",
-    path: "/full-transaction-mall",
+    path: "/transaccion-completa-mall",
   },
 ];
 

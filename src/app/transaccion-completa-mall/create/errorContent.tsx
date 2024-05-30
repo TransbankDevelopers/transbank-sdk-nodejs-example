@@ -9,8 +9,10 @@ type ErrorContentProps = {
 };
 
 export const ErrorContent = (props: ErrorContentProps) => {
-  const { productPage = "/full-transaction-mall", actualRoute = "/create" } =
-    props;
+  const {
+    productPage = "/transaccion-completa-mall",
+    actualRoute = "/create",
+  } = props;
 
   const actualBread = useMemo(() => {
     return [

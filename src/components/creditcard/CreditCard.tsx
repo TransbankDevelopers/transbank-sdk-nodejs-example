@@ -31,7 +31,7 @@ type linkToType = {
 };
 
 export type CreditCardProps = {
-  linkTo: linkToType;
+  linkTo?: linkToType;
   onPay?: () => void;
   handleInputChange: (value: string, name: string) => void;
   handleInputFocus: (name: string) => void;

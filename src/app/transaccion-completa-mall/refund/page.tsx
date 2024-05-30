@@ -4,7 +4,7 @@ import { Route } from "@/types/menu";
 import { getRefundSteps } from "../content/steps/refund";
 import { NextPageProps } from "@/types/general";
 import { TBKRefundMallTransactionResponse } from "@/types/transactions";
-import { refundFullTransactionMallTransaction } from "@/app/lib/full-transaction-mall/data";
+import { refundFullTransactionMallTransaction } from "@/app/lib/transaccion-completa-mall/data";
 import "./Page.css";
 
 const navigationItems: NavigationItem[] = [
@@ -22,11 +22,11 @@ const actualBread: Route[] = [
   },
   {
     name: "Webpay Transacción Completa Mall",
-    path: "/full-transaction-mall",
+    path: "/transaccion-completa-mall",
   },
   {
     name: "Reembolsar",
-    path: "/full-transaction-mall/refund",
+    path: "/transaccion-completa-mall/refund",
   },
 ];
 
@@ -47,7 +47,7 @@ export default async function RefundFullTransactionMallPage({
     <Layout
       pageTitle="Transacción Completa Mall - Reembolsar"
       pageDescription="En esta etapa, tendrás la posibilidad de solicitar el reembolso del dinero al tarjeta habiente. El tipo de reembolso (Reversa, Anulación o Anulación parcial) dependerá del monto y el tiempo transcurrido desde la transacción."
-      activeRoute={"/full-transaction-mall/refund"}
+      activeRoute={"/transaccion-completa-mall/refund"}
       actualBread={actualBread}
       navigationItems={navigationItems}
       steps={getRefundSteps(

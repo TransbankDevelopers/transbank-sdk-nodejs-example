@@ -9,7 +9,7 @@ import { cookies } from "next/headers";
 import {
   InstallmentsData,
   commitFullTransactionMallTransaction,
-} from "@/app/lib/full-transaction-mall/data";
+} from "@/app/lib/transaccion-completa-mall/data";
 import { localStorageFullTransactionDetails } from "@/consts";
 import { TransactionDetail } from "transbank-sdk";
 import { MallRefundCard } from "@/components/mall-refund-card/MallRefundCard";
@@ -32,11 +32,11 @@ const actualBread: Route[] = [
   },
   {
     name: "Webpay Transacción Completa Mall",
-    path: "/full-transaction-mall",
+    path: "/transaccion-completa-mall",
   },
   {
     name: "Confirmar Transacción",
-    path: "/full-transaction-mall/commit",
+    path: "/transaccion-completa-mall/commit",
   },
 ];
 
@@ -56,7 +56,7 @@ export default async function CommitFullTransactionMallPage({
     return (
       <ErrorContent
         errorMessage="No data found"
-        productPage="/full-transaction-mall"
+        productPage="/transaccion-completa-mall"
         actualRoute="/commit"
       />
     );
@@ -85,14 +85,14 @@ export default async function CommitFullTransactionMallPage({
         pageTitle="Transacción Completa Mall - Confirmar Transacción"
         pageDescription="En este paso tenemos que confirmar la transacción con el objetivo de avisar a Transbank que hemos recibido la transacción ha sido recibida exitosamente. En caso de que no se confirme la transacción, ésta será reversada.En esta primera etapa necesitas obtener los datos esenciales de la tarjeta de crédito del titular. Utiliza el formulario para recolectar esta información de manera segura."
         actualBread={actualBread}
-        activeRoute="/full-transaction-mall/commit"
+        activeRoute="/transaccion-completa-mall/commit"
         navigationItems={navigationItems}
         steps={getCommitSteps(trxData)}
         additionalContent={
           <div className="mt-4">
             {trxData?.details.map((detail) => (
               <MallRefundCard
-                productLink="/full-transaction-mall"
+                productLink="/transaccion-completa-mall"
                 key={detail.buy_order}
                 buyOrder={trxData.buy_order}
                 detail={detail}
@@ -100,7 +100,7 @@ export default async function CommitFullTransactionMallPage({
               />
             ))}
             <MallStatusButton
-              productLink="/full-transaction-mall"
+              productLink="/transaccion-completa-mall"
               token={token_ws}
             />
           </div>

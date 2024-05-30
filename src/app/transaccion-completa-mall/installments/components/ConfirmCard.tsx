@@ -33,7 +33,7 @@ export const ConfirmCard = (props: ConfirmCardProps) => {
   };
 
   const linkCommit = {
-    pathname: "/full-transaction-mall/commit",
+    pathname: "/transaccion-completa-mall/commit",
     query: {
       token_ws: props.token,
       id_query_installments: installmentsData.idQueryInstallments,

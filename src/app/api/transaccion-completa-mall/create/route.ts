@@ -1,4 +1,4 @@
-import { createFullTransactionMallTransaction } from "@/app/lib/full-transaction-mall/data";
+import { createFullTransactionMallTransaction } from "@/app/lib/transaccion-completa-mall/data";
 import { CreditCard } from "@/components/creditcard/CreditCard";
 import { localStorageFullTransactionDetails } from "@/consts";
 import { NextApiRequest } from "next";

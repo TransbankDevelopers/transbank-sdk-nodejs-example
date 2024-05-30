@@ -31,11 +31,11 @@ const actualBread: Route[] = [
   },
   {
     name: "Webpay Transacción Completa",
-    path: "/full-transaction-mall",
+    path: "/transaccion-completa-mall",
   },
   {
     name: "Transacción Completa Diferido",
-    path: "/full-transaction-mall/create",
+    path: "/transaccion-completa-mall/create",
   },
 ];
 
@@ -50,14 +50,14 @@ export const CreateFullTransactionMallContent = (
   };
 
   const commitLink = {
-    pathname: "/full-transaction-mall/commit",
+    pathname: "/transaccion-completa-mall/commit",
     query: {
       token_ws: props.token,
     },
   };
 
   const installmentsLink = {
-    pathname: "/full-transaction-mall/installments",
+    pathname: "/transaccion-completa-mall/installments",
     query: {
       token_ws: props.token,
       installments_number: installmentsNumber,
@@ -77,7 +77,7 @@ export const CreateFullTransactionMallContent = (
         pageTitle="Transacción Completa Mall - Crear Transaccion"
         pageDescription="En esta primera etapa necesitas obtener los datos esenciales de la tarjeta de crédito del titular. Utiliza el formulario para recolectar esta información de manera segura."
         actualBread={actualBread}
-        activeRoute="/full-transaction-mall/create"
+        activeRoute="/transaccion-completa-mall/create"
         navigationItems={navigationItems}
         steps={getCreateSteps(props.token)}
         additionalContent={

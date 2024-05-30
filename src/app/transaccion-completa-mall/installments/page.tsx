@@ -8,7 +8,7 @@ import { cookies } from "next/headers";
 import {
   commitFullTransactionMallTransaction,
   setupInstallmentsFullTransactionMall,
-} from "@/app/lib/full-transaction-mall/data";
+} from "@/app/lib/transaccion-completa-mall/data";
 import { localStorageFullTransactionDetails } from "@/consts";
 import { TransactionDetail } from "transbank-sdk";
 import { getInstallmentsSteps } from "../content/steps/installments";
@@ -30,11 +30,11 @@ const actualBread: Route[] = [
   },
   {
     name: "Webpay Transacción Completa Mall",
-    path: "/full-transaction-mall",
+    path: "/transaccion-completa-mall",
   },
   {
     name: "Consulta de cuotas",
-    path: "/full-transaction-mall/installments",
+    path: "/transaccion-completa-mall/installments",
   },
 ];
 
@@ -65,7 +65,7 @@ export default async function InstallmentsFullTransactionMallPage({
         pageTitle="Transacción Completa Mall - Consulta de cuotas"
         pageDescription="En esta etapa, realizaremos una consulta de cuotas para conocer sus condiciones. Es importante destacar que este paso es opcional y se utiliza únicamente si deseas ofrecer opciones de pago a plazos."
         actualBread={actualBread}
-        activeRoute="/full-transaction-mall/installments"
+        activeRoute="/transaccion-completa-mall/installments"
         navigationItems={navigationItems}
         steps={getInstallmentsSteps(
           Array.isArray(trxData) ? trxData[0] : trxData

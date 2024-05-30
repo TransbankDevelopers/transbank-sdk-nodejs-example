@@ -49,7 +49,7 @@ export const PageContent = (props: PageContentProps) => {
       : { token_ws: token };
 
     return {
-      pathname: "/full-transaction-mall/create",
+      pathname: "/transaccion-completa-mall/create",
       query,
     };
   };
@@ -62,7 +62,7 @@ export const PageContent = (props: PageContentProps) => {
       name: cardState.name,
     };
 
-    const request = await fetch("/api/full-transaction-mall/create", {
+    const request = await fetch("/api/transaccion-completa-mall/create", {
       method: "POST",
       body: JSON.stringify(creditCard),
     });
@@ -93,7 +93,7 @@ export const PageContent = (props: PageContentProps) => {
         pageTitle="Transacción Completa Mall - Formulario"
         pageDescription="En esta primera etapa necesitas obtener los datos esenciales de la tarjeta de crédito del titular. Utiliza el formulario para recolectar esta información de manera segura."
         actualBread={props.actualBread}
-        activeRoute="/full-transaction-mall"
+        activeRoute="/transaccion-completa-mall"
         navigationItems={props.navigationItems}
         additionalContent={
           <>
