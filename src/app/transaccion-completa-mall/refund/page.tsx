@@ -5,7 +5,7 @@ import { getRefundSteps } from "../content/steps/refund";
 import { NextPageProps } from "@/types/general";
 import { TBKRefundMallTransactionResponse } from "@/types/transactions";
 import { refundFullTransactionMallTransaction } from "@/app/lib/transaccion-completa-mall/data";
-import "./Page.css";
+import "./page.css";
 
 const navigationItems: NavigationItem[] = [
   {
