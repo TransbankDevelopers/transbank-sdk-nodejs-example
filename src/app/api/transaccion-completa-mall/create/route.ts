@@ -4,15 +4,10 @@ import { localStorageFullTransactionDetails } from "@/consts";
 import { NextApiRequest } from "next";
 import { cookies } from "next/headers";
 
-export async function POST(req: NextApiRequest) {
+export async function POST(req: Request) {
   const cookiesStore = cookies();
-  const jsonChunks = [];
 
-  for await (const chunk of req.body) {
-    jsonChunks.push(chunk);
-  }
-
-  const body = JSON.parse(Buffer.concat(jsonChunks).toString());
+  const body = await req.json();
 
   if (!body) {
     const errorMessage = "No credit card data found";

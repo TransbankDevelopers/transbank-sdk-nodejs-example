@@ -5,10 +5,10 @@ import Head from "next/head";
 import { NextPageProps } from "@/types/general";
 import { NavigationItem } from "@/components/layout/Navigation";
 import { captureOneclickMallDeferredTransaction } from "@/app/lib/oneclick-mall-deferred/data";
-import { MallRefundCard } from "@/app/oneclick-mall/authorize/components/MallRefundCard";
-import { MallStatusButton } from "@/app/oneclick-mall/authorize/components/MallStatusButton";
 import { TransactionDetail } from "@/types/transactions";
 import { getCaptureSteps } from "../content/steps/capture";
+import { MallRefundCard } from "@/components/mall-refund-card/MallRefundCard";
+import { MallStatusButton } from "@/components/mall-status-button/MallStatusButton";
 
 const getActualBread = (): Route[] => {
   return [
