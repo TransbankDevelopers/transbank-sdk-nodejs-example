@@ -19,23 +19,11 @@ export type CreditCardState = {
   focus: Focused;
 } & CreditCard;
 
-type queryType = {
-  cardNumber: string;
-  cvv: string;
-  cardExpirationDate: string;
-};
-
-type linkToType = {
-  pathname: string;
-  query: queryType;
-};
-
 export type CreditCardProps = {
-  linkTo?: linkToType;
+  linkTo?: Url;
   onPay?: () => void;
   handleInputChange: (value: string, name: string) => void;
   handleInputFocus: (name: string) => void;
-  commitLink?: Url;
 } & CreditCardState;
 
 export const CreditCard = (props: CreditCardProps) => {
@@ -88,7 +76,7 @@ export const CreditCard = (props: CreditCardProps) => {
           <div className="card-companies">
             <Image src={Credit} alt="credit" />
           </div>
-          <Button text="PAGAR" link={props.commitLink} onClick={props.onPay} />
+          <Button text="PAGAR" link={props.linkTo} onClick={props.onPay} />
         </div>
       </div>
     </Card>
