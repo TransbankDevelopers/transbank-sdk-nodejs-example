@@ -5,7 +5,7 @@ import { NavigationItem } from "@/components/layout/Navigation";
 import { Route } from "@/types/menu";
 import { NextPageProps } from "@/types/general";
 import { cookies } from "next/headers";
-import { setupInstallmentsFullTransactionMall } from "@/app/lib/transaccion-completa-mall/data";
+import { setupInstallmentsFullTransactionMall } from "@/app/lib/transaccion-completa-mall-diferido/data";
 import { localStorageFullTransactionDetails } from "@/consts";
 import { TransactionDetail } from "transbank-sdk";
 import { getInstallmentsSteps } from "../content/steps/installments";

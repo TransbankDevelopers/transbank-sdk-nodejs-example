@@ -4,7 +4,7 @@ import Head from "next/head";
 import { NextPageProps } from "@/types/general";
 import { NavigationItem } from "@/components/layout/Navigation";
 import { getStatusTRXSteps } from "../content/steps/status";
-import { getStatusFullTransactionMallTransaction } from "@/app/lib/transaccion-completa-mall/data";
+import { getStatusFullTransactionMallTransaction } from "@/app/lib/transaccion-completa-mall-diferido/data";
 
 const actualBread: Route[] = [
   {

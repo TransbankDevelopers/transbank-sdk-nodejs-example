@@ -9,7 +9,7 @@ import { cookies } from "next/headers";
 import {
   InstallmentsData,
   commitFullTransactionMallTransaction,
-} from "@/app/lib/transaccion-completa-mall/data";
+} from "@/app/lib/transaccion-completa-mall-diferido/data";
 import { localStorageFullTransactionDetails } from "@/consts";
 import { TransactionDetail } from "transbank-sdk";
 import { ErrorContent } from "../create/errorContent";
