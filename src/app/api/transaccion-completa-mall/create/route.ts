@@ -34,7 +34,8 @@ export async function POST(req: Request) {
 
   try {
     const { token, details } = await createFullTransactionMallTransaction(
-      cardState
+      cardState,
+      Boolean(body.isDeferred)
     );
 
     cookiesStore.set(
