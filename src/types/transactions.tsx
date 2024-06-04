@@ -109,6 +109,13 @@ export type TBKFullTxCommitResponse = {
   installments_number: number;
 };
 
+export type TBKfullTxCaptureResponse = {
+  authorization_code: string;
+  authorization_date: string;
+  captured_amount: number;
+  response_code: number;
+};
+
 export type TBKTransactionStatusResponse = Omit<
   TBKCommitTransactionResponse,
   "card_detail" | "authorization_code" | "payment_type_code" | "response_code"
