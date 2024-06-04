@@ -1,0 +1,33 @@
+.refund-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.refund-card-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.refund-card .button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.refund-card-title {
+  display: inline-block;
+  text-align: center;
+  font-size: 1.5rem;
+  color: var(--tbk-grey-2);
+  margin-bottom: 15px;
+}
+
+.refund-card-title .value {
+  font-weight: bold;
+}
+
+.refund-card-title-alt {
+  color: var(--tbk-grey-2);
+}
