@@ -49,6 +49,6 @@ export const webpayFullTransactionRoutes: Route[] = [
   },
   {
     name: "Transacción Completa Mall Diferido",
-    path: "/transaccion-completa-mall-deferred",
+    path: "/transaccion-completa-mall-diferido",
   },
 ];
