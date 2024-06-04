@@ -1,7 +1,6 @@
 import { createFullTransactionMallTransaction } from "@/app/lib/transaccion-completa-mall/data";
 import { CreditCard } from "@/components/creditcard/CreditCard";
 import { localStorageFullTransactionDetails } from "@/consts";
-import { NextApiRequest } from "next";
 import { cookies } from "next/headers";
 
 export async function POST(req: Request) {
@@ -34,8 +33,7 @@ export async function POST(req: Request) {
 
   try {
     const { token, details } = await createFullTransactionMallTransaction(
-      cardState,
-      Boolean(body.isDeferred)
+      cardState
     );
 
     cookiesStore.set(
