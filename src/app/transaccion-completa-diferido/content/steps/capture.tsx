@@ -11,8 +11,8 @@ export const getCaptureSteps = (
       stepId: "peticion",
       content: (
         <p>
-          Para capturar una transacción necesitaremos el Token la Orden de
-          compra el Código de autorización y monto a capturar.
+          Para capturar una transacción, necesitaremos el Token, la Orden de
+          compra, el Código de autorización y el monto a capturar.
         </p>
       ),
       code: captureSnippets.getStepOne(),

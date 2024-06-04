@@ -8,7 +8,7 @@ import {
 } from "transbank-sdk";
 import { getCardExpiry } from "@/helpers/webpay-plus/transactionHelper";
 
-export const getWebpatMallDeferredOptions = () => {
+export const getFullTxDeferredOptions = () => {
   return new Options(
     IntegrationCommerceCodes.TRANSACCION_COMPLETA_DEFERRED,
     IntegrationApiKeys.WEBPAY,
@@ -16,7 +16,7 @@ export const getWebpatMallDeferredOptions = () => {
   );
 };
 
-export const createTxCompleteTransaction = async (
+export const createTxComplete = async (
   cvv: number,
   cardNumber: string,
   cardExpirationDate: string
@@ -24,7 +24,7 @@ export const createTxCompleteTransaction = async (
   const cardExpiration = getCardExpiry(cardExpirationDate);
   const randomTxCompletaData = generateRandomTxCompletaData();
   const createResponse = await new TransaccionCompleta.Transaction(
-    getWebpatMallDeferredOptions()
+    getFullTxDeferredOptions()
   ).create(
     randomTxCompletaData.buyOrder,
     randomTxCompletaData.sessionId,
@@ -45,7 +45,7 @@ export const commitTxCompleteTransaction = async (
   idQueryInstallments: string
 ) => {
   const commitResponse = await new TransaccionCompleta.Transaction(
-    getWebpatMallDeferredOptions()
+    getFullTxDeferredOptions()
   ).commit(token, Number(idQueryInstallments));
 
   return commitResponse;
@@ -53,7 +53,7 @@ export const commitTxCompleteTransaction = async (
 
 export const statusTxCompleteTransaction = async (token: string) => {
   const statusResponse = await new TransaccionCompleta.Transaction(
-    getWebpatMallDeferredOptions()
+    getFullTxDeferredOptions()
   ).status(token);
 
   return statusResponse;
@@ -64,7 +64,7 @@ export const refundTxCompleteTransaction = async (
   amount: number
 ) => {
   const refundRequest = await new TransaccionCompleta.Transaction(
-    getWebpatMallDeferredOptions()
+    getFullTxDeferredOptions()
   ).refund(token, amount);
 
   return refundRequest;
@@ -75,7 +75,7 @@ export const consultInstallmentsCompleteTransaction = async (
   installments: number
 ) => {
   const installmentsResponse = await new TransaccionCompleta.Transaction(
-    getWebpatMallDeferredOptions()
+    getFullTxDeferredOptions()
   ).installments(token, installments);
 
   return installmentsResponse;
@@ -88,7 +88,7 @@ export const captureTxCompleteTransaction = async (
   captureAmount: number
 ) => {
   const captureResponse = await new TransaccionCompleta.Transaction(
-    getWebpatMallDeferredOptions()
+    getFullTxDeferredOptions()
   ).capture(token, buyOrder, authorizationCode, captureAmount);
 
   return captureResponse;

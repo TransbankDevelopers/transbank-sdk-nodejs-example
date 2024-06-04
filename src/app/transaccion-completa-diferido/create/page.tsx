@@ -6,7 +6,7 @@ import {
 import { Layout } from "@/components/layout/Layout";
 import { getCreateTRXSteps } from "@/app/transaccion-completa-diferido/content/steps/create";
 import Head from "next/head";
-import { createTxCompleteTransaction } from "@/app/lib/transaccion-completa-diferido/data";
+import { createTxComplete } from "@/app/lib/transaccion-completa-diferido/data";
 import { NavigationItem } from "@/components/layout/Navigation";
 import { NextPageProps } from "@/types/general";
 import { ConfirmCard } from "@/app/transaccion-completa-diferido/components/ConfirmCard";
@@ -49,7 +49,7 @@ export default async function CreateWebpaytxfullPage({
 }: NextPageProps) {
   const { cvv, cardNumber, cardExpirationDate } = searchParams;
 
-  const trxData = await createTxCompleteTransaction(
+  const trxData = await createTxComplete(
     Number(cvv),
     cardNumber as string,
     cardExpirationDate as string
