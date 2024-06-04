@@ -17,6 +17,7 @@ import {
   TransaccionCompleta,
   TransactionDetail,
 } from "transbank-sdk";
+import { getFullTransactionMallDeferredOptions } from "../transaccion-completa-mall-diferido/data";
 
 const getFullTransactionMallOptions = () => {
   return new Options(
@@ -27,7 +28,8 @@ const getFullTransactionMallOptions = () => {
 };
 
 export const createFullTransactionMallTransaction = async (
-  card: CreditCard
+  card: CreditCard,
+  isDeferred?: boolean
 ): Promise<CreateFullTransactionMallResponse> => {
   const buyOrder = "O-" + Math.floor(Math.random() * 10000) + 1;
   const sessionId = "S-" + Math.floor(Math.random() * 10000) + 1;
@@ -38,10 +40,15 @@ export const createFullTransactionMallTransaction = async (
   const cvv = Number(card.cvc);
   const cardNumber = card.number;
 
-  const commerceCodes = [
-    IntegrationCommerceCodes.TRANSACCION_COMPLETA_MALL_CHILD1,
-    IntegrationCommerceCodes.TRANSACCION_COMPLETA_MALL_CHILD2,
-  ];
+  const commerceCodes = isDeferred
+    ? [
+        IntegrationCommerceCodes.TRANSACCION_COMPLETA_MALL_DEFERRED_CHILD1,
+        IntegrationCommerceCodes.TRANSACCION_COMPLETA_MALL_DEFERRED_CHILD2,
+      ]
+    : [
+        IntegrationCommerceCodes.TRANSACCION_COMPLETA_MALL_CHILD1,
+        IntegrationCommerceCodes.TRANSACCION_COMPLETA_MALL_CHILD2,
+      ];
 
   for (const commerceCode of commerceCodes) {
     const childBuyOrder = "O-" + Math.floor(Math.random() * 10000) + 1;
@@ -51,7 +58,9 @@ export const createFullTransactionMallTransaction = async (
   }
 
   const createResponse = await new TransaccionCompleta.MallTransaction(
-    getFullTransactionMallOptions()
+    isDeferred
+      ? getFullTransactionMallDeferredOptions()
+      : getFullTransactionMallOptions()
   ).create(buyOrder, sessionId, cardNumber, year + "/" + month, details, cvv);
 
   return { token: createResponse.token, details };
@@ -66,7 +75,8 @@ export type InstallmentsData = {
 export const commitFullTransactionMallTransaction = async (
   token: string,
   transactionDetails: TransactionDetail[],
-  installmentsData?: InstallmentsData
+  installmentsData?: InstallmentsData,
+  isDeferred?: boolean
 ): Promise<TBKMallCommitTransactionResponse> => {
   const details: CommitDetail[] = [];
 
@@ -83,7 +93,9 @@ export const commitFullTransactionMallTransaction = async (
   }
 
   const commitResponse = await new TransaccionCompleta.MallTransaction(
-    getFullTransactionMallOptions()
+    isDeferred
+      ? getFullTransactionMallDeferredOptions()
+      : getFullTransactionMallOptions()
   ).commit(token, details);
 
   return commitResponse;
@@ -97,21 +109,27 @@ type RefundParams = {
 };
 
 export const refundFullTransactionMallTransaction = async (
-  params: RefundParams
+  params: RefundParams,
+  isDeferred?: boolean
 ): Promise<TBKRefundMallTransactionResponse> => {
   const { token, buyOrder, commerceCode, amount } = params;
   const refundRequest = await new TransaccionCompleta.MallTransaction(
-    getFullTransactionMallOptions()
+    isDeferred
+      ? getFullTransactionMallDeferredOptions()
+      : getFullTransactionMallOptions()
   ).refund(token, buyOrder, commerceCode, amount);
 
   return refundRequest;
 };
 
 export const getStatusFullTransactionMallTransaction = async (
-  token: string
+  token: string,
+  isDeferred?: boolean
 ): Promise<TBKMallTransactionStatusResponse> => {
   const statusResponse = await new TransaccionCompleta.MallTransaction(
-    getFullTransactionMallOptions()
+    isDeferred
+      ? getFullTransactionMallDeferredOptions()
+      : getFullTransactionMallOptions()
   ).status(token);
 
   return statusResponse;
@@ -120,7 +138,8 @@ export const getStatusFullTransactionMallTransaction = async (
 export const setupInstallmentsFullTransactionMall = async (
   token: string,
   transactionDetails: TransactionDetail[],
-  installmentsNumber: number
+  installmentsNumber: number,
+  isDeferred?: boolean
 ): Promise<TBKInstallmentsFullTransactionResponse[]> => {
   const installmentDetails: InstallmentDetail[] = [];
 
@@ -135,7 +154,9 @@ export const setupInstallmentsFullTransactionMall = async (
   }
 
   const installmentsResponse = await new TransaccionCompleta.MallTransaction(
-    getFullTransactionMallOptions()
+    isDeferred
+      ? getFullTransactionMallDeferredOptions()
+      : getFullTransactionMallOptions()
   ).installments(token, installmentDetails);
 
   return installmentsResponse;
