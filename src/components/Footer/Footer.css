@@ -1,0 +1,12 @@
+.tbk-footer {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  height: 160px;
+}
+
+.footer-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--tbk-grey-3);
+}
