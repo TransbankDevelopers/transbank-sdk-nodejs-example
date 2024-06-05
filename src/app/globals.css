@@ -214,3 +214,35 @@ h2 {
   padding-left: 1rem;
   padding-right: 1rem;
 }
+
+/* Layout */
+
+.tbk-layout-body {
+  display: grid;
+  /* grid-template-columns: 280px 1fr 248px; */
+  grid-template-columns: 280px 1fr;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+  padding-left: 6rem;
+  padding-right: 6rem;
+}
+
+.tbk-layout-container {
+  display: grid;
+  grid-template-columns: 1fr 248px;
+  gap: 12px;
+}
+
+.tbk-layout-content {
+  display: flex;
+  overflow: auto;
+  padding-right: 3rem;
+  padding-left: 5rem;
+  margin-top: 2.5rem;
+  flex-direction: column;
+}
+
+.tbk-layout-footer {
+  height: 200px;
+  background-color: var(--tbk-black-bg);
+}
