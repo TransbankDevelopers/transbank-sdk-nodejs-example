@@ -2,6 +2,10 @@
 import { Roboto } from "next/font/google";
 import "./globals.css";
 import NextTopLoader from "nextjs-toploader";
+import { Header } from "@/components/layout/Header";
+import { Menu } from "@/components/layout/Menu";
+import { useMemo } from "react";
+import { usePathname } from "next/navigation";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -13,6 +17,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pathname = usePathname();
+
+  const isHome = pathname === "/";
+
   return (
     <html lang="en">
       <head>
@@ -20,7 +28,14 @@ export default function RootLayout({
       </head>
       <body className={roboto.className}>
         <NextTopLoader color="#D5006C" />
-        {children}
+        <div className="flex-col">
+          <Header />
+          <div className="tbk-layout-body">
+            {!isHome && <Menu />}
+            {children}
+          </div>
+          <div className="tbk-layout-footer"></div>
+        </div>
       </body>
     </html>
   );

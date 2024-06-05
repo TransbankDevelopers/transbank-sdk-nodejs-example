@@ -1,4 +1,4 @@
-import { createFullTransactionMallTransaction } from "@/app/lib/transaccion-completa-mall/data";
+import { createFullTransactionMallTransaction } from "@/app/lib/transaccion-completa-mall-diferido/data";
 import { CreditCard } from "@/components/creditcard/CreditCard";
 import { localStorageFullTransactionDetails } from "@/consts";
 import { cookies } from "next/headers";

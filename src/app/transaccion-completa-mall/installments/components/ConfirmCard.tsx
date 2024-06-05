@@ -8,6 +8,7 @@ import "./ConfirmCard.css";
 type ConfirmCardProps = {
   idQueryInstallments: string;
   token: string;
+  isDeferred?: boolean;
 };
 
 type ConfirmCardState = {
@@ -33,7 +34,9 @@ export const ConfirmCard = (props: ConfirmCardProps) => {
   };
 
   const linkCommit = {
-    pathname: "/transaccion-completa-mall/commit",
+    pathname: `/transaccion-completa-mall${
+      props.isDeferred ? "-diferido" : ""
+    }/commit`,
     query: {
       token_ws: props.token,
       id_query_installments: installmentsData.idQueryInstallments,

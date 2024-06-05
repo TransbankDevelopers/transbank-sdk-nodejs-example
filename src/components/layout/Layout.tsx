@@ -22,24 +22,19 @@ export type LayoutProps = {
 export const Layout = (props: LayoutProps) => {
   const { showQuestions = true, navigationItems = [] } = props;
   return (
-    <div className="flex-col">
-      <Header />
-      <div className="tbk-layout-body">
-        <Menu />
-        <div className="tbk-layout-content">
-          <div className="mb-6">
-            <Breadcrumbs items={props.actualBread} active={props.activeRoute} />
-          </div>
-          <LayoutContent {...props} />
-          {showQuestions && (
-            <div className="my-14">
-              <Questions />
-            </div>
-          )}
+    <div className="tbk-layout-container">
+      <div className="tbk-layout-content">
+        <div className="mb-6">
+          <Breadcrumbs items={props.actualBread} active={props.activeRoute} />
         </div>
-        <Navigation items={navigationItems} />
+        <LayoutContent {...props} />
+        {showQuestions && (
+          <div className="my-14">
+            <Questions />
+          </div>
+        )}
       </div>
-      <div className="tbk-layout-footer"></div>
+      <Navigation items={navigationItems} />
     </div>
   );
 };
