@@ -50,8 +50,7 @@ export default async function InstallmentsFullTransactionMallPage({
   const trxData = await setupInstallmentsFullTransactionMall(
     token_ws,
     JSON.parse(data.value) as TransactionDetail[],
-    Number(installments_number),
-    true
+    Number(installments_number)
   );
 
   return (
