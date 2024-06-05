@@ -63,10 +63,13 @@ export const PageContent = (props: PageContentProps) => {
       isDeferred: true,
     };
 
-    const request = await fetch("/api/transaccion-completa-mall/create", {
-      method: "POST",
-      body: JSON.stringify(creditCard),
-    });
+    const request = await fetch(
+      "/api/transaccion-completa-mall-diferido/create",
+      {
+        method: "POST",
+        body: JSON.stringify(creditCard),
+      }
+    );
 
     if (!request.ok) {
       const error = await request.text();
