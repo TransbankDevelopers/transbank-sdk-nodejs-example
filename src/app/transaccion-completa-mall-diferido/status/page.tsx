@@ -37,10 +37,7 @@ export default async function StatusTransactionView({
 }: NextPageProps) {
   const { token_ws } = searchParams;
 
-  const trxStatus = await getStatusFullTransactionMallTransaction(
-    token_ws,
-    true
-  );
+  const trxStatus = await getStatusFullTransactionMallTransaction(token_ws);
 
   return (
     <>

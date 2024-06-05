@@ -72,8 +72,7 @@ export default async function CommitFullTransactionMallPage({
   const trxData = await commitFullTransactionMallTransaction(
     token_ws as string,
     JSON.parse(data.value) as TransactionDetail[],
-    installmentsData,
-    true
+    installmentsData
   );
 
   return (

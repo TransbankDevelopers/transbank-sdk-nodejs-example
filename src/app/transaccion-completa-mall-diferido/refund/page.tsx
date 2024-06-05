@@ -36,15 +36,12 @@ export default async function RefundFullTransactionMallPage({
   const { token_ws, amount, child_buy_order, child_commerce_code } =
     searchParams;
 
-  const trxData = await refundFullTransactionMallTransaction(
-    {
-      token: token_ws,
-      buyOrder: child_buy_order,
-      commerceCode: child_commerce_code,
-      amount: Number(amount),
-    },
-    true
-  );
+  const trxData = await refundFullTransactionMallTransaction({
+    token: token_ws,
+    buyOrder: child_buy_order,
+    commerceCode: child_commerce_code,
+    amount: Number(amount),
+  });
 
   return (
     <Layout
