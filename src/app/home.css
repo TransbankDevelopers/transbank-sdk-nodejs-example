@@ -1,0 +1,38 @@
+.tbk-home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 80px 156px;
+}
+
+.tbk-home-intro {
+  display: flex;
+  column-gap: 24px;
+  align-self: flex-start;
+}
+
+.tbk-home-text {
+  color: var(--tbk-black-3);
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: 0.25px;
+  font-weight: 400;
+}
+
+.separed-home {
+  height: 1px;
+  width: 100%;
+  background-color: var(--tbk-border-blue);
+  margin: 70px 0;
+}
+
+.contact-container {
+  max-width: 576px;
+}
+
+.cards-info-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
