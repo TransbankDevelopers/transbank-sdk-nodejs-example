@@ -36,7 +36,6 @@ const cardsInfo: CardInfoType[] = [
 export default function Home() {
   return (
     <div className="flex flex-col">
-      {/* <Header /> */}
       <div className="tbk-home-container">
         <h1>Proyectos de Ejemplo del SDK para NodeJS</h1>
         <div className="tbk-home-intro">
@@ -76,8 +75,6 @@ export default function Home() {
           <Questions />
         </div>
       </div>
-
-      {/* <Footer /> */}
     </div>
   );
 }
