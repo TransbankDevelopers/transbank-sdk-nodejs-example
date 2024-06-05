@@ -4,6 +4,8 @@ import "./globals.css";
 import NextTopLoader from "nextjs-toploader";
 import { Header } from "@/components/layout/Header";
 import { Menu } from "@/components/layout/Menu";
+import { useMemo } from "react";
+import { usePathname } from "next/navigation";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -15,6 +17,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pathname = usePathname();
+
+  const isHome = pathname === "/";
+
   return (
     <html lang="en">
       <head>
@@ -25,7 +31,7 @@ export default function RootLayout({
         <div className="flex-col">
           <Header />
           <div className="tbk-layout-body">
-            <Menu />
+            {!isHome && <Menu />}
             {children}
           </div>
           <div className="tbk-layout-footer"></div>
