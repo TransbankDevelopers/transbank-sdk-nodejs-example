@@ -1,7 +1,5 @@
-import { Header } from "@/components/layout/Header";
 import { CardInfoType } from "@/types/general";
 import { Questions } from "@/components/questions/Questions";
-import Footer from "@/components/Footer/Footer";
 import Image from "next/image";
 import CardInfo from "@/components/cardInfo/CardInfo";
 import "./home.css";
@@ -9,27 +7,27 @@ import "./home.css";
 const cardsInfo: CardInfoType[] = [
   {
     imagePath: "/webpay.svg",
-    content:
-      "Producto más usado para realizar un pago puntual en una tienda simple. Se genera un único cobro para todos los productos o servicios adquiridos por el tarjetahabiente (carro de compras). ",
     linkTo: "/webpay-plus",
+    content:
+      "El producto más usado para realizar un pago online. Se genera un único cobro para todos los productos o servicios adquiridos por el tarjetahabiente (carro de compras). ",
   },
   {
     imagePath: "/oneclick.svg",
-    content:
-      "Utilizado para realizar pagos frecuentes en el mismo comercio por el mismo tarjetahabiente, almacena la información asociada a su medio de pago.",
     linkTo: "/oneclick-mall",
+    content:
+      "Permite realizar pagos con un solo clic en un comercio habitual para el tarjetahabiente, una vez que este haya registrado su tarjeta en el comercio.",
   },
   {
     imagePath: "/fulltx.svg",
-    content:
-      "Es un upgrade tecnológico. Se elimina el concepto de reversa realizada por Webpay, por lo que el control de la transacción pasa por completo al Comercio. Modalidades:",
     linkTo: "/transaccion-completa",
+    content:
+      "Transacción Completa permite al comercio presentar al tarjetahabiente un formulario propio para almacenar los datos de la tarjeta, fecha de vencimiento y cvv.",
   },
   {
     imagePath: "/patpass.svg",
-    content:
-      "Pago automático de cuentas con cargo a la Tarjeta de Crédito de una o más cuentas de servicios. mezcla entre la funcionalidad de autentificación de Webpay con la recurrencia de Patpass.",
     linkTo: "/patpass",
+    content:
+      "PatPass es el servicio de Transbank que permite el pago automático de cuentas mediante tarjetas de crédito. Es la solución ideal para pago de cuentas, centros educativos, aportes a fundaciones, y otros comercios e instituciones.",
   },
 ];
 
