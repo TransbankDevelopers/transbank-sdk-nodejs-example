@@ -28,6 +28,7 @@ body {
   --tbk-border: #e7ebf3;
   --tbk-grey: #828ea5;
   --tbk-grey-2: #707382;
+  --tbk-grey-3: #8c939f;
   --tbk-black: #0e1520;
   --tbk-black-2: #2d3338;
   --tbk-black-3: #333333;
@@ -82,6 +83,10 @@ h2 {
   justify-content: flex-start;
 }
 
+.aling-self-start {
+  align-items: flex-start;
+}
+
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -117,6 +122,10 @@ h2 {
 .mx-4 {
   margin-left: 1rem;
   margin-right: 1rem;
+}
+
+.boder-t-gray3 {
+  border-top: 1px solid var(--tbk-grey-3);
 }
 
 .font-bold {
