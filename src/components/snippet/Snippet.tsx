@@ -22,7 +22,13 @@ export const Snippet = (props: SnippetProps) => {
     <div className="snipet-container">
       <button className="Copy-button">
         <CopyToClipboard text={props.code}>
-          <Image src="/copy.svg" alt="copy icon" width={16} height={16} />
+          <Image
+            unoptimized
+            src="/copy.svg"
+            alt="copy icon"
+            width={16}
+            height={16}
+          />
         </CopyToClipboard>
       </button>
       <SyntaxHighlighter

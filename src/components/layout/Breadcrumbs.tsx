@@ -26,7 +26,13 @@ export const Breadcrumbs = (props: BreadcrumbsProps) => {
             {item.name}
           </Link>
           {index < props.items.length - 1 && (
-            <Image src={RightChevron} alt="nav" />
+            <Image
+              unoptimized
+              src={RightChevron}
+              alt="nav"
+              width={7}
+              height={20}
+            />
           )}
         </div>
       ))}

@@ -8,6 +8,8 @@ export type QuestionOptionProps = {
   content: string;
   link: string;
   logo: StaticImageData;
+  width: number;
+  height: number;
 };
 
 export const QuestionOption = (props: QuestionOptionProps) => {
@@ -16,7 +18,13 @@ export const QuestionOption = (props: QuestionOptionProps) => {
       <span className="title">{props.title}</span>
       <div className="inner-container">
         <a href={props.link}>
-          <Image src={props.logo} alt={props.title} />
+          <Image
+            unoptimized
+            src={props.logo}
+            alt={props.title}
+            width={props.width}
+            height={props.height}
+          />
         </a>
         <span className="container">{props.content}</span>
       </div>
@@ -34,12 +42,16 @@ export const Questions = () => {
           content="Únete a nuestra comunidad de integradores. Nuestro equipo está ahí para ayudarte"
           link="http://google.com"
           logo={SlackLogo}
+          width={124}
+          height={32}
         />
         <QuestionOption
           title="Envíanos un mensaje"
           content="Necesitas resolver algún tipo de incidencia, contáctanos a través de correo electrónico"
           link="http://google.com"
           logo={OutlookLogo}
+          width={32}
+          height={32}
         />
       </div>
     </div>
