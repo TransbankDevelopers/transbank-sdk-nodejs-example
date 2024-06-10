@@ -13,6 +13,13 @@ export type StartTransactionData = {
   returnUrl: string;
 };
 
+export type StartPatpassData = {
+  finalUrl: string;
+  maxAmount: number;
+  serviceId: string;
+  returnUrl: string;
+};
+
 export type StartTransactionDataMall = {
   commerceCode: string;
   buyOrder: string;

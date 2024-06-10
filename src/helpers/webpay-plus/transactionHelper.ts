@@ -4,6 +4,7 @@ import {
   StartTransactionDataMall,
   StartTransactionDataOneclickMall,
   StartTxCompletedData,
+  StartPatpassData,
 } from "@/types/transactions";
 import { TBKTransactionStatus, TransactionDetail } from "@/types/transactions";
 
@@ -39,6 +40,24 @@ export const generateRandomTransactionData = (
     buyOrder,
     sessionId,
     amount,
+    returnUrl,
+  };
+};
+export const generateRandomPatpassStartData = (
+  protocol: string,
+  host: string,
+  returnRoute: string
+): StartPatpassData => {
+  const serviceId = "Service_" + Math.floor(Math.random() * 10000) + 1;
+
+  const maxAmount = Math.floor(Math.random() * 1000) + 1001;
+  const returnUrl = `${protocol}://${host}${returnRoute}`;
+  const finalUrl = `${protocol}://${host}/patpass/voucher_return`;
+
+  return {
+    finalUrl,
+    maxAmount,
+    serviceId,
     returnUrl,
   };
 };
