@@ -100,6 +100,11 @@ export type TBKCommitTransactionResponse = {
   response_code: number;
   installments_number: number;
 };
+export type TBKPatpassStatusTxResponse = {
+  authorized: string;
+  voucherUrl: string;
+  j_token: string;
+};
 
 export type TransactionDetail = {
   amount: number;
