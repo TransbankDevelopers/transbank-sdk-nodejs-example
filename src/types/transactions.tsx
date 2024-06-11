@@ -42,6 +42,26 @@ export type ExtraProps = {
   showReturnUrl?: boolean;
 };
 
+export type StartTxPatPassType = {
+  returnUrl: string;
+  name: string;
+  lastName: string;
+  secondLastName: string;
+  rut: string;
+  serviceId: string;
+  finalUrl: string;
+  maxAmount: number;
+  phone: string;
+  cellPhone: string;
+  patpassName: string;
+  personEmail: string;
+  commerceEmail: string;
+  address: string;
+  city: string;
+  token: string;
+  url: string;
+};
+
 export type TBKCreateTransactionResponse = {
   token: string;
   url: string;
