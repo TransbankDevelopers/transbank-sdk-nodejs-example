@@ -3,6 +3,7 @@ import {
   webpayFullTransactionRoutes,
   webpayOneClickRoutes,
   webpayPlusRoutes,
+  patpassTransactionRoutes,
 } from "@/consts";
 import { Route } from "@/types/menu";
 import { usePathname } from "next/navigation";
@@ -64,6 +65,11 @@ export const Menu = () => {
         title="Webpay Transacción Completa"
         actualPath={path}
         routes={webpayFullTransactionRoutes}
+      />
+      <MenuItem
+        title="Patpass Comercio"
+        actualPath={path}
+        routes={patpassTransactionRoutes}
       />
     </div>
   );

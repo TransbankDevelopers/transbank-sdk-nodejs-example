@@ -1,4 +1,7 @@
-import { generateRandomTxCompletaData } from "@/helpers/webpay-plus/transactionHelper";
+import {
+  generateRandomTxCompletaData,
+  getCardExpiry,
+} from "@/helpers/transactions/transactionHelper";
 import {
   Options,
   IntegrationCommerceCodes,
@@ -6,7 +9,6 @@ import {
   Environment,
   TransaccionCompleta,
 } from "transbank-sdk";
-import { getCardExpiry } from "@/helpers/webpay-plus/transactionHelper";
 
 export const getFullTxDeferredOptions = () => {
   return new Options(

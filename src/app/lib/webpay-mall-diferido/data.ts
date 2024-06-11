@@ -1,4 +1,4 @@
-import { generateRandomTransactionDataMallDeferred } from "@/helpers/webpay-plus/transactionHelper";
+import { generateRandomTransactionDataMallDeferred } from "@/helpers/transactions/transactionHelper";
 import { SearchParams } from "@/types/general";
 import {
   CommitMallTransactionResult,
