@@ -52,3 +52,10 @@ export const webpayFullTransactionRoutes: Route[] = [
     path: "/transaccion-completa-mall-diferido",
   },
 ];
+
+export const patpassTransactionRoutes: Route[] = [
+  {
+    name: "Patpass Comercio",
+    path: "/patpass-comercio",
+  },
+];
