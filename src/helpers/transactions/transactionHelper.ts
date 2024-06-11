@@ -59,7 +59,7 @@ export const generateRandomPatpassStartData = (
   const returnUrl = `${protocol}://${host}${returnRoute}`;
 
   console.log({ returnUrl });
-  const finalUrl = `${protocol}://${host}/patpass-comercio/voucher_return`;
+  const finalUrl = `${protocol}://${host}/patpass-comercio/voucher`;
 
   return {
     finalUrl,
