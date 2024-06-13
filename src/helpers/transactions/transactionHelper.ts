@@ -54,7 +54,7 @@ export const generateRandomPatpassStartData = (
 ): StartPatpassData => {
   const serviceId = "Service_" + Math.floor(Math.random() * 10000) + 1;
   const maxAmount = 100;
-  // returnUrl = 'https://2cac-186-124-124-57.ngrok-free.app';
+  // returnUrl = 'https://miPagina.com/retorno';
   // para rutas locales utilizar un alias, no usar localhost ni ips locales
   const returnUrl = `${protocol}://${host}${returnRoute}`;
 
