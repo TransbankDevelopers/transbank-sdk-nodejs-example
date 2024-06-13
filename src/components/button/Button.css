@@ -1,7 +1,7 @@
 .tbk-button {
   display: flex;
-  padding-left: 3.5rem;
-  padding-right: 3.5rem;
+  padding-left: 24px;
+  padding-right: 24px;
   justify-content: center;
   align-items: center;
   font-size: 1rem;
