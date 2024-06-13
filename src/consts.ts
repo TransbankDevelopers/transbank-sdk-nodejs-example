@@ -3,6 +3,7 @@ import { Route } from "./types/menu";
 export const localStorageUserKey = "tbk-user";
 export const localStorageFullTransactionDetails =
   "tbk-full-transaction-details";
+export const patpassJToken = "tbk-patpass-jtoken";
 
 export const webpayPlusRoutes: Route[] = [
   {
