@@ -58,7 +58,6 @@ export const generateRandomPatpassStartData = (
   // para rutas locales utilizar un alias, no usar localhost ni ips locales
   const returnUrl = `${protocol}://${host}${returnRoute}`;
 
-  console.log({ returnUrl });
   const finalUrl = `${protocol}://${host}/patpass-comercio/voucher`;
 
   return {
