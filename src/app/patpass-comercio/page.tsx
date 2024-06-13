@@ -42,7 +42,9 @@ export type CreateTRXProps = TBKCreateTransactionResponse &
   StartTransactionData;
 
 export default async function StartPatpassTxPage() {
-  const trxData = await createPatpassTransaction("/patpass-comercio/commit");
+  const trxData = await createPatpassTransaction(
+    "/api/patpass-comercio/commit"
+  );
   return (
     <>
       <Head>
@@ -61,7 +63,11 @@ export default async function StartPatpassTxPage() {
             <InputText label="Token" value={trxData.token} />
             <div className="button-container">
               <form action={trxData.url} method="POST">
-                <input type="hidden" name="token_ws" value={trxData.token} />
+                <input
+                  type="hidden"
+                  name="tokenComercio"
+                  value={trxData.token}
+                />
                 <Button
                   text="INSCRIBIR"
                   className="button"
