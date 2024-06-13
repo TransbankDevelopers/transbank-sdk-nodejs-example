@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="footer-item">
         <Image
           unoptimized
-          src="tbk-white.svg"
+          src="/tbk-white.svg"
           alt="tbk-logo-white"
           width={200}
           height={38}
