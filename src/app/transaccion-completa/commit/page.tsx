@@ -17,7 +17,7 @@ const actualBread: Route[] = [
     path: "/transaccion-completa",
   },
   {
-    name: "Webpay Transaccion Completa",
+    name: "Confirmar",
     path: "/transaccion-completa/commit",
   },
 ];
