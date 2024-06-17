@@ -6,7 +6,7 @@ import {
   Options,
   TransactionDetail,
 } from "transbank-sdk";
-import { generateRandomTransactionDataOneclickMall } from "@/helpers/webpay-plus/transactionHelper";
+import { generateRandomTransactionDataOneclickMall } from "@/helpers/transactions/transactionHelper";
 import { headers } from "next/headers";
 import {
   StartTransactionDataOneclickMall,

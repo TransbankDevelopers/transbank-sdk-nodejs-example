@@ -5,7 +5,7 @@ import { Table } from "@/components/table/Table";
 import {
   getColumnDefinition,
   getColumnMallValues,
-} from "../../../../helpers/webpay-plus/transactionHelper";
+} from "../../../../helpers/transactions/transactionHelper";
 import { Text } from "@/components/text/Text";
 
 export const getCreateTRXSteps = (

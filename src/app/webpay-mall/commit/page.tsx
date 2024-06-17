@@ -16,7 +16,7 @@ import {
 } from "@/types/transactions";
 
 import { TimeoutView } from "./error/timeout";
-import { isSomeTransactionRejected } from "@/helpers/webpay-plus/transactionHelper";
+import { isSomeTransactionRejected } from "@/helpers/transactions/transactionHelper";
 import { NavigationItem } from "@/components/layout/Navigation";
 
 const getActualBread = (isRejected: boolean): Route[] => {

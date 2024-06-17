@@ -13,6 +13,13 @@ export type StartTransactionData = {
   returnUrl: string;
 };
 
+export type StartPatpassData = {
+  finalUrl: string;
+  maxAmount: number;
+  serviceId: string;
+  returnUrl: string;
+};
+
 export type StartTransactionDataMall = {
   commerceCode: string;
   buyOrder: string;
@@ -33,6 +40,26 @@ export type StartTransactionDataOneclickMall = {
 
 export type ExtraProps = {
   showReturnUrl?: boolean;
+};
+
+export type StartTxPatPassType = {
+  returnUrl: string;
+  name: string;
+  lastName: string;
+  secondLastName: string;
+  rut: string;
+  serviceId: string;
+  finalUrl: string;
+  maxAmount: number;
+  phone: string;
+  cellPhone: string;
+  patpassName: string;
+  personEmail: string;
+  commerceEmail: string;
+  address: string;
+  city: string;
+  token: string;
+  url: string;
 };
 
 export type TBKCreateTransactionResponse = {
@@ -72,6 +99,11 @@ export type TBKCommitTransactionResponse = {
   payment_type_code: PaymentTypeCode;
   response_code: number;
   installments_number: number;
+};
+export type TBKPatpassStatusTxResponse = {
+  authorized: string;
+  voucherUrl: string;
+  j_token: string;
 };
 
 export type TransactionDetail = {

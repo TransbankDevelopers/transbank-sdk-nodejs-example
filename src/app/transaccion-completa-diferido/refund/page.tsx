@@ -38,9 +38,6 @@ export default async function RefundWebpaytxfullPage({
 }: NextPageProps) {
   const { token, amount } = searchParams;
 
-  console.log({ searchParams });
-  console.log("amount", amount);
-
   const refundResponse = await refundTxCompleteTransaction(
     token as string,
     Number(amount)

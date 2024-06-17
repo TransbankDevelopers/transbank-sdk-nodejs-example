@@ -74,7 +74,13 @@ export const CreditCard = (props: CreditCardProps) => {
         <div className="card-border" />
         <div className="card-footer">
           <div className="card-companies">
-            <Image src={Credit} alt="credit" />
+            <Image
+              unoptimized
+              src={Credit}
+              alt="credit"
+              width={230}
+              height={20}
+            />
           </div>
           <Button text="PAGAR" link={props.linkTo} onClick={props.onPay} />
         </div>

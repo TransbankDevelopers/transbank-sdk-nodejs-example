@@ -25,7 +25,7 @@ const cardsInfo: CardInfoType[] = [
   },
   {
     imagePath: "/patpass.svg",
-    linkTo: "/patpass",
+    linkTo: "/patpass-comercio",
     content:
       "PatPass es el servicio de Transbank que permite el pago automático de cuentas mediante tarjetas de crédito. Es la solución ideal para pago de cuentas, centros educativos, aportes a fundaciones, y otros comercios e instituciones.",
   },

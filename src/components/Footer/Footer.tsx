@@ -6,7 +6,8 @@ export default function Footer() {
     <footer className="bg-tbk-black-bg tbk-footer">
       <div className="footer-item">
         <Image
-          src="tbk-white.svg"
+          unoptimized
+          src="/tbk-white.svg"
           alt="tbk-logo-white"
           width={200}
           height={38}

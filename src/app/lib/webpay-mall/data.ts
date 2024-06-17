@@ -1,4 +1,4 @@
-import { generateRandomTransactionDataMall } from "@/helpers/webpay-plus/transactionHelper";
+import { generateRandomTransactionDataMall } from "@/helpers/transactions/transactionHelper";
 import { SearchParams } from "@/types/general";
 import {
   CommitMallTransactionResult,

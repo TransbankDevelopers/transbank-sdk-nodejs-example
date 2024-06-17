@@ -16,7 +16,7 @@ const actualBread: Route[] = [
     path: "/transaccion-completa",
   },
   {
-    name: "Webpay Transaccion Completa",
+    name: "Reversa",
     path: "/transaccion-completa/refund",
   },
 ];
@@ -36,9 +36,6 @@ export default async function RefundWebpaytxfullPage({
   searchParams,
 }: NextPageProps) {
   const { token, amount } = searchParams;
-
-  console.log({ searchParams });
-  console.log("amount", amount);
 
   const refundResponse = await refundTxCompleteTransaction(
     token as string,

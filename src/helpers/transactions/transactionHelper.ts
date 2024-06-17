@@ -4,8 +4,13 @@ import {
   StartTransactionDataMall,
   StartTransactionDataOneclickMall,
   StartTxCompletedData,
+  StartPatpassData,
 } from "@/types/transactions";
-import { TBKTransactionStatus, TransactionDetail } from "@/types/transactions";
+import {
+  TBKTransactionStatus,
+  TransactionDetail,
+  StartTxPatPassType,
+} from "@/types/transactions";
 
 export const isSomeTransactionRejected = (details: TransactionDetail[]) => {
   return details.some(
@@ -39,6 +44,26 @@ export const generateRandomTransactionData = (
     buyOrder,
     sessionId,
     amount,
+    returnUrl,
+  };
+};
+export const generateRandomPatpassStartData = (
+  protocol: string,
+  host: string,
+  returnRoute: string
+): StartPatpassData => {
+  const serviceId = "Service_" + Math.floor(Math.random() * 10000) + 1;
+  const maxAmount = 100;
+  // returnUrl = 'https://miPagina.com/retorno';
+  // para rutas locales utilizar un alias, no usar localhost ni ips locales
+  const returnUrl = `${protocol}://${host}${returnRoute}`;
+
+  const finalUrl = `${protocol}://${host}/patpass-comercio/voucher`;
+
+  return {
+    finalUrl,
+    maxAmount,
+    serviceId,
     returnUrl,
   };
 };
@@ -165,6 +190,68 @@ export const getColumnMallValues = (
         `Codigo de comercio: ${props.commerceCode}`,
         `Orden de compra: ${props.childBuyOrder2}`,
       ],
+    },
+  ];
+};
+export const getColumnPatpassValues = (
+  props: StartTxPatPassType
+): ColumnValues[] => {
+  return [
+    {
+      field: "URL de retorno (returnUrl)",
+      value: props.returnUrl,
+    },
+    {
+      field: "Nombre (name)",
+      value: props.name,
+    },
+    {
+      field: "Primer Apellido (lastName)",
+      value: props.lastName,
+    },
+    {
+      field: "RUT",
+      value: props.rut,
+    },
+    {
+      field: "id del servicio (serviceId)",
+      value: props.serviceId,
+    },
+    {
+      field: "URL final (finalUrl)",
+      value: props.finalUrl,
+    },
+    {
+      field: "Monto maximo (maxAmount)",
+      value: props.maxAmount,
+    },
+    {
+      field: "Telefono (phone)",
+      value: props.phone,
+    },
+    {
+      field: "Celular (cellPhone)",
+      value: props.cellPhone,
+    },
+    {
+      field: "Nombre de la inscripcion en Patpass (patpassName)",
+      value: props.patpassName,
+    },
+    {
+      field: "Email personal(personEmail)",
+      value: props.personEmail,
+    },
+    {
+      field: "Email del commercio(commerceEmail)",
+      value: props.commerceEmail,
+    },
+    {
+      field: "Direccion(address)",
+      value: props.address,
+    },
+    {
+      field: "Ciudad(city)",
+      value: props.city,
     },
   ];
 };

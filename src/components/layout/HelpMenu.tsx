@@ -13,13 +13,13 @@ export const HelpMenu = () => {
         <div className="help-card-body">
           <div className="help-card-body-item">
             <div className="help-card-circle">
-              <Image src={ThumbUp} alt="ok" />
+              <Image unoptimized src={ThumbUp} alt="ok" />
             </div>
             <span className="text-xs">Muy útil</span>
           </div>
           <div className="help-card-body-item">
             <div className="help-card-circle">
-              <Image src={ThumbDown} alt="no" />
+              <Image unoptimized src={ThumbDown} alt="no" />
             </div>
             <span className="text-xs">Nada útil</span>
           </div>
