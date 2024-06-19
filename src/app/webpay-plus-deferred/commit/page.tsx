@@ -104,10 +104,12 @@ export default async function CommitTransaction({
           commitResponse as TBKCommitTransactionResponse
         )}
         additionalContent={
-          <Capture
-            token_ws={token_ws as string}
-            commitResponse={commitResponse as TBKCommitTransactionResponse}
-          />
+          !isTransactionRejected && (
+            <Capture
+              token_ws={token_ws as string}
+              commitResponse={commitResponse as TBKCommitTransactionResponse}
+            />
+          )
         }
       />
     </>
