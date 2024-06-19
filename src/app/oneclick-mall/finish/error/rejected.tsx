@@ -3,7 +3,6 @@ import { Route } from "@/types/menu";
 import { Layout } from "@/components/layout/Layout";
 import { TBKFinishInscriptionResponse } from "@/types/transactions";
 import { getErrorRejectedSteps } from "../../content/steps/error-rejected";
-import { MallStatusButton } from "../../../../components/mall-status-button/MallStatusButton";
 
 const actualBread: Route[] = [
   {
@@ -45,11 +44,6 @@ export const RejectedInscriptionView = async (
         actualBread={actualBread}
         activeRoute="/oneclick-mall/finish"
         steps={getErrorRejectedSteps(props.trxData)}
-        additionalContent={
-          <div className="mt-4">
-            <MallStatusButton buyOrder={props.token} />
-          </div>
-        }
       />
     </>
   );
