@@ -16,6 +16,7 @@ import {
 import { TimeoutView } from "./error/timeout";
 import { Capture } from "./components/Capture";
 import { getWebpayPlusDeferredOptions } from "@/app/lib/webpay-plus-deferred/data";
+import { InvalidPaymentView } from "./error/invalid";
 
 const getActualBread = (isRejected: boolean): Route[] => {
   return [
@@ -82,6 +83,10 @@ export default async function CommitTransaction({
         timeoutResponse={timeoutResponse as TBKTimeoutResponse}
       />
     );
+  }
+
+  if (type === TBKCallbackType.INVALID_PAYMENT) {
+    return <InvalidPaymentView />;
   }
 
   const isTransactionRejected =

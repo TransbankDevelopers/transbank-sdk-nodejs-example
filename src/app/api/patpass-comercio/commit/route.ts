@@ -21,6 +21,6 @@ export async function POST(req: Request) {
 
   cookiesStore.set(patpassJToken, JSON.stringify(body));
   return NextResponse.redirect(
-    `${process.env.NGROK_SUBDOMAIN}/patpass-comercio/commit`
+    `${process.env.SUBDOMAIN}/patpass-comercio/commit`
   );
 }

@@ -18,6 +18,7 @@ import {
 import { TimeoutView } from "./error/timeout";
 import { isSomeTransactionRejected } from "@/helpers/transactions/transactionHelper";
 import { NavigationItem } from "@/components/layout/Navigation";
+import { InvalidPaymentView } from "./error/invalid";
 
 const getActualBread = (isRejected: boolean): Route[] => {
   return [
@@ -92,6 +93,10 @@ export default async function CommitTransactionPage({
         timeoutResponse={timeoutResponse as TBKTimeoutResponse}
       />
     );
+  }
+
+  if (type === TBKCallbackType.INVALID_PAYMENT) {
+    return <InvalidPaymentView />;
   }
 
   const isTransactionRejected = isSomeTransactionRejected(

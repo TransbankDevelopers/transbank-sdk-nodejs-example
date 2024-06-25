@@ -3,7 +3,10 @@ const nextConfig = {
   experimental: {
     serverActions: {
       allowedForwardedHosts: ["*"],
-      allowedOrigins: ["pagoautomaticocontarjetasint.transbank.cl"],
+      allowedOrigins: [
+        "pagoautomaticocontarjetasint.transbank.cl",
+        "webpay3gint.transbank.cl",
+      ],
     },
   },
 };
