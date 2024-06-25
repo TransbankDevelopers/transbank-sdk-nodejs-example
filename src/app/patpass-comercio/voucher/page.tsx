@@ -25,8 +25,7 @@ export default function VoucherPage() {
   const cookiesStore = cookies();
 
   const data = cookiesStore.get(patpassJToken);
-  console.log({ cookiesStore });
-  console.log({ data });
+
   const { j_token } = data?.value && JSON.parse(data.value);
 
   return (
