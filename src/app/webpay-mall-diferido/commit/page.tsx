@@ -16,6 +16,7 @@ import {
 } from "@/types/transactions";
 
 import { TimeoutView } from "./error/timeout";
+import { InvalidPaymentView } from "./error/invalid";
 import { isSomeTransactionRejected } from "@/helpers/transactions/transactionHelper";
 import { NavigationItem } from "@/components/layout/Navigation";
 
@@ -92,6 +93,10 @@ export default async function CommitTransactionPage({
         timeoutResponse={timeoutResponse as TBKTimeoutResponse}
       />
     );
+  }
+
+  if (type === TBKCallbackType.INVALID_PAYMENT) {
+    return <InvalidPaymentView />;
   }
 
   const isTransactionRejected = isSomeTransactionRejected(

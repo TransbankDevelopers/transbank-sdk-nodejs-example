@@ -15,6 +15,7 @@ import {
   TBKTransactionStatus,
 } from "@/types/transactions";
 import { TimeoutView } from "./error/timeout";
+import { InvalidPaymentView } from "./error/invalid";
 
 const getActualBread = (isRejected: boolean): Route[] => {
   return [
@@ -64,7 +65,6 @@ export default async function CommitTransaction({
   const { token_ws } = searchParams;
   const { type, commitResponse, abortedResponse, timeoutResponse } =
     await commitTransaction(searchParams as SearchParams);
-
   if (type === TBKCallbackType.ABORTED) {
     return (
       <AbortedView abortedResponse={abortedResponse as TBKAbortedResponse} />
@@ -78,6 +78,10 @@ export default async function CommitTransaction({
         timeoutResponse={timeoutResponse as TBKTimeoutResponse}
       />
     );
+  }
+
+  if (type === TBKCallbackType.INVALID_PAYMENT) {
+    return <InvalidPaymentView />;
   }
 
   const isTransactionRejected =
