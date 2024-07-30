@@ -17,7 +17,7 @@ export const QuestionOption = (props: QuestionOptionProps) => {
     <div className="question-item">
       <span className="title">{props.title}</span>
       <div className="inner-container">
-        <a href={props.link}>
+        <a href={props.link} target="_blank">
           <Image
             unoptimized
             src={props.logo}
@@ -48,7 +48,7 @@ export const Questions = () => {
         <QuestionOption
           title="Envíanos un mensaje"
           content="Necesitas resolver algún tipo de incidencia, contáctanos a través de correo electrónico"
-          link="http://google.com"
+          link="mailto:soporte@transbank.cl"
           logo={OutlookLogo}
           width={32}
           height={32}
