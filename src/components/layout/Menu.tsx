@@ -11,6 +11,11 @@ import cx from "classnames";
 import Link from "next/link";
 import "./Menu.css";
 
+type MenuProps = {
+  hideMenu: () => void;
+  isMenuVisible: boolean;
+};
+
 export type MenuItemProps = {
   title: string;
   routes: Route[];
@@ -28,7 +33,7 @@ const MenuItem = (props: MenuItemProps) => {
   return (
     <div className="tbk-menu-item-container">
       <span className="tbk-menu-item-text">{props.title}</span>
-      {props.routes.map((item, idx) => {
+      {props.routes.map((item) => {
         return (
           <Link
             href={{
@@ -37,7 +42,7 @@ const MenuItem = (props: MenuItemProps) => {
             className={cx("tbk-menu-item", {
               active: isActive(item),
             })}
-            key={idx}
+            key={item.name}
           >
             {item.name}
           </Link>
@@ -47,10 +52,22 @@ const MenuItem = (props: MenuItemProps) => {
   );
 };
 
-export const Menu = () => {
+export const Menu = ({ hideMenu, isMenuVisible }: MenuProps) => {
   const path = usePathname() || "/";
+
+  const hideMenuClass = cx({
+    "tbk-menu": isMenuVisible,
+    "tbk-menu tbk-menu-hide": !isMenuVisible,
+  });
+
   return (
-    <div className="tbk-menu">
+    <div className={hideMenuClass}>
+      <div className="toogle-btn-container">
+        <button className="tbk-toggle-btn" onClick={hideMenu}>
+          {"<"}
+        </button>
+      </div>
+
       <MenuItem
         title="Webpay Plus"
         actualPath={path}

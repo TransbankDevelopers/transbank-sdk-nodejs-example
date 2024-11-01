@@ -3,8 +3,8 @@
   flex-direction: column;
   row-gap: 3.5rem;
   border-right-width: 1px;
-  row-gap: 3.5rem;
   border-color: var(--tbk-border);
+  position: relative;
 }
 
 .tbk-menu-item-container {
@@ -21,6 +21,7 @@
   line-height: 1.75rem;
   font-weight: 700;
   color: var(--tbk-grey);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .tbk-menu-item {
@@ -28,6 +29,13 @@
   padding-right: 0.75rem;
   color: var(--tbk-black);
   cursor: pointer;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.tbk-menu-hide .tbk-menu-item,
+.tbk-menu-hide .tbk-menu-item-text {
+  opacity: 0;
+  transform: translateX(-20px);
 }
 
 .tbk-menu-item:hover {
@@ -36,4 +44,32 @@
 
 .tbk-menu-item.active {
   color: var(--tbk-red);
+}
+
+.toogle-btn-container {
+  position: absolute;
+  top: 15px;
+  right: -15px;
+  height: 100%;
+}
+.tbk-toggle-btn {
+  position: sticky;
+  top: 15px;
+  width: 30px;
+  height: 30px;
+  background-color: var(--tbk-red);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1;
+  transition: transform 0.5s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.tbk-layout-body.menu-collapsed .tbk-toggle-btn {
+  transform: rotate(180deg);
 }
