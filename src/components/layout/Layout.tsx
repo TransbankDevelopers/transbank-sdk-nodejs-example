@@ -1,7 +1,5 @@
 import { Route } from "@/types/menu";
 import { Breadcrumbs } from "./Breadcrumbs";
-import { Header } from "./Header";
-import { Menu } from "./Menu";
 import { StepProps } from "../step/Step";
 import { Questions } from "../questions/Questions";
 import { Navigation, NavigationItem } from "./Navigation";
