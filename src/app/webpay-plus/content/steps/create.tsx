@@ -14,6 +14,14 @@ export const getCreateTRXSteps = (
 ): StepProps[] => {
   return [
     {
+      content: (
+        <Text>
+          Todas las transacciones en este proyecto de ejemplo son realizadas en
+          ambiente de integración.
+        </Text>
+      ),
+    },
+    {
       stepTitle: "Paso 1: Petición",
       stepId: "peticion",
       content: (
@@ -35,7 +43,8 @@ export const getCreateTRXSteps = (
       content: (
         <Text>
           Una vez que hayas creado la transacción, aquí encontrarás los datos de
-          respuesta generados por el proceso.
+          respuesta generados por el proceso (recuerda que El token tienen una
+          vigencia de 7 días desde su creación).
         </Text>
       ),
       code: createSnippets.getStepTwo(token),
