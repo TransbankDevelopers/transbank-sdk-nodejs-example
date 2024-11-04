@@ -9,7 +9,14 @@ import {
   TBKMallTransactionStatusResponse,
 } from "@/types/transactions";
 import { headers } from "next/headers";
-import { WebpayPlus, TransactionDetail, Options } from "transbank-sdk";
+import {
+  WebpayPlus,
+  TransactionDetail,
+  Options,
+  IntegrationCommerceCodes,
+  IntegrationApiKeys,
+  Environment,
+} from "transbank-sdk";
 
 export type CreateTransactionResult = TBKCreateTransactionResponse &
   StartTransactionDataMall;
@@ -30,6 +37,14 @@ const getCallbackType = (parameters: SearchParams): TBKCallbackType => {
   }
 
   return TBKCallbackType.INVALID_PAYMENT;
+};
+
+export const getWebpayMallOptions = () => {
+  return new Options(
+    IntegrationCommerceCodes.WEBPAY_PLUS_MALL,
+    IntegrationApiKeys.WEBPAY,
+    Environment.Integration
+  );
 };
 
 export const createMallTransaction =
@@ -58,7 +73,7 @@ export const createMallTransaction =
 
     const createResponse: TBKCreateTransactionResponse =
       await new WebpayPlus.MallTransaction(
-        WebpayPlus.getDefaultOptions()
+        getWebpayMallOptions()
       ).create(
         randomTransactionDataMall.buyOrder,
         randomTransactionDataMall.sessionId,
@@ -81,7 +96,7 @@ export const commitTransaction = async (
   if (callbackType === TBKCallbackType.COMMIT_OK) {
     const commitResponse: TBKMallCommitTransactionResponse =
       await new WebpayPlus.MallTransaction(
-        options ?? WebpayPlus.getDefaultOptions()
+        options ?? getWebpayMallOptions()
       ).commit(parametersReceivedByTBK.token_ws as string);
 
     return {
@@ -127,7 +142,7 @@ export const getStatusTransaction = async (
 ) => {
   const trxStatus: TBKMallTransactionStatusResponse =
     await new WebpayPlus.MallTransaction(
-      options ?? WebpayPlus.getDefaultOptions()
+      options ?? getWebpayMallOptions()
     ).status(token_ws as string);
 
   return trxStatus;
@@ -141,7 +156,7 @@ export const refundTransaction = async (
   options?: Options
 ) => {
   const refundResponse = await new WebpayPlus.MallTransaction(
-    options ?? WebpayPlus.getDefaultOptions()
+    options ?? getWebpayMallOptions()
   ).refund(token_ws as string, buyOrder, commerceCode, amount);
 
   return refundResponse;
