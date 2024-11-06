@@ -13,6 +13,14 @@ export const getStartTRXSteps = (
 ): StepProps[] => {
   return [
     {
+      content: (
+        <Text>
+          Todas las transacciones en este proyecto de ejemplo son realizadas en
+          ambiente de integración.
+        </Text>
+      ),
+    },
+    {
       stepTitle: "Paso 1: Petición",
       stepId: "peticion",
       content: (
@@ -33,7 +41,8 @@ export const getStartTRXSteps = (
       content: (
         <p>
           Una vez iniciada la inscripción, recibirás los siguientes datos de
-          respuesta:
+          respuesta (recuerda que El token tienen una vigencia de 7 días desde
+          su creación):
         </p>
       ),
       code: startSnippets.getStepTwo(StartTxPatPass.token, StartTxPatPass.url),
