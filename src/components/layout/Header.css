@@ -8,4 +8,31 @@
   height: 80px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.08);
   background-color: var(--tbk-white);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.tbk-logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+.btn-burger {
+  display: none;
+}
+@media (width <= 991.98px) {
+  .tbk-header {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  .btn-burger {
+    display: inline-block;
+  }
+}
+@media (width <= 575.98px) {
+  .tbk-header-btn.tbk-button {
+    display: none;
+  }
 }
