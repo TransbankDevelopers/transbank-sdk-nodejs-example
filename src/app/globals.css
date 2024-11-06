@@ -225,10 +225,7 @@ h2 {
 .tbk-layout-body {
   display: grid;
   grid-template-columns: 280px 1fr;
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
-  padding-left: 6rem;
-  padding-right: 6rem;
+  padding: 2.5rem 6rem;
   transition: grid-template-columns 0.7s ease;
 }
 
@@ -259,5 +256,16 @@ h2 {
 @media (width <= 1535.98px) {
   .tbk-layout-container {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (width <= 991.98px) {
+  .tbk-layout-body {
+    padding: 2.5rem 1rem;
+    grid-template-columns: 1fr;
+  }
+  .tbk-layout-content {
+    padding-right: 1rem;
+    padding-left: 1rem;
   }
 }
