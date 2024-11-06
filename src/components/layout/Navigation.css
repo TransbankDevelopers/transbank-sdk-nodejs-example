@@ -37,3 +37,9 @@
   color: var(--tbk-red);
   font-weight: 500;
 }
+
+@media (width <= 1535.98px) {
+  .nav-container {
+    display: none;
+  }
+}
