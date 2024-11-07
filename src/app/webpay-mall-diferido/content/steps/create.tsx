@@ -43,7 +43,7 @@ export const getCreateTRXSteps = (
       content: (
         <Text>
           Una vez que hayas creado la transacción, aquí encontrarás los datos de
-          respuesta generados por el proceso (recuerda que El token tienen una
+          respuesta generados por el proceso (recuerda que el token tienen una
           vigencia de 7 días desde su creación).
         </Text>
       ),
