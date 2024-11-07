@@ -57,8 +57,9 @@
 .tbk-mobile-menu {
   display: none;
   flex-direction: column;
-  row-gap: 3.5rem;
+  row-gap: 2.5rem;
   border-right-width: 1px;
+  border-top-width: 1px;
   border-color: var(--tbk-border);
   position: absolute;
   left: 0;
@@ -66,6 +67,8 @@
   z-index: 10;
   background-color: #fff;
   height: calc(100vh - 80px);
+  padding: 20px 0px;
+  overflow-y: scroll;
 }
 .tbk-mobile-menu.show {
   display: flex;
