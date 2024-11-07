@@ -31,7 +31,7 @@ export const getCreateTRXSteps = (
           </Text>
           <Text>
             2. Luego, crea una transacción utilizando las funciones
-            proporcionadas mediante el SDK (recuerda que El token tienen una
+            proporcionadas mediante el SDK (recuerda que el token tienen una
             vigencia de 7 días desde su creación).
           </Text>
         </div>
