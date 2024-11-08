@@ -1,4 +1,6 @@
 "use client";
+import cx from "classnames";
+import { useState } from "react";
 import { Roboto } from "next/font/google";
 import "./globals.css";
 import NextTopLoader from "nextjs-toploader";
@@ -17,9 +19,18 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [isMenuVisible, setIsMenuVisible] = useState(true);
   const pathname = usePathname();
 
   const isHome = pathname === "/";
+  const hideMenuClass = cx({
+    "tbk-layout-body": isMenuVisible,
+    "tbk-layout-body menu-collapsed": !isMenuVisible,
+  });
+
+  const hideMenu = () => {
+    setIsMenuVisible(!isMenuVisible);
+  };
 
   return (
     <html lang="en">
@@ -33,8 +44,8 @@ export default function RootLayout({
           {isHome ? (
             children
           ) : (
-            <div className="tbk-layout-body">
-              <Menu />
+            <div className={hideMenuClass}>
+              <Menu hideMenu={hideMenu} isMenuVisible={isMenuVisible} />
               {children}
             </div>
           )}
