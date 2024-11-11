@@ -52,3 +52,10 @@
   line-height: 1.25rem;
   color: #000000;
 }
+
+@media (width <= 575.98px) {
+  .questions-container .list {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+}
