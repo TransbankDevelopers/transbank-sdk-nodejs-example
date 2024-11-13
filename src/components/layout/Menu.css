@@ -109,7 +109,7 @@
   font-weight: bold;
 }
 
-.tbk-layout-body.menu-collapsed .tbk-toggle-btn {
+.tbk-menu-hide .tbk-toggle-btn {
   transform: rotate(180deg);
 }
 
