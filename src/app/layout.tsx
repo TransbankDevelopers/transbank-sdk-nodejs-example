@@ -1,5 +1,4 @@
 "use client";
-import cx from "classnames";
 import { useState } from "react";
 import { Roboto } from "next/font/google";
 import "./globals.css";
@@ -21,12 +20,9 @@ export default function RootLayout({
 }>) {
   const [isMenuVisible, setIsMenuVisible] = useState(true);
   const pathname = usePathname();
+  const excludePaths = pathname.startsWith("/api-reference");
 
   const isHome = pathname === "/";
-  const hideMenuClass = cx({
-    "tbk-layout-body": isMenuVisible,
-    "tbk-layout-body menu-collapsed": !isMenuVisible,
-  });
 
   const hideMenu = () => {
     setIsMenuVisible(!isMenuVisible);
@@ -41,10 +37,10 @@ export default function RootLayout({
         <NextTopLoader color="#D5006C" />
         <div className="flex-col">
           <Header />
-          {isHome ? (
+          {isHome || excludePaths ? (
             children
           ) : (
-            <div className={hideMenuClass}>
+            <div className="tbk-layout-body">
               <Menu hideMenu={hideMenu} isMenuVisible={isMenuVisible} />
               {children}
             </div>

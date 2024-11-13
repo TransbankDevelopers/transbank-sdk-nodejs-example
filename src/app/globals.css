@@ -229,7 +229,7 @@ h2 {
   transition: grid-template-columns 0.7s ease;
 }
 
-.tbk-layout-body.menu-collapsed {
+.tbk-layout-body:has(.tbk-menu.tbk-menu-hide) {
   grid-template-columns: 20px 1fr;
 }
 
