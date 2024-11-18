@@ -32,6 +32,12 @@ export default async function RefundTransaction({
     buyOrder as string,
     commerceCode as string
   );
+
+  if (!refundResult.success) {
+    return <InvalidView errorType={refundResult.errorType} />; //aqui
+  }
+
+  if (refundResult.success) {
   return (
     <>
       <Head>

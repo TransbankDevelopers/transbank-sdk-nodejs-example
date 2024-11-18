@@ -29,6 +29,12 @@ export default async function RefundTransaction({
     token_ws as string,
     Number(amount)
   );
+
+  if (!refundResult.success) {
+    return <InvalidView errorType={refundResult.errorType} />; //aqui
+  }
+
+  if (refundResult.success) {
   return (
     <>
       <Head>

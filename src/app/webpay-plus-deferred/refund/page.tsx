@@ -31,6 +31,12 @@ export default async function RefundTransaction({
     Number(amount),
     getWebpayPlusDeferredOptions()
   );
+
+  if (!refundResult.success) {
+    return <InvalidView errorType={refundResult.errorType} />; //aqui
+  }
+
+  if (refundResult.success) {
   return (
     <>
       <Head>
