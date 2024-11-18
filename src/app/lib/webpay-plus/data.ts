@@ -7,6 +7,7 @@ import {
   TBKCommitTransactionResponse,
   TBKCreateTransactionResponse,
   TBKTransactionStatusResponse,
+  TBKRefundTransactionResponse,
 } from "@/types/transactions";
 import { headers } from "next/headers";
 import { Options, WebpayPlus } from "transbank-sdk";
@@ -131,10 +132,21 @@ export const refundTransaction = async (
   token_ws: string,
   amount: number,
   options?: Options
-) => {
-  const refundResponse = await new WebpayPlus.Transaction(
-    options ?? WebpayPlus.getDefaultOptions()
-  ).refund(token_ws as string, amount);
+): Promise<RefundTransactionResult> => {
+  try {
+    const refundResponse = await new WebpayPlus.Transaction(
+      options ?? WebpayPlus.getDefaultOptions()
+    ).refund(token_ws as string, amount);
 
-  return refundResponse;
+    return {
+      success: true,
+      refundResponse,
+    };
+  } catch (error: any) {
+
+    return {
+      success: false,
+      errorType: error.message,
+    };
+  }
 };
