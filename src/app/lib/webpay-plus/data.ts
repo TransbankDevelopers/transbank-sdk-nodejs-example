@@ -123,6 +123,10 @@ export const getStatusTransaction = async (
   return trxStatus;
 };
 
+export type RefundTransactionResult =
+  | { success: true; refundResponse: TBKRefundTransactionResponse }
+  | { success: false; errorType: string };
+
 export const refundTransaction = async (
   token_ws: string,
   amount: number,
