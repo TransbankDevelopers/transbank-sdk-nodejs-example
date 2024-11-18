@@ -51,11 +51,12 @@ export default async function RefundTransaction({
         Anulación o Anulación Parcial.`}
         actualBread={actualBread}
         activeRoute="/webpay-mall-diferido/refund"
-        steps={getRefundTRXSteps(refundResult, amount as string)}
+        steps={getRefundTRXSteps(refundResult.refundResponse, amount as string)}
         additionalContent={
           <StatusButton className="mt-6" token={token_ws as string} />
         }
       />
     </>
   );
+ }
 }

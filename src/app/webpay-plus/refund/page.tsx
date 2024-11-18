@@ -48,8 +48,9 @@ export default async function RefundTransaction({
         Anulación o Anulación Parcial.`}
         actualBread={actualBread}
         activeRoute="/webpay-plus/refund"
-        steps={getRefundTRXSteps(refundResult, amount as string)}
+        steps={getRefundTRXSteps(refundResult.refundResponse, amount as string)}
       />
     </>
   );
+  }
 }
