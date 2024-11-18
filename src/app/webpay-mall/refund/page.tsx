@@ -6,7 +6,7 @@ import { getRefundTRXSteps } from "@/app/webpay-mall/content/steps/refund";
 import { NextPageProps } from "@/types/general";
 import { refundTransaction } from "@/app/lib/webpay-mall/data";
 import { StatusButton } from "@/app/webpay-mall/components/StatusButton";
-
+import { InvalidView } from "@/app/invalid/invalidRefund";
 const actualBread: Route[] = [
   {
     name: "Inicio",

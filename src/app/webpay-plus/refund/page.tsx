@@ -5,6 +5,7 @@ import Head from "next/head";
 import { getRefundTRXSteps } from "@/app/webpay-plus/content/steps/refund";
 import { NextPageProps } from "@/types/general";
 import { refundTransaction } from "@/app/lib/webpay-plus/data";
+import { InvalidView } from "@/app/invalid/invalidRefund";
 
 const actualBread: Route[] = [
   {
