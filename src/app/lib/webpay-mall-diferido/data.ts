@@ -151,11 +151,22 @@ export const refundTransaction = async (
   commerceCode: string,
   options?: Options
 ) => {
-  const refundResponse = await new WebpayPlus.MallTransaction(
-    getWebpatMallDeferredOptions()
-  ).refund(token_ws, buyOrder, commerceCode, amount);
+  try {
+    const refundResponse = await new WebpayPlus.MallTransaction(
+      getWebpatMallDeferredOptions()
+    ).refund(token_ws, buyOrder, commerceCode, amount);
 
-  return refundResponse;
+    return {
+      success: true,
+      refundResponse,
+    };
+  } catch (error: any) {
+   
+    return {
+      success: false,
+      errorType: error.message,
+    };
+  }
 };
 
 type CaptureTransactionDTO = {
