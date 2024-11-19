@@ -161,14 +161,19 @@ export const refundTransaction = async (
     ).refund(token_ws as string, buyOrder, commerceCode, amount);
 
     return {
-      success: true,
+
       refundResponse,
     };
-  } catch (error: any) {
-  
+  } catch (error) {
+    let errorMessage = "Ocurrio un error inseperado al intentar realizar la devolución"; 
+    if (error instanceof Error) {
+     errorMessage = error.message;
+    }else if (typeof error === "string") {
+      errorMessage = error;
+    }
+
     return {
-      success: false,
-      errorType: error.message,
+      errorMessage: errorMessage,
     };
   }
 };
