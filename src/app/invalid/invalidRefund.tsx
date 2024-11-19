@@ -15,7 +15,7 @@ const actualBread: Route[] = [
 export type InvalidViewProps = {
   errorMessage?: string; 
 }
-export const InvalidView = ({ errorMessage }: InvalidViewProps) => {
+export function InvalidView({ errorMessage }: InvalidViewProps){
   return (
     <>
       <Head>
