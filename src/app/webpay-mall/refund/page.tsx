@@ -37,7 +37,7 @@ export default async function RefundTransaction({
     return <InvalidView errorMessage={refundResult.errorMessage} />;
   }
 
-  if (refundResult.success) {
+
   return (
     <>
       <Head>
@@ -57,5 +57,4 @@ export default async function RefundTransaction({
       />
     </>
   );
- }
 }
