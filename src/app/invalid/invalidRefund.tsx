@@ -15,12 +15,11 @@ const actualBread: Route[] = [
 export type InvalidViewProps = {
   errorMessage?: string; 
 }
+export const metadata = {
+  title: "Transbank SDK Node - Error en Reembolso",
+};
 export function InvalidView({ errorMessage }: InvalidViewProps){
   return (
-    <>
-      <Head>
-        <title>Transbank SDK Node - Error en Reembolso</title>
-      </Head>
       <Layout
         pageTitle="Reembolso no permitido"
         pageDescription={
@@ -43,6 +42,5 @@ export function InvalidView({ errorMessage }: InvalidViewProps){
           </div>
         }
       />
-    </>
   );
 };
