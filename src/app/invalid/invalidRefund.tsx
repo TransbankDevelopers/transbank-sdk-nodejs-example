@@ -5,7 +5,7 @@ import { LayoutContent } from "@/components/layout/LayoutContent";
 import { Snippet } from "@/components/snippet/Snippet";
 
 
-// Breadcrumb para navegación
+
 const actualBread: Route[] = [
   {
     name: "Inicio",
