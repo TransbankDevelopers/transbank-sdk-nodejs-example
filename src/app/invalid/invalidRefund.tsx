@@ -13,9 +13,9 @@ const actualBread: Route[] = [
   },
 ];
 export type InvalidViewProps = {
-  errorType: string; // Mensaje de error recibido
+  errorMessage?: string; 
 }
-export const InvalidView = ({ errorType }: InvalidViewProps) => {
+export const InvalidView = ({ errorMessage }: InvalidViewProps) => {
   return (
     <>
       <Head>
@@ -37,8 +37,8 @@ export const InvalidView = ({ errorType }: InvalidViewProps) => {
               pageDescription="Te proporcionamos una descripción detallada del error ocurrido al intentar realizar el reembolso, según la información proporcionada por el SDK."
               steps={[]}
             />
-            {errorType && (
-              <Snippet code={errorType} />
+            {errorMessage && (
+              <Snippet code={errorMessage} />
             )}
           </div>
         }
