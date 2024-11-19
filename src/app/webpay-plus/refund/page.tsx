@@ -31,8 +31,8 @@ export default async function RefundTransaction({
     Number(amount)
   );
 
-  if (!refundResult.success) {
-    return <InvalidView errorType={refundResult.errorType} />; //aqui
+  if ("errorMessage" in refundResult) {
+    return <InvalidView errorMessage={refundResult.errorMessage} />;
   }
 
   if (refundResult.success) {
