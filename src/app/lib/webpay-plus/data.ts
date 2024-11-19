@@ -125,8 +125,8 @@ export const getStatusTransaction = async (
 };
 
 export type RefundTransactionResult =
-  | { success: true; refundResponse: TBKRefundTransactionResponse }
-  | { success: false; errorType: string };
+  | { refundResponse: TBKRefundTransactionResponse }
+  | { errorMessage: string };
 
 export const refundTransaction = async (
   token_ws: string,
