@@ -34,7 +34,7 @@ export default async function RefundTransaction({
   );
 
   if ("errorMessage" in refundResult) {
-    return <InvalidView errorMessage={refundResult.errorMessage} />;
+    return <InvalidView errorMessage={refundResult.errorMessage} actualBread={actualBread}/>;
   }
 
 
