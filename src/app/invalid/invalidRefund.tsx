@@ -5,7 +5,8 @@ import { LayoutContent } from "@/components/layout/LayoutContent";
 import { Snippet } from "@/components/snippet/Snippet";
 
 export type InvalidViewProps = {
-  errorMessage?: string; 
+  errorMessage?: string;
+  actualBread: Route[]; 
 }
 export const metadata = {
   title: "Transbank SDK Node - Error en Reembolso",
