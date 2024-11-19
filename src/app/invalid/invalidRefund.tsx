@@ -4,14 +4,6 @@ import { Layout } from "@/components/layout/Layout";
 import { LayoutContent } from "@/components/layout/LayoutContent";
 import { Snippet } from "@/components/snippet/Snippet";
 
-
-
-const actualBread: Route[] = [
-  {
-    name: "Inicio",
-    path: "/",
-  },
-];
 export type InvalidViewProps = {
   errorMessage?: string; 
 }
