@@ -11,7 +11,7 @@ export type InvalidViewProps = {
 export const metadata = {
   title: "Transbank SDK Node - Error en Reembolso",
 };
-export function InvalidView({ errorMessage }: InvalidViewProps){
+export function InvalidView({ errorMessage, actualBread }: InvalidViewProps){
   return (
       <Layout
         pageTitle="Reembolso no permitido"
@@ -21,7 +21,7 @@ export function InvalidView({ errorMessage }: InvalidViewProps){
           </span>
         }
         actualBread={actualBread}
-        activeRoute="/webpay-plus/refund"
+        activeRoute={actualBread[actualBread.length - 1]?.path}
         additionalContent={
           <div className="unsupported-payment-status">
             <LayoutContent
