@@ -8,25 +8,22 @@ export type InvalidViewProps = {
   errorMessage?: string;
   actualBread: Route[]; 
 }
-export const metadata = {
-  title: "Transbank SDK Node - Error en Reembolso",
-};
 export function InvalidView({ errorMessage, actualBread }: InvalidViewProps){
   return (
       <Layout
-        pageTitle="Reembolso no permitido"
+        pageTitle="Ocurrió un error"
         pageDescription={
           <span>    
-            Lo sentimos, no fue posible realizar el reembolso.
+            Lo sentimos, no fue posible realizar la operación solicitada.
           </span>
         }
         actualBread={actualBread}
         activeRoute={actualBread[actualBread.length - 1]?.path}
         additionalContent={
-          <div className="unsupported-payment-status">
+          <div className="error-details">
             <LayoutContent
-              pageTitle="¿Por qué no fue posible realizar este reembolso?"
-              pageDescription="Te proporcionamos una descripción detallada del error ocurrido al intentar realizar el reembolso, según la información proporcionada por el SDK."
+              pageTitle="¿Por qué no fue posible realizar la operación?"
+              pageDescription="Te proporcionamos una descripción detallada del error ocurrido, según la información proporcionada por el SDK."
               steps={[]}
             />
             {errorMessage && (
