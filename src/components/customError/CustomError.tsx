@@ -5,7 +5,7 @@ import { LayoutContent } from "@/components/layout/LayoutContent";
 import { Snippet } from "@/components/snippet/Snippet";
 
 export type InvalidViewProps = {
-  errorMessage?: string;
+  errorMessage: string;
   actualBread: Route[]; 
 }
 export function CustomError({ errorMessage, actualBread }: InvalidViewProps){
@@ -26,9 +26,7 @@ export function CustomError({ errorMessage, actualBread }: InvalidViewProps){
               pageDescription="Te proporcionamos una descripción detallada del error ocurrido, según la información proporcionada por el SDK."
               steps={[]}
             />
-            {errorMessage && (
               <Snippet code={errorMessage} />
-            )}
           </div>
         }
       />
