@@ -27,7 +27,6 @@ const actualBread: Route[] = [
     path: "/webpay-mall-diferido/refund",
   },
 ];
-
 export default async function RefundTransaction({
   searchParams,
 }: NextPageProps) {
@@ -44,10 +43,6 @@ export default async function RefundTransaction({
   }
 
   return (
-    <>
-      <Head>
-        <title>Transbank SDK Node - Reembolsar transacción</title>
-      </Head>
       <Layout
         pageTitle="Webpay Mall Diferido - Reembolsar"
         pageDescription={`En esta etapa, tienes la opción de solicitar el reembolso del monto al titular de la tarjeta. 
@@ -60,6 +55,5 @@ export default async function RefundTransaction({
           <StatusButton className="mt-6" token={token_ws as string} />
         }
       />
-    </>
   );
 }

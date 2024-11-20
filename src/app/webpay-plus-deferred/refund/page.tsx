@@ -44,10 +44,6 @@ export default async function RefundTransaction({
   }
 
   return (
-    <>
-      <Head>
-        <title>Transbank SDK Node - Reembolsar transacción</title>
-      </Head>
       <Layout
         pageTitle="Webpay Plus Diferido - Reembolsar"
         pageDescription={`En esta etapa, tienes la opción de solicitar el reembolso del monto al titular de la tarjeta. 
@@ -57,6 +53,5 @@ export default async function RefundTransaction({
         activeRoute="/webpay-plus-deferred/refund"
         steps={getRefundTRXSteps(refundResult.refundResponse, amount as string)}
       />
-    </>
   );
 }
