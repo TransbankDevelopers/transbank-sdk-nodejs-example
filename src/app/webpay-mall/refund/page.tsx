@@ -6,7 +6,7 @@ import { getRefundTRXSteps } from "@/app/webpay-mall/content/steps/refund";
 import { NextPageProps } from "@/types/general";
 import { refundTransaction } from "@/app/lib/webpay-mall/data";
 import { StatusButton } from "@/app/webpay-mall/components/StatusButton";
-import { InvalidView } from "@/components/customError/CustomError";
+import { CustomError } from "@/components/customError/CustomError";
 import { Metadata } from "next";
 
 
@@ -41,7 +41,7 @@ export default async function RefundTransaction({
   );
 
   if ("errorMessage" in refundResult) {
-    return <InvalidView errorMessage={refundResult.errorMessage} actualBread={actualBread}/>;
+    return <CustomError errorMessage={refundResult.errorMessage} actualBread={actualBread}/>;
   }
 
 
