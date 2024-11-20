@@ -162,7 +162,6 @@ export const refundTransaction = async (
     ).refund(token_ws, buyOrder, commerceCode, amount);
 
     return {
-      success: true,
       refundResponse,
     };
   } catch (error) {
