@@ -6,7 +6,7 @@ import { getRefundTRXSteps } from "@/app/webpay-plus/content/steps/refund";
 import { NextPageProps } from "@/types/general";
 import { refundTransaction } from "@/app/lib/webpay-plus/data";
 import { getWebpayPlusDeferredOptions } from "@/app/lib/webpay-plus-deferred/data";
-import { InvalidView } from "@/app/invalid/invalidRefund";
+import { InvalidView } from "@/components/customError/CustomError";
 
 const actualBread: Route[] = [
   {
