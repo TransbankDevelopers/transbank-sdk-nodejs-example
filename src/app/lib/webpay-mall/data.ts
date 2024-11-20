@@ -7,6 +7,7 @@ import {
   TBKMallCommitTransactionResponse,
   TBKCreateTransactionResponse,
   TBKMallTransactionStatusResponse,
+  TBKRefundTransactionResponse,
 } from "@/types/transactions";
 import { headers } from "next/headers";
 import {
@@ -148,13 +149,17 @@ export const getStatusTransaction = async (
   return trxStatus;
 };
 
+export type RefundTransactionResult =
+  | { refundResponse: TBKRefundTransactionResponse}
+  | { errorMessage: string };
+
 export const refundTransaction = async (
   token_ws: string,
   amount: number,
   buyOrder: string,
   commerceCode: string,
   options?: Options
-) => {
+): Promise<RefundTransactionResult> => {
   try {
     const refundResponse = await new WebpayPlus.MallTransaction(
       options ?? getWebpayMallOptions()
