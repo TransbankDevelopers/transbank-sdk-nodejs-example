@@ -8,7 +8,7 @@ export type InvalidViewProps = {
   errorMessage?: string;
   actualBread: Route[]; 
 }
-export function InvalidView({ errorMessage, actualBread }: InvalidViewProps){
+export function CustomError({ errorMessage, actualBread }: InvalidViewProps){
   return (
       <Layout
         pageTitle="Ocurrió un error"
