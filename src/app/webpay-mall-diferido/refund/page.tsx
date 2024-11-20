@@ -9,6 +9,10 @@ import { StatusButton } from "@/app/webpay-mall-diferido/components/StatusButton
 import { InvalidView } from "@/components/customError/CustomError";
 import { Metadata } from "next";
 
+
+export const metadata: Metadata = {
+  title: "Transbank SDK Node - Reembolsar transacción",
+};
 const actualBread: Route[] = [
   {
     name: "Inicio",

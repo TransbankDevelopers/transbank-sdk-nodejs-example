@@ -7,6 +7,12 @@ import { NextPageProps } from "@/types/general";
 import { refundTransaction } from "@/app/lib/webpay-plus/data";
 import { getWebpayPlusDeferredOptions } from "@/app/lib/webpay-plus-deferred/data";
 import { InvalidView } from "@/components/customError/CustomError";
+import { Metadata } from "next";
+
+
+export const metadata: Metadata = {
+  title: "Transbank SDK Node - Reembolsar transacción",
+};
 
 const actualBread: Route[] = [
   {
