@@ -5,6 +5,13 @@ import Head from "next/head";
 import { getRefundTRXSteps } from "@/app/webpay-plus/content/steps/refund";
 import { NextPageProps } from "@/types/general";
 import { refundTransaction } from "@/app/lib/webpay-plus/data";
+import { CustomError } from "@/components/customError/CustomError";
+import { Metadata } from "next";
+
+
+export const metadata: Metadata = {
+  title: "Transbank SDK Node - Reembolsar transacción",
+};
 
 const actualBread: Route[] = [
   {
@@ -29,11 +36,12 @@ export default async function RefundTransaction({
     token_ws as string,
     Number(amount)
   );
+
+  if ("errorMessage" in refundResult) {
+    return <CustomError errorMessage={refundResult.errorMessage} actualBread={actualBread}/>;
+  }
+
   return (
-    <>
-      <Head>
-        <title>Transbank SDK Node - Reembolsar transacción</title>
-      </Head>
       <Layout
         pageTitle="Webpay Plus - Reembolsar"
         pageDescription={`En esta etapa, tienes la opción de solicitar el reembolso del monto al titular de la tarjeta. 
@@ -41,8 +49,8 @@ export default async function RefundTransaction({
         Anulación o Anulación Parcial.`}
         actualBread={actualBread}
         activeRoute="/webpay-plus/refund"
-        steps={getRefundTRXSteps(refundResult, amount as string)}
+        steps={getRefundTRXSteps(refundResult.refundResponse, amount as string)}
       />
-    </>
   );
+  
 }
