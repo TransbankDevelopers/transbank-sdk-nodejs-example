@@ -11,10 +11,10 @@ export type InvalidViewProps = {
 export function CustomError({ errorMessage, actualBread }: InvalidViewProps){
   return (
       <Layout
-        pageTitle="Ocurrió un error"
+        pageTitle="Se ha producido un error"
         pageDescription={
           <span>    
-            Lo sentimos, no fue posible realizar la operación solicitada.
+            Cuando se procesaba la operación, la API encontró un problema y devolvió un error.
           </span>
         }
         actualBread={actualBread}
@@ -23,7 +23,7 @@ export function CustomError({ errorMessage, actualBread }: InvalidViewProps){
           <div className="error-details">
             <LayoutContent
               pageTitle="¿Por qué no fue posible realizar la operación?"
-              pageDescription="Te proporcionamos una descripción detallada del error ocurrido, según la información proporcionada por el SDK."
+              pageDescription="Cuando ocurre un error en la operación con la API, el SDK lo captura automáticamente. A continuación, se muestra el detalle de la excepción, lo que te permitirá identificar y comprender el problema."
               steps={[]}
             />
               <Snippet code={errorMessage} />
