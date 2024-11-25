@@ -12,7 +12,7 @@ import ApiRefWebpayDeferredStatus from "./ApiRefWebpayDeferredStatus";
 import ApiRefWebpayDeferredRefund from "./ApiRefWebpayDeferredRefund";
 import ApiRefWebpayDeferredCapture from "./ApiRefWebpayDeferredCapture";
 
-export default function ApiRefWebpay() {
+export default function ApiRefWebpayDeferred() {
   return (
     <div className="tbk-layout-body">
       <Sidebar actualPath="/api-reference/webpay-plus-deferred" />
