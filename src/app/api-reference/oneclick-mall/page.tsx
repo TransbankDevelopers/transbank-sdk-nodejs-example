@@ -11,7 +11,7 @@ import {
 import ApiRefOneclickStatus from "./ApiRefOneclickStatus";
 import ApiRefOneclickRefund from "./ApiRefOneclickRefund";
 
-export default function ApiRefWebpayStatus() {
+export default function ApiRefOneclickMall() {
   return (
     <div className="tbk-layout-body">
       <Sidebar actualPath="/api-reference/oneclick-mall" />
