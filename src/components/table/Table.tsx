@@ -19,24 +19,28 @@ export const Table = (props: TableProps) => {
   return (
     <div className="table-container">
       <div className="header">
-        {props.columns.map((column, index) => (
-          <div key={index} className="column">
+        {props.columns.map((column) => (
+          <div key={column.header} className="column">
             <span>{column.header}</span>
           </div>
         ))}
       </div>
       <div>
-        {props.rows.map((row, index) => (
-          <div key={index} className="row">
+        {props.rows.map((row) => (
+          <div key={row.field} className="row">
             <div className="cell">
               <span>{row.field}</span>
             </div>
 
             <div className="cell">
               {Array.isArray(row.value) ? (
-                row.value.map((value) => <span key={value}>{value}</span>)
+                row.value.map((value) => (
+                  <span className="tbk-column" key={value}>
+                    {value}
+                  </span>
+                ))
               ) : (
-                <span>{row.value}</span>
+                <span className="tbk-column">{row.value}</span>
               )}
             </div>
           </div>
