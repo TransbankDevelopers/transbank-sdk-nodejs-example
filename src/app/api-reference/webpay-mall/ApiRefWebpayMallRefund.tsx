@@ -6,14 +6,14 @@ import { Card } from "@/components/card/Card";
 import { Snippet } from "@/components/snippet/Snippet";
 import { InputText } from "@/components/input/InputText";
 
-export default function ApiRefWebpayRefundClient() {
+export default function ApiRefWebpayMallRefundClient() {
   const [result, setResult] = useState("");
   const [isPending, startTransition] = useTransition();
 
   const handleSubmit = async (formData: FormData) => {
     startTransition(async () => {
       try {
-        const response = await fetch("/api/webpay-plus/getRefundTransaction", {
+        const response = await fetch("/api/webpay-mall/getRefundTransaction", {
           method: "POST",
           body: formData,
         });
@@ -41,6 +41,11 @@ export default function ApiRefWebpayRefundClient() {
       <form action={handleSubmit}>
         <div className="inp-container-card">
           <InputText name="token" label="Token" />
+          <InputText
+            name="commerceCode"
+            label="Codigo de comercio(tienda hija)"
+          />
+          <InputText name="buyOrder" label="Order de compra(tienda hija)" />
           <InputText isNumber name="amount" label="Monto" />
         </div>
         <div className="button-container">

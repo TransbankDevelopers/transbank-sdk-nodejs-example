@@ -4,7 +4,7 @@ export const webpayPlusStatus: ColumnValues[] = [
   {
     field: "vci",
     value: [
-      "visita este link para ver la inFormacion detallada de este campo https://www.transbankdevelopers.cl/producto/webpay#vci",
+      "visita este link para ver la informacion detallada de este campo https://www.transbankdevelopers.cl/producto/webpay#vci",
     ],
   },
   {
@@ -143,7 +143,7 @@ export const webpayPlusMallStatus: ColumnValues[] = [
   {
     field: "vci",
     value: [
-      "visita este link para ver la inFormacion detallada de este campo https://www.transbankdevelopers.cl/producto/webpay#vci",
+      "visita este link para ver la informacion detallada de este campo https://www.transbankdevelopers.cl/producto/webpay#vci",
     ],
   },
   {

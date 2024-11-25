@@ -6,19 +6,20 @@ import { Card } from "@/components/card/Card";
 import { Snippet } from "@/components/snippet/Snippet";
 import { InputText } from "@/components/input/InputText";
 
-export default function ApiRefWebpayStatusClient() {
+export default function ApiRefWebpayMallStatus() {
   const [result, setResult] = useState("");
   const [isPending, startTransition] = useTransition();
 
   const handleSubmit = async (formData: FormData) => {
     startTransition(async () => {
+      console.log("llego");
       try {
-        const response = await fetch("/api/webpay-plus/getStatusTransaction", {
+        const response = await fetch("/api/webpay-mall/getStatusTransaction", {
           method: "POST",
           body: formData,
         });
-
         const data = await response.json();
+        console.log({ data });
 
         if (!response.ok) {
           const errorMessage = data.error || "Error desconocido.";
