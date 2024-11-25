@@ -42,6 +42,8 @@ export const Header = () => {
           />
         </Link>
       </div>
+
+      <Link href="/api-reference/webpay-plus">api reference</Link>
       <Button
         text="Comunidad Slack"
         variant={ButtonVariant.SECONDARY}
