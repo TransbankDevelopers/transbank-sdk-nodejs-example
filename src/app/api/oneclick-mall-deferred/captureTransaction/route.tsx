@@ -1,13 +1,20 @@
 import { NextResponse } from "next/server";
-import { refundTransaction } from "@/app/lib/webpay-plus/data";
+import { captureOneclickMallDeferredTransaction } from "@/app/lib/oneclick-mall-deferred/data";
 
 export async function POST(request: Request) {
   const formData = await request.formData();
-  const buyOrder = formData.get("buyOrder") as string;
-  const amount = Number(formData.get("amount"));
+  const childBuyOrder = formData.get("childBuyOrder") as string;
+  const commerceCode = formData.get("commerceCode") as string;
+  const authorizationCode = formData.get("authorizationCode") as string;
+  const captureAmount = Number(formData.get("amount"));
 
   try {
-    const trxStatus = await refundTransaction(buyOrder, amount);
+    const trxStatus = await captureOneclickMallDeferredTransaction({
+      commerceCode,
+      childBuyOrder,
+      authorizationCode,
+      captureAmount,
+    });
 
     return NextResponse.json(trxStatus);
   } catch (error) {

@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
-import { getStatusTransaction } from "@/app/lib/webpay-plus/data";
+import { getStatusOneclickMallTransaction } from "@/app/lib/oneclick-mall/data";
 
 export async function POST(request: Request) {
   const formData = await request.formData();
   const buyOrder = formData.get("buyOrder") as string;
 
   try {
-    const trxStatus = await getStatusTransaction(buyOrder);
+    const trxStatus = await getStatusOneclickMallTransaction(buyOrder, true);
 
     return NextResponse.json(trxStatus);
   } catch (error) {
