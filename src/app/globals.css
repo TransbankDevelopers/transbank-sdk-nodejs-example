@@ -149,6 +149,12 @@ h2 {
   margin-bottom: 0.5rem;
 }
 
+.card-pay .large-title {
+  font-weight: 500;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
 .card-pay .button-container {
   display: flex;
   justify-content: flex-end;

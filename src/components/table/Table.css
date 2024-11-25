@@ -47,3 +47,7 @@
   width: 50%;
   border-color: var(--tbk-border-blue);
 }
+
+.tbk-column {
+  word-break: break-word;
+}

@@ -5,3 +5,8 @@
   margin-bottom: 2rem;
   color: var(--tbk-black);
 }
+.inp-container-card {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
