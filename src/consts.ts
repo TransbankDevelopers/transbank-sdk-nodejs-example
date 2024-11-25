@@ -131,8 +131,4 @@ export const apiRefSidebar: MenuRoute[] = [
     category: "Webpay Transacción Completa",
     routes: apiWebpayFullTransactionRoutes,
   },
-  {
-    category: "Patpass Comercio",
-    routes: apiPatpassTransactionRoutes,
-  },
 ];
