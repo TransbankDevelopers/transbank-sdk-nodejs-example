@@ -10,7 +10,7 @@ import {
 import ApiRefWebpayStatusClient from "./ApiRefWebpayStatus";
 import ApiRefWebpayRefund from "./ApiRefWebpayRefund";
 
-export default function ApiRefWebpayStatus() {
+export default function ApiRefWebpay() {
   return (
     <div className="tbk-layout-body">
       <Sidebar actualPath="/api-reference/webpay-plus" />
