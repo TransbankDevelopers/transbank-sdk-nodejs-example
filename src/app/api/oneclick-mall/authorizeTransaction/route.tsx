@@ -6,9 +6,9 @@ export async function POST(request: Request) {
   const details: TransactionDetail[] = [];
 
   const formData = await request.formData();
-  const token = formData.get("token") as string;
+  const buyOrder = formData.get("buyOrder") as string;
   const tbkUser = formData.get("tbkUser") as string;
-  const deferredAmount = formData.get("amount");
+  const userName = formData.get("userName") as string;
   console.log(formData.entries());
   // Validar si `detail` es una cadena
   const detailEntry = formData.get("detail");
@@ -22,8 +22,6 @@ export async function POST(request: Request) {
   }
 
   // for (const details of paramsDetail) {
-  //   const childBuyOrder = "O-" + Math.floor(Math.random() * 10000) + 1;
-  //   const amount = deferredAmount ?? Math.floor(Math.random() * 1000) + 1001;
 
   //   details.push(
   //     new TransactionDetail(
