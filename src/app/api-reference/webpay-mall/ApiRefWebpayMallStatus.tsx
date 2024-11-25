@@ -12,7 +12,6 @@ export default function ApiRefWebpayMallStatus() {
 
   const handleSubmit = async (formData: FormData) => {
     startTransition(async () => {
-      console.log("llego");
       try {
         const response = await fetch("/api/webpay-mall/getStatusTransaction", {
           method: "POST",
