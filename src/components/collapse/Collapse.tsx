@@ -23,7 +23,7 @@ export default function Collapse({ label, children }: CollapseProps) {
   }, [children]);
 
   return (
-    <div>
+    <div className="mb-6">
       <button
         onClick={toggleCollapse}
         style={{ display: "block", width: "100%", textAlign: "left" }}
