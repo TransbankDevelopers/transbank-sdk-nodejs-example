@@ -44,6 +44,11 @@ export default function ApiRefOneclickRefund() {
       <form action={handleSubmit}>
         <div className="inp-container-card">
           <InputText name="buyOrder" label="Orden de compra(buy_order)" />
+          <InputText name="childBuyOrder" label="Ordern de compra tienda" />
+          <InputText
+            name="childCommerceCode"
+            label="Codico de comercio Tienda"
+          />
           <InputText isNumber name="amount" label="Monto" />
         </div>
         <div className="button-container">

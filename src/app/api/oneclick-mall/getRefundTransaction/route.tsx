@@ -1,13 +1,20 @@
 import { NextResponse } from "next/server";
-import { refundTransaction } from "@/app/lib/webpay-plus/data";
+import { refundOneClickMallTransaction } from "@/app/lib/oneclick-mall/data";
 
 export async function POST(request: Request) {
   const formData = await request.formData();
   const buyOrder = formData.get("buyOrder") as string;
   const amount = Number(formData.get("amount"));
+  const childBuyOrder = formData.get("childBuyOrder") as string;
+  const childCommerceCode = formData.get("childCommerceCode") as string;
 
   try {
-    const trxStatus = await refundTransaction(buyOrder, amount);
+    const trxStatus = await refundOneClickMallTransaction({
+      buyOrder,
+      childCommerceCode,
+      childBuyOrder,
+      amount,
+    });
 
     return NextResponse.json(trxStatus);
   } catch (error) {
