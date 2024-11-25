@@ -19,6 +19,7 @@ export type ButtonProps = {
   className?: string;
   type?: ButtonTypes;
   link?: Url;
+  loading?: boolean;
   onClick?: () => void;
 };
 
@@ -32,6 +33,7 @@ export const Button = (props: ButtonProps) => {
   const buttonClassName = cx(
     "tbk-button",
     {
+      "btn-loading": props.loading,
       primary: variant === ButtonVariant.PRIMARY,
       secondaty: variant === ButtonVariant.SECONDARY,
     },
