@@ -37,7 +37,7 @@ export default function ApiRefWebpayStatusClient() {
 
   return (
     <Card className="card-pay">
-      <span className="large-title">Formulario de redirección</span>
+      <span className="large-title">transaction.status()</span>
       <form action={handleSubmit}>
         <InputText name="token" label="Token" />
         <div className="button-container">

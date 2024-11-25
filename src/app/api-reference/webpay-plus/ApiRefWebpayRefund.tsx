@@ -37,7 +37,7 @@ export default function ApiRefWebpayRefundClient() {
 
   return (
     <Card className="card-pay">
-      <span className="large-title">Formulario de Anulacion o Reversa</span>
+      <span className="large-title">transaction.refund()</span>
       <form action={handleSubmit}>
         <div className="inp-container-card">
           <InputText name="token" label="Token" />
