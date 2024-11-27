@@ -127,7 +127,7 @@ export const authorizeOneClickMallTransaction = async (
   }
 
   const authorizeResponse = await new Oneclick.MallTransaction(
-    deferredAmount ? getOneclickMallDeferredOptions() : getOneclickMallOptions()
+    isDeferred ? getOneclickMallDeferredOptions() : getOneclickMallOptions()
   ).authorize(userName, tbkUser, buyOrder, details);
 
   return authorizeResponse;
