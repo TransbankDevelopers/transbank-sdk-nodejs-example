@@ -50,7 +50,7 @@ export default function ApiRefOneclickDeferredRefund() {
           />
           <InputText
             name="childCommerceCode"
-            label="Codico de comercio(tienda hija)"
+            label="Codigo de comercio(tienda hija)"
           />
           <InputText isNumber name="amount" label="Monto" />
         </div>

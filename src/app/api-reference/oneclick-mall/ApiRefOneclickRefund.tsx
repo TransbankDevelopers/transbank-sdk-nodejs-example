@@ -47,7 +47,7 @@ export default function ApiRefOneclickRefund() {
           <InputText name="childBuyOrder" label="Ordern de compra tienda" />
           <InputText
             name="childCommerceCode"
-            label="Codico de comercio Tienda"
+            label="Codigo de comercio Tienda"
           />
           <InputText isNumber name="amount" label="Monto" />
         </div>
