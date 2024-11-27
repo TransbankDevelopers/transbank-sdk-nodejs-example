@@ -25,7 +25,7 @@ export const OneClickMallAuthorize: ColumnValues[] = [
   },
   {
     field: "details",
-    value: "Lista con el resultado de cada transacción de las tiendas hijas.",
+    value: "Lista con el resultado de cada transacción de las tiendas.",
   },
   {
     field: "details [].amount",

@@ -12,7 +12,7 @@ export const getCaptureSteps = (
       content: (
         <p>
           Para capturar una transacción necesitaremos el código de comercio y
-          Orden de compra de la tienda hija, Código de autorización y monto a
+          Orden de compra de la tienda, Código de autorización y monto a
           capturar. Se hace de la siguiente manera.
         </p>
       ),

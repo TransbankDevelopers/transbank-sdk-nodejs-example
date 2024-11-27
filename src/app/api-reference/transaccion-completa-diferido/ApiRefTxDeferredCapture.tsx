@@ -45,7 +45,7 @@ export default function ApiRefTxDeferredCapture() {
         <div className="inp-container-card">
           <InputText name="token" label="Token" />
           <InputText name="buyOrder" label="Orden de compra" />
-          <InputText name="authorizationCode" label="Codigo de autorización" />
+          <InputText name="authorizationCode" label="Código de autorización" />
           <InputText isNumber name="amount" label="Monto" />
         </div>
         <div className="button-container">

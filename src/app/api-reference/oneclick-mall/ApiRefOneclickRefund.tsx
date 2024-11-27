@@ -40,14 +40,14 @@ export default function ApiRefOneclickRefund() {
 
   return (
     <Card className="card-pay">
-      <span className="large-title">Formulario de Anulacion o Reversa</span>
+      <span className="large-title">Formulario de Anulación o Reversa</span>
       <form action={handleSubmit}>
         <div className="inp-container-card">
           <InputText name="buyOrder" label="Orden de compra(buy_order)" />
           <InputText name="childBuyOrder" label="Ordern de compra tienda" />
           <InputText
             name="childCommerceCode"
-            label="Codigo de comercio Tienda"
+            label="Código de comercio(tienda)"
           />
           <InputText isNumber name="amount" label="Monto" />
         </div>

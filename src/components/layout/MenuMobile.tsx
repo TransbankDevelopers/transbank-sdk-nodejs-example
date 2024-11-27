@@ -4,6 +4,10 @@ import {
   webpayOneClickRoutes,
   webpayPlusRoutes,
   patpassTransactionRoutes,
+  apiWebpayPlusRoutes,
+  apiWebpayOneClickRoutes,
+  apiWebpayFullTransactionRoutes,
+  apiPatpassTransactionRoutes,
 } from "@/consts";
 import { Route } from "@/types/menu";
 import { usePathname } from "next/navigation";

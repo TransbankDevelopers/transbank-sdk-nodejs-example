@@ -15,10 +15,10 @@ export const getRefundTRXSteps = (
           <Text>
             Para llevar a cabo el reembolso, necesitas proporcionar el token de
             la transacción, el monto que quieres reversar, el código de comercio
-            de la tienda hijo y el orden de compra del detalle de la
-            transacción. Si anulas el monto total, podría ser una Reversa o
-            Anulación, dependiendo de ciertas condiciones, o una Anulación
-            Parcial si el monto es menor al total.
+            de la tienda y el orden de compra del detalle de la transacción. Si
+            anulas el monto total, podría ser una Reversa o Anulación,
+            dependiendo de ciertas condiciones, o una Anulación Parcial si el
+            monto es menor al total.
           </Text>
           <div>
             <Text>Algunas consideraciones a tener en cuenta:</Text>

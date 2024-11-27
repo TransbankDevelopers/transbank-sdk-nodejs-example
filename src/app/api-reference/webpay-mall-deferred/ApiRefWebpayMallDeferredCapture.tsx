@@ -44,12 +44,9 @@ export default function ApiRefWebpayMallDeferredCapture() {
       <form action={handleSubmit}>
         <div className="inp-container-card">
           <InputText name="token" label="Token" />
-          <InputText
-            name="commerceCode"
-            label="Codigo de comercio(Tienda hija)"
-          />
-          <InputText name="buyOrder" label="Orden de compra(Tienda hija)" />
-          <InputText name="authorizationCode" label="Codigo de autorización" />
+          <InputText name="commerceCode" label="Código de comercio(tienda)" />
+          <InputText name="buyOrder" label="Orden de compra(tienda)" />
+          <InputText name="authorizationCode" label="Código de autorización" />
           <InputText isNumber name="amount" label="Monto" />
         </div>
         <div className="button-container">

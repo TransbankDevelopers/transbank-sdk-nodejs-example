@@ -69,7 +69,7 @@ export default function ApiRefOneclickAuthorize() {
               <div className="tbk-input-group">
                 <InputText
                   name={`details[${index}][commerce_code]`}
-                  label="Commerce Code(Tienda hija)"
+                  label="Commerce Code(tienda)"
                 />
                 <InputText
                   name={`details[${index}][buy_order]`}

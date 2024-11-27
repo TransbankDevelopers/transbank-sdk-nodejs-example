@@ -105,7 +105,7 @@ export const txCompleteRefund: ColumnValues[] = [
   {
     field: "response_code",
     value:
-      "(Solo si es NULLIFIED) Código de resultado de la reversa/anulacion. Si es exitoso es 0, de lo contrario la reversa/anulación no fue realizada Largo Máximo: 2",
+      "(Solo si es NULLIFIED) Código de resultado de la reversa/anulación. Si es exitoso es 0, de lo contrario la reversa/anulación no fue realizada Largo Máximo: 2",
   },
 ];
 

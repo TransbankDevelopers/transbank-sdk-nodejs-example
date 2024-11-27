@@ -21,7 +21,7 @@ export const getRefundTRXSteps = (
             <ul className="list">
               <li>Orden de compra de la transacción.</li>
               <li>Monto que deseas reversar.</li>
-              <li>Código de comercio de la tienda hijo.</li>
+              <li>Código de comercio de la tienda.</li>
               <li>Orden de compra del detalle de la transacción.</li>
             </ul>
             <div className="link-to-terms">

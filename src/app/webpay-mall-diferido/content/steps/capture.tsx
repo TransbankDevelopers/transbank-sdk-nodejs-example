@@ -12,8 +12,8 @@ export const getCaptureSteps = (
       content: (
         <p>
           Para capturar una transacción necesitaremos el código de comercio de
-          la tienda hija, Token, Orden de compra, Código de autorización y monto
-          a capturar. Se hace de la siguiente manera.
+          la tienda, Token, Orden de compra, Código de autorización y monto a
+          capturar. Se hace de la siguiente manera.
         </p>
       ),
       code: commitSnippets.getStepOne(token),
