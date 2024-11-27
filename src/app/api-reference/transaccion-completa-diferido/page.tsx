@@ -37,7 +37,7 @@ export default function ApiRefWebpay() {
           esta operación en su{" "}
           <a
             className="tbk-link"
-            target="_blanck"
+            target="_blank"
             href="https://www.transbankdevelopers.cl/producto/webpay#autorizacion-y-captura"
           >
             documentación
@@ -57,7 +57,7 @@ export default function ApiRefWebpay() {
           anulación. para mas informacion sobre anulaciones a reversa visite{" "}
           <a
             href="https://www.transbankdevelopers.cl/producto/webpay#anulaciones-y-reversas"
-            target="_blanck"
+            target="_blank"
             className="tbk-link"
           >
             aqui

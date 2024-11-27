@@ -27,7 +27,7 @@ export default function ApiRefOneclickMall() {
           en su{" "}
           <a
             className="tbk-link"
-            target="_blanck"
+            target="_blank"
             href="https://www.transbankdevelopers.cl/documentacion/oneclick#autorizar-una-transaccion"
           >
             documentación
@@ -49,7 +49,7 @@ export default function ApiRefOneclickMall() {
           Puedes revisar más detalles de esta operación en su{" "}
           <a
             className="tbk-link"
-            target="_blanck"
+            target="_blank"
             href="https://www.transbankdevelopers.cl/documentacion/oneclick#obtener-estado-de-una-transaccion"
           >
             documentación
@@ -69,7 +69,7 @@ export default function ApiRefOneclickMall() {
           la{" "}
           <a
             className="tbk-link"
-            target="_blanck"
+            target="_blank"
             href="https://www.transbankdevelopers.cl/documentacion/oneclick#capturar-una-transaccion"
           >
             documentación
@@ -91,7 +91,7 @@ export default function ApiRefOneclickMall() {
           <a
             className="tbk-link"
             href="https://www.transbankdevelopers.cl/documentacion/oneclick#reversar-o-anular-una-transaccion"
-            target="_blanck"
+            target="_blank"
           >
             documentación
           </a>{" "}

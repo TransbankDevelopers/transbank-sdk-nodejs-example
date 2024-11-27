@@ -29,7 +29,7 @@ export default function ApiRefWebpayMall() {
           <a
             className="tbk-link"
             href="https://www.transbankdevelopers.cl/documentacion/webpay-plus#obtener-estado-de-una-transaccion-mall"
-            target="_blanck"
+            target="_blank"
           >
             documentación
           </a>{" "}
@@ -47,7 +47,7 @@ export default function ApiRefWebpayMall() {
           esta operación en su{" "}
           <a
             className="tbk-link"
-            target="_blanck"
+            target="_blank"
             href="https://www.transbankdevelopers.cl/producto/webpay#autorizacion-y-captura"
           >
             documentación
@@ -67,7 +67,7 @@ export default function ApiRefWebpayMall() {
           anulación. para mas informacion sobre anulaciones a reversa visite la{" "}
           <a
             href="https://www.transbankdevelopers.cl/producto/webpay#anulaciones-y-reversas"
-            target="_blanck"
+            target="_blank"
             className="tbk-link"
           >
             documentacion
