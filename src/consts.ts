@@ -99,7 +99,7 @@ export const apiWebpayFullTransactionRoutes: Route[] = [
   },
   {
     name: "Transacción Completa Diferido",
-    path: "/api-reference/transaccion-completa-deferred",
+    path: "/api-reference/transaccion-completa-diferido",
   },
   {
     name: "Transacción Completa Mall",
@@ -107,7 +107,7 @@ export const apiWebpayFullTransactionRoutes: Route[] = [
   },
   {
     name: "Transacción Completa Mall Diferido",
-    path: "/api-reference/transaccion-completa-mall-deferred",
+    path: "/api-reference/transaccion-completa-mall-diferido",
   },
 ];
 
