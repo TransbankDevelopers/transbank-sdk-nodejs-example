@@ -10,3 +10,23 @@
   flex-direction: column;
   gap: 30px;
 }
+
+.tbk-input-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.card-group {
+  border: 1px solid #dbd1d1;
+  padding: 25px 10px;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.add-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--tbk-red);
+}
