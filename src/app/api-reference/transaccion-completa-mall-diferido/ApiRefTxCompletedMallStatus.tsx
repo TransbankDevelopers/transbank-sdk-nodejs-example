@@ -21,7 +21,6 @@ export default function ApiRefTxCompletedMallStatus() {
           }
         );
         const data = await response.json();
-        console.log({ data });
 
         if (!response.ok) {
           const errorMessage = data.error || "Error desconocido.";

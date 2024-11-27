@@ -12,7 +12,6 @@ export default function ApiRefWebpayMallDeferredStatus() {
 
   const handleSubmit = async (formData: FormData) => {
     startTransition(async () => {
-      console.log("llego");
       try {
         const response = await fetch(
           "/api/webpay-mall-deferred/getStatusTransaction",
@@ -22,7 +21,6 @@ export default function ApiRefWebpayMallDeferredStatus() {
           }
         );
         const data = await response.json();
-        console.log({ data });
 
         if (!response.ok) {
           const errorMessage = data.error || "Error desconocido.";
