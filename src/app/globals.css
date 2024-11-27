@@ -250,8 +250,9 @@ h2 {
   overflow: auto;
   padding-right: 3rem;
   padding-left: 5rem;
-  margin-top: 2.5rem;
   flex-direction: column;
+  max-width: 1200px;
+  margin: 2.5rem auto;
 }
 
 .tbk-layout-footer {
