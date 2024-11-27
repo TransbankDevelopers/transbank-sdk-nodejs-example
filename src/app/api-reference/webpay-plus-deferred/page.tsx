@@ -16,7 +16,7 @@ export default function ApiRefWebpayDeferred() {
   return (
     <div className="tbk-layout-body">
       <Sidebar actualPath="/api-reference/webpay-plus-deferred" />
-      <div className="tbk-layout-content">
+      <div className="tbk-layout-content api-ref">
         <h2>Obtener estado de una transacción</h2>
         <p>
           Esta operación permite obtener el estado de la transacción en
