@@ -10,20 +10,19 @@ import {
 } from "@/helpers/transactions/oneclick/apiResponse";
 import ApiRefOneclickStatus from "./ApiRefOneclickStatus";
 import ApiRefOneclickRefund from "./ApiRefOneclickRefund";
+import ApiRefOneclickAuthorize from "./ApiRefOneclickAuthorize";
 
 export default function ApiRefOneclickMall() {
   return (
     <div className="tbk-layout-body">
       <Sidebar actualPath="/api-reference/oneclick-mall" />
-      <div className="tbk-layout-content">
+      <div className="tbk-layout-content api-ref">
         <h2>Autorizar una transacción</h2>
         <p>
           Una vez realizada la inscripción, el comercio puede usar el tbkUser
           recibido para realizar transacciones. Para eso debes usar el método
-          transaction.authorize().
-        </p>
-        <p>
-          Puedes revisar más detalles de esta operación en su{" "}
+          transaction.authorize(). Puedes revisar más detalles de esta operación
+          en su{" "}
           <a
             className="tbk-link"
             target="_blanck"
@@ -32,7 +31,8 @@ export default function ApiRefOneclickMall() {
             documentación
           </a>{" "}
         </p>
-        <ApiRefOneclickStatus />
+
+        <ApiRefOneclickAuthorize />
 
         <Collapse label="Respuesta Transaction.authorize">
           <Table columns={getColumnDefinition()} rows={OneClickMallAuthorize} />
@@ -45,7 +45,11 @@ export default function ApiRefOneclickMall() {
         </p>
         <p>
           Puedes revisar más detalles de esta operación en su{" "}
-          <a className="tbk-link" target="_blanck" href="">
+          <a
+            className="tbk-link"
+            target="_blanck"
+            href="https://www.transbankdevelopers.cl/documentacion/oneclick#obtener-estado-de-una-transaccion"
+          >
             documentación
           </a>{" "}
         </p>

@@ -4,7 +4,6 @@ import { getStatusOneclickMallTransaction } from "@/app/lib/oneclick-mall/data";
 export async function POST(request: Request) {
   const formData = await request.formData();
   const buyOrder = formData.get("buyOrder") as string;
-  console.log({ buyOrder });
 
   try {
     const trxStatus = await getStatusOneclickMallTransaction(buyOrder);

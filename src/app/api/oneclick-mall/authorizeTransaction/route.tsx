@@ -9,33 +9,37 @@ export async function POST(request: Request) {
   const buyOrder = formData.get("buyOrder") as string;
   const tbkUser = formData.get("tbkUser") as string;
   const userName = formData.get("userName") as string;
-  console.log(formData.entries());
-  // Validar si `detail` es una cadena
-  const detailEntry = formData.get("detail");
-  let paramsDetail: string[] = [];
 
-  if (typeof detailEntry === "string") {
-    // Si es una cadena, convertirla en un array (suponiendo que está delimitada por comas o similar)
-    paramsDetail = Array.from(detailEntry.split(",")); // Cambia la lógica si es necesario
-  } else if (detailEntry instanceof File) {
-    console.error("detail es un archivo, no una cadena.");
+  for (let i = 0; i < 2; i++) {
+    const commerceCode = formData.get(`details[${i}][commerce_code]`) as string;
+    const detailBuyOrder = formData.get(`details[${i}][buy_order]`) as string;
+    const amount = formData.get(`details[${i}][amount]`);
+    const installmentsNumber = formData.get(
+      `details[${i}][installments_number]`
+    ) as string;
+
+    if (commerceCode && detailBuyOrder && amount) {
+      details.push(
+        new TransactionDetail(
+          Number(amount),
+          commerceCode,
+          detailBuyOrder,
+          installmentsNumber ? Number(installmentsNumber) : undefined
+        )
+      );
+    }
   }
 
-  // for (const details of paramsDetail) {
-
-  //   details.push(
-  //     new TransactionDetail(
-  //       amount,
-  //       childCommerceCode,
-  //       childBuyOrder,
-  //       deferredInstallments ?? undefined
-  //     )
-  //   );
-  // }
+  const options = { prmBuyOrder: buyOrder, prmDetails: details };
 
   try {
-    // const trxStatus = await authorizeOneClickMallTransaction(token, tbkUser);
-    // return NextResponse.json(trxStatus);
+    const trxStatus = await authorizeOneClickMallTransaction(
+      userName,
+      tbkUser,
+      false,
+      options
+    );
+    return NextResponse.json(trxStatus);
   } catch (error) {
     console.error(error);
     let errorMessage = "Ocurrió un error al hacer refund de la transacción.";
