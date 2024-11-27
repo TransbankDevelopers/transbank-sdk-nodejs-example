@@ -251,6 +251,10 @@ h2 {
   padding-right: 3rem;
   padding-left: 5rem;
   flex-direction: column;
+  margin-top: 2.5rem;
+}
+
+.tbk-layout-content.api-ref {
   max-width: 1200px;
   margin: 2.5rem auto;
 }
