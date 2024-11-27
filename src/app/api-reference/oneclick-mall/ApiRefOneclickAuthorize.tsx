@@ -73,7 +73,7 @@ export default function ApiRefOneclickAuthorize() {
                 />
                 <InputText
                   name={`details[${index}][buy_order]`}
-                  label="Buy Order(tienda hija)"
+                  label="Buy Order(tienda)"
                 />
                 <InputText name={`details[${index}][amount]`} label="Amount" />
                 <InputText
