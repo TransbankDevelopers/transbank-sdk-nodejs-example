@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import { usePathname } from "next/navigation";
 import TBKLogo from "@/assets/svg/tbk-logo.svg";
 import Menu from "@/assets/svg/menu.svg";
 import Image from "next/image";
@@ -12,9 +11,6 @@ import "./Header.css";
 
 export const Header = () => {
   const [showMenuMobile, setShowMenuMobile] = useState(false);
-  const pathname = usePathname();
-
-  const excludePaths = pathname.startsWith("/api-reference");
 
   const openMobileMenu = () => {
     setShowMenuMobile(true);

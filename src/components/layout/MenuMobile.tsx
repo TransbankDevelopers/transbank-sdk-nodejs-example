@@ -26,9 +26,12 @@ export type MenuItemProps = {
   actualPath: string;
 };
 const MenuItem = (props: MenuItemProps) => {
-  const [, basePath] = props.actualPath.split("/");
+  const basePath = props.actualPath.split("/").pop();
+  console.log({ basePath });
   const isActive = (item: Route) => {
-    const [, path] = item.path.split("/");
+    const path = item.path.split("/").pop();
+    console.log({ path });
+
     return basePath === path;
   };
   return (
@@ -52,8 +55,11 @@ const MenuItem = (props: MenuItemProps) => {
     </div>
   );
 };
+
 export const MenuMobile = ({ isMenuVisible, hideMenu }: MenuMobileProps) => {
   const path = usePathname() || "/";
+  const inRefApiPAge = path?.startsWith("/api-reference");
+
   const TbkMenuStyles = cx({
     "tbk-mobile-menu show": isMenuVisible,
     "tbk-mobile-menu": !isMenuVisible,
@@ -74,22 +80,28 @@ export const MenuMobile = ({ isMenuVisible, hideMenu }: MenuMobileProps) => {
       <MenuItem
         title="Webpay Plus"
         actualPath={path}
-        routes={webpayPlusRoutes}
+        routes={inRefApiPAge ? apiWebpayPlusRoutes : webpayPlusRoutes}
       />
       <MenuItem
         title="Webpay Oneclick"
         actualPath={path}
-        routes={webpayOneClickRoutes}
+        routes={inRefApiPAge ? apiWebpayOneClickRoutes : webpayOneClickRoutes}
       />
       <MenuItem
         title="Webpay Transacción Completa"
         actualPath={path}
-        routes={webpayFullTransactionRoutes}
+        routes={
+          inRefApiPAge
+            ? apiWebpayFullTransactionRoutes
+            : webpayFullTransactionRoutes
+        }
       />
       <MenuItem
         title="Patpass Comercio"
         actualPath={path}
-        routes={patpassTransactionRoutes}
+        routes={
+          inRefApiPAge ? apiPatpassTransactionRoutes : patpassTransactionRoutes
+        }
       />
     </div>
   );
