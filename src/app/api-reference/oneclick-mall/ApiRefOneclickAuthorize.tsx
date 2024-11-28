@@ -60,7 +60,7 @@ export default function ApiRefOneclickAuthorize() {
           <div className="tbk-input-group">
             <InputText name="userName" label="username" />
             <InputText name="tbkUser" label="tbk_user" />
-            <InputText name="buyOrder" label="Orden de compra" />
+            <InputText name="buyOrder" label="Orden de compra mall" />
           </div>
 
           {Array.from({ length: numberOfStores }, (_, index) => (
