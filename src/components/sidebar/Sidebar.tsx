@@ -4,7 +4,6 @@ import { apiRefSidebar } from "@/consts";
 import SidebarItems from "./SidebarItems";
 import cx from "classnames";
 
-import "./Sidebar.css";
 import "@/components/layout/Menu.css";
 
 type SidebarProps = {
