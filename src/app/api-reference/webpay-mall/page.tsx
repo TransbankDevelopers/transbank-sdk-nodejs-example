@@ -49,7 +49,7 @@ export default function ApiRefWebpayMall() {
             target="_blank"
             className="tbk-link"
           >
-            documentacion
+            documentación
           </a>
         </p>
         <ApiRefWebpayMallRefund />
