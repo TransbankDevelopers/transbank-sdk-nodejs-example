@@ -42,7 +42,7 @@ export default function ApiRefOneclickDeferredStatus() {
     <Card className="card-pay">
       <span className="large-title">Transaction.status()</span>
       <form action={handleSubmit}>
-        <InputText name="buyOrder" label="Orden de compra(buy_order)" />
+        <InputText name="buyOrder" label="Orden de compra (buy_order)" />
         <div className="button-container">
           <Button
             text="Status"
