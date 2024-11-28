@@ -43,8 +43,8 @@ export default function ApiRefOneclickDeferredCapture() {
       <span className="large-title">transaction.capture()</span>
       <form action={handleSubmit}>
         <div className="inp-container-card">
-          <InputText name="childBuyOrder" label="Orden de compra(tienda)" />
-          <InputText name="commerceCode" label="Código de comercio(tienda)" />
+          <InputText name="childBuyOrder" label="Orden de compra tienda" />
+          <InputText name="commerceCode" label="Código de comercio tienda" />
           <InputText name="authorizationCode" label="Código de autorización" />
           <InputText isNumber name="amount" label="Monto" />
         </div>

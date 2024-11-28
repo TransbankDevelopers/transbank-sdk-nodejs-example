@@ -43,11 +43,11 @@ export default function ApiRefOneclickDeferredRefund() {
       <span className="large-title">transaction.refund()</span>
       <form action={handleSubmit}>
         <div className="inp-container-card">
-          <InputText name="buyOrder" label="Orden de compra(buy_order)" />
-          <InputText name="childBuyOrder" label="Ordern de compra(tienda)" />
+          <InputText name="buyOrder" label="Orden de compra (buy_order)" />
+          <InputText name="childBuyOrder" label="Ordern de compra tienda" />
           <InputText
             name="childCommerceCode"
-            label="Código de comercio(tienda)"
+            label="Código de comercio tienda"
           />
           <InputText isNumber name="amount" label="Monto" />
         </div>

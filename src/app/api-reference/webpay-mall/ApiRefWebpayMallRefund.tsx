@@ -41,8 +41,8 @@ export default function ApiRefWebpayMallRefundClient() {
       <form action={handleSubmit}>
         <div className="inp-container-card">
           <InputText name="token" label="Token" />
-          <InputText name="commerceCode" label="Código de comercio(tienda)" />
-          <InputText name="buyOrder" label="Order de compra(tienda)" />
+          <InputText name="commerceCode" label="Código de comercio tienda" />
+          <InputText name="buyOrder" label="Order de compra tienda" />
           <InputText isNumber name="amount" label="Monto" />
         </div>
         <div className="button-container">
