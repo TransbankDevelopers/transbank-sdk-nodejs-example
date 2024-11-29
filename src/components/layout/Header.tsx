@@ -46,7 +46,7 @@ export const Header = () => {
       </div>
       <div className="rigth-header">
         <Link className="header-link" href="/api-reference/webpay-plus">
-          Operaciones Api
+          Operaciones API
         </Link>
         <Button
           text="Comunidad Slack"
