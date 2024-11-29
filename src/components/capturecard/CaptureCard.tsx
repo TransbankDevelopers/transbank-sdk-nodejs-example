@@ -55,7 +55,7 @@ export const CaptureCard = (props: CaptureProps) => {
               className="refund-card-title-alt"
               variant={TextVariant.PARAGRAPH}
             >
-              Codigo de Comercio: <b>{props.childCommerceCode}</b>
+              Código de Comercio: <b>{props.childCommerceCode}</b>
             </Text>
             <Text
               className="refund-card-title-alt"

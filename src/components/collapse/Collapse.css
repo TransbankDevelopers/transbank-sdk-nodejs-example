@@ -1,0 +1,14 @@
+.cp-container {
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.cp-content {
+  padding: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cp-open {
+  opacity: 1;
+}

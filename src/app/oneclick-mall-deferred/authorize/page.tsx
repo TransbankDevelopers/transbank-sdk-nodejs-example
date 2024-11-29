@@ -47,8 +47,11 @@ export default async function AuthorizeTransactionPage({
   const trxData = await authorizeOneClickMallTransaction(
     user_name as string,
     tbk_user as string,
-    Number(amount),
-    Number(installments)
+    true,
+    {
+      deferredAmount: Number(amount),
+      deferredInstallments: Number(installments),
+    }
   );
 
   return (

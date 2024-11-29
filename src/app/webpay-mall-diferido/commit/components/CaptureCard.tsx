@@ -60,7 +60,7 @@ export const CaptureCard = ({
               className="refund-card-title-alt"
               variant={TextVariant.PARAGRAPH}
             >
-              Codigo de Comercio: <b>{commerceCode}</b>
+              Código de Comercio: <b>{commerceCode}</b>
             </Text>
             <Text
               className="refund-card-title-alt"

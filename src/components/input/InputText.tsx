@@ -7,7 +7,7 @@ export type InputTextProps = {
   label: string;
   name?: string;
   maxLength?: number;
-  value: string | number;
+  value?: string | number;
   onChange?: (value: string, name?: string) => void;
   onFocus?: (name: string) => void;
   isNumber?: boolean;
@@ -38,18 +38,32 @@ export const InputText = (props: InputTextProps) => {
       >
         {props.label}
       </span>
-      <input
-        type={isNumber ? "number" : "text"}
-        name={props.name}
-        maxLength={props.maxLength}
-        onFocus={handleOnFocus}
-        onBlur={handleOnBlur}
-        value={props.value}
-        onChange={(e) => onChange(e.target.value, e.target.name)}
-        className={cx("tbk-input-text", {
-          focus: isFocused,
-        })}
-      />
+      {props.value ? (
+        <input
+          type={isNumber ? "number" : "text"}
+          name={props.name}
+          maxLength={props.maxLength}
+          onFocus={handleOnFocus}
+          onBlur={handleOnBlur}
+          value={props.value}
+          onChange={(e) => onChange(e.target.value, e.target.name)}
+          className={cx("tbk-input-text", {
+            focus: isFocused,
+          })}
+        />
+      ) : (
+        <input
+          type={isNumber ? "number" : "text"}
+          name={props.name}
+          maxLength={props.maxLength}
+          onFocus={handleOnFocus}
+          onBlur={handleOnBlur}
+          onChange={(e) => onChange(e.target.value, e.target.name)}
+          className={cx("tbk-input-text", {
+            focus: isFocused,
+          })}
+        />
+      )}
     </div>
   );
 };
