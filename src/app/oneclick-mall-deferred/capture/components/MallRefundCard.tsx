@@ -39,7 +39,7 @@ export const MallRefundCard = (props: MallRefundCardProps) => {
           value={props.detail.commerce_code}
         />
         <InputText
-          label="Orden de compra (tienda):"
+          label="Orden de compra tienda:"
           value={props.detail.buy_order}
         />
         <InputText
