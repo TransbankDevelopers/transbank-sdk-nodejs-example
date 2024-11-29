@@ -44,13 +44,16 @@ export const Header = () => {
           />
         </Link>
       </div>
-
-      <Link href="/api-reference/webpay-plus">api reference</Link>
-      <Button
-        text="Comunidad Slack"
-        variant={ButtonVariant.SECONDARY}
-        className="tbk-header-btn"
-      />
+      <div className="rigth-header">
+        <Link className="header-link" href="/api-reference/webpay-plus">
+          Operaciones Api
+        </Link>
+        <Button
+          text="Comunidad Slack"
+          variant={ButtonVariant.SECONDARY}
+          className="tbk-header-btn"
+        />
+      </div>
     </div>
   );
 };

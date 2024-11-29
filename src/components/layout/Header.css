@@ -22,6 +22,18 @@
 .btn-burger {
   display: none;
 }
+
+.rigth-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header-link {
+  color: var(--tbk-red);
+  text-decoration: underline;
+}
+
 @media (width <= 991.98px) {
   .tbk-header {
     padding-left: 2rem;
