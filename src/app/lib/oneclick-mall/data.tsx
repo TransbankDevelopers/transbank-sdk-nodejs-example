@@ -157,12 +157,12 @@ export const refundOneClickMallTransaction = async (
   
       refundRequest,
     };
-    } catch (error){
+    } catch (exception){
       let errorMessage = "Ocurrio un error inseperado al intentar realizar la devolución"; 
-      if (error instanceof Error) {
-       errorMessage = error.message;
-      }else if (typeof error === "string") {
-        errorMessage = error;
+      if (exception instanceof Error) {
+       errorMessage = exception.message;
+      }else if (typeof exception === "string") {
+        errorMessage = exception;
       }
   
       return {
