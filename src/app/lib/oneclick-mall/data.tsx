@@ -139,7 +139,7 @@ export type RefundTransactionResult =
   
 export const refundOneClickMallTransaction = async (
   params: RefundOneClickMallTransactionProps
-): Promise<TBKRefundMallTransactionResponse> => {
+): Promise<RefundTransactionResult> => {
   const {
     buyOrder,
     childCommerceCode,
@@ -148,11 +148,27 @@ export const refundOneClickMallTransaction = async (
     isDeferred = false,
   } = params;
 
-  const refundRequest = await new Oneclick.MallTransaction(
-    isDeferred ? getOneclickMallDeferredOptions() : getOneclickMallOptions()
-  ).refund(buyOrder, childCommerceCode, childBuyOrder, amount);
-
-  return refundRequest;
+  try{
+    const refundRequest = await new Oneclick.MallTransaction(
+      isDeferred ? getOneclickMallDeferredOptions() : getOneclickMallOptions()
+    ).refund(buyOrder, childCommerceCode, childBuyOrder, amount);
+  
+    return {
+  
+      refundRequest,
+    };
+    } catch (error){
+      let errorMessage = "Ocurrio un error inseperado al intentar realizar la devolución"; 
+      if (error instanceof Error) {
+       errorMessage = error.message;
+      }else if (typeof error === "string") {
+        errorMessage = error;
+      }
+  
+      return {
+        errorMessage: errorMessage,
+      };
+  }
 };
 
 export const getStatusOneclickMallTransaction = async (
