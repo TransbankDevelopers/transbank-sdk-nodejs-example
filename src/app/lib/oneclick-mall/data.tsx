@@ -133,6 +133,10 @@ export const authorizeOneClickMallTransaction = async (
   return authorizeResponse;
 };
 
+export type RefundTransactionResult =
+  | { refundRequest: TBKRefundMallTransactionResponse}
+  | { errorMessage: string };
+  
 export const refundOneClickMallTransaction = async (
   params: RefundOneClickMallTransactionProps
 ): Promise<TBKRefundMallTransactionResponse> => {
