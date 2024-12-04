@@ -153,21 +153,19 @@ export const refundOneClickMallTransaction = async (
       isDeferred ? getOneclickMallDeferredOptions() : getOneclickMallOptions()
     ).refund(buyOrder, childCommerceCode, childBuyOrder, amount);
   
-    return {
-  
-      refundRequest,
-    };
-    } catch (exception){
-      let errorMessage = "Ocurrio un error inseperado al intentar realizar la devolución"; 
-      if (exception instanceof Error) {
-       errorMessage = exception.message;
-      }else if (typeof exception === "string") {
-        errorMessage = exception;
-      }
-  
-      return {
-        errorMessage: errorMessage,
-      };
+    return  { refundRequest };
+  } catch (exception) {
+    let errorMessage: string;
+
+    if (exception instanceof Error) {
+      errorMessage = exception.message;
+    } else if (typeof exception === "string") {
+      errorMessage = exception;
+    } else {
+      errorMessage = "Ocurrió un error inesperado al intentar realizar la devolución";
+    }
+
+    return { errorMessage };
   }
 };
 
