@@ -157,26 +157,15 @@ export const refundTransaction = async (
   buyOrder: string,
   commerceCode: string,
   options?: Options
-): Promise<RefundTransactionResult> => {
+): Promise<TBKRefundTransactionResponse|ResultError> => {
   try {
     const refundResponse = await new WebpayPlus.MallTransaction(
       options ?? getWebpayMallOptions()
     ).refund(token_ws as string, buyOrder, commerceCode, amount);
 
-    return {
+    return refundResponse
+  } catch (exception) {
 
-      refundResponse,
-    };
-  } catch (error) {
-    let errorMessage = "Ocurrio un error inseperado al intentar realizar la devolución"; 
-    if (error instanceof Error) {
-     errorMessage = error.message;
-    }else if (typeof error === "string") {
-      errorMessage = error;
-    }
-
-    return {
-      errorMessage: errorMessage,
-    };
+    return { errorMessage: getErrorMessage(exception) };
   }
 };

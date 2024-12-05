@@ -125,30 +125,21 @@ export const getStatusTransaction = async (
 
   return trxStatus;
 };
-
+  
 export const refundTransaction = async (
   token_ws: string,
   amount: number,
   options?: Options
-): Promise<RefundTransactionResult> => {
+): Promise<TBKRefundTransactionResponse|ResultError> => {
+  
   try {
     const refundResponse = await new WebpayPlus.Transaction(
       options ?? WebpayPlus.getDefaultOptions()
     ).refund(token_ws as string, amount);
 
-    return {
-      refundResponse,
-    };
-  } catch (error) {
-    let errorMessage = "Ocurrio un error inseperado al intentar realizar la devolución"; 
-    if (error instanceof Error) {
-     errorMessage = error.message;
-    }else if (typeof error === "string") {
-      errorMessage = error;
-    }
+    return  refundResponse ;
+  } catch (exception) {
 
-    return {
-      errorMessage: errorMessage,
-    };
+    return { errorMessage: getErrorMessage(exception) };
   }
 };
