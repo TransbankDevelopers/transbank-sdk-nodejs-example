@@ -126,10 +126,6 @@ export const getStatusTransaction = async (
   return trxStatus;
 };
 
-export type RefundTransactionResult =
-  | { refundResponse: TBKRefundTransactionResponse }
-  | { errorMessage: string };
-
 export const refundTransaction = async (
   token_ws: string,
   amount: number,
