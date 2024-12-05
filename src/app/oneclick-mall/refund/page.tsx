@@ -49,7 +49,7 @@ export default async function RefundTransaction({
         actualBread={actualBread}
         activeRoute="/oneclick-mall/refund"
         steps={getRefundTRXSteps(
-          refundResult.refundRequest,
+          refundResult,
           amount as string,
           buy_order as string
         )}
