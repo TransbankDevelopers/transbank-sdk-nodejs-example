@@ -5,7 +5,7 @@ import Head from "next/head";
 import { getRefundTRXSteps } from "@/app/oneclick-mall/content/steps/refund";
 import { NextPageProps } from "@/types/general";
 import { refundOneClickMallTransaction } from "@/app/lib/oneclick-mall/data";
-
+import { CustomError } from "@/components/customError/CustomError";
 const actualBread: Route[] = [
   {
     name: "Inicio",
@@ -35,6 +35,10 @@ export default async function RefundTransaction({
     isDeferred: true,
   });
 
+  if ("errorMessage" in refundResult) {
+    return <CustomError errorMessage={refundResult.errorMessage} actualBread={actualBread}/>;
+  }
+
   return (
     <>
       <Head>
@@ -46,7 +50,7 @@ export default async function RefundTransaction({
         actualBread={actualBread}
         activeRoute="/oneclick-mall-deferred/refund"
         steps={getRefundTRXSteps(
-          refundResult,
+          refundResult.refundRequest,
           amount as string,
           buy_order as string
         )}
