@@ -8,6 +8,7 @@ import {
 } from "transbank-sdk";
 import { generateRandomTransactionDataOneclickMall } from "@/helpers/transactions/transactionHelper";
 import { headers } from "next/headers";
+import { getErrorMessage} from "@/helpers/errorHandler";
 import {
   StartTransactionDataOneclickMall,
   TBKAuthorizeTransactionResponse,
@@ -16,6 +17,7 @@ import {
   TBKRefundMallTransactionResponse,
 } from "@/types/transactions";
 import { getOneclickMallDeferredOptions } from "../oneclick-mall-deferred/data";
+import {  ResultError } from "@/helpers/resultError";
 
 export type CreateTransactionResult = TBKCreateOneclickMallTransactionResponse &
   StartTransactionDataOneclickMall;

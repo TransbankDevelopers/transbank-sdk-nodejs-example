@@ -1,5 +1,6 @@
 import { generateRandomTransactionData } from "@/helpers/transactions/transactionHelper";
 import { SearchParams } from "@/types/general";
+import { getErrorMessage} from "@/helpers/errorHandler";
 import {
   CommitTransactionResult,
   StartTransactionData,
@@ -11,6 +12,7 @@ import {
 } from "@/types/transactions";
 import { headers } from "next/headers";
 import { Options, WebpayPlus } from "transbank-sdk";
+import {  ResultError } from "@/helpers/resultError";
 
 export type CreateTransactionResult = TBKCreateTransactionResponse &
   StartTransactionData;

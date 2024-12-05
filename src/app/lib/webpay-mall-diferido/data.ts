@@ -1,5 +1,6 @@
 import { generateRandomTransactionDataMallDeferred } from "@/helpers/transactions/transactionHelper";
 import { SearchParams } from "@/types/general";
+import { getErrorMessage} from "@/helpers/errorHandler";
 import {
   CommitMallTransactionResult,
   StartTransactionDataMall,
@@ -19,6 +20,7 @@ import {
   IntegrationApiKeys,
   Environment,
 } from "transbank-sdk";
+import {  ResultError } from "@/helpers/resultError";
 
 export type CreateTransactionResult = TBKCreateTransactionResponse &
   StartTransactionDataMall;
