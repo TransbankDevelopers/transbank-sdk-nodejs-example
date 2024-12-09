@@ -1,19 +1,11 @@
-export const getStepOne = () => {
-  return `const WebpayPlus = require('transbank-sdk').WebpayPlus; // ES5
-const TransactionDetail = require("transbank-sdk").TransactionDetail;
+export const getStepOne = (userName: string, email: string) => {
+  return `const Oneclick = require('transbank-sdk').Oneclick; // ES5
+import { Oneclick } from 'transbank-sdk'; // ES6
 
-import { WebpayPlus, TransactionDetail } from 'transbank-sdk'; // ES6
-
-const details = [
-  new TransactionDetail(135, "597055555536", "O-23101"),
-  new TransactionDetail(148, "597055555536", "O-10821"),
-]
-
-const createResponse = await (new WebpayPlus.MallTransaction()).create(
-  buyOrder, 
-  sessionId, 
-  returnUrl,
-  details
+const startResponse = await (new Oneclick.MallInscription()).start(
+  userName, 
+  email, 
+  returnUrl
 );`;
 };
 
