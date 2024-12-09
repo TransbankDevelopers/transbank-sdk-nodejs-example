@@ -1,4 +1,4 @@
-export const getStepOne = (userName: string, email: string) => {
+export const getStepOne = () => {
   return `const Oneclick = require('transbank-sdk').Oneclick; // ES5
 import { Oneclick } from 'transbank-sdk'; // ES6
 
