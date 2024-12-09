@@ -93,7 +93,8 @@ export const authorizeOneClickMallTransaction = async (
   tbkUser: string,
   isDeferred?: boolean,
   options?: AuthorizeTransactionOptions
-): Promise<TBKAuthorizeTransactionResponse> => {
+): Promise<TBKAuthorizeTransactionResponse|ResultError> => {
+  try {
   const { prmDetails, prmBuyOrder, deferredAmount, deferredInstallments } =
     options || {};
   const details: TransactionDetail[] = [];
@@ -133,6 +134,9 @@ export const authorizeOneClickMallTransaction = async (
   ).authorize(userName, tbkUser, buyOrder, details);
 
   return authorizeResponse;
+  } catch (exception) {
+    return { errorMessage: getErrorMessage(exception) };
+  }
 };
 
   
