@@ -68,15 +68,21 @@ export const createTransaction = async (
 export const commitTransaction = async (
   parametersReceivedByTBK: SearchParams,
   options?: Options
-): Promise<CommitTransactionResult> => {
+): Promise<CommitTransactionResult|ResultError> => {
+  try {
   const callbackType = getCallbackType(parametersReceivedByTBK);
-
+  console.log("====================================");
+  console.log(options);
+  console.log("COOMMIT");
+  console.log(callbackType);
+  console.log(parametersReceivedByTBK);
   if (callbackType === TBKCallbackType.COMMIT_OK) {
     const commitResponse: TBKCommitTransactionResponse =
       await new WebpayPlus.Transaction(
         options ?? WebpayPlus.getDefaultOptions()
       ).commit(parametersReceivedByTBK.token_ws as string);
-
+console.log("commitresponse");
+console.log(commitResponse);
     return {
       type: TBKCallbackType.COMMIT_OK,
       commitResponse,
@@ -112,6 +118,9 @@ export const commitTransaction = async (
   return {
     type: callbackType,
   };
+} catch (exception) {
+  return { errorMessage: getErrorMessage(exception) };
+}
 };
 
 export const getStatusTransaction = async (

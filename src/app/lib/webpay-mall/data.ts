@@ -93,7 +93,8 @@ export const createMallTransaction =
 export const commitTransaction = async (
   parametersReceivedByTBK: SearchParams,
   options?: Options
-): Promise<CommitMallTransactionResult> => {
+): Promise<CommitMallTransactionResult|ResultError> => {
+  try{
   const callbackType = getCallbackType(parametersReceivedByTBK);
 
   if (callbackType === TBKCallbackType.COMMIT_OK) {
@@ -137,6 +138,9 @@ export const commitTransaction = async (
   return {
     type: callbackType,
   };
+  } catch (exception) {
+    return { errorMessage: getErrorMessage(exception) };
+  }
 };
 
 export const getStatusTransaction = async (
