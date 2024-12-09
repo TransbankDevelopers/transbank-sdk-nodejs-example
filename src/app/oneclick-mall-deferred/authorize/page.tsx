@@ -7,6 +7,7 @@ import { NavigationItem } from "@/components/layout/Navigation";
 import { authorizeOneClickMallTransaction } from "@/app/lib/oneclick-mall/data";
 import { getAuthorizeSteps } from "../content/steps/authorize";
 import { CaptureCard } from "@/app/webpay-mall-diferido/commit/components/CaptureCard";
+import { CustomError } from "@/components/customError/CustomError";
 
 const getActualBread = (): Route[] => {
   return [
@@ -53,6 +54,14 @@ export default async function AuthorizeTransactionPage({
       deferredInstallments: Number(installments),
     }
   );
+  if ("errorMessage" in trxData) {
+    return (
+      <CustomError
+        errorMessage={trxData.errorMessage}
+        actualBread={getActualBread()}
+      />
+    );
+  }
 
   return (
     <>
