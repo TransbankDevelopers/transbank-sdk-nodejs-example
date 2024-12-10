@@ -42,7 +42,7 @@ const commitedContent = {
       Transbank que hemos recibido exitosamente los detalles de la transacción.{" "}
       <b>
         Es importante destacar que si la confirmación no se realiza, la
-        transacción será reversada.
+        transacción será caducada.
       </b>
     </>
   ),
