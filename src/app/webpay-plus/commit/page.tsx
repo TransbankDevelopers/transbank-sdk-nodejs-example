@@ -34,7 +34,7 @@ const getActualBread = (isRejected: boolean): Route[] => {
   ];
 };
 
-const commitedContent = {
+const commitContent = {
   title: "Webpay Plus - Confirmar transacción",
   description: (
     <>
@@ -87,7 +87,7 @@ export default async function CommitTransaction({
   const isTransactionRejected =
     commitResponse?.status === TBKTransactionStatus.FAILED;
 
-  const content = isTransactionRejected ? rejectedContent : commitedContent;
+  const content = isTransactionRejected ? rejectedContent : commitContent;
 
   return (
     <>

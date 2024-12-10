@@ -48,7 +48,7 @@ const navigationItems: NavigationItem[] = [
   },
 ];
 
-const commitedContent = {
+const commitContent = {
   title: "Webpay Mall - Confirmar transacción",
   description: (
     <>
@@ -103,7 +103,7 @@ export default async function CommitTransactionPage({
     (commitResponse as TBKMallCommitTransactionResponse).details
   );
 
-  const content = isTransactionRejected ? rejectedContent : commitedContent;
+  const content = isTransactionRejected ? rejectedContent : commitContent;
 
   return (
     <>
