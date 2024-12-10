@@ -5,6 +5,7 @@ import { getStatusTRXSteps } from "@/app/oneclick-mall/content/steps/status";
 import { NextPageProps } from "@/types/general";
 import { NavigationItem } from "@/components/layout/Navigation";
 import { getStatusOneclickMallTransaction } from "@/app/lib/oneclick-mall/data";
+import { CustomError } from "@/components/customError/CustomError";
 
 const actualBread: Route[] = [
   {
@@ -37,6 +38,14 @@ export default async function StatusTransactionView({
 }: NextPageProps) {
   const { buy_order } = searchParams;
   const trxStatus = await getStatusOneclickMallTransaction(buy_order as string);
+  if ("errorMessage" in trxStatus) {
+    return (
+      <CustomError
+        errorMessage={trxStatus.errorMessage}
+        actualBread={actualBread}
+      />
+    );
+  }
   return (
     <>
       <Head>
