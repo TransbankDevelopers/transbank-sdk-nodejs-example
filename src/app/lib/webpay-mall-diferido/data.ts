@@ -142,13 +142,18 @@ export const commitTransaction = async (
 }
 };
 
-export const getStatusTransaction = async (token_ws: string) => {
-  const trxStatus: TBKMallTransactionStatusResponse =
-    await new WebpayPlus.MallTransaction(getWebpatMallDeferredOptions()).status(
-      token_ws
-    );
+export const getStatusTransaction = async (token_ws: string):
+Promise<TBKMallTransactionStatusResponse|ResultError> => {
+  try {
+    const trxStatus: TBKMallTransactionStatusResponse =
+      await new WebpayPlus.MallTransaction(getWebpatMallDeferredOptions()).status(
+        token_ws
+      );
 
-  return trxStatus;
+    return trxStatus;
+  } catch (exception) {
+    return { errorMessage: getErrorMessage(exception) };
+  }
 };
 
 export const refundTransaction = async (

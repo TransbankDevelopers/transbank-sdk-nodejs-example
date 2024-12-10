@@ -146,13 +146,17 @@ export const commitTransaction = async (
 export const getStatusTransaction = async (
   token_ws: string,
   options?: Options
-) => {
-  const trxStatus: TBKMallTransactionStatusResponse =
-    await new WebpayPlus.MallTransaction(
-      options ?? getWebpayMallOptions()
-    ).status(token_ws as string);
+): Promise<TBKMallTransactionStatusResponse|ResultError> => {
+  try {
+    const trxStatus: TBKMallTransactionStatusResponse =
+      await new WebpayPlus.MallTransaction(
+        options ?? getWebpayMallOptions()
+      ).status(token_ws as string);
 
-  return trxStatus;
+    return trxStatus;
+  } catch (exception) {
+    return { errorMessage: getErrorMessage(exception) };
+  }
 };
 
 export const refundTransaction = async (

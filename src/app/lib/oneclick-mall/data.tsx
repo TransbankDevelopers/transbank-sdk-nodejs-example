@@ -166,8 +166,14 @@ export const refundOneClickMallTransaction = async (
 export const getStatusOneclickMallTransaction = async (
   buyOrder: string,
   isDeferred?: boolean
-) => {
-  return await new Oneclick.MallTransaction(
-    isDeferred ? getOneclickMallDeferredOptions() : getOneclickMallOptions()
-  ).status(buyOrder);
+): Promise<TBKAuthorizeTransactionResponse | ResultError> => {
+  try {
+    const trxStatus = await new Oneclick.MallTransaction(
+      isDeferred ? getOneclickMallDeferredOptions() : getOneclickMallOptions()
+    ).status(buyOrder);
+
+    return trxStatus;
+  } catch (exception) {
+    return { errorMessage: getErrorMessage(exception) };
+  }
 };

@@ -126,13 +126,17 @@ console.log(commitResponse);
 export const getStatusTransaction = async (
   token_ws: string,
   options?: Options
-) => {
-  const trxStatus: TBKTransactionStatusResponse =
-    await new WebpayPlus.Transaction(
-      options ?? WebpayPlus.getDefaultOptions()
-    ).status(token_ws as string);
+): Promise<TBKTransactionStatusResponse | ResultError> => {
+  try {
+    const trxStatus: TBKTransactionStatusResponse =
+      await new WebpayPlus.Transaction(
+        options ?? WebpayPlus.getDefaultOptions()
+      ).status(token_ws as string);
 
-  return trxStatus;
+    return trxStatus;
+  } catch (exception) {
+    return { errorMessage: getErrorMessage(exception) };
+  }
 };
   
 export const refundTransaction = async (
