@@ -51,7 +51,7 @@ export default async function CommitWebpaytxfullPage({
       </Head>
       <Layout
         pageTitle="Transacción Completa diferido - Confirmar transacción"
-        pageDescription="En este paso crucial, procederemos a confirmar la transacción con el objetivo de notificar a Transbank que hemos recibido la transacción de manera exitosa. Es fundamental destacar que si no se confirma la transacción, esta será reversada."
+        pageDescription="En este paso crucial, procederemos a confirmar la transacción con el objetivo de notificar a Transbank que hemos recibido la transacción de manera exitosa. Es fundamental destacar que si no se confirma la transacción, esta será caducada."
         actualBread={actualBread}
         activeRoute="/transaccion-completa-diferido/commit"
         navigationItems={navigationItems}
