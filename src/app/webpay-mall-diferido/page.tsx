@@ -11,6 +11,7 @@ import { getCreateTRXSteps } from "@/app/webpay-mall-diferido/content/steps/crea
 import Head from "next/head";
 import { createMallTransaction } from "@/app/lib/webpay-mall-diferido/data";
 import { NavigationItem } from "@/components/layout/Navigation";
+import { CustomError } from "@/components/customError/CustomError";
 
 const actualBread: Route[] = [
   {
@@ -47,7 +48,14 @@ export type CreateTRXProps = TBKCreateTransactionResponse &
 
 export default async function CreateWebpyMallTransaction() {
   const trxData = await createMallTransaction();
-
+  if ("errorMessage" in trxData) {
+    return (
+      <CustomError
+        errorMessage={trxData.errorMessage}
+        actualBread={actualBread}
+      />
+    );
+  }
   return (
     <>
       <Head>

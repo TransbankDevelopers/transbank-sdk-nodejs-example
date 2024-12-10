@@ -11,6 +11,7 @@ import { getCreateTRXSteps } from "@/app/webpay-plus/content/steps/create";
 import Head from "next/head";
 import { createTransaction } from "../lib/webpay-plus/data";
 import { NavigationItem } from "@/components/layout/Navigation";
+import { CustomError } from "@/components/customError/CustomError";
 
 const actualBread: Route[] = [
   {
@@ -47,6 +48,14 @@ export type CreateTRXProps = TBKCreateTransactionResponse &
 
 export default async function CreateTransaction() {
   const trxData = await createTransaction("/webpay-plus/commit");
+  if ("errorMessage" in trxData) {
+    return (
+      <CustomError
+        errorMessage={trxData.errorMessage}
+        actualBread={actualBread}
+      />
+    );
+  }
   return (
     <>
       <Head>

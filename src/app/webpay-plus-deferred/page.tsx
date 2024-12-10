@@ -13,6 +13,7 @@ import Head from "next/head";
 import { createTransaction } from "../lib/webpay-plus/data";
 import { NavigationItem } from "@/components/layout/Navigation";
 import { getWebpayPlusDeferredOptions } from "../lib/webpay-plus-deferred/data";
+import { CustomError } from "@/components/customError/CustomError";
 
 const actualBread: Route[] = [
   {
@@ -52,6 +53,14 @@ export default async function CreateTransaction() {
     "/webpay-plus-deferred/commit",
     getWebpayPlusDeferredOptions()
   );
+  if ("errorMessage" in trxData) {
+    return (
+      <CustomError
+        errorMessage={trxData.errorMessage}
+        actualBread={actualBread}
+      />
+    );
+  }
   return (
     <>
       <Head>

@@ -16,6 +16,13 @@ const actualBread: Route[] = [
 
 export default async function CreateOneclickMallDeferredTransactionView() {
   const trxData = await createOneclickMallTransaction(true);
-
+  if ("errorMessage" in trxData) {
+    return (
+      <CustomError
+        errorMessage={trxData.errorMessage}
+        actualBread={actualBread}
+      />
+    );
+  }
   return <PageContent trxData={trxData} />;
 }
