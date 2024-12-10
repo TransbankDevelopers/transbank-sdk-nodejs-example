@@ -51,7 +51,8 @@ export const getWebpayMallOptions = () => {
 };
 
 export const createMallTransaction =
-  async (): Promise<CreateTransactionResult> => {
+  async (): Promise<CreateTransactionResult|ResultError> => {
+    try{
     const headersList = headers();
     const protocol = headersList.get("x-forwarded-proto") || "http"; // https://github.com/vercel/next.js/issues/2469
     const host = headersList.get("host") || "localhost:3000";
@@ -88,6 +89,9 @@ export const createMallTransaction =
       ...randomTransactionDataMall,
       ...createResponse,
     };
+  } catch (exception) {
+    return { errorMessage: getErrorMessage(exception) };
+  }
   };
 
 export const commitTransaction = async (

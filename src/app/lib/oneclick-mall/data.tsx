@@ -47,7 +47,8 @@ export const getOneclickMallOptions = () => {
 
 export const createOneclickMallTransaction = async (
   isDeferred = false
-): Promise<CreateTransactionResult> => {
+): Promise<CreateTransactionResult|ResultError> => {
+  try{
   const headersList = headers();
   const protocol = headersList.get("x-forwarded-proto") || "http"; // https://github.com/vercel/next.js/issues/2469
   const host = headersList.get("host") || "localhost:3000";
@@ -65,6 +66,9 @@ export const createOneclickMallTransaction = async (
   ).start(userName, email, returnUrl);
 
   return { ...startResponse, ...trxData };
+  } catch (exception) {
+    return { errorMessage: getErrorMessage(exception) };
+  }
 };
 
 export const finishOneclickMallTransaction = async (
