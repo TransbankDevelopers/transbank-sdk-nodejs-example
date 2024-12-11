@@ -9,6 +9,7 @@ import { TransactionDetail } from "@/types/transactions";
 import { getCaptureSteps } from "../content/steps/capture";
 import { MallRefundCard } from "@/components/mall-refund-card/MallRefundCard";
 import { MallStatusButton } from "@/components/mall-status-button/MallStatusButton";
+import { CustomError } from "@/components/customError/CustomError";
 
 const getActualBread = (): Route[] => {
   return [
@@ -60,6 +61,15 @@ export default async function AuthorizeTransactionPage({
     captureAmount: Number(captureAmount),
   });
 
+  if ("errorMessage" in trxData) {
+    return (
+      <CustomError
+        errorMessage={trxData.errorMessage}
+        actualBread={getActualBread()}
+      />
+    );
+  }
+  
   return (
     <>
       <Head>

@@ -6,6 +6,7 @@ import { StatusButton } from "@/app/webpay-mall-diferido/components/StatusButton
 import { RefundCard } from "@/app/webpay-mall-diferido/components/RefundCard";
 import { getCaptureSteps } from "@/app/webpay-mall-diferido/content/steps/capture";
 import { captureTransaction } from "@/app/lib/webpay-mall-diferido/data";
+import { CustomError } from "@/components/customError/CustomError";
 
 const actualBread = [
   {
@@ -25,6 +26,7 @@ const actualBread = [
 export default async function CaptureTransactionPage({
   searchParams,
 }: NextPageProps) {
+  
   const {
     token_ws,
     buyOrder,
@@ -41,6 +43,15 @@ export default async function CaptureTransactionPage({
     childCommerceCode: childCommerceCode as string,
   });
 
+  if ("errorMessage" in captureResponse) {
+    return (
+      <CustomError
+        errorMessage={captureResponse.errorMessage}
+        actualBread={actualBread}
+      />
+    );
+  }
+  
   return (
     <>
       <Head>

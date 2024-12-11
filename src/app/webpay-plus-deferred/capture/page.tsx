@@ -6,6 +6,7 @@ import { RefundAndStatus } from "@/app/webpay-plus-deferred/commit/components/Re
 import { getCaptureSteps } from "../content/steps/capture";
 import { captureTransaction } from "@/app/lib/webpay-plus-deferred/data";
 import { TBKCaptureTransactionResponse } from "@/types/transactions";
+import { CustomError } from "@/components/customError/CustomError";
 
 const actualBread = [
   {
@@ -33,6 +34,15 @@ export default async function CaptureTransaction({
     captureAmount: Number(captureAmount as string),
   });
 
+  if ("errorMessage" in commitResponse) {
+    return (
+      <CustomError
+        errorMessage={commitResponse.errorMessage}
+        actualBread={actualBread}
+      />
+    );
+  }
+  
   return (
     <>
       <Head>
