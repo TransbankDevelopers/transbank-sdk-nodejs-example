@@ -6,6 +6,7 @@ import { ContentOneClickMall } from "./content";
 import { RejectedInscriptionView } from "./error/rejected";
 import { AbortedView } from "./error/aborted";
 import { TimeoutView } from "./error/timeout";
+import { CustomError } from "@/components/customError/CustomError";
 
 const actualBread: Route[] = [
   {
@@ -59,6 +60,15 @@ export default async function FinishOneclickInscription({
   }
 
   const trxData = await finishOneclickMallTransaction(TBK_TOKEN as string);
+
+  if ("errorMessage" in trxData) {
+    return (
+      <CustomError
+        errorMessage={trxData.errorMessage}
+        actualBread={actualBread}
+      />
+    );
+  }
 
   if (trxData.response_code === -1) {
     return (
