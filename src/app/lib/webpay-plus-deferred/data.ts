@@ -1,6 +1,6 @@
 import { TBKCaptureTransactionResponse } from "@/types/transactions";
-import {  ResultError } from "@/helpers/resultError";
-import { getErrorMessage} from "@/helpers/errorHandler";
+import { ResultError } from "@/helpers/resultError";
+import { getErrorMessage } from "@/helpers/errorHandler";
 
 import {
   Environment,
@@ -27,17 +27,17 @@ export const getWebpayPlusDeferredOptions = () => {
 
 export const captureTransaction = async (
   params: CaptureTransactionDTO
-): Promise<TBKCaptureTransactionResponse|ResultError> => {
-  try{
-  const { token, buyOrder, authorizationCode, captureAmount } = params;
+): Promise<TBKCaptureTransactionResponse | ResultError> => {
+  try {
+    const { token, buyOrder, authorizationCode, captureAmount } = params;
 
-  WebpayPlus.configureForTestingDeferred();
+    WebpayPlus.configureForTestingDeferred();
 
-  const captureResponse = await new WebpayPlus.Transaction(
-    getWebpayPlusDeferredOptions()
-  ).capture(token, buyOrder, authorizationCode, captureAmount);
+    const captureResponse = await new WebpayPlus.Transaction(
+      getWebpayPlusDeferredOptions()
+    ).capture(token, buyOrder, authorizationCode, captureAmount);
 
-  return captureResponse;
+    return captureResponse;
   } catch (exception) {
     return { errorMessage: getErrorMessage(exception) };
   }
