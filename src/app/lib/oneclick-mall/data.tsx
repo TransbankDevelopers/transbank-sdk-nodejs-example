@@ -90,11 +90,17 @@ export const removeUserInscriptionOneclick = async (
   tbkUser: string,
   userName: string,
   isDeferred = false
-) => {
-  return await new Oneclick.MallInscription(
-    isDeferred ? getOneclickMallDeferredOptions() : getOneclickMallOptions()
-  ).delete(tbkUser, userName);
-};
+): Promise<{ success: true } | ResultError> => {
+  try {
+    await new Oneclick.MallInscription(
+      isDeferred ? getOneclickMallDeferredOptions() : getOneclickMallOptions()
+    ).delete(tbkUser, userName);
+
+    return { success: true };
+  } catch (exception) {
+    return { errorMessage: getErrorMessage(exception) };
+  }
+}
 
 export const authorizeOneClickMallTransaction = async (
   userName: string,
