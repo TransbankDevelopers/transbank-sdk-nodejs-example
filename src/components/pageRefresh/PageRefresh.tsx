@@ -10,7 +10,7 @@ export const PageRefresh = () => {
       console.log('refresh token!!!');
       window.location.reload();
     };
-    const interval = setInterval(reload, 10000);
+    const interval = setInterval(reload, 5*60*1000);
     return () => clearInterval(interval);
   }, []);
 
