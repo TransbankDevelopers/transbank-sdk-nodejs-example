@@ -1,4 +1,3 @@
-// import "./page.css";
 import { Route } from "@/types/menu";
 import { InputText } from "@/components/input/InputText";
 import {
@@ -12,6 +11,7 @@ import { getCreateTRXSteps } from "@/app/webpay-mall/content/steps/create";
 import Head from "next/head";
 import { createMallTransaction } from "@/app/lib/webpay-mall/data";
 import { NavigationItem } from "@/components/layout/Navigation";
+import { PageRefresh } from "@/components/pageRefresh/PageRefresh";
 
 const actualBread: Route[] = [
   {
@@ -51,6 +51,7 @@ export default async function CreateWebpyMallTransaction() {
 
   return (
     <>
+      <PageRefresh/>
       <Head>
         <title>Transbank SDK Node - Create Transaction</title>
       </Head>

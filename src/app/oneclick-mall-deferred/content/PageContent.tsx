@@ -6,8 +6,9 @@ import { getCreateTRXSteps } from "../../oneclick-mall/content/steps/create";
 import { CreateTransactionResult } from "@/app/lib/oneclick-mall/data";
 import { Route } from "@/types/menu";
 import { NavigationItem } from "@/components/layout/Navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { localStorageUserKey } from "@/consts";
+import { PageRefresh } from "@/components/pageRefresh/PageRefresh";
 
 export type PageContentProps = {
   trxData: CreateTransactionResult;
@@ -54,6 +55,7 @@ export const PageContent = (props: PageContentProps) => {
 
   return (
     <>
+      <PageRefresh/>
       <Head>
         <title>Transbank SDK Node - Creación de transacción</title>
       </Head>
