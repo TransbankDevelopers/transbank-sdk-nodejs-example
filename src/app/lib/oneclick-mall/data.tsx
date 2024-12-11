@@ -74,12 +74,16 @@ export const createOneclickMallTransaction = async (
 export const finishOneclickMallTransaction = async (
   token: string,
   isDeferred?: boolean
-): Promise<TBKFinishInscriptionResponse> => {
+): Promise<TBKFinishInscriptionResponse|ResultError> => {
+  try{
   const commitResponse = await new Oneclick.MallInscription(
     isDeferred ? getOneclickMallDeferredOptions() : getOneclickMallOptions()
   ).finish(token);
 
   return commitResponse;
+  }catch (exception) {
+    return { errorMessage: getErrorMessage(exception) };
+  }
 };
 
 export const removeUserInscriptionOneclick = async (
