@@ -6,6 +6,8 @@ import {
   Options,
 } from "transbank-sdk";
 import { TBKCaptureTransactionResponse } from "@/types/transactions";
+import {  ResultError } from "@/helpers/resultError";
+import { getErrorMessage} from "@/helpers/errorHandler";
 
 export type CaptureOneclickMallDeferredProps = {
   commerceCode: string;
@@ -24,7 +26,8 @@ export const getOneclickMallDeferredOptions = () => {
 
 export const captureOneclickMallDeferredTransaction = async (
   props: CaptureOneclickMallDeferredProps
-): Promise<TBKCaptureTransactionResponse> => {
+): Promise<TBKCaptureTransactionResponse|ResultError> => {
+  try{
   const { commerceCode, childBuyOrder, authorizationCode, captureAmount } =
     props;
 
@@ -33,4 +36,7 @@ export const captureOneclickMallDeferredTransaction = async (
   ).capture(commerceCode, childBuyOrder, authorizationCode, captureAmount);
 
   return captureResponse;
+  } catch (exception) {
+    return { errorMessage: getErrorMessage(exception) };
+  }
 };

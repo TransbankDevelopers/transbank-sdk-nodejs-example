@@ -189,7 +189,8 @@ type CaptureTransactionDTO = {
 
 export const captureTransaction = async (
   params: CaptureTransactionDTO
-): Promise<TBKCaptureTransactionResponse> => {
+): Promise<TBKCaptureTransactionResponse|ResultError> => {
+  try{
   const {
     childCommerceCode,
     token,
@@ -210,4 +211,7 @@ export const captureTransaction = async (
   );
 
   return captureResponse;
+  } catch (exception) {
+    return { errorMessage: getErrorMessage(exception) };
+  }
 };
