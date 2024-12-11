@@ -5,6 +5,7 @@ import { NextPageProps } from "@/types/general";
 import { Layout } from "@/components/layout/Layout";
 import Head from "next/head";
 import { getRemoveUserSteps } from "../content/steps/remove-user";
+import { CustomError } from "@/components/customError/CustomError";
 
 const actualBread: Route[] = [
   {
@@ -32,12 +33,21 @@ export default async function RemoveUserInscriptionOneClick({
   searchParams,
 }: NextPageProps) {
   const { tbk_user, user_name } = searchParams;
-  await removeUserInscriptionOneclick(
+ const result = await removeUserInscriptionOneclick(
     tbk_user as string,
     user_name as string,
     true
   );
 
+  if ("errorMessage" in result) {
+    return (
+      <CustomError
+        errorMessage={result.errorMessage}
+        actualBread={actualBread}
+      />
+    );
+  }
+  
   return (
     <>
       <Head>
