@@ -49,7 +49,7 @@ const navigationItems: NavigationItem[] = [
   },
 ];
 
-const commitedContent = {
+const commitContent = {
   title: "Webpay Mall - Confirmar transacción",
   description: (
     <>
@@ -57,7 +57,7 @@ const commitedContent = {
       Transbank que hemos recibido exitosamente los detalles de la transacción.{" "}
       <b>
         Es importante destacar que si la confirmación no se realiza, la
-        transacción será reversada.
+        transacción será caducada.
       </b>
     </>
   ),
@@ -109,7 +109,7 @@ export default async function CommitTransactionPage({
     (commitResponse as TBKMallCommitTransactionResponse).details
   );
 
-  const content = isTransactionRejected ? rejectedContent : commitedContent;
+  const content = isTransactionRejected ? rejectedContent : commitContent;
 
   return (
     <>

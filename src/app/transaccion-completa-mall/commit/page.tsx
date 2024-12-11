@@ -83,7 +83,7 @@ export default async function CommitFullTransactionMallPage({
       </Head>
       <Layout
         pageTitle="Transacción Completa Mall - Confirmar Transacción"
-        pageDescription="En este paso tenemos que confirmar la transacción con el objetivo de avisar a Transbank que hemos recibido la transacción ha sido recibida exitosamente. En caso de que no se confirme la transacción, ésta será reversada.En esta primera etapa necesitas obtener los datos esenciales de la tarjeta de crédito del titular. Utiliza el formulario para recolectar esta información de manera segura."
+        pageDescription="En este paso tenemos que confirmar la transacción con el objetivo de avisar a Transbank que hemos recibido la transacción ha sido recibida exitosamente. En caso de que no se confirme la transacción, ésta será caducada."
         actualBread={actualBread}
         activeRoute="/transaccion-completa-mall/commit"
         navigationItems={navigationItems}
