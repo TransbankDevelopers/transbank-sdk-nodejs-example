@@ -8,6 +8,7 @@ import { NavigationItem } from "@/components/layout/Navigation";
 import { authorizeOneClickMallTransaction } from "@/app/lib/oneclick-mall/data";
 import { getAuthorizeSteps } from "../content/steps/authorize";
 import { MallStatusButton } from "../../../components/mall-status-button/MallStatusButton";
+import { CustomError } from "@/components/customError/CustomError";
 
 const getActualBread = (): Route[] => {
   return [
@@ -49,7 +50,14 @@ export default async function AuthorizeTransactionPage({
     user_name as string,
     tbk_user as string
   );
-
+  if ("errorMessage" in trxData) {
+    return (
+      <CustomError
+        errorMessage={trxData.errorMessage}
+        actualBread={getActualBread()}
+      />
+    );
+  }
   return (
     <>
       <Head>

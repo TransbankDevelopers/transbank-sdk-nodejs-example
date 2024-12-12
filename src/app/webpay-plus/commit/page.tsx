@@ -4,7 +4,7 @@ import { Layout } from "@/components/layout/Layout";
 import { getCommitSteps } from "@/app/webpay-plus/content/steps/commit";
 import Head from "next/head";
 import { commitTransaction } from "@/app/lib/webpay-plus/data";
-import { NextPageProps, SearchParams } from "@/types/general";
+import { NextPageProps } from "@/types/general";
 import { RefundAndStatus } from "./components/RefundAndStatus";
 import { AbortedView } from "./error/aborted";
 import {
@@ -16,6 +16,7 @@ import {
 } from "@/types/transactions";
 import { TimeoutView } from "./error/timeout";
 import { InvalidPaymentView } from "./error/invalid";
+import { CustomError } from "@/components/customError/CustomError";
 
 const getActualBread = (isRejected: boolean): Route[] => {
   return [
@@ -62,9 +63,14 @@ const rejectedContent = {
 export default async function CommitTransaction({
   searchParams,
 }: NextPageProps) {
-  const { token_ws } = searchParams;
-  const { type, commitResponse, abortedResponse, timeoutResponse } =
-    await commitTransaction(searchParams as SearchParams);
+  const result = await commitTransaction(searchParams);
+  if ("errorMessage" in result) {
+    return (
+      <CustomError  errorMessage={result.errorMessage} actualBread={getActualBread(true)}/>
+    );
+  }
+  const { type, commitResponse, abortedResponse, timeoutResponse } = result;
+  
   if (type === TBKCallbackType.ABORTED) {
     return (
       <AbortedView abortedResponse={abortedResponse as TBKAbortedResponse} />
@@ -74,7 +80,7 @@ export default async function CommitTransaction({
   if (type === TBKCallbackType.TIMEOUT) {
     return (
       <TimeoutView
-        token_ws={token_ws as string}
+        token_ws={searchParams.token_ws}
         timeoutResponse={timeoutResponse as TBKTimeoutResponse}
       />
     );
@@ -100,13 +106,13 @@ export default async function CommitTransaction({
         actualBread={getActualBread(isTransactionRejected)}
         activeRoute="/webpay-plus/commit"
         steps={getCommitSteps(
-          token_ws as string,
+          searchParams.token_ws,
           commitResponse as TBKCommitTransactionResponse
         )}
         additionalContent={
           !isTransactionRejected && (
             <RefundAndStatus
-              token={token_ws as string}
+              token={searchParams.token_ws}
               amount={(commitResponse as TBKCommitTransactionResponse).amount}
             />
           )
@@ -115,3 +121,4 @@ export default async function CommitTransaction({
     </>
   );
 }
+

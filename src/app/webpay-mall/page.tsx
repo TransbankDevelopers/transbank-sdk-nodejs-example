@@ -11,6 +11,7 @@ import { getCreateTRXSteps } from "@/app/webpay-mall/content/steps/create";
 import Head from "next/head";
 import { createMallTransaction } from "@/app/lib/webpay-mall/data";
 import { NavigationItem } from "@/components/layout/Navigation";
+import { CustomError } from "@/components/customError/CustomError";
 import { PageRefresh } from "@/components/pageRefresh/PageRefresh";
 
 const actualBread: Route[] = [
@@ -48,7 +49,14 @@ export type CreateTRXProps = TBKCreateTransactionResponse &
 
 export default async function CreateWebpyMallTransaction() {
   const trxData = await createMallTransaction();
-
+  if ("errorMessage" in trxData) {
+    return (
+      <CustomError
+        errorMessage={trxData.errorMessage}
+        actualBread={actualBread}
+      />
+    );
+  }
   return (
     <>
       <PageRefresh/>

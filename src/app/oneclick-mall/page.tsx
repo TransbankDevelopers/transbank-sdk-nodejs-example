@@ -6,6 +6,7 @@ import {
 import { NavigationItem } from "@/components/layout/Navigation";
 import { createOneclickMallTransaction } from "../lib/oneclick-mall/data";
 import { PageContent } from "./content/PageContent";
+import { CustomError } from "@/components/customError/CustomError";
 
 const actualBread: Route[] = [
   {
@@ -42,7 +43,14 @@ export type CreateTRXProps = TBKCreateTransactionResponse &
 
 export default async function CreateWebpyMallTransaction() {
   const trxData = await createOneclickMallTransaction();
-
+  if ("errorMessage" in trxData) {
+    return (
+      <CustomError
+        errorMessage={trxData.errorMessage}
+        actualBread={actualBread}
+      />
+    );
+  }
   return (
     <PageContent
       trxData={trxData}

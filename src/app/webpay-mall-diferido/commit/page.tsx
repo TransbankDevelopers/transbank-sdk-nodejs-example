@@ -19,6 +19,7 @@ import { TimeoutView } from "./error/timeout";
 import { InvalidPaymentView } from "./error/invalid";
 import { isSomeTransactionRejected } from "@/helpers/transactions/transactionHelper";
 import { NavigationItem } from "@/components/layout/Navigation";
+import { CustomError } from "@/components/customError/CustomError";
 
 const getActualBread = (isRejected: boolean): Route[] => {
   return [
@@ -76,9 +77,14 @@ const rejectedContent = {
 export default async function CommitTransactionPage({
   searchParams,
 }: NextPageProps) {
-  const { token_ws } = searchParams;
-  const { type, commitResponse, abortedResponse, timeoutResponse } =
-    await commitTransaction(searchParams);
+  const result = await commitTransaction(searchParams);
+  if ("errorMessage" in result) {
+    return (
+      <CustomError  errorMessage={result.errorMessage} actualBread={getActualBread(true)}/>
+    );
+  }
+  const { type, commitResponse, abortedResponse, timeoutResponse } = result;
+  
 
   if (type === TBKCallbackType.ABORTED) {
     return (
@@ -89,7 +95,7 @@ export default async function CommitTransactionPage({
   if (type === TBKCallbackType.TIMEOUT) {
     return (
       <TimeoutView
-        token_ws={token_ws as string}
+        token_ws={searchParams.token_ws}
         timeoutResponse={timeoutResponse as TBKTimeoutResponse}
       />
     );
@@ -117,7 +123,7 @@ export default async function CommitTransactionPage({
         navigationItems={navigationItems}
         activeRoute="/webpay-mall-diferido/commit"
         steps={getCommitSteps(
-          token_ws as string,
+          searchParams.token_ws,
           commitResponse as TBKMallCommitTransactionResponse
         )}
         additionalContent={
@@ -126,14 +132,14 @@ export default async function CommitTransactionPage({
               {commitResponse?.details.map((detail) => (
                 <CaptureCard
                   key={detail.buy_order}
-                  token={token_ws as string}
+                  token={searchParams.token_ws}
                   amount={detail.amount}
                   buyOrder={detail.buy_order}
                   commerceCode={detail.commerce_code}
                   authorizationCode={detail.authorization_code}
                 />
               ))}
-              <StatusButton token={token_ws as string} />
+              <StatusButton token={searchParams.token_ws} />
             </>
           )
         }

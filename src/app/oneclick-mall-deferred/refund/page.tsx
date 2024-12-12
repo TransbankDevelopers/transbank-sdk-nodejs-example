@@ -50,7 +50,7 @@ export default async function RefundTransaction({
         actualBread={actualBread}
         activeRoute="/oneclick-mall-deferred/refund"
         steps={getRefundTRXSteps(
-          refundResult.refundRequest,
+          refundResult,
           amount as string,
           buy_order as string
         )}
