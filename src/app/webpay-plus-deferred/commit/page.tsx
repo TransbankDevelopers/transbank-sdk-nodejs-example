@@ -64,7 +64,7 @@ const rejectedContent = {
 export default async function CommitTransaction({
   searchParams,
 }: NextPageProps) {
-  const result = await commitTransaction(searchParams as SearchParams,  getWebpayPlusDeferredOptions());
+  const result = await commitTransaction(searchParams,  getWebpayPlusDeferredOptions());
   if ("errorMessage" in result) {
     return (
       <CustomError  errorMessage={result.errorMessage} actualBread={getActualBread(true)}/>
@@ -81,7 +81,7 @@ export default async function CommitTransaction({
   if (type === TBKCallbackType.TIMEOUT) {
     return (
       <TimeoutView
-        token_ws={searchParams.token_ws as string}
+        token_ws={searchParams.token_ws}
         timeoutResponse={timeoutResponse as TBKTimeoutResponse}
       />
     );

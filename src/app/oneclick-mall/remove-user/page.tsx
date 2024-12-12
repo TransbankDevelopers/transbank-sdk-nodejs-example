@@ -33,7 +33,7 @@ export default async function RemoveUserInscriptionOneClick({
   searchParams,
 }: NextPageProps) {
   const { tbk_user, user_name } = searchParams;
-  const result = await removeUserInscriptionOneclick(tbk_user as string, user_name as string);
+  const result = await removeUserInscriptionOneclick(tbk_user, user_name);
 
   if ("errorMessage" in result) {
     return (
@@ -43,7 +43,7 @@ export default async function RemoveUserInscriptionOneClick({
       />
     );
   }
-  
+
   return (
     <>
       <Head>
