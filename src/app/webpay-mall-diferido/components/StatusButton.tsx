@@ -6,7 +6,6 @@ export type StatusButtonProps = {
   className?: string;
 };
 export const StatusButton = ({ token, className }: StatusButtonProps) => {
-  console.log(token)
   const getTRXStatusLink = () => {
     return {
       pathname: `/webpay-mall-diferido/status`,
