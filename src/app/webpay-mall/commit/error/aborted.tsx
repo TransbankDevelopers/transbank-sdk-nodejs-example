@@ -6,6 +6,7 @@ import { getStatusTRXSteps } from "../../content/steps/status";
 import { getStatusTransaction } from "@/app/lib/webpay-mall/data";
 import { getErrorAbortedSteps } from "../../content/steps/error-aborted";
 import { TBKAbortedResponse } from "@/types/transactions";
+import { CustomError } from "@/components/customError/CustomError";
 
 const actualBread: Route[] = [
   {
@@ -30,6 +31,13 @@ export const AbortedView = async (props: AbortedViewProps) => {
   const statusResponse = await getStatusTransaction(
     props.abortedResponse.TBK_TOKEN
   );
+
+  if ("errorMessage" in statusResponse) {
+    return (
+      <CustomError  errorMessage={statusResponse.errorMessage} actualBread={actualBread}/>
+    );
+  }
+  
   return (
     <>
       <Head>
