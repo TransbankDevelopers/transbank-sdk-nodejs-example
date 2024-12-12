@@ -4,7 +4,7 @@ import { Layout } from "@/components/layout/Layout";
 import { getCommitSteps } from "@/app/webpay-mall/content/steps/commit";
 import Head from "next/head";
 import { commitTransaction } from "@/app/lib/webpay-mall/data";
-import { NextPageProps, SearchParams } from "@/types/general";
+import { NextPageProps } from "@/types/general";
 import { RefundCard } from "./components/RefundCard";
 import { StatusButton } from "@/app/webpay-mall/components/StatusButton";
 import { AbortedView } from "./error/aborted";
