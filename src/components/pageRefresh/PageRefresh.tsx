@@ -1,16 +1,15 @@
 "use client";
-
 import { useEffect } from "react";
 
+const reloadInterval = 5*60*1000;
 
 export const PageRefresh = () => {
 
   useEffect(() => {
-    const reload = async () => {
-      console.log('refresh token!!!');
+    const reload = () => {
       window.location.reload();
     };
-    const interval = setInterval(reload, 5*60*1000);
+    const interval = setInterval(reload, reloadInterval);
     return () => clearInterval(interval);
   }, []);
 
