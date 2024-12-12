@@ -11,6 +11,7 @@ import { getCreateTRXSteps } from "@/app/webpay-plus/content/steps/create";
 import Head from "next/head";
 import { createTransaction } from "../lib/webpay-plus/data";
 import { NavigationItem } from "@/components/layout/Navigation";
+import { PageRefresh } from "@/components/pageRefresh/PageRefresh";
 
 const actualBread: Route[] = [
   {
@@ -49,6 +50,7 @@ export default async function CreateTransaction() {
   const trxData = await createTransaction("/webpay-plus/commit");
   return (
     <>
+      <PageRefresh/>
       <Head>
         <title>Transbank SDK Node - Create Transaction</title>
       </Head>
