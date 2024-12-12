@@ -17,7 +17,7 @@ export const StatusButton = ({ token, className }: StatusButtonProps) => {
 
   return (
     <div className={`flex-start ${className}`}>
-      <Button text="CONSULTAR ESTADO" onClick={getTRXStatusLink} />
+      <Button text="CONSULTAR ESTADO" link={getTRXStatusLink()} />
     </div>
   );
 };
