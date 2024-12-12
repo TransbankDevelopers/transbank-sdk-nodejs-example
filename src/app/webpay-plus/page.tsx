@@ -12,6 +12,8 @@ import Head from "next/head";
 import { createTransaction } from "../lib/webpay-plus/data";
 import { NavigationItem } from "@/components/layout/Navigation";
 import { CustomError } from "@/components/customError/CustomError";
+import { PageRefresh } from "@/components/pageRefresh/PageRefresh";
+
 
 const actualBread: Route[] = [
   {
@@ -58,6 +60,7 @@ export default async function CreateTransaction() {
   }
   return (
     <>
+      <PageRefresh/>
       <Head>
         <title>Transbank SDK Node - Create Transaction</title>
       </Head>

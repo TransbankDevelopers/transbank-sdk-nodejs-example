@@ -14,6 +14,8 @@ import { createTransaction } from "../lib/webpay-plus/data";
 import { NavigationItem } from "@/components/layout/Navigation";
 import { getWebpayPlusDeferredOptions } from "../lib/webpay-plus-deferred/data";
 import { CustomError } from "@/components/customError/CustomError";
+import { PageRefresh } from "@/components/pageRefresh/PageRefresh";
+
 
 const actualBread: Route[] = [
   {
@@ -63,6 +65,7 @@ export default async function CreateTransaction() {
   }
   return (
     <>
+      <PageRefresh/>
       <Head>
         <title>Transbank SDK Node - Creación de transacción diferida</title>
       </Head>

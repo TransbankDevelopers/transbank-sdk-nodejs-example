@@ -12,6 +12,7 @@ import Head from "next/head";
 import { createMallTransaction } from "@/app/lib/webpay-mall-diferido/data";
 import { NavigationItem } from "@/components/layout/Navigation";
 import { CustomError } from "@/components/customError/CustomError";
+import { PageRefresh } from "@/components/pageRefresh/PageRefresh";
 
 const actualBread: Route[] = [
   {
@@ -58,6 +59,7 @@ export default async function CreateWebpyMallTransaction() {
   }
   return (
     <>
+      <PageRefresh/>
       <Head>
         <title>Transbank SDK Node - Create Transaction</title>
       </Head>
