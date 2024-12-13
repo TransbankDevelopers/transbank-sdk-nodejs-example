@@ -1,42 +1,212 @@
 "use client";
-import { useState } from "react";
-import { apiRefSidebar } from "@/consts";
-import SidebarItems from "./SidebarItems";
+
+import { useState, useMemo } from "react";
+import Link from "next/link";
 import cx from "classnames";
+import { usePathname } from "next/navigation";
+import { sidebarConfig } from "@/consts";
+import useScrollSpy from "@/app/hooks/useScrollSpy";
+import Image from "next/image";
+import close from "@/assets/svg/close-icon.svg";
 
-import "@/components/layout/Menu.css";
+import "./Sidebar.css";
 
-type SidebarProps = {
-  actualPath: string;
+type CollapseState = Record<string, boolean>;
+
+type SidebarMobileProps = {
+  hideSidebar?: () => void;
+  isSidebarVisible?: boolean;
+  isMobile?: boolean;
 };
 
-export default function Sidebar({ actualPath }: SidebarProps) {
+export default function Sidebar({
+  isSidebarVisible = false,
+  isMobile = false,
+  hideSidebar,
+}: SidebarMobileProps) {
   const [isMenuVisible, setIsMenuVisible] = useState(true);
 
+  const pathname = usePathname();
   const hideMenuClass = cx({
-    "tbk-menu": isMenuVisible,
-    "tbk-menu tbk-menu-hide": !isMenuVisible,
+    "tbk-sidebar": isMenuVisible && !isMobile,
+    "tbk-sidebar tbk-sidebar-hide": !isMenuVisible && !isMobile,
+    "tbk-sidebar-mobile show": isSidebarVisible && isMobile,
+    "tbk-sidebar-mobile": !isSidebarVisible && isMobile,
   });
+
+  const allApiRoutes = useMemo(
+    () =>
+      sidebarConfig.flatMap(
+        (section) =>
+          section.collapsibles?.map((col) => ({
+            route: col.apiReferenceRoute,
+            sections: col.apiSections || [],
+          })) || []
+      ),
+    []
+  );
+
+  const currentApi = allApiRoutes.find(
+    (api) => api.route && pathname === api.route
+  );
+
+  const activeApiSection = useScrollSpy(currentApi ? currentApi.sections : []);
+
+  const initialTitlesState: CollapseState = {};
+  sidebarConfig.forEach((section) => {
+    section.collapsibles?.forEach((collapsible) => {
+      const isCurrentCollapsible =
+        pathname === collapsible.fullRoute ||
+        (collapsible.apiReferenceRoute &&
+          pathname === collapsible.apiReferenceRoute);
+
+      if (isCurrentCollapsible) {
+        initialTitlesState[collapsible.title] = true;
+      } else {
+        initialTitlesState[collapsible.title] = false;
+      }
+    });
+  });
+
+  const [collapseState, setCollapseState] =
+    useState<CollapseState>(initialTitlesState);
 
   const hideMenu = () => {
     setIsMenuVisible(!isMenuVisible);
   };
 
+  const toggle = (key: string) => {
+    setCollapseState((prev) => {
+      const newState = { ...prev };
+
+      sidebarConfig.forEach((principalSections) => {
+        principalSections.collapsibles?.forEach((collapsible) => {
+          newState[collapsible.title] = false;
+        });
+      });
+
+      newState[key] = !prev[key];
+
+      return newState;
+    });
+  };
+
+  const linkStyle = (condition: boolean) => ({
+    color: condition ? "blue" : "inherit",
+    textDecoration: "none",
+    cursor: "pointer",
+  });
+
   return (
-    <div className={hideMenuClass}>
-      <div className="toogle-btn-container">
-        <button className="tbk-toggle-btn" onClick={hideMenu}>
-          {"<"}
-        </button>
-      </div>
-      {apiRefSidebar.map((routes) => (
-        <SidebarItems
-          key={routes.category}
-          title={routes.category}
-          actualPath={actualPath}
-          routes={routes.routes}
-        />
-      ))}
-    </div>
+    <aside className={hideMenuClass}>
+      {isMobile ? (
+        <div className="toogle-close-btn-container">
+          <button className="tbk-vlose-toggle-btn" onClick={hideSidebar}>
+            <Image
+              unoptimized
+              src={close}
+              alt="menu burger"
+              width={21}
+              height={21}
+            />
+          </button>
+        </div>
+      ) : (
+        <div className="toogle-btn-container">
+          <button className="tbk-toggle-btn" onClick={hideMenu}>
+            {"<"}
+          </button>
+        </div>
+      )}
+      <nav className="sidebar-content">
+        {sidebarConfig.map((section) => {
+          const hasCollapsibles = !!section.collapsibles;
+          return (
+            <div key={section.title}>
+              <p className="tbk-sidebar-item-title">{section.title}</p>
+
+              <ul>
+                {hasCollapsibles && section.collapsibles ? (
+                  section.collapsibles.map((collapsible) => (
+                    <li
+                      key={collapsible.title}
+                      style={{ marginBottom: "20px" }}
+                    >
+                      <a
+                        className="sidebar-collapsible-title"
+                        onClick={() => toggle(collapsible.title)}
+                      >
+                        <span>{collapsible.title}</span>
+                        <Image
+                          unoptimized
+                          src="/t-arrow.svg"
+                          alt="{imagePath}"
+                          width={24}
+                          height={24}
+                          className={cx(
+                            collapseState[collapsible.title] &&
+                              "sidebar-icons-rotate"
+                          )}
+                        />
+                      </a>
+                      {collapseState[collapsible.title] && (
+                        <ul>
+                          <li
+                            className={`${cx(
+                              pathname === collapsible.fullRoute && "active"
+                            )} collapsible-items`}
+                          >
+                            <Link
+                              href={collapsible.fullRoute}
+                              className="tbk-sidebar-item"
+                            >
+                              Flujo Completo
+                            </Link>
+                          </li>
+                          {collapsible.apiSections?.map((apiId) => (
+                            <li
+                              key={apiId}
+                              className={`${
+                                cx(
+                                  collapsible.apiReferenceRoute &&
+                                    pathname ===
+                                      collapsible.apiReferenceRoute &&
+                                    activeApiSection === apiId
+                                    ? "active"
+                                    : ""
+                                ) && "active"
+                              } collapsible-items`}
+                            >
+                              <Link
+                                href={`${collapsible.apiReferenceRoute}#${apiId}`}
+                                className={`tbk-sidebar-item`}
+                              >
+                                {apiId.replace("api-", "api ")}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </li>
+                  ))
+                ) : (
+                  <li className="collapsible-items">
+                    {section.fullRoute && (
+                      <Link
+                        href={section.fullRoute}
+                        style={linkStyle(pathname === section.fullRoute)}
+                      >
+                        flujo completo
+                      </Link>
+                    )}
+                  </li>
+                )}
+              </ul>
+              <hr className="sidebar-divider" />
+            </div>
+          );
+        })}
+      </nav>
+    </aside>
   );
 }
