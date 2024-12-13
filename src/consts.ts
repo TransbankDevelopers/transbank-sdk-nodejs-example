@@ -168,7 +168,7 @@ export const sidebarConfig: SidebarSection[] = [
       },
       {
         title: "Webpay Plus Mall Diferido",
-        fullRoute: "/webpay-mall-deferred",
+        fullRoute: "/webpay-mall-diferido",
         apiReferenceRoute: "/api-reference/webpay-mall-deferred",
         apiSections: ["api-status", "api-capture", "api-refund"],
       },
