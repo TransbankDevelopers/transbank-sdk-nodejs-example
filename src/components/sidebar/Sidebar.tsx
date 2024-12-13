@@ -70,15 +70,19 @@ export default function Sidebar({
     setIsMenuVisible(!isMenuVisible);
   };
 
+  const resetCollapseState = (newState: CollapseState) => {
+    sidebarConfig.forEach((principalSections) => {
+      principalSections.collapsibles?.forEach((collapsible) => {
+        newState[collapsible.title] = false;
+      });
+    });
+  };
+
   const toggle = (key: string) => {
     setCollapseState((prev) => {
       const newState = { ...prev };
 
-      sidebarConfig.forEach((principalSections) => {
-        principalSections.collapsibles?.forEach((collapsible) => {
-          newState[collapsible.title] = false;
-        });
-      });
+      resetCollapseState(newState);
 
       newState[key] = !prev[key];
 
