@@ -3,7 +3,7 @@ import { Open_Sans } from "next/font/google";
 import "./globals.css";
 import NextTopLoader from "nextjs-toploader";
 import { Header } from "@/components/layout/Header";
-import { Menu } from "@/components/layout/Menu";
+import Sidebar from "@/components/sidebar/Sidebar";
 import { usePathname } from "next/navigation";
 import Footer from "@/components/Footer/Footer";
 
@@ -17,15 +17,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [isMenuVisible, setIsMenuVisible] = useState(true);
   const pathname = usePathname();
   const excludePaths = pathname.startsWith("/api-reference");
 
   const isHome = pathname === "/";
-
-  const hideMenu = () => {
-    setIsMenuVisible(!isMenuVisible);
-  };
 
   return (
     <html lang="en">
@@ -40,7 +35,7 @@ export default function RootLayout({
             children
           ) : (
             <div className="tbk-layout-body">
-              <Menu hideMenu={hideMenu} isMenuVisible={isMenuVisible} />
+              <Sidebar />
               {children}
             </div>
           )}

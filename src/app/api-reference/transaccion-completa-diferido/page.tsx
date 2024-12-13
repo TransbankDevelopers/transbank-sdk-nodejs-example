@@ -15,9 +15,9 @@ import ApiRefTxDeferredCapture from "./ApiRefTxDeferredCapture";
 export default function ApiRefWebpay() {
   return (
     <div className="tbk-layout-body">
-      <Sidebar actualPath="/api-reference/transaccion-completa-diferido" />
+      <Sidebar />
       <div className="tbk-layout-content api-ref">
-        <h2>Obtener estado de una transacción</h2>
+        <h2 id="api-status">Obtener estado de una transacción</h2>
         <p>
           Esta operación permite obtener el estado de la transacción en
           cualquier momento. En condiciones normales es probable que no se
@@ -30,7 +30,7 @@ export default function ApiRefWebpay() {
           <Table columns={getColumnDefinition()} rows={txCompleteStatus} />
         </Collapse>
 
-        <h2>Capturar una transacción</h2>
+        <h2 id="api-capture">Capturar una transacción</h2>
         <p>
           Permite solicitar a Webpay la captura diferida de una transacción con
           autorización y sin captura simultánea. Puedes revisar más detalles de
@@ -49,7 +49,7 @@ export default function ApiRefWebpay() {
           <Table columns={getColumnDefinition()} rows={txCompleteCapture} />
         </Collapse>
 
-        <h2>Reversar o Anular un pago</h2>
+        <h2 id="api-refund">Reversar o Anular un pago</h2>
         <p>
           Las transacciones de Webpay se pueden anular o reversar dadas algunas
           condiciones. Para cualquiera de éstas operaciones se utiliza el mismo
