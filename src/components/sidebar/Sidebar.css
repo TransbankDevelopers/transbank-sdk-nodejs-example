@@ -46,7 +46,6 @@
 
 .tbk-sidebar-item {
   display: flex;
-  color: var(--tbk-black);
   cursor: pointer;
   color: var(--tbk-grey-4);
   font-size: 15px;
@@ -113,6 +112,7 @@
   right: -15px;
   height: 100%;
 }
+
 .tbk-toggle-btn {
   position: sticky;
   top: 95px;
