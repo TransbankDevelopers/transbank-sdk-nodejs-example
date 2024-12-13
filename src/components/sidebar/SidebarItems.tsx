@@ -1,37 +1,83 @@
 "use client";
-import { Route } from "@/types/menu";
+
 import cx from "classnames";
 import Link from "next/link";
+import Image from "next/image";
 
-type SidebarItemsProps = {
-  title: string;
-  routes: Route[];
-  actualPath: string;
-};
+type SidebarItemsProps = Readonly<{
+  pathname: string;
+  collapseState: Record<string, boolean>;
+  activeApiSection?: string | null;
+  toggle: (title: string) => void;
+  collapsible?: {
+    title: string;
+    fullRoute: string;
+    apiSections?: string[];
+    apiReferenceRoute?: string;
+  };
+}>;
 
 export default function SidebarItems({
-  title,
-  routes,
-  actualPath,
+  pathname,
+  collapseState,
+  toggle,
+  collapsible,
+  activeApiSection,
 }: SidebarItemsProps) {
+  if (!collapsible) {
+    return null;
+  }
+
   return (
-    <div className="tbk-menu-item-container">
-      <span className="tbk-menu-item-text">{title}</span>
-      {routes.map((item) => {
-        return (
-          <Link
-            href={{
-              pathname: item.path,
-            }}
-            className={cx("tbk-menu-item", {
-              active: actualPath === item.path,
-            })}
-            key={item.name}
+    <li style={{ marginBottom: "20px" }}>
+      <button
+        className="sidebar-collapsible-title"
+        onClick={() => toggle(collapsible.title)}
+      >
+        <span>{collapsible.title}</span>
+        <Image
+          unoptimized
+          src="/t-arrow.svg"
+          alt="{imagePath}"
+          width={24}
+          height={24}
+          className={cx(
+            collapseState[collapsible.title] && "sidebar-icons-rotate"
+          )}
+        />
+      </button>
+      {collapseState[collapsible.title] && (
+        <ul>
+          <li
+            className={`${cx(
+              pathname === collapsible.fullRoute && "active"
+            )} collapsible-items`}
           >
-            {item.name}
-          </Link>
-        );
-      })}
-    </div>
+            <Link href={collapsible.fullRoute} className="tbk-sidebar-item">
+              Flujo Completo
+            </Link>
+          </li>
+          {collapsible.apiSections?.map((apiId) => (
+            <li
+              key={apiId}
+              className={`${cx(
+                collapsible.apiReferenceRoute &&
+                  pathname === collapsible.apiReferenceRoute &&
+                  activeApiSection === apiId
+                  ? "active"
+                  : ""
+              )} collapsible-items`}
+            >
+              <Link
+                href={`${collapsible.apiReferenceRoute}#${apiId}`}
+                className="tbk-sidebar-item"
+              >
+                {apiId.replace("api-", "api ")}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
+    </li>
   );
 }

@@ -17,9 +17,9 @@ import ApiRefOneclickDeferredAuthorize from "./ApiRefOneclickDeferredAuthorize";
 export default function ApiRefOneclickMall() {
   return (
     <div className="tbk-layout-body">
-      <Sidebar actualPath="/api-reference/oneclick-mall-deferred" />
+      <Sidebar />
       <div className="tbk-layout-content api-ref">
-        <h2>Autorizar una transacción</h2>
+        <h2 id="api-authorize">Autorizar una transacción</h2>
         <p>
           Una vez realizada la inscripción, el comercio puede usar el tbkUser
           recibido para realizar transacciones. Para eso debes usar el método
@@ -40,7 +40,9 @@ export default function ApiRefOneclickMall() {
           <Table columns={getColumnDefinition()} rows={OneClickMallAuthorize} />
         </Collapse>
 
-        <h2 className="mt-8">Obtener estado de una transacción</h2>
+        <h2 className="mt-8" id="api-status">
+          Obtener estado de una transacción
+        </h2>
         <p>
           Permite consultar el estado de pago realizado a través de Oneclick.
           Retorna el resultado de la autorización.
@@ -61,7 +63,9 @@ export default function ApiRefOneclickMall() {
           <Table columns={getColumnDefinition()} rows={OneClickMallStatus} />
         </Collapse>
 
-        <h2 className="mt-8">Capturar una transacción</h2>
+        <h2 className="mt-8" id="api-capture">
+          Capturar una transacción
+        </h2>
         <p>
           En el caso de que tengas contratada la modalidad de Captura diferida,
           necesitas llamar al método capture después de llamar a authorize para
@@ -77,11 +81,13 @@ export default function ApiRefOneclickMall() {
         </p>
         <ApiRefOneclickDeferredCapture />
 
-        <Collapse label="Respuesta Transaction.status">
+        <Collapse label="Respuesta Transaction.capture">
           <Table columns={getColumnDefinition()} rows={OneClickMallCapture} />
         </Collapse>
 
-        <h2 className="mt-8">Reversar o anular una transacción</h2>
+        <h2 className="mt-8" id="api-refund">
+          Reversar o anular una transacción
+        </h2>
         <p>
           Esta operación permite a todo comercio habilitado, reversar o anular
           una transacción que fue generada en Oneclick.

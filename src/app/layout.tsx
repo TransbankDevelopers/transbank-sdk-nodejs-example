@@ -1,16 +1,16 @@
 "use client";
-import { useState } from "react";
-import { Roboto } from "next/font/google";
+import { Open_Sans } from "next/font/google";
 import "./globals.css";
 import NextTopLoader from "nextjs-toploader";
 import { Header } from "@/components/layout/Header";
-import { Menu } from "@/components/layout/Menu";
+import Sidebar from "@/components/sidebar/Sidebar";
 import { usePathname } from "next/navigation";
 import Footer from "@/components/Footer/Footer";
+import "@/components/sidebar/Sidebar.css";
 
-const roboto = Roboto({
-  subsets: ["latin"],
+const openSans = Open_Sans({
   weight: ["300", "400", "500", "700"],
+  subsets: ["latin"],
 });
 
 export default function RootLayout({
@@ -18,22 +18,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [isMenuVisible, setIsMenuVisible] = useState(true);
   const pathname = usePathname();
   const excludePaths = pathname.startsWith("/api-reference");
 
   const isHome = pathname === "/";
-
-  const hideMenu = () => {
-    setIsMenuVisible(!isMenuVisible);
-  };
 
   return (
     <html lang="en">
       <head>
         <title>Transbank SDK</title>
       </head>
-      <body className={roboto.className}>
+      <body className={openSans.className}>
         <NextTopLoader color="#D5006C" />
         <div className="flex-col">
           <Header />
@@ -41,7 +36,7 @@ export default function RootLayout({
             children
           ) : (
             <div className="tbk-layout-body">
-              <Menu hideMenu={hideMenu} isMenuVisible={isMenuVisible} />
+              <Sidebar />
               {children}
             </div>
           )}

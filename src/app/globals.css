@@ -10,7 +10,6 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  font-family: Roboto, sans-serif;
 }
 
 @layer utilities {
@@ -24,11 +23,14 @@ body {
   --tbk-white: #fcfdfe;
   --tbk-red: #d5006c;
   --tbk-red-dark: #cc0066;
+  --tbk-sweet-red: #ffe6e6;
+  --tbk-white-red: #f9f6f6;
   --tbk-light-red: #d5006c0d;
   --tbk-border: #e7ebf3;
   --tbk-grey: #828ea5;
   --tbk-grey-2: #707382;
   --tbk-grey-3: #8c939f;
+  --tbk-grey-4: #404756;
   --tbk-black: #0e1520;
   --tbk-black-2: #2d3338;
   --tbk-black-3: #333333;
@@ -50,6 +52,10 @@ h2 {
   line-height: 1.5rem;
   font-size: 1.125rem;
   font-weight: 700;
+}
+
+h2[id^="api-"] {
+  scroll-margin-top: 90px !important;
 }
 
 .tbk-shadow {
@@ -230,12 +236,16 @@ h2 {
 
 .tbk-layout-body {
   display: grid;
-  grid-template-columns: 280px 1fr;
-  padding: 2.5rem 6rem;
+  grid-template-columns: 330px 1fr;
+  padding: 40px 96px 40px 0px;
   transition: grid-template-columns 0.7s ease;
 }
 
 .tbk-layout-body:has(.tbk-menu.tbk-menu-hide) {
+  grid-template-columns: 20px 1fr;
+}
+
+.tbk-layout-body:has(.tbk-sidebar.tbk-sidebar-hide) {
   grid-template-columns: 20px 1fr;
 }
 

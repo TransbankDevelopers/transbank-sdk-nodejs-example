@@ -5,19 +5,21 @@ import Menu from "@/assets/svg/menu.svg";
 import Image from "next/image";
 import Link from "next/link";
 import { Button, ButtonVariant } from "@/components/button/Button";
-import { MenuMobile } from "./MenuMobile";
+import Sidebar from "@/components/sidebar/Sidebar";
 
 import "./Header.css";
 
 export const Header = () => {
-  const [showMenuMobile, setShowMenuMobile] = useState(false);
+  const [showSidebarMobile, setShowSidebarMobile] = useState(false);
 
   const openMobileMenu = () => {
-    setShowMenuMobile(true);
+    setShowSidebarMobile(true);
   };
-  const closeMobileMenu = () => {
-    setShowMenuMobile(false);
+
+  const closeSidebarMobile = () => {
+    setShowSidebarMobile(false);
   };
+
   return (
     <div className="tbk-header">
       <div className="tbk-logo-container">
@@ -33,7 +35,11 @@ export const Header = () => {
             height={31}
           />
         </button>
-        <MenuMobile hideMenu={closeMobileMenu} isMenuVisible={showMenuMobile} />
+        <Sidebar
+          isMobile
+          hideSidebar={closeSidebarMobile}
+          isSidebarVisible={showSidebarMobile}
+        />
         <Link href="/">
           <Image
             unoptimized
@@ -45,9 +51,6 @@ export const Header = () => {
         </Link>
       </div>
       <div className="rigth-header">
-        <Link className="header-link" href="/api-reference/webpay-plus">
-          Operaciones API
-        </Link>
         <Button
           text="Comunidad Slack"
           variant={ButtonVariant.SECONDARY}
