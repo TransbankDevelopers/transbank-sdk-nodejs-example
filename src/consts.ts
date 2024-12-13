@@ -132,3 +132,101 @@ export const apiRefSidebar: MenuRoute[] = [
     routes: apiWebpayFullTransactionRoutes,
   },
 ];
+
+export interface SidebarSection {
+  title: string;
+  fullRoute?: string;
+  collapsibles?: {
+    title: string;
+    fullRoute: string;
+    apiReferenceRoute?: string;
+    apiSections?: string[];
+  }[];
+}
+
+export const sidebarConfig: SidebarSection[] = [
+  {
+    title: "Webpay Plus",
+    collapsibles: [
+      {
+        title: "Webpay Plus",
+        fullRoute: "/webpay-plus",
+        apiReferenceRoute: "/api-reference/webpay-plus",
+        apiSections: ["api-status", "api-refund"],
+      },
+      {
+        title: "Webpay Plus Mall",
+        fullRoute: "/webpay-mall",
+        apiReferenceRoute: "/api-reference/webpay-mall",
+        apiSections: ["api-status", "api-refund"],
+      },
+      {
+        title: "Webpay Plus Diferido",
+        fullRoute: "/webpay-plus-deferred",
+        apiReferenceRoute: "/api-reference/webpay-plus-deferred",
+        apiSections: ["api-status", "api-capture", "api-refund"],
+      },
+      {
+        title: "Webpay Plus Mall Diferido",
+        fullRoute: "/webpay-mall-deferred",
+        apiReferenceRoute: "/api-reference/webpay-mall-deferred",
+        apiSections: ["api-status", "api-capture", "api-refund"],
+      },
+    ],
+  },
+  {
+    title: "Webpay Oneclick",
+    collapsibles: [
+      {
+        title: "Oneclick Mall",
+        fullRoute: "/oneclick-mall",
+        apiReferenceRoute: "/api-reference/oneclick-mall",
+        apiSections: ["api-authorize", "api-status", "api-refund"],
+      },
+      {
+        title: "Oneclick Mall Diferido",
+        fullRoute: "/oneclick-mall-deferred",
+        apiReferenceRoute: "/api-reference/oneclick-mall-deferred",
+        apiSections: [
+          "api-authorize",
+          "api-status",
+          "api-capture",
+          "api-refund",
+        ],
+      },
+    ],
+  },
+  {
+    title: "Webpay transaccion completa",
+    collapsibles: [
+      {
+        title: "Transaccion Completa",
+        fullRoute: "/transaccion-completa",
+        apiReferenceRoute: "/api-reference/transaccion-completa",
+        apiSections: ["api-status", "api-refund"],
+      },
+      {
+        title: "Transaccion Completa Mall",
+        fullRoute: "/transaccion-completa-mall",
+        apiReferenceRoute: "/api-reference/transaccion-completa-mall",
+        apiSections: ["api-status", "api-refund"],
+      },
+      {
+        title: "Transaccion Completa Diferido",
+        fullRoute: "/transaccion-completa-diferido",
+        apiReferenceRoute: "/api-reference/transaccion-completa-diferido",
+        apiSections: ["api-status", "api-capture", "api-refund"],
+      },
+      {
+        title: "Transaccion Completa Mall Diferido",
+        fullRoute: "/transaccion-completa-mall-diferido",
+        apiReferenceRoute: "/api-reference/transaccion-completa-mall-diferido",
+        apiSections: ["api-status", "api-capture", "api-refund"],
+      },
+    ],
+  },
+  {
+    title: "Patpass",
+    fullRoute: "/patpass",
+  },
+];
