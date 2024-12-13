@@ -8,14 +8,15 @@ import { sidebarConfig } from "@/consts";
 import useScrollSpy from "@/app/hooks/useScrollSpy";
 import Image from "next/image";
 import close from "@/assets/svg/close-icon.svg";
+import SidebarItems from "./SidebarItems";
 
 type CollapseState = Record<string, boolean>;
 
-type SidebarMobileProps = {
+type SidebarMobileProps = Readonly<{
   hideSidebar?: () => void;
   isSidebarVisible?: boolean;
   isMobile?: boolean;
-};
+}>;
 
 export default function Sidebar({
   isSidebarVisible = false,
@@ -58,11 +59,7 @@ export default function Sidebar({
         (collapsible.apiReferenceRoute &&
           pathname === collapsible.apiReferenceRoute);
 
-      if (isCurrentCollapsible) {
-        initialTitlesState[collapsible.title] = true;
-      } else {
-        initialTitlesState[collapsible.title] = false;
-      }
+      initialTitlesState[collapsible.title] = Boolean(isCurrentCollapsible);
     });
   });
 
@@ -120,66 +117,14 @@ export default function Sidebar({
               <ul>
                 {hasCollapsibles && section.collapsibles ? (
                   section.collapsibles.map((collapsible) => (
-                    <li
+                    <SidebarItems
                       key={collapsible.title}
-                      style={{ marginBottom: "20px" }}
-                    >
-                      <button
-                        className="sidebar-collapsible-title"
-                        onClick={() => toggle(collapsible.title)}
-                      >
-                        <span>{collapsible.title}</span>
-                        <Image
-                          unoptimized
-                          src="/t-arrow.svg"
-                          alt="{imagePath}"
-                          width={24}
-                          height={24}
-                          className={cx(
-                            collapseState[collapsible.title] &&
-                              "sidebar-icons-rotate"
-                          )}
-                        />
-                      </button>
-                      {collapseState[collapsible.title] && (
-                        <ul>
-                          <li
-                            className={`${cx(
-                              pathname === collapsible.fullRoute && "active"
-                            )} collapsible-items`}
-                          >
-                            <Link
-                              href={collapsible.fullRoute}
-                              className="tbk-sidebar-item"
-                            >
-                              Flujo Completo
-                            </Link>
-                          </li>
-                          {collapsible.apiSections?.map((apiId) => (
-                            <li
-                              key={apiId}
-                              className={`${
-                                cx(
-                                  collapsible.apiReferenceRoute &&
-                                    pathname ===
-                                      collapsible.apiReferenceRoute &&
-                                    activeApiSection === apiId
-                                    ? "active"
-                                    : ""
-                                ) && "active"
-                              } collapsible-items`}
-                            >
-                              <Link
-                                href={`${collapsible.apiReferenceRoute}#${apiId}`}
-                                className={`tbk-sidebar-item`}
-                              >
-                                {apiId.replace("api-", "api ")}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                    </li>
+                      collapsible={collapsible}
+                      activeApiSection={activeApiSection}
+                      pathname={pathname}
+                      toggle={toggle}
+                      collapseState={collapseState}
+                    />
                   ))
                 ) : (
                   <li
