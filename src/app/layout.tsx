@@ -6,6 +6,7 @@ import { Header } from "@/components/layout/Header";
 import Sidebar from "@/components/sidebar/Sidebar";
 import { usePathname } from "next/navigation";
 import Footer from "@/components/Footer/Footer";
+import "@/components/sidebar/Sidebar.css";
 
 const openSans = Open_Sans({
   weight: ["300", "400", "500", "700"],

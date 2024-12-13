@@ -9,8 +9,6 @@ import useScrollSpy from "@/app/hooks/useScrollSpy";
 import Image from "next/image";
 import close from "@/assets/svg/close-icon.svg";
 
-import "./Sidebar.css";
-
 type CollapseState = Record<string, boolean>;
 
 type SidebarMobileProps = {
