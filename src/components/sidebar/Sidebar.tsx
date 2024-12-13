@@ -124,7 +124,7 @@ export default function Sidebar({
                       key={collapsible.title}
                       style={{ marginBottom: "20px" }}
                     >
-                      <a
+                      <button
                         className="sidebar-collapsible-title"
                         onClick={() => toggle(collapsible.title)}
                       >
@@ -140,7 +140,7 @@ export default function Sidebar({
                               "sidebar-icons-rotate"
                           )}
                         />
-                      </a>
+                      </button>
                       {collapseState[collapsible.title] && (
                         <ul>
                           <li
