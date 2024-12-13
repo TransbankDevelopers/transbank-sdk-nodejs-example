@@ -1,6 +1,5 @@
 "use client";
-import { useState } from "react";
-import { Roboto } from "next/font/google";
+import { Open_Sans } from "next/font/google";
 import "./globals.css";
 import NextTopLoader from "nextjs-toploader";
 import { Header } from "@/components/layout/Header";
@@ -8,9 +7,9 @@ import { Menu } from "@/components/layout/Menu";
 import { usePathname } from "next/navigation";
 import Footer from "@/components/Footer/Footer";
 
-const roboto = Roboto({
-  subsets: ["latin"],
+const openSans = Open_Sans({
   weight: ["300", "400", "500", "700"],
+  subsets: ["latin"],
 });
 
 export default function RootLayout({
@@ -33,7 +32,7 @@ export default function RootLayout({
       <head>
         <title>Transbank SDK</title>
       </head>
-      <body className={roboto.className}>
+      <body className={openSans.className}>
         <NextTopLoader color="#D5006C" />
         <div className="flex-col">
           <Header />
