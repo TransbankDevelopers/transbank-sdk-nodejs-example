@@ -227,6 +227,6 @@ export const sidebarConfig: SidebarSection[] = [
   },
   {
     title: "Patpass",
-    fullRoute: "/patpass",
+    fullRoute: "/patpass-comercio",
   },
 ];

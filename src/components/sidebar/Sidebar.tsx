@@ -89,12 +89,6 @@ export default function Sidebar({
     });
   };
 
-  const linkStyle = (condition: boolean) => ({
-    color: condition ? "blue" : "inherit",
-    textDecoration: "none",
-    cursor: "pointer",
-  });
-
   return (
     <aside className={hideMenuClass}>
       {isMobile ? (
@@ -188,14 +182,13 @@ export default function Sidebar({
                     </li>
                   ))
                 ) : (
-                  <li className="collapsible-items">
+                  <li
+                    className={`${cx(
+                      pathname === section.fullRoute && "active"
+                    )} collapsible-items`}
+                  >
                     {section.fullRoute && (
-                      <Link
-                        href={section.fullRoute}
-                        style={linkStyle(pathname === section.fullRoute)}
-                      >
-                        flujo completo
-                      </Link>
+                      <Link href={section.fullRoute}>flujo completo</Link>
                     )}
                   </li>
                 )}
