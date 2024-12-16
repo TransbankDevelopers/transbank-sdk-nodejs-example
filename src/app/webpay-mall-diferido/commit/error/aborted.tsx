@@ -3,7 +3,7 @@ import { Route } from "@/types/menu";
 import { Layout } from "@/components/layout/Layout";
 import { LayoutContent } from "@/components/layout/LayoutContent";
 import { getStatusTRXSteps } from "../../content/steps/status";
-import { getStatusTransaction } from "@/app/lib/webpay-mall/data";
+import { getStatusTransaction } from "@/app/lib/webpay-mall-diferido/data";
 import { getErrorAbortedSteps } from "../../content/steps/error-aborted";
 import { TBKAbortedResponse } from "@/types/transactions";
 import { CustomError } from "@/components/customError/CustomError";
