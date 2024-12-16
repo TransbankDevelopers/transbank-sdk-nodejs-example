@@ -15,6 +15,17 @@ export default function ApiRefWebpayMall() {
     <div className="tbk-layout-body">
       <Sidebar />
       <div className="tbk-layout-content api-ref">
+        <h2>Requisitos Previos:</h2>
+        <p className="mb-4">
+          Para realizar cualquier operación en esta sección, es necesario contar
+          con el token que obtienes al crear la transacción. Si aún no dispones
+          del token puedes obtenerlo siguiendo las instrucciones detalladas en
+          la sección{" "}
+          <a className="tbk-link" href="/webpay-mall">
+            Flujo Comleto.
+          </a>
+        </p>
+
         <h2 id="api-status">Obtener estado de una transacción</h2>
         <p>
           Esta operación permite obtener el estado de la transacción en

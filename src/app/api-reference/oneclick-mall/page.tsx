@@ -17,6 +17,16 @@ export default function ApiRefOneclickMall() {
     <div className="tbk-layout-body">
       <Sidebar />
       <div className="tbk-layout-content api-ref">
+        <h2>Requisitos Previos:</h2>
+        <p className="mb-6">
+          Para realizar cualquier operación en esta sección, es necesario contar
+          con el usename y tbk_user que obtienes al crear la inscripción. Si aún
+          no dispones de estos datos, puedes obtenerlos siguiendo las
+          instrucciones detalladas en la sección{" "}
+          <a className="tbk-link" href="/oneclick-mall">
+            Flujo Comleto.
+          </a>
+        </p>
         <h2 id="api-authorize">Autorizar una transacción</h2>
         <p>
           Una vez realizada la inscripción, el comercio puede usar el tbkUser
