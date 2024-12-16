@@ -37,7 +37,7 @@ export const getCreateTRXSteps = (token: string): StepProps[] => {
           </p>
           <ul>
             <li>
-              <span className="font-bold">Consulta de Cuotas(opcional):</span>{" "}
+              <span className="font-bold">Consulta de Cuotas (opcional):</span>{" "}
               Alternativamente puedes realizar consultas de cuotas para ofrecer
               opciones de pago a plazos.
             </li>
