@@ -84,7 +84,7 @@ export const getCreateTRXSteps = (
           </Text>
 
           <Text>
-            Antes de continuar con el formulario de Webpay, asegúrate de contar con los datos de las tarjetas de prueba que están en la{" "}
+            Antes de continuar al formulario de Webpay, asegúrate de contar con los datos de las tarjetas de prueba que están en la{" "}
                 <a
                   className="tbk-link tbk-link-alt"
                   href="https://transbankdevelopers.cl/documentacion/como_empezar#tarjetas-de-prueba"
