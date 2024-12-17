@@ -43,8 +43,8 @@ export const getCreateTRXSteps = (token: string): StepProps[] => {
             </li>
             <li>
               <span className="font-bold">Confirmar Transacción:</span> debes
-              confirmar directamente la transacción para proceder con el proceso
-              de pago.
+              confirmar directamente la transacción para finalizar con el
+              proceso de pago.
             </li>
           </ul>
         </div>

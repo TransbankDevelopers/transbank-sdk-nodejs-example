@@ -37,14 +37,14 @@ export const getCreateTRXSteps = (token: string): StepProps[] => {
           </p>
           <ul>
             <li>
-              <span className="font-bold">Consulta de Cuotas (opcional):</span>{" "}
+              <span className="font-bold">Consulta de Cuotas (opcional):</span>
               Alternativamente puedes realizar consultas de cuotas para ofrecer
               opciones de pago a plazos.
             </li>
             <li>
               <span className="font-bold">Confirmar Transacción:</span> debes
-              confirmar directamente la transacción para proceder con el proceso
-              de pago.
+              confirmar directamente la transacción para finalizar con el
+              proceso de pago.
             </li>
           </ul>
         </div>
