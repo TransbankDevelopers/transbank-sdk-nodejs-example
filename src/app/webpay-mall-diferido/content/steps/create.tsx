@@ -84,6 +84,18 @@ export const getCreateTRXSteps = (
             &quot;token_ws&quot;, el cual es esencial para completar el proceso
             de pago de manera exitosa.
           </Text>
+
+          <Text>
+            Antes de continuar al formulario de Webpay, asegúrate de contar con los datos de las tarjetas de prueba que están en la{" "}
+                <a
+                  className="tbk-link tbk-link-alt"
+                  href="https://transbankdevelopers.cl/documentacion/como_empezar#tarjetas-de-prueba"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                 documentación.
+                </a>{" "}
+          </Text>
         </div>
       ),
     },
