@@ -22,7 +22,7 @@ export default function ApiRefWebpayMall() {
           del token puedes obtenerlo siguiendo las instrucciones detalladas en
           la sección{" "}
           <a className="tbk-link" href="/webpay-mall">
-            Flujo Comleto.
+            Flujo Completo.
           </a>
         </p>
 

@@ -24,7 +24,7 @@ export default function ApiRefWebpayMall() {
           del token puedes obtenerlo siguiendo las instrucciones detalladas en
           la sección{" "}
           <a className="tbk-link" href="/transaccion-completa-mall-diferido">
-            Flujo Comleto.
+            Flujo Completo.
           </a>
         </p>
 

@@ -26,7 +26,7 @@ export default function ApiRefOneclickMall() {
           no dispones de estos datos, puedes obtenerlos siguiendo las
           instrucciones detalladas en la sección{" "}
           <a className="tbk-link" href="/oneclick-mall-deferred">
-            Flujo Comleto.
+            Flujo Completo.
           </a>
         </p>
 
