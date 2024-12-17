@@ -97,9 +97,6 @@ export const getCreateTRXSteps = (
                 </a>{" "}
           </Text>
 
-          <Text>
-            El token de la transacción tiene una duración limitada de 5 minutos. Pasado este tiempo, se renueva automáticamente para la continuidad del pago.
-          </Text>
         </div>
       ),
     },
