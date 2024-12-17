@@ -6,6 +6,7 @@ import Image from "next/image";
 
 type SidebarItemsProps = Readonly<{
   pathname: string;
+  basePath: string;
   collapseState: Record<string, boolean>;
   activeApiSection?: string | null;
   toggle: (title: string) => void;
@@ -19,6 +20,7 @@ type SidebarItemsProps = Readonly<{
 
 export default function SidebarItems({
   pathname,
+  basePath,
   collapseState,
   toggle,
   collapsible,
@@ -50,7 +52,7 @@ export default function SidebarItems({
         <ul>
           <li
             className={`${cx(
-              pathname === collapsible.fullRoute && "active"
+              basePath === collapsible.fullRoute && "active"
             )} collapsible-items`}
           >
             <Link href={collapsible.fullRoute} className="tbk-sidebar-item">

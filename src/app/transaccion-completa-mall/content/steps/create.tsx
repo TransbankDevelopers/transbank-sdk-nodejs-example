@@ -32,14 +32,27 @@ export const getCreateSteps = (token: string): StepProps[] => {
       code: createSnippets.getStepTwo(token),
     },
     {
-      stepTitle: "Paso 3: Toma de decisiones",
+      stepTitle: "¡Transacción creada!",
       stepId: "listo",
       content: (
-        <Text>
-          Después de ser creada la transacción el próximo paso es optar por una
-          de las siguientes opciones. Consultar cuotas y explorar las opciones
-          de pago diferido o confirmar directamente la transacción.
-        </Text>
+        <div className="step-example">
+          <p>
+            Ahora que hemos creado la transacción, se abren dos opciones para
+            continuar:
+          </p>
+          <ul>
+            <li>
+              <span className="font-bold">Consulta de Cuotas(opcional):</span>{" "}
+              Alternativamente puedes realizar consultas de cuotas para ofrecer
+              opciones de pago a plazos.
+            </li>
+            <li>
+              <span className="font-bold">Confirmar Transacción:</span> debes
+              confirmar directamente la transacción para finalizar con el
+              proceso de pago.
+            </li>
+          </ul>
+        </div>
       ),
     },
   ];

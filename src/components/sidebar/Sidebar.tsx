@@ -26,6 +26,9 @@ export default function Sidebar({
   const [isMenuVisible, setIsMenuVisible] = useState(true);
 
   const pathname = usePathname();
+  const [, path] = pathname.split("/");
+  const basePath = `/${path}`;
+
   const hideMenuClass = cx({
     "tbk-sidebar": isMenuVisible && !isMobile,
     "tbk-sidebar tbk-sidebar-hide": !isMenuVisible && !isMobile,
@@ -52,10 +55,11 @@ export default function Sidebar({
   const activeApiSection = useScrollSpy(currentApi ? currentApi.sections : []);
 
   const initialTitlesState: CollapseState = {};
+
   sidebarConfig.forEach((section) => {
     section.collapsibles?.forEach((collapsible) => {
       const isCurrentCollapsible =
-        pathname === collapsible.fullRoute ||
+        basePath === collapsible.fullRoute ||
         (collapsible.apiReferenceRoute &&
           pathname === collapsible.apiReferenceRoute);
 
@@ -126,6 +130,7 @@ export default function Sidebar({
                       collapsible={collapsible}
                       activeApiSection={activeApiSection}
                       pathname={pathname}
+                      basePath={basePath}
                       toggle={toggle}
                       collapseState={collapseState}
                     />
@@ -133,7 +138,7 @@ export default function Sidebar({
                 ) : (
                   <li
                     className={`${cx(
-                      pathname === section.fullRoute && "active"
+                      basePath === section.fullRoute && "active"
                     )} collapsible-items`}
                   >
                     {section.fullRoute && (
