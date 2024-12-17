@@ -88,6 +88,7 @@ export enum PaymentTypeCode {
 }
 
 export type TBKCommitTransactionResponse = {
+  vci: string,
   amount: number;
   status: TBKTransactionStatus;
   buy_order: string;
@@ -98,8 +99,13 @@ export type TBKCommitTransactionResponse = {
   authorization_code: string;
   payment_type_code: PaymentTypeCode;
   response_code: number;
+  installments_amount: number;
   installments_number: number;
+  balance: number;
 };
+
+export type TBKTransactionStatusResponse = TBKCommitTransactionResponse;
+
 export type TBKPatpassStatusTxResponse = {
   authorized: string;
   voucherUrl: string;
@@ -147,11 +153,6 @@ export type TBKfullTxCaptureResponse = {
   captured_amount: number;
   response_code: number;
 };
-
-export type TBKTransactionStatusResponse = Omit<
-  TBKCommitTransactionResponse,
-  "card_detail" | "authorization_code" | "payment_type_code" | "response_code"
->;
 
 export type TBKMallTransactionStatusResponse = {
   details: TransactionDetail[];
