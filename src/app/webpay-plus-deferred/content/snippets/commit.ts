@@ -7,8 +7,8 @@ export const getStepOne = (token: string) => {
 };
 
 export const getStepTwo = () => {
-  return `// En el caso de Express
-let token = request.body.token_ws;
+  return `
+const token = request.body.token_ws;
 const commitResponse = await (new WebpayPlus.Transaction()).commit(token);`;
 };
 
