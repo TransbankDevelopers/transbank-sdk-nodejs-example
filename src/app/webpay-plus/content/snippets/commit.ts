@@ -30,21 +30,21 @@ export const getStepThree = (commitResponse: TBKCommitTransactionResponse) => {
     balance,
   } = commitResponse;
   return `{
-  "vci": "${vci ?? null}",
+  "vci": ${vci ? `"${vci}"` : null},
   "amount": ${amount ?? null},
-  "status": "${status ?? null}",
-  "buy_order": "${buy_order ?? null}",
-  "session_id": "${session_id ?? null}",
+  "status": ${status ? `"${status}"` : null},
+  "buy_order": ${buy_order ? `"${buy_order}"` : null},
+  "session_id": ${session_id ? `"${session_id}"` : null},
   "card_detail": {
-    "card_number": "${card_detail?.card_number ?? null}",
+    "card_number": ${card_detail?.card_number ? `"${card_detail.card_number}"` : null}
   },
-  "accounting_date": "${accounting_date ?? null}",
-  "transaction_date": "${transaction_date ?? null}",
-  "authorization_code": "${authorization_code ?? null}",
-  "payment_type_code": "${payment_type_code ?? null}",
+  "accounting_date": ${accounting_date ? `"${accounting_date}"` : null},
+  "transaction_date": ${transaction_date ? `"${transaction_date}"` : null},
+  "authorization_code": ${authorization_code ? `"${authorization_code}"` : null},
+  "payment_type_code": ${payment_type_code ? `"${payment_type_code}"` : null},
   "response_code": ${response_code ?? null},
-  "installments_amount": ${installments_amount ?? null}
-  "installments_number": ${installments_number ?? null}
+  "installments_amount": ${installments_amount ?? null},
+  "installments_number": ${installments_number ?? null},
   "balance": ${balance ?? null}
-  }`;
+}`;
 };
