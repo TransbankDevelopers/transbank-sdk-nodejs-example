@@ -96,6 +96,7 @@ export const getCreateTRXSteps = (
                  documentación.
                 </a>{" "}
           </Text>
+
         </div>
       ),
     },

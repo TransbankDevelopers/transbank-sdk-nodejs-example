@@ -14,6 +14,7 @@ const commitResponse = await (new WebpayPlus.Transaction()).commit(token);`;
 
 export const getStepThree = (commitResponse: TBKCommitTransactionResponse) => {
   const {
+    vci,
     amount,
     status,
     buy_order,
@@ -24,9 +25,12 @@ export const getStepThree = (commitResponse: TBKCommitTransactionResponse) => {
     authorization_code,
     payment_type_code,
     response_code,
+    installments_amount,
     installments_number,
+    balance,
   } = commitResponse;
   return `{
+  "vci": "${vci}",
   "amount": ${amount},
   "status": "${status}",
   "buy_order": "${buy_order}",
@@ -39,6 +43,8 @@ export const getStepThree = (commitResponse: TBKCommitTransactionResponse) => {
   "authorization_code": "${authorization_code}",
   "payment_type_code": "${payment_type_code}",
   "response_code": "${response_code}",
+  "installments_amount": ${installments_amount ?? null}
   "installments_number": "${installments_number}"
+  "balance": "${balance}"
   }`;
 };

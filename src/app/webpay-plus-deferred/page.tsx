@@ -15,6 +15,9 @@ import { NavigationItem } from "@/components/layout/Navigation";
 import { getWebpayPlusDeferredOptions } from "../lib/webpay-plus-deferred/data";
 import { CustomError } from "@/components/customError/CustomError";
 import { PageRefresh } from "@/components/pageRefresh/PageRefresh";
+import { Text } from "@/components/text/Text";
+import InfoBlue from "@/assets/svg/InfoBlue.svg";
+import Image from "next/image";
 
 
 const actualBread: Route[] = [
@@ -80,16 +83,26 @@ export default async function CreateTransaction() {
           <Card className="card-pay">
             <span className="title">Formulario de redirección</span>
             <InputText label="Token" value={trxData.token} />
-            <div className="button-container">
-              <form action={trxData.url} method="POST">
-                <input type="hidden" name="token_ws" value={trxData.token} />
+            <form action={trxData.url} method="POST">
+              <input type="hidden" name="token_ws" value={trxData.token} />
+              <div className="tbk-info-token">
+                <Image
+                  src={InfoBlue}
+                  alt="tbk info blue"
+                  className="tbk-info-token-icon"
+                />
+                <Text className="tbk-info-token-text">
+                  El token generado en esta aplicación se renueva automáticamente cada 5 minutos.
+                </Text>
+              </div>
+              <div className="button-container">
                 <Button
                   text="PAGAR"
                   className="button"
                   type={ButtonTypes.SUBMIT}
                 />
-              </form>
-            </div>
+              </div>
+            </form>
           </Card>
         }
       />
