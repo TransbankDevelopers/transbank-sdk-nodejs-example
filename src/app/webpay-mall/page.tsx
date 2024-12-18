@@ -13,6 +13,9 @@ import { createMallTransaction } from "@/app/lib/webpay-mall/data";
 import { NavigationItem } from "@/components/layout/Navigation";
 import { CustomError } from "@/components/customError/CustomError";
 import { PageRefresh } from "@/components/pageRefresh/PageRefresh";
+import { Text } from "@/components/text/Text";
+import InfoBlue from "@/assets/svg/InfoBlue.svg";
+import Image from "next/image";
 
 const actualBread: Route[] = [
   {
@@ -74,16 +77,26 @@ export default async function CreateWebpyMallTransaction() {
           <Card className="card-pay">
             <span className="title">Formulario de redirección</span>
             <InputText label="Token" value={trxData.token} />
-            <div className="button-container">
-              <form action={trxData.url} method="POST">
-                <input type="hidden" name="token_ws" value={trxData.token} />
-                <Button
-                  text="PAGAR"
-                  className="button"
-                  type={ButtonTypes.SUBMIT}
+            <form action={trxData.url} method="POST">
+              <input type="hidden" name="token_ws" value={trxData.token} />
+              <div className="tbk-info-token">
+                <Image
+                  src={InfoBlue}
+                  alt="tbk info blue"
+                  className="tbk-info-token-icon"
                 />
-              </form>
+                <Text className="tbk-info-token-text">
+                  El token generado en esta aplicación se renueva automáticamente cada 5 minutos.
+                </Text>
+              </div>
+              <div className="button-container">
+              <Button
+                text="PAGAR"
+                className="button"
+                type={ButtonTypes.SUBMIT}
+              />
             </div>
+            </form>
           </Card>
         }
       />

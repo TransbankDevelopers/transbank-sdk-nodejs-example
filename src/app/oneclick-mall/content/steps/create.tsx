@@ -95,6 +95,7 @@ export const getCreateTRXSteps = (
                 </a>{" "}
           </Text>
         </div>
+
       ),
     },
   ];

@@ -181,6 +181,25 @@ h2[id^="api-"] {
   gap: 2rem;
 }
 
+.tbk-info-token {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  justify-content: flex-start;
+}
+
+.tbk-info-token-text {
+  font-size: 14px;
+  line-height: 1.4; 
+}
+
+.tbk-info-token-icon {
+  width: 17px;
+  height: 17px;
+  vertical-align: middle;
+}
+
 .tbk-link {
   color: var(--tbk-red);
 }
