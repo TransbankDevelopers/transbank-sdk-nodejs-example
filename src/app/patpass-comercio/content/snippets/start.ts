@@ -33,7 +33,8 @@ export const getStepTwo = (token: string, url: string) => {
 
 export const getStepThree = (token: string, url: string) => {
   return `<form action=${
-    url || "https://webpay3gint.transbank.cl/webpayserver/initTransaction"
+    url ||
+    "https://pagoautomaticocontarjetasint.transbank.cl/nuevo-ic-rest/tokenComercioLogin"
   } method="POST">
   <input type="hidden" name="tokenComercio" value="${token}"/>
   <input type="submit" value="Pagar"/>
