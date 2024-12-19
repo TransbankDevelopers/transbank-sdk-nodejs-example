@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+import { redirect } from "next/navigation";
+
 import { cookies } from "next/headers";
 import { patpassJToken } from "@/consts";
 
@@ -20,7 +22,6 @@ export async function POST(req: Request) {
   }
 
   cookiesStore.set(patpassJToken, JSON.stringify(body));
-  return NextResponse.redirect(
-    `${process.env.SUBDOMAIN}/patpass-comercio/commit`
-  );
+
+  return redirect(`/patpass-comercio/commit`);
 }
