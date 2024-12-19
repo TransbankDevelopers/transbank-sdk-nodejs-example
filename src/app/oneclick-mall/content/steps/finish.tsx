@@ -30,7 +30,7 @@ export const getFinishInscritionSteps = (
       stepId: "respuesta",
       content: (
         <Text>
-          Utiliza el token recibido para autorizar la transacción mediante una
+          Utiliza el token recibido para finalizar una inscripción mediante una
           nueva llamada a Oneclick.
         </Text>
       ),

@@ -54,7 +54,7 @@ export default async function CaptureWebpaytxfullPage({
         pageTitle="Transacción Completa Diferido - Confirmar transacción"
         pageDescription="En este paso debemos capturar la transacción para realmente capturar el dinero que habia sido previamente reservado al hacer la transacción."
         actualBread={actualBread}
-        activeRoute="/transaccion-completa/commit"
+        activeRoute="/transaccion-completa-diferido/capture"
         navigationItems={navigationItems}
         steps={getCaptureSteps(captureResponse)}
         additionalContent={

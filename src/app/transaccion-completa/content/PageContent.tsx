@@ -53,7 +53,7 @@ export function PageContent(props: CreatePageContentProps) {
         pageTitle="Transacción Completa - Formulario"
         pageDescription="En esta primera etapa necesitas obtener los datos esenciales de la tarjeta de crédito del titular. Utiliza el formulario para recolectar esta información de manera segura."
         actualBread={props.actualBread}
-        activeRoute="/fulltransaction-mall"
+        activeRoute="/transaccion-completa"
         navigationItems={props.navigationItems}
         additionalContent={
           <CreditCard

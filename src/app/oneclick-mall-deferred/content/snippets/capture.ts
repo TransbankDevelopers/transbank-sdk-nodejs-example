@@ -1,9 +1,9 @@
 import { TBKCaptureTransactionResponse } from "@/types/transactions";
 
 export const getStepOne = (token: string) => {
-  return `//token: ${token}
+  return `//buyOrder: ${token}
   const captureResponse = await (new WebpayPlus.Transaction()).capture(
-  token,
+  commerceCode,
   buyOrder,
   authorizationCode,
   captureAmount

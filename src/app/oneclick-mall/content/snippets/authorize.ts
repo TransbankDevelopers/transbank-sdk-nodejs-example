@@ -13,6 +13,7 @@ const details = [
 const authorizeResponse = await (new Oneclick.MallTransaction()).authorize(
   username, 
   tbkUser, 
+  buyOrder,
   details
 );`;
 };
