@@ -46,6 +46,9 @@ export default async function StatusTransactionView({
       />
     );
   }
+  console.log({ trxStatus: trxStatus.details });
+  console.log("---------------------------------------------");
+  console.log("---------------------------------------------");
   return (
     <>
       <Head>

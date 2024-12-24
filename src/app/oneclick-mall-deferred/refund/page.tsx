@@ -6,6 +6,8 @@ import { getRefundTRXSteps } from "@/app/oneclick-mall/content/steps/refund";
 import { NextPageProps } from "@/types/general";
 import { refundOneClickMallTransaction } from "@/app/lib/oneclick-mall/data";
 import { CustomError } from "@/components/customError/CustomError";
+import { StatusButton } from "@/app/oneclick-mall-deferred/components/StatusButton";
+
 const actualBread: Route[] = [
   {
     name: "Inicio",
@@ -36,7 +38,12 @@ export default async function RefundTransaction({
   });
 
   if ("errorMessage" in refundResult) {
-    return <CustomError errorMessage={refundResult.errorMessage} actualBread={actualBread}/>;
+    return (
+      <CustomError
+        errorMessage={refundResult.errorMessage}
+        actualBread={actualBread}
+      />
+    );
   }
 
   return (
@@ -54,6 +61,9 @@ export default async function RefundTransaction({
           amount as string,
           buy_order as string
         )}
+        additionalContent={
+          <StatusButton className="mt-6" buyOrder={buy_order} />
+        }
       />
     </>
   );

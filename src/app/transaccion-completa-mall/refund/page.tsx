@@ -5,6 +5,7 @@ import { getRefundSteps } from "../content/steps/refund";
 import { NextPageProps } from "@/types/general";
 import { TBKRefundMallTransactionResponse } from "@/types/transactions";
 import { refundFullTransactionMallTransaction } from "@/app/lib/transaccion-completa-mall/data";
+import { StatusButton } from "@/app/transaccion-completa-mall/components/StatusButton";
 import "./page.css";
 
 const navigationItems: NavigationItem[] = [
@@ -55,6 +56,7 @@ export default async function RefundFullTransactionMallPage({
         amount,
         trxData as TBKRefundMallTransactionResponse
       )}
+      additionalContent={<StatusButton className="mt-6" token={token_ws} />}
     />
   );
 }

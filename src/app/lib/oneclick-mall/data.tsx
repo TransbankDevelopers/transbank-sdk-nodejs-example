@@ -100,7 +100,7 @@ export const removeUserInscriptionOneclick = async (
   } catch (exception) {
     return { errorMessage: getErrorMessage(exception) };
   }
-}
+};
 
 export const authorizeOneClickMallTransaction = async (
   userName: string,
@@ -130,7 +130,8 @@ export const authorizeOneClickMallTransaction = async (
     } else {
       for (const childCommerceCode of commerceCodes) {
         const childBuyOrder = "O-" + Math.floor(Math.random() * 10000) + 1;
-        const amount = deferredAmount ?? Math.floor(Math.random() * 1000) + 1001;
+        const amount =
+          deferredAmount ?? Math.floor(Math.random() * 1000) + 1001;
 
         details.push(
           new TransactionDetail(
@@ -153,7 +154,6 @@ export const authorizeOneClickMallTransaction = async (
   }
 };
 
-
 export const refundOneClickMallTransaction = async (
   params: RefundOneClickMallTransactionProps
 ): Promise<TBKRefundMallTransactionResponse | ResultError> => {
@@ -172,7 +172,6 @@ export const refundOneClickMallTransaction = async (
 
     return refundRequest;
   } catch (exception) {
-
     return { errorMessage: getErrorMessage(exception) };
   }
 };
@@ -185,6 +184,7 @@ export const getStatusOneclickMallTransaction = async (
     const trxStatus = await new Oneclick.MallTransaction(
       isDeferred ? getOneclickMallDeferredOptions() : getOneclickMallOptions()
     ).status(buyOrder);
+    console.log({ trxStatus_data_api: trxStatus.details });
 
     return trxStatus;
   } catch (exception) {
