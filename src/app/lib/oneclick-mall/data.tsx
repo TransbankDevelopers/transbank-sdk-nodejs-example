@@ -184,7 +184,6 @@ export const getStatusOneclickMallTransaction = async (
     const trxStatus = await new Oneclick.MallTransaction(
       isDeferred ? getOneclickMallDeferredOptions() : getOneclickMallOptions()
     ).status(buyOrder);
-    console.log({ trxStatus_data_api: trxStatus.details });
 
     return trxStatus;
   } catch (exception) {
