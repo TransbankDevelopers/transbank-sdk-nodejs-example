@@ -1,5 +1,4 @@
 "use client";
-import { Button } from "@/components/button/Button";
 
 type StatusButtonProps = {
   token: string;
@@ -7,16 +6,14 @@ type StatusButtonProps = {
 };
 
 export const StatusButton = ({ token, className }: StatusButtonProps) => {
-  const statusLink = {
-    pathname: `/transaccion-completa-diferido/status`,
-    query: {
-      token: token,
-    },
-  };
-
   return (
     <div className={`flex-start ${className}`}>
-      <Button text="CONSULTAR ESTADO" link={statusLink} />
+      <a
+        href={`/transaccion-completa-diferido/status?token=${token}`}
+        className="tbk-button primary"
+      >
+        CONSULTAR ESTADO
+      </a>
     </div>
   );
 };

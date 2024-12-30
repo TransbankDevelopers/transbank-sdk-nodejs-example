@@ -1,14 +1,14 @@
 "use client";
 
 export type StatusButtonProps = {
-  token: string;
+  buyOrder: string;
   className?: string;
 };
-export const StatusButton = ({ token, className }: StatusButtonProps) => {
+export const StatusButton = ({ buyOrder, className }: StatusButtonProps) => {
   return (
     <div className={`flex-start ${className}`}>
       <a
-        href={`/webpay-mall-diferido/status?token_ws=${token}`}
+        href={`/oneclick-mall/status?buy_order=${buyOrder}`}
         className="tbk-button primary"
       >
         CONSULTAR ESTADO

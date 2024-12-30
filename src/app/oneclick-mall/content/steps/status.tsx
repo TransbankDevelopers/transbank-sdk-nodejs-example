@@ -32,8 +32,5 @@ export const getStatusTRXSteps = (
       ),
       code: statusSnippets.getStepTwo(trxData),
     },
-    {
-      stepTitle: "¡Listo!",
-    },
   ];
 };

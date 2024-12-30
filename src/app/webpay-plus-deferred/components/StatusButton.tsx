@@ -8,7 +8,7 @@ export const StatusButton = ({ token, className }: StatusButtonProps) => {
   return (
     <div className={`flex-start ${className}`}>
       <a
-        href={`/webpay-mall-diferido/status?token_ws=${token}`}
+        href={`/webpay-plus-deferred/status?token_ws=${token}`}
         className="tbk-button primary"
       >
         CONSULTAR ESTADO

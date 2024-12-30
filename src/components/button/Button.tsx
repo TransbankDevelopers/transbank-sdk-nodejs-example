@@ -42,7 +42,7 @@ export const Button = (props: ButtonProps) => {
 
   if (props.link) {
     return (
-      <Link href={props.link} className={buttonClassName}>
+      <Link href={props.link} className={buttonClassName} prefetch={false}>
         <span className={textClassName}>{props.text}</span>
       </Link>
     );

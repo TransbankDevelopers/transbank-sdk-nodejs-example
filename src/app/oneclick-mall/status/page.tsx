@@ -46,6 +46,7 @@ export default async function StatusTransactionView({
       />
     );
   }
+
   return (
     <>
       <Head>

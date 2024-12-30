@@ -5,6 +5,7 @@ import { getRefundTRXSteps } from "@/app/transaccion-completa/content/steps/refu
 import { refundTxCompleteTransaction } from "@/app/lib/transaccion-completa/data";
 import { NavigationItem } from "@/components/layout/Navigation";
 import { NextPageProps } from "@/types/general";
+import { StatusButton } from "@/app/transaccion-completa/components/StatusButton";
 
 const actualBread: Route[] = [
   {
@@ -58,6 +59,7 @@ export default async function RefundWebpaytxfullPage({
           Number(amount),
           refundResponse
         )}
+        additionalContent={<StatusButton className="mt-6" token={token} />}
       />
     </>
   );
