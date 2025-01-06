@@ -6,11 +6,10 @@ import { Route } from "@/types/menu";
 import { TBKFinishInscriptionResponse } from "@/types/transactions";
 import Head from "next/head";
 import { getFinishInscritionSteps } from "../content/steps/finish";
-import { Card } from "@/components/card/Card";
-import { Text } from "@/components/text/Text";
 import { Button } from "@/components/button/Button";
 import { useEffect, useState } from "react";
 import { localStorageUserKey } from "@/consts";
+import { AuthorizeForm } from "@/components/authorizeForm/AuthorizeForm";
 
 export type ContentOneclickProps = {
   actualBread: Route[];
@@ -37,14 +36,6 @@ export const ContentOneClickMall = (props: ContentOneclickProps) => {
     },
   };
 
-  const authorizationLink = {
-    pathname: `/oneclick-mall/authorize`,
-    query: {
-      tbk_user: props.trxData.tbk_user,
-      user_name: userName,
-    },
-  };
-
   return (
     <>
       <Head>
@@ -63,20 +54,17 @@ export const ContentOneClickMall = (props: ContentOneclickProps) => {
         )}
         additionalContent={
           <div className="mt-8">
-            <Card className="finish-card">
-              <div className="finish-text">
-                <Text>
-                  Después de una inscripción exitosa, tienen dos opciones:
-                  autorizar un pago o borrar al usuario que se acaba de
-                  inscribir.
-                </Text>
-              </div>
-
-              <div className="button-container">
-                <Button text="BORRAR USUARIO" link={removeUserLink} />
-                <Button text="AUTORIZAR UN PAGO" link={authorizationLink} />
-              </div>
-            </Card>
+            <p>
+              Después de una inscripción exitosa, tienen dos opciones: autorizar
+              un pago o borrar al usuario que se acaba de inscribir.
+            </p>
+            <AuthorizeForm
+              tbkUser={props.trxData.tbk_user}
+              userName={userName}
+            />
+            <div className="flex-start">
+              <Button text="BORRAR USUARIO" link={removeUserLink} />
+            </div>
           </div>
         }
       />
