@@ -154,6 +154,56 @@ export const authorizeOneClickMallTransaction = async (
   }
 };
 
+export const authorizeOneClickMallByDetails = async (
+  userName: string,
+  tbkUser: string,
+  amountStoreOne: number,
+  amountStoreTwo: number,
+  installmentsStoreOne: number,
+  installmentsStoreTwo: number,
+  isDeferred?: boolean
+): Promise<TBKAuthorizeTransactionResponse | ResultError> => {
+  try {
+    const commerceCodes = isDeferred
+      ? [
+          IntegrationCommerceCodes.ONECLICK_MALL_CHILD1_DEFERRED,
+          IntegrationCommerceCodes.ONECLICK_MALL_CHILD2_DEFERRED,
+        ]
+      : [
+          IntegrationCommerceCodes.ONECLICK_MALL_CHILD1,
+          IntegrationCommerceCodes.ONECLICK_MALL_CHILD2,
+        ];
+
+    const amounts = [
+      amountStoreOne ?? Math.floor(Math.random() * 1000) + 1001,
+      amountStoreTwo ?? Math.floor(Math.random() * 1000) + 1001,
+    ];
+    const installments = [installmentsStoreOne, installmentsStoreTwo];
+
+    const buyOrder = "O-" + Math.floor(Math.random() * 10000) + 1;
+
+    const details: TransactionDetail[] = commerceCodes.map(
+      (childCommerceCode, index) => {
+        const childBuyOrder = "O-" + Math.floor(Math.random() * 10000) + 1;
+        return new TransactionDetail(
+          amounts[index],
+          childCommerceCode,
+          childBuyOrder,
+          installments[index] ?? undefined
+        );
+      }
+    );
+
+    const authorizeResponse = await new Oneclick.MallTransaction(
+      isDeferred ? getOneclickMallDeferredOptions() : getOneclickMallOptions()
+    ).authorize(userName, tbkUser, buyOrder, details);
+
+    return authorizeResponse;
+  } catch (exception) {
+    return { errorMessage: getErrorMessage(exception) };
+  }
+};
+
 export const refundOneClickMallTransaction = async (
   params: RefundOneClickMallTransactionProps
 ): Promise<TBKRefundMallTransactionResponse | ResultError> => {
