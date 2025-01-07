@@ -54,8 +54,8 @@ export default async function AuthorizeTransactionPage({
     installmentsStoretwo,
   } = searchParams;
   const trxData = await authorizeOneClickMallByDetails(
-    userName as string,
-    tbkUser as string,
+    userName,
+    tbkUser,
     Number(amountStoreOne),
     Number(amountStoretwo),
     Number(installmentsStoreOne),
