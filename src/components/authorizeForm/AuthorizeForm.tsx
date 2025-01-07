@@ -15,15 +15,15 @@ export const AuthorizeForm = (props: AuthorizeFormProps) => {
   const { isDeferred = false, productLink = "/oneclick-mall" } = props;
   const [amountStoreOne, setAmountStoreOne] = useState<number>(1500);
   const [amountStoretwo, setAmountStoretwo] = useState<number>(1750);
-  const [installmentsStoreOne, setinstallmentsStoreOne] = useState<number>(0);
-  const [installmentsStoretwo, setinstallmentsStoretwo] = useState<number>(0);
+  const [installmentsStoreOne, setInstallmentsStoreOne] = useState<number>(0);
+  const [installmentsStoretwo, setInstallmentsStoretwo] = useState<number>(0);
 
   const handleAmountStoreOneChange = (value: string) => {
     setAmountStoreOne(Number(value));
   };
 
   const handleInstallmentsStoreOneChange = (value: string) => {
-    setinstallmentsStoreOne(Number(value));
+    setInstallmentsStoreOne(Number(value));
   };
 
   const handleAmountStoreTwoChange = (value: string) => {
@@ -31,7 +31,7 @@ export const AuthorizeForm = (props: AuthorizeFormProps) => {
   };
 
   const handleInstallmentsStoreTwoChange = (value: string) => {
-    setinstallmentsStoretwo(Number(value));
+    setInstallmentsStoretwo(Number(value));
   };
 
   const trxRefundLink = {
