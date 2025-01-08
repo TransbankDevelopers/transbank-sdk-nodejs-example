@@ -49,16 +49,15 @@ export const generateRandomTransactionData = (
 };
 export const generateRandomPatpassStartData = (
   protocol: string,
-  host: string,
-  returnRoute: string
+  host: string
 ): StartPatpassData => {
   const serviceId = "Service_" + Math.floor(Math.random() * 10000) + 1;
   const maxAmount = 100;
   // returnUrl = 'https://miPagina.com/retorno';
   // para rutas locales utilizar un alias, no usar localhost ni ips locales
-  const returnUrl = `${protocol}://${host}${returnRoute}`;
+  const returnUrl = `${protocol}://${host}/api/patpass-comercio/commit`;
 
-  const finalUrl = `${protocol}://${host}/patpass-comercio/voucher`;
+  const finalUrl = `${protocol}://${host}/api/patpass-comercio/voucher`;
 
   return {
     finalUrl,
