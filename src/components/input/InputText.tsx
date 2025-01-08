@@ -38,32 +38,21 @@ export const InputText = (props: InputTextProps) => {
       >
         {props.label}
       </span>
-      {props.value ? (
-        <input
-          type={isNumber ? "number" : "text"}
-          name={props.name}
-          maxLength={props.maxLength}
-          onFocus={handleOnFocus}
-          onBlur={handleOnBlur}
-          value={props.value}
-          onChange={(e) => onChange(e.target.value, e.target.name)}
-          className={cx("tbk-input-text", {
-            focus: isFocused,
-          })}
-        />
-      ) : (
-        <input
-          type={isNumber ? "number" : "text"}
-          name={props.name}
-          maxLength={props.maxLength}
-          onFocus={handleOnFocus}
-          onBlur={handleOnBlur}
-          onChange={(e) => onChange(e.target.value, e.target.name)}
-          className={cx("tbk-input-text", {
-            focus: isFocused,
-          })}
-        />
-      )}
+
+      <input
+        type={isNumber ? "number" : "text"}
+        name={props.name}
+        maxLength={props.maxLength}
+        onFocus={handleOnFocus}
+        onBlur={handleOnBlur}
+        {...(props.value !== undefined
+          ? { value: props.value }
+          : { defaultValue: "" })}
+        onChange={(e) => onChange(e.target.value, e.target.name)}
+        className={cx("tbk-input-text", {
+          focus: isFocused,
+        })}
+      />
     </div>
   );
 };
