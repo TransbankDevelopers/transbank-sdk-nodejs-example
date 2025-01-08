@@ -19,17 +19,14 @@ export const getPatpassOptions = () => {
   );
 };
 
-export const createPatpassTransaction = async (
-  returnRoute: string = "/patpass/start"
-): Promise<StartTxPatPassType> => {
+export const createPatpassTransaction = async (): Promise<StartTxPatPassType> => {
   const headersList = headers();
   const protocol = headersList.get("x-forwarded-proto") ?? "http";
   const host = headersList.get("host") ?? "localhost:3000";
 
   const randomPatpassStartData = generateRandomPatpassStartData(
     protocol,
-    host,
-    returnRoute
+    host
   );
 
   const patpassData = {

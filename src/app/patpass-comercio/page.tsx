@@ -42,9 +42,7 @@ export type CreateTRXProps = TBKCreateTransactionResponse &
   StartTransactionData;
 
 export default async function StartPatpassTxPage() {
-  const trxData = await createPatpassTransaction(
-    "/api/patpass-comercio/commit"
-  );
+  const trxData = await createPatpassTransaction();
   return (
     <>
       <Head>
