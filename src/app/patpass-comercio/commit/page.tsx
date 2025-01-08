@@ -29,7 +29,7 @@ export default async function CommitTransaction() {
   const cookiesStore = cookies();
 
   const data = cookiesStore.get(patpassJToken);
-  const { j_token } = data?.value && JSON.parse(data.value);
+  const j_token = data?.value ? JSON.parse(data.value)?.j_token : null;
 
   const commitResponse = await statusPatpassTransaction(j_token);
 
