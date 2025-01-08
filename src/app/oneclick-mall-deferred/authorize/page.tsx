@@ -4,7 +4,7 @@ import { Layout } from "@/components/layout/Layout";
 import Head from "next/head";
 import { NextPageProps } from "@/types/general";
 import { NavigationItem } from "@/components/layout/Navigation";
-import { authorizeOneClickMallTransaction } from "@/app/lib/oneclick-mall/data";
+import { authorizeOneClickMallByDetails } from "@/app/lib/oneclick-mall/data";
 import { getAuthorizeSteps } from "../content/steps/authorize";
 import { CaptureCard } from "@/app/webpay-mall-diferido/commit/components/CaptureCard";
 import { CustomError } from "@/components/customError/CustomError";
@@ -44,16 +44,28 @@ const navigationItems: NavigationItem[] = [
 export default async function AuthorizeTransactionPage({
   searchParams,
 }: NextPageProps) {
-  const { user_name, tbk_user, amount, installments } = searchParams;
-  const trxData = await authorizeOneClickMallTransaction(
-    user_name as string,
-    tbk_user as string,
-    true,
-    {
-      deferredAmount: Number(amount),
-      deferredInstallments: Number(installments),
-    }
+  const {
+    userName,
+    tbkUser,
+    amountStoreOne,
+    amountStoretwo,
+    installmentsStoreOne,
+    installmentsStoretwo,
+  } = searchParams;
+
+  const isDeferred = true;
+  const amount = [amountStoreOne, amountStoretwo];
+
+  const trxData = await authorizeOneClickMallByDetails(
+    userName,
+    tbkUser,
+    Number(amountStoreOne),
+    Number(amountStoretwo),
+    Number(installmentsStoreOne),
+    Number(installmentsStoretwo),
+    isDeferred
   );
+
   if ("errorMessage" in trxData) {
     return (
       <CustomError
@@ -79,11 +91,11 @@ export default async function AuthorizeTransactionPage({
         steps={getAuthorizeSteps(trxData)}
         additionalContent={
           <div className="capture-container">
-            {trxData?.details?.map((detail, key) => {
+            {trxData?.details?.map((detail, index) => {
               return (
-                <div className="capture-card-mall" key={key}>
+                <div className="capture-card-mall" key={detail.buy_order}>
                   <CaptureCard
-                    amount={Number(amount)}
+                    amount={Number(amount[index])}
                     parentBuyOrder={trxData.buy_order}
                     buyOrder={detail.buy_order}
                     commerceCode={detail.commerce_code}

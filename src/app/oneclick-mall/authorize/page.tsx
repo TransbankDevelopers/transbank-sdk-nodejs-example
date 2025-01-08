@@ -5,7 +5,7 @@ import Head from "next/head";
 import { NextPageProps } from "@/types/general";
 import { MallRefundCard } from "../../../components/mall-refund-card/MallRefundCard";
 import { NavigationItem } from "@/components/layout/Navigation";
-import { authorizeOneClickMallTransaction } from "@/app/lib/oneclick-mall/data";
+import { authorizeOneClickMallByDetails } from "@/app/lib/oneclick-mall/data";
 import { getAuthorizeSteps } from "../content/steps/authorize";
 import { MallStatusButton } from "../../../components/mall-status-button/MallStatusButton";
 import { CustomError } from "@/components/customError/CustomError";
@@ -45,10 +45,21 @@ const navigationItems: NavigationItem[] = [
 export default async function AuthorizeTransactionPage({
   searchParams,
 }: NextPageProps) {
-  const { user_name, tbk_user } = searchParams;
-  const trxData = await authorizeOneClickMallTransaction(
-    user_name as string,
-    tbk_user as string
+  const {
+    userName,
+    tbkUser,
+    amountStoreOne,
+    amountStoretwo,
+    installmentsStoreOne,
+    installmentsStoretwo,
+  } = searchParams;
+  const trxData = await authorizeOneClickMallByDetails(
+    userName,
+    tbkUser,
+    Number(amountStoreOne),
+    Number(amountStoretwo),
+    Number(installmentsStoreOne),
+    Number(installmentsStoretwo)
   );
   if ("errorMessage" in trxData) {
     return (
