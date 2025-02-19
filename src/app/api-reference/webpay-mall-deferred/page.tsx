@@ -32,7 +32,9 @@ export default function ApiRefWebpayMall() {
           Esta operación permite obtener el estado de la transacción en
           cualquier momento. En condiciones normales es probable que no se
           requiera ejecutar, pero en caso de ocurrir un error inesperado permite
-          conocer el estado y tomar las acciones que correspondan.
+          conocer el estado y tomar las acciones que correspondan. Es importante
+          destacar que una vez transcurridos 7 días, ya no podrás revisar el
+          estado de la transacción.
         </p>
         <p className="mt-2">
           Puedes revisar más detalles de esta operación en su{" "}
