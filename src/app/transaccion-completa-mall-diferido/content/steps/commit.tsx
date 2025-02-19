@@ -2,6 +2,7 @@ import { StepProps } from "@/components/step/Step";
 import { Text, TextVariant } from "@/components/text/Text";
 import * as commitSnippets from "../snippets/commit";
 import { TBKMallCommitTransactionResponse } from "@/types/transactions";
+import { OkCommitMessage } from "@/components/messages/OkCommitMessage";
 
 export const getCommitSteps = (
   trxData: TBKMallCommitTransactionResponse
@@ -24,9 +25,7 @@ export const getCommitSteps = (
       stepTitle: "Paso 2: Respuesta",
       stepId: "respuesta",
       content: (
-        <Text>
-          Una vez confirmada la transacción recibirás la siguiente información.
-        </Text>
+        <OkCommitMessage />
       ),
       code: commitSnippets.getStepTwo(trxData),
     },
