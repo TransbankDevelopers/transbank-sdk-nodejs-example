@@ -26,7 +26,6 @@ export const getRefundTRXSteps = (
                 No es posible realizar Anulaciones Parciales en pagos con
                 cuotas.
               </li>
-              <li>No se admiten reembolsos de compras en cuotas.</li>
             </ul>
             <div className="link-to-terms">
               <Text>
