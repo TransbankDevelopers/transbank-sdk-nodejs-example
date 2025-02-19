@@ -19,7 +19,7 @@ export const getRefundTRXSteps = (
             monto total, puede resultar en una Reversa o Anulación, según
             ciertas condiciones. En caso de un monto menor al total, se
             realizará una Anulación parcial. Las anulaciones parciales para
-            tarjetas débito y prepago, no están soportadas.
+            tarjetas débito y prepago no están soportadas.
           </p>
 
           <div className="link-to-terms">

@@ -17,7 +17,7 @@ export const getRefundSteps = (
           Necesitas el token de la transacción y el monto que quieres reversar,
           si anulas el monto total puede ser una Reversa o Anulación dependiendo
           de ciertas condiciones o una Anulación parcial si el monto es menor al
-          total. Las anulaciones parciales para tarjetas débito y prepago, no
+          total. Las anulaciones parciales para tarjetas débito y prepago no
           están soportadas.
         </Text>
       ),

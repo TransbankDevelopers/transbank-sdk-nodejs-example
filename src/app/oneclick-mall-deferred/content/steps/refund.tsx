@@ -30,8 +30,8 @@ export const getRefundTRXSteps = (
                 Reversa o Anulación, dependiendo de ciertas condiciones (Reversa
                 en las primeras 3 horas de la autorización, anulación posterior
                 a eso), o una Anulación parcial si el monto es menor al total.
-                Las anulaciones parciales para tarjetas débito y prepago, no
-                están soportadas
+                Las anulaciones parciales para tarjetas débito y prepago no
+                están soportadas.
               </Text>
             </div>
           </div>
