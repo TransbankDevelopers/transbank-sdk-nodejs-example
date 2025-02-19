@@ -46,14 +46,16 @@ export const txCompleteStatus: ColumnValues[] = [
   },
   {
     field: "payment_type_code",
-    value: `Tipo de pago de la transacción.
-      VD = Venta Débito.
-      VN = Venta Normal.
-      VC = Venta en cuotas.
-      SI = 3 cuotas sin interés.
-      S2 = 2 cuotas sin interés.
-      NC = N Cuotas sin interés.
-      VP = Venta Prepago`,
+    value: [
+      "Tipo de pago de la transaccion.",
+      "VD = Venta Débito.",
+      "VP = Venta prepago",
+      "VN = Venta Normal.",
+      "VC = Venta en cuotas.",
+      "SI = 3 cuotas sin interés.",
+      "S2 = 2 cuotas sin interés.",
+      "NC = N Cuotas sin interés",
+    ],
   },
   {
     field: "response_code",
@@ -165,14 +167,16 @@ export const txCompleteMallStatus: ColumnValues[] = [
   },
   {
     field: "details[].payment_type_code",
-    value: `Tipo de pago de la transacción.
-      VD = Venta Débito.
-      VN = Venta Normal.
-      VC = Venta en cuotas.
-      SI = 3 cuotas sin interés.
-      S2 = 2 cuotas sin interés.
-      NC = N Cuotas sin interés.
-      VP = Venta Prepago`,
+    value: [
+      "Tipo de pago de la transaccion.",
+      "VD = Venta Débito.",
+      "VP = Venta prepago",
+      "VN = Venta Normal.",
+      "VC = Venta en cuotas.",
+      "SI = 3 cuotas sin interés.",
+      "S2 = 2 cuotas sin interés.",
+      "NC = N Cuotas sin interés",
+    ],
   },
   {
     field: "details[].response_code",
