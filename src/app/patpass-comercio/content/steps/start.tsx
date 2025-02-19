@@ -57,20 +57,6 @@ export const getStartTRXSteps = (
             formulario, proporcionando al Tarjetahabiente una experiencia de
             inscripción fluida y segura.
           </p>
-
-          <p className="mt-4">
-            Este proceso te guiará en la generación de una suscripción efectiva.
-            Si surge alguna pregunta o necesitas asistencia adicional, estamos{" "}
-            <a
-              href="https://transbank.continuumhq.dev/slack_community"
-              target="_blank"
-              className="tbk-link "
-            >
-              aquí
-            </a>{" "}
-            para ayudarte. ¡Gracias por confiar en Transbank para tus
-            operaciones seguras!
-          </p>
         </>
       ),
       code: startSnippets.getStepThree(
