@@ -17,7 +17,9 @@ export const getRefundTRXSteps = (
             Para llevar a cabo el reembolso, necesitas proporcionar el token de
             la transacción y el monto que deseas reversar. Si anulas el monto
             total, podría ser una Reversa o Anulación, dependiendo de ciertas
-            condiciones, o una Anulación Parcial si el monto es menor al total.
+            condiciones (Reversa en las primeras 3 horas de la autorización,
+            anulación posterior a eso), o una Anulación Parcial si el monto es
+            menor al total.
           </Text>
           <div>
             <Text>Algunas consideraciones a tener en cuenta:</Text>
