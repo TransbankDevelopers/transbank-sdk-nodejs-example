@@ -5,6 +5,7 @@ import {
 } from "@/types/transactions";
 import * as authorizeSnippets from "@/app/oneclick-mall/content/snippets/authorize";
 import { Text, TextType } from "@/components/text/Text";
+import { OkAuthorizeMessage } from "@/components/messages/OkAuthorizeMessage";
 
 export const getAuthorizeSteps = (
   trxData: TBKAuthorizeTransactionResponse
@@ -26,10 +27,7 @@ export const getAuthorizeSteps = (
       stepTitle: "Paso 2: Respuesta",
       stepId: "respuesta",
       content: (
-        <Text>
-          Una vez que la transacción ha sido autorizada, recibirás los
-          siguientes datos de respuesta:
-        </Text>
+        <OkAuthorizeMessage />
       ),
       code: authorizeSnippets.getStepTwo(trxData),
     },
