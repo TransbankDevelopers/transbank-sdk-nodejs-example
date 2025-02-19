@@ -12,7 +12,7 @@ export const getCommitSteps = (
       content: (
         <p>
           Luego de que se termina el flujo en el formulario de inscripción
-          recibirás un POST con lo siguiente
+          recibirás un POST con la siguiente respuesta.
         </p>
       ),
       code: commitSnippets.getStepOne(token),
@@ -21,8 +21,8 @@ export const getCommitSteps = (
       stepTitle: "Paso 2: Petición",
       content: (
         <p>
-          Usaras el token recibido para confirmar la inscripción usando
-          nuevamente PatpassComercio
+          Usarás el token recibido para confirmar la inscripción usando
+          el método status de PatpassComercio.
         </p>
       ),
       code: commitSnippets.getStepTwo(),

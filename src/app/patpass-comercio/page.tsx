@@ -46,10 +46,10 @@ export default async function StartPatpassTxPage() {
   return (
     <>
       <Head>
-        <title>PatPass Comercio - iniciar Transacción</title>
+        <title>PatPass Comercio - Iniciar Transacción</title>
       </Head>
       <Layout
-        pageTitle="PatPass Comercio - iniciar Transacción"
+        pageTitle="PatPass Comercio - Iniciar Transacción"
         pageDescription="En este paso inicial, procederemos a inscribir una tarjeta con el objetivo de obtener un identificador único. Esto nos permitirá redirigir al Tarjetahabiente hacia el formulario de inscripción en el siguiente paso."
         actualBread={actualBread}
         activeRoute="/patpass-comercio"
