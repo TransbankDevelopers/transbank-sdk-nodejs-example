@@ -15,8 +15,8 @@ export const getStartTRXSteps = (
     {
       content: (
         <Text>
-          Todas las transacciones en este proyecto de ejemplo son realizadas en
-          ambiente de integración.
+          Todas las transacciones de este proyecto ejemplo son realizadas en
+          el ambiente de integración.
         </Text>
       ),
     },
