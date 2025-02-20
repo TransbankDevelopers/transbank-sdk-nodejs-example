@@ -1,6 +1,7 @@
 import { StepProps } from "@/components/step/Step";
 import { TBKFullTxCommitResponse } from "@/types/transactions";
 import * as commitSnippets from "@/app/transaccion-completa/content/snippets/commit";
+import { OkCommitMessage } from "@/components/messages/OkCommitMessage";
 
 export const getCommitSteps = (
   commitResponse: TBKFullTxCommitResponse
@@ -23,10 +24,7 @@ export const getCommitSteps = (
     {
       stepTitle: "Paso 2: Petición",
       content: (
-        <p>
-          Una vez confirmada la transacción, recibirás los siguientes datos de
-          respuesta:
-        </p>
+        <OkCommitMessage />
       ),
       code: commitSnippets.getStepTwo(commitResponse),
     },

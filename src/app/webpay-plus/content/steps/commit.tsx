@@ -5,6 +5,7 @@ import {
 } from "@/types/transactions";
 import * as commitSnippets from "@/app/webpay-plus/content/snippets/commit";
 import { Text } from "@/components/text/Text";
+import { OkCommitMessage } from "@/components/messages/OkCommitMessage";
 
 export const getCommitSteps = (
   token: string,
@@ -34,11 +35,7 @@ export const getCommitSteps = (
     {
       stepTitle: "Paso 3: Respuesta",
       content: (
-        <Text>
-          Transbank responderá con la siguiente información. Es crucial guardar
-          esta respuesta, y la única validación necesaria es que el campo
-          &quot;response_code&quot; sea igual a cero.
-        </Text>
+        <OkCommitMessage />
       ),
       code: commitSnippets.getStepThree(commitResponse),
     },
