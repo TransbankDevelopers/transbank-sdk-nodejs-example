@@ -15,8 +15,8 @@ export const getStartTRXSteps = (
     {
       content: (
         <Text>
-          Todas las transacciones en este proyecto de ejemplo son realizadas en
-          ambiente de integración.
+          Todas las transacciones de este proyecto ejemplo son realizadas en
+          el ambiente de integración.
         </Text>
       ),
     },
@@ -41,8 +41,7 @@ export const getStartTRXSteps = (
       content: (
         <p>
           Una vez iniciada la inscripción, recibirás los siguientes datos de
-          respuesta (recuerda que el token tienen una vigencia de 7 días desde
-          su creación):
+          respuesta:
         </p>
       ),
       code: startSnippets.getStepTwo(StartTxPatPass.token, StartTxPatPass.url),
@@ -51,27 +50,11 @@ export const getStartTRXSteps = (
       stepTitle: "Paso 3: Creación del formulario",
       stepId: "form",
       content: (
-        <>
-          <p>
-            Utiliza los datos obtenidos durante la inscripción para generar un
-            formulario, proporcionando al Tarjetahabiente una experiencia de
-            inscripción fluida y segura.
-          </p>
-
-          <p className="mt-4">
-            Este proceso te guiará en la generación de una suscripción efectiva.
-            Si surge alguna pregunta o necesitas asistencia adicional, estamos{" "}
-            <a
-              href="https://transbank.continuumhq.dev/slack_community"
-              target="_blank"
-              className="tbk-link "
-            >
-              aquí
-            </a>{" "}
-            para ayudarte. ¡Gracias por confiar en Transbank para tus
-            operaciones seguras!
-          </p>
-        </>
+        <p>
+          Utiliza los datos obtenidos durante la inscripción para generar un
+          formulario, proporcionando al Tarjetahabiente una experiencia de
+          inscripción fluida y segura.
+        </p>
       ),
       code: startSnippets.getStepThree(
         StartTxPatPass.token,

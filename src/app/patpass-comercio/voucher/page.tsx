@@ -12,7 +12,7 @@ const actualBread = [
     path: "/",
   },
   {
-    name: "patpass-comercio",
+    name: "Patpass Comercio",
     path: "/patpass-comercio",
   },
   {
@@ -34,11 +34,11 @@ export default function VoucherPage() {
         <title>PatPass Comercio - Voucher</title>
       </Head>
       <Layout
-        pageTitle="PatPass Comercio -  Vouvher"
+        pageTitle="PatPass Comercio -  Voucher"
         pageDescription={
           <p>
-            La inscripción ya se encuentra finalizada. una vez finalizada la
-            inscripción puedes siguir consultando por el voucher
+            La inscripción ya se encuentra finalizada. Una vez finalizada la
+            inscripción puedes seguir consultando por el voucher.
           </p>
         }
         actualBread={actualBread}
