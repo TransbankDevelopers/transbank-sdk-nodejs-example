@@ -51,13 +51,11 @@ export const getStartTRXSteps = (
       stepTitle: "Paso 3: Creación del formulario",
       stepId: "form",
       content: (
-        <>
-          <p>
-            Utiliza los datos obtenidos durante la inscripción para generar un
-            formulario, proporcionando al Tarjetahabiente una experiencia de
-            inscripción fluida y segura.
-          </p>
-        </>
+        <p>
+          Utiliza los datos obtenidos durante la inscripción para generar un
+          formulario, proporcionando al Tarjetahabiente una experiencia de
+          inscripción fluida y segura.
+        </p>
       ),
       code: startSnippets.getStepThree(
         StartTxPatPass.token,
