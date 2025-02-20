@@ -41,8 +41,7 @@ export const getStartTRXSteps = (
       content: (
         <p>
           Una vez iniciada la inscripción, recibirás los siguientes datos de
-          respuesta (recuerda que el token tienen una vigencia de 7 días desde
-          su creación):
+          respuesta:
         </p>
       ),
       code: startSnippets.getStepTwo(StartTxPatPass.token, StartTxPatPass.url),
