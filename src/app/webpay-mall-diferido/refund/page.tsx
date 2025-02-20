@@ -9,7 +9,6 @@ import { StatusButton } from "@/app/webpay-mall-diferido/components/StatusButton
 import { CustomError } from "@/components/customError/CustomError";
 import { Metadata } from "next";
 
-
 export const metadata: Metadata = {
   title: "Transbank SDK Node - Reembolsar transacción",
 };
@@ -39,21 +38,29 @@ export default async function RefundTransaction({
   );
 
   if ("errorMessage" in refundResult) {
-    return <CustomError errorMessage={refundResult.errorMessage} actualBread={actualBread}/>;
+    return (
+      <CustomError
+        errorMessage={refundResult.errorMessage}
+        actualBread={actualBread}
+      />
+    );
   }
 
   return (
-      <Layout
-        pageTitle="Webpay Mall Diferido - Reembolsar"
-        pageDescription={`En esta etapa, tienes la opción de solicitar el reembolso del monto al titular de la tarjeta. 
-        Dependiendo del monto y el tiempo transcurrido desde la transacción, este proceso podría resultar en una Reversa, 
-        Anulación o Anulación Parcial.`}
-        actualBread={actualBread}
-        activeRoute="/webpay-mall-diferido/refund"
-        steps={getRefundTRXSteps(refundResult, amount as string)}
-        additionalContent={
-          <StatusButton className="mt-6" token={token_ws as string} />
-        }
-      />
+    <Layout
+      pageTitle="Webpay Mall Diferido - Reembolsar"
+      pageDescription={`En esta etapa, tienes la opción de solicitar el reembolso del monto al titular de la tarjeta. 
+        Dependiendo del monto y el tiempo transcurrido desde la transacción, este proceso podría resultar en una Reversa o Anulación, dependiendo de ciertas condiciones (Reversa
+                en las primeras 3 horas de la autorización, anulación posterior
+                a eso), o una Anulación parcial si el monto es menor al total.
+                Las anulaciones parciales para tarjetas débito y prepago no
+                están soportadas.`}
+      actualBread={actualBread}
+      activeRoute="/webpay-mall-diferido/refund"
+      steps={getRefundTRXSteps(refundResult, amount as string)}
+      additionalContent={
+        <StatusButton className="mt-6" token={token_ws as string} />
+      }
+    />
   );
 }

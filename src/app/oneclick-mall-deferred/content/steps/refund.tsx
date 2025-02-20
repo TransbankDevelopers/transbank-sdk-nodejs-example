@@ -27,11 +27,11 @@ export const getRefundTRXSteps = (
             <div className="link-to-terms">
               <Text>
                 Ten en cuenta que si anulas el monto total, puede ser una
-                Reversa o Anulación, dependiendo de ciertas condiciones, o una
-                Anulación parcial si el monto es menor al total. No es posible
-                realizar Anulaciones ni Anulaciones parciales en tarjetas que no
-                sean de crédito. Tampoco es posible realizar reembolsos de
-                compras en cuotas.
+                Reversa o Anulación, dependiendo de ciertas condiciones (Reversa
+                en las primeras 3 horas de la autorización, anulación posterior
+                a eso), o una Anulación parcial si el monto es menor al total.
+                Las anulaciones parciales para tarjetas débito y prepago no
+                están soportadas.
               </Text>
             </div>
           </div>

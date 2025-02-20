@@ -43,8 +43,7 @@ export const getCreateTRXSteps = (
       content: (
         <Text>
           Una vez que hayas creado la transacción, aquí encontrarás los datos de
-          respuesta generados por el proceso (recuerda que el token tienen una
-          vigencia de 7 días desde su creación):
+          respuesta generados por el proceso:
         </Text>
       ),
       code: createSnippets.getStepTwo(token),
@@ -86,17 +85,17 @@ export const getCreateTRXSteps = (
           </Text>
 
           <Text>
-            Antes de continuar al formulario de Webpay, asegúrate de contar con los datos de las tarjetas de prueba que están en la{" "}
-                <a
-                  className="tbk-link tbk-link-alt"
-                  href="https://transbankdevelopers.cl/documentacion/como_empezar#tarjetas-de-prueba"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                 documentación.
-                </a>{" "}
+            Antes de continuar al formulario de Webpay, asegúrate de contar con
+            los datos de las tarjetas de prueba que están en la{" "}
+            <a
+              className="tbk-link tbk-link-alt"
+              href="https://transbankdevelopers.cl/documentacion/como_empezar#tarjetas-de-prueba"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              documentación.
+            </a>{" "}
           </Text>
-
         </div>
       ),
     },

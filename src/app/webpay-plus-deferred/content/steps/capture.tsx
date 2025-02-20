@@ -34,9 +34,10 @@ export const getCaptureSteps = (
       content: (
         <Text>
           Luego de capturada la transacción puedes Reembolsar (reversar o
-          anular) el pago dependiendo de ciertas condiciones comerciales.
-          También puedes consultar el estado de la transacción hasta 7 días
-          después de realizada.
+          anular) el pago dependiendo de ciertas condiciones comerciales
+          (Reversa en las primeras 3 horas de la captura, anulación posterior a
+          eso). También puedes consultar el estado de la transacción hasta 7
+          días después de realizada.
         </Text>
       ),
     },

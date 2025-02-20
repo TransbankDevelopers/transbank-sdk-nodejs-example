@@ -17,8 +17,9 @@ export const getRefundTRXSteps = (
             la transacción, el monto que quieres reversar, el código de comercio
             de la tienda y la orden de compra del detalle de la transacción. Si
             anulas el monto total, podría ser una Reversa o Anulación,
-            dependiendo de ciertas condiciones, o una Anulación Parcial si el
-            monto es menor al total.
+            dependiendo de ciertas condiciones (Reversa en las primeras 3 horas
+            de la autorización, anulación posterior a eso), o una Anulación
+            Parcial si el monto es menor al total.
           </Text>
           <div>
             <Text>Algunas consideraciones a tener en cuenta:</Text>
@@ -27,7 +28,6 @@ export const getRefundTRXSteps = (
                 No es posible realizar Anulaciones Parciales en pagos con
                 cuotas.
               </li>
-              <li>No se admiten reembolsos de compras en cuotas.</li>
             </ul>
             <div className="link-to-terms">
               <Text>
