@@ -1,5 +1,5 @@
 import { StepProps } from "@/components/step/Step";
-import { Text, TextVariant } from "@/components/text/Text";
+import { Text } from "@/components/text/Text"; 
 import * as commitSnippets from "../snippets/commit";
 import { TBKMallCommitTransactionResponse } from "@/types/transactions";
 import { OkCommitMessage } from "@/components/messages/OkCommitMessage";
