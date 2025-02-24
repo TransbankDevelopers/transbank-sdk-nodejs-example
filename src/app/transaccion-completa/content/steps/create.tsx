@@ -1,5 +1,6 @@
 import { StepProps } from "@/components/step/Step";
 import * as createSnippets from "@/app/transaccion-completa/content/snippets/create";
+import { OtherOperationsCreateFullTxMessage } from "@/components/messages/OtherOperationsCreateFullTxMessage";
 
 export const getCreateTRXSteps = (token: string): StepProps[] => {
   return [
@@ -8,7 +9,7 @@ export const getCreateTRXSteps = (token: string): StepProps[] => {
       stepId: "peticion",
       content: (
         <p className="step-1">
-          Comienza importando la librería TransaccionCompleta y, a continuación,
+          Comienza importando la librería TransaccionCompleta, y a continuación,
           crea la transacción necesaria.
         </p>
       ),
@@ -30,24 +31,7 @@ export const getCreateTRXSteps = (token: string): StepProps[] => {
       stepTitle: "¡Transacción creada!",
       stepId: "next-steps",
       content: (
-        <div className="step-example">
-          <p>
-            Ahora que hemos creado la transacción, se abren dos opciones para
-            continuar:
-          </p>
-          <ul>
-            <li>
-              <span className="font-bold">Consulta de Cuotas(opcional):</span>{" "}
-              Alternativamente puedes realizar consultas de cuotas para ofrecer
-              opciones de pago a plazos.
-            </li>
-            <li>
-              <span className="font-bold">Confirmar Transacción:</span> debes
-              confirmar directamente la transacción para finalizar con el
-              proceso de pago.
-            </li>
-          </ul>
-        </div>
+        <OtherOperationsCreateFullTxMessage />
       ),
     },
   ];
