@@ -30,7 +30,7 @@ export const getCaptureSteps = (
     },
 
     {
-      stepTitle: "Otras utilidades",
+      stepTitle: "¡Listo!",
       stepId: "other",
       content: (
         <OtherOperationsCaptureMessage />

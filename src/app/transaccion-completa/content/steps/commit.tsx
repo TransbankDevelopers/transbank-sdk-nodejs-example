@@ -31,7 +31,7 @@ export const getCommitSteps = (
     },
 
     {
-      stepTitle: "¡Transacción confirmada!",
+      stepTitle: "¡Listo!",
       stepId: "confirm",
       content: (
         <OtherOperationsCommitMessage />
