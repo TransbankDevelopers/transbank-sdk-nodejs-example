@@ -8,12 +8,10 @@ type SidebarItemsProps = Readonly<{
   pathname: string;
   basePath: string;
   collapseState: Record<string, boolean>;
-  activeApiSection?: string | null;
   toggle: (title: string) => void;
   collapsible?: {
     title: string;
     fullRoute: string;
-    apiSections?: string[];
     apiReferenceRoute?: string;
   };
 }>;
@@ -24,12 +22,10 @@ export default function SidebarItems({
   collapseState,
   toggle,
   collapsible,
-  activeApiSection,
 }: SidebarItemsProps) {
   if (!collapsible) {
     return null;
   }
-
   return (
     <li style={{ marginBottom: "20px" }}>
       <button
@@ -59,25 +55,19 @@ export default function SidebarItems({
               Flujo Completo
             </Link>
           </li>
-          {collapsible.apiSections?.map((apiId) => (
-            <li
-              key={apiId}
-              className={`${cx(
-                collapsible.apiReferenceRoute &&
-                  pathname === collapsible.apiReferenceRoute &&
-                  activeApiSection === apiId
-                  ? "active"
-                  : ""
-              )} collapsible-items`}
+
+          <li
+            className={`${cx(
+              pathname === collapsible.apiReferenceRoute && "active"
+            )} collapsible-items`}
+          >
+            <Link
+              href={`${collapsible.apiReferenceRoute}`}
+              className="tbk-sidebar-item"
             >
-              <Link
-                href={`${collapsible.apiReferenceRoute}#${apiId}`}
-                className="tbk-sidebar-item"
-              >
-                {apiId.replace("api-", "api ")}
-              </Link>
-            </li>
-          ))}
+              Operaciones Api
+            </Link>
+          </li>
         </ul>
       )}
     </li>
