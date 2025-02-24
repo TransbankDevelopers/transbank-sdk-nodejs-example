@@ -32,7 +32,9 @@ export default function ApiRefWebpayDeferred() {
           Esta operación permite obtener el estado de la transacción en
           cualquier momento. En condiciones normales es probable que no se
           requiera ejecutar, pero en caso de ocurrir un error inesperado permite
-          conocer el estado y tomar las acciones que correspondan.
+          conocer el estado y tomar las acciones que correspondan. La consulta
+          de estado se puede realizar hasta 7 días desde la creación de la
+          transacción.
         </p>
         <ApiRefWebpayDeferredStatus />
 
