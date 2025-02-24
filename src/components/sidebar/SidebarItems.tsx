@@ -65,7 +65,7 @@ export default function SidebarItems({
               href={`${collapsible.apiReferenceRoute}`}
               className="tbk-sidebar-item"
             >
-              Operaciones Api
+              Operaciones API
             </Link>
           </li>
         </ul>
