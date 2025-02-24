@@ -2,6 +2,7 @@ import { StepProps } from "@/components/step/Step";
 import { TBKFullTxCommitResponse } from "@/types/transactions";
 import * as commitSnippets from "@/app/transaccion-completa-diferido/content/snippets/commit";
 import { OkCommitMessage } from "@/components/messages/OkCommitMessage";
+import { OtherOperationsCommitDeferredMessage } from "@/components/messages/OtherOperationsCommitDeferredMessage";
 
 export const getCommitSteps = (
   commitResponse: TBKFullTxCommitResponse
@@ -33,31 +34,7 @@ export const getCommitSteps = (
       stepTitle: "¡Transacción confirmada!",
       stepId: "confirm",
       content: (
-        <div className="step-ready">
-          <p>
-            Con la transacción confirmada, puedes mostrar al usuario una página
-            de éxito de la transacción, proporcionándole la confirmación de que
-            el proceso se ha completado con éxito.
-          </p>
-          <div className="instructions">
-            <p>
-              <span className="font-bold">Otras Utilidades:</span> Después de
-              confirmar la transacción, considera las siguientes utilidades
-              adicionales:
-            </p>
-            <ul className="list">
-              <li>
-                <span className="font-bold">Reembolsar:</span> Puedes reversar o
-                anular el pago según ciertas condiciones comerciales.
-              </li>
-              <li>
-                <span className="font-bold">Consultar Estado:</span> Hasta 7
-                días después de realizada la transacción, podrás consultar el
-                estado de la transacción.
-              </li>
-            </ul>
-          </div>
-        </div>
+        <OtherOperationsCommitDeferredMessage />
       ),
     },
   ];
