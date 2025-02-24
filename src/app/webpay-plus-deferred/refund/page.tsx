@@ -52,8 +52,11 @@ export default async function RefundTransaction({
     <Layout
       pageTitle="Webpay Plus Diferido - Reembolsar"
       pageDescription={`En esta etapa, tienes la opción de solicitar el reembolso del monto al titular de la tarjeta. 
-        Dependiendo del monto y el tiempo transcurrido desde la transacción, este proceso podría resultar en una Reversa, 
-        Anulación o Anulación Parcial.`}
+        Dependiendo del monto y el tiempo transcurrido desde la transacción, este proceso podría resultar en una Reversa o Anulación, dependiendo de ciertas condiciones (Reversa
+                en las primeras 3 horas de la autorización, anulación posterior
+                a eso), o una Anulación parcial si el monto es menor al total.
+                Las anulaciones parciales para tarjetas débito y prepago no
+                están soportadas.`}
       actualBread={actualBread}
       activeRoute="/webpay-plus-deferred/refund"
       steps={getRefundTRXSteps(refundResult, amount as string)}
