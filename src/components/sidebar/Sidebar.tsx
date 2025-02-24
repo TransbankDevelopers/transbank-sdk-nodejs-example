@@ -1,11 +1,10 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useCallback, useMemo } from "react";
 import Link from "next/link";
 import cx from "classnames";
 import { usePathname } from "next/navigation";
 import { sidebarConfig } from "@/consts";
-import useScrollSpy from "@/app/hooks/useScrollSpy";
 import Image from "next/image";
 import close from "@/assets/svg/close-icon.svg";
 import SidebarItems from "./SidebarItems";
@@ -36,36 +35,21 @@ export default function Sidebar({
     "tbk-sidebar-mobile": !isSidebarVisible && isMobile,
   });
 
-  const allApiRoutes = useMemo(
-    () =>
-      sidebarConfig.flatMap(
-        (section) =>
-          section.collapsibles?.map((col) => ({
-            route: col.apiReferenceRoute,
-            sections: col.apiSections || [],
-          })) || []
-      ),
-    []
-  );
+  const initialTitlesState = useMemo(() => {
+    const state: CollapseState = {};
 
-  const currentApi = allApiRoutes.find(
-    (api) => api.route && pathname === api.route
-  );
+    sidebarConfig.forEach((section) => {
+      section.collapsibles?.forEach((collapsible) => {
+        const isCurrentCollapsible =
+          basePath === collapsible.fullRoute ||
+          (collapsible.apiReferenceRoute &&
+            pathname === collapsible.apiReferenceRoute);
 
-  const activeApiSection = useScrollSpy(currentApi ? currentApi.sections : []);
-
-  const initialTitlesState: CollapseState = {};
-
-  sidebarConfig.forEach((section) => {
-    section.collapsibles?.forEach((collapsible) => {
-      const isCurrentCollapsible =
-        basePath === collapsible.fullRoute ||
-        (collapsible.apiReferenceRoute &&
-          pathname === collapsible.apiReferenceRoute);
-
-      initialTitlesState[collapsible.title] = Boolean(isCurrentCollapsible);
+        state[collapsible.title] = Boolean(isCurrentCollapsible);
+      });
     });
-  });
+    return state;
+  }, [basePath, pathname]);
 
   const [collapseState, setCollapseState] =
     useState<CollapseState>(initialTitlesState);
@@ -74,25 +58,28 @@ export default function Sidebar({
     setIsMenuVisible(!isMenuVisible);
   };
 
-  const resetCollapseState = (newState: CollapseState) => {
+  const resetCollapseState = useCallback((newState: CollapseState) => {
     sidebarConfig.forEach((principalSections) => {
       principalSections.collapsibles?.forEach((collapsible) => {
         newState[collapsible.title] = false;
       });
     });
-  };
+  }, []);
 
-  const toggle = (key: string) => {
-    setCollapseState((prev) => {
-      const newState = { ...prev };
+  const toggle = useCallback(
+    (key: string) => {
+      setCollapseState((prev) => {
+        const newState = { ...prev };
 
-      resetCollapseState(newState);
+        resetCollapseState(newState);
 
-      newState[key] = !prev[key];
+        newState[key] = !prev[key];
 
-      return newState;
-    });
-  };
+        return newState;
+      });
+    },
+    [resetCollapseState]
+  );
 
   return (
     <aside className={hideMenuClass}>
@@ -128,7 +115,6 @@ export default function Sidebar({
                     <SidebarItems
                       key={collapsible.title}
                       collapsible={collapsible}
-                      activeApiSection={activeApiSection}
                       pathname={pathname}
                       basePath={basePath}
                       toggle={toggle}
