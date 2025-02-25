@@ -31,7 +31,7 @@ export const getCommitSteps = (
       code: commitSnippets.getStepTwo(trxData),
     },
     {
-      stepTitle: "Transaccion Confirmada!",
+      stepTitle: "¡Transaccion Confirmada!",
       stepId: "listo",
       content: (
         <OperationsCommitDeferredMessage />
