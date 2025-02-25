@@ -1,5 +1,5 @@
 
-export const OtherOperationsCreateFullTxMessage = () => {
+export const OperationsCreateFullTxMessage = () => {
   return (
     <div className="step-ready">
       <div className="instructions">

@@ -1,6 +1,6 @@
 import { StepProps } from "@/components/step/Step";
 import * as createSnippets from "@/app/transaccion-completa/content/snippets/create";
-import { OtherOperationsCreateFullTxMessage } from "@/components/messages/OtherOperationsCreateFullTxMessage";
+import { OperationsCreateFullTxMessage } from "@/components/messages/OperationsCreateFullTxMessage";
 
 export const getCreateTRXSteps = (token: string): StepProps[] => {
   return [
@@ -31,7 +31,7 @@ export const getCreateTRXSteps = (token: string): StepProps[] => {
       stepTitle: "¡Transacción creada!",
       stepId: "next-steps",
       content: (
-        <OtherOperationsCreateFullTxMessage />
+        <OperationsCreateFullTxMessage />
       ),
     },
   ];

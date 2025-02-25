@@ -2,7 +2,7 @@ import { StepProps } from "@/components/step/Step";
 import { TBKFullTxCommitResponse } from "@/types/transactions";
 import * as commitSnippets from "@/app/transaccion-completa-diferido/content/snippets/commit";
 import { OkCommitMessage } from "@/components/messages/OkCommitMessage";
-import { OtherOperationsCommitDeferredMessage } from "@/components/messages/OtherOperationsCommitDeferredMessage";
+import { OperationsCommitDeferredMessage } from "@/components/messages/OperationsCommitDeferredMessage";
 
 export const getCommitSteps = (
   commitResponse: TBKFullTxCommitResponse
@@ -34,7 +34,7 @@ export const getCommitSteps = (
       stepTitle: "¡Transacción confirmada!",
       stepId: "confirm",
       content: (
-        <OtherOperationsCommitDeferredMessage />
+        <OperationsCommitDeferredMessage />
       ),
     },
   ];

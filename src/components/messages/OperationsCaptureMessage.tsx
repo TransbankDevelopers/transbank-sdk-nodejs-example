@@ -1,9 +1,9 @@
 
-export const OtherOperationsMessage = () => {
+export const OperationsCaptureMessage = () => {
   return (
     <div className="step-ready">
       <p>
-        Con la transacción confirmada, puedes mostrar al usuario una página
+        Con la transacción capturada, puedes mostrar al usuario una página
         de éxito de la transacción, proporcionándole la confirmación de que
         el proceso se ha completado con éxito.
       </p>

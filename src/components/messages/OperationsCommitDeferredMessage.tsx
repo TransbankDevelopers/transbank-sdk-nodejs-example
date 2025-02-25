@@ -1,5 +1,5 @@
 
-export const OtherOperationsCommitDeferredMessage = () => {
+export const OperationsCommitDeferredMessage = () => {
   return (
     <div className="step-ready">
       <div className="instructions">

@@ -3,7 +3,7 @@ import { Text } from "@/components/text/Text";
 import * as commitSnippets from "../snippets/commit";
 import { TBKMallCommitTransactionResponse } from "@/types/transactions";
 import { OkCommitMessage } from "@/components/messages/OkCommitMessage";
-import { OtherOperationsCommitMessage } from "@/components/messages/OtherOperationsCommitMessage";
+import { OperationsCommitMessage } from "@/components/messages/OperationsCommitMessage";
 
 export const getCommitSteps = (
   trxData: TBKMallCommitTransactionResponse
@@ -34,7 +34,7 @@ export const getCommitSteps = (
       stepTitle: "¡Listo!",
       stepId: "listo",
       content: (
-        <OtherOperationsCommitMessage />
+        <OperationsCommitMessage />
       ),
     },
   ];

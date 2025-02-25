@@ -2,7 +2,7 @@ import { StepProps } from "@/components/step/Step";
 import { TBKFullTxCommitResponse } from "@/types/transactions";
 import * as commitSnippets from "@/app/transaccion-completa/content/snippets/commit";
 import { OkCommitMessage } from "@/components/messages/OkCommitMessage";
-import { OtherOperationsCommitMessage } from "@/components/messages/OtherOperationsCommitMessage";
+import { OperationsCommitMessage } from "@/components/messages/OperationsCommitMessage";
 
 export const getCommitSteps = (
   commitResponse: TBKFullTxCommitResponse
@@ -34,7 +34,7 @@ export const getCommitSteps = (
       stepTitle: "¡Listo!",
       stepId: "confirm",
       content: (
-        <OtherOperationsCommitMessage />
+        <OperationsCommitMessage />
       ),
     },
   ];

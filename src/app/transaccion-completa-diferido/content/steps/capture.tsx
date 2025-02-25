@@ -1,7 +1,7 @@
 import { StepProps } from "@/components/step/Step";
 import { TBKfullTxCaptureResponse } from "@/types/transactions";
 import * as captureSnippets from "@/app/transaccion-completa-diferido/content/snippets/capture";
-import { OtherOperationsCaptureMessage } from "@/components/messages/OtherOperationsCaptureMessage";
+import { OperationsCaptureMessage } from "@/components/messages/OperationsCaptureMessage";
 
 export const getCaptureSteps = (
   captureResponse: TBKfullTxCaptureResponse
@@ -33,7 +33,7 @@ export const getCaptureSteps = (
       stepTitle: "¡Listo!",
       stepId: "other",
       content: (
-        <OtherOperationsCaptureMessage />
+        <OperationsCaptureMessage />
       ),
     },
   ];

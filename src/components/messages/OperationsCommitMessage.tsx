@@ -1,5 +1,5 @@
 
-export const OtherOperationsCommitMessage = () => {
+export const OperationsCommitMessage = () => {
   return (
     <div className="step-ready">
       <p>
