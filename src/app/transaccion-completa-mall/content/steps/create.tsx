@@ -1,6 +1,7 @@
 import { StepProps } from "@/components/step/Step";
 import { Text, TextVariant } from "@/components/text/Text";
 import * as createSnippets from "../snippets/create";
+import { OperationsCreateFullTxMessage } from "@/components/messages/OperationsCreateFullTxMessage";
 
 export const getCreateSteps = (token: string): StepProps[] => {
   return [
@@ -35,24 +36,7 @@ export const getCreateSteps = (token: string): StepProps[] => {
       stepTitle: "¡Transacción creada!",
       stepId: "listo",
       content: (
-        <div className="step-example">
-          <p>
-            Ahora que hemos creado la transacción, se abren dos opciones para
-            continuar:
-          </p>
-          <ul>
-            <li>
-              <span className="font-bold">Consulta de Cuotas(opcional):</span>{" "}
-              Alternativamente puedes realizar consultas de cuotas para ofrecer
-              opciones de pago a plazos.
-            </li>
-            <li>
-              <span className="font-bold">Confirmar Transacción:</span> debes
-              confirmar directamente la transacción para finalizar con el
-              proceso de pago.
-            </li>
-          </ul>
-        </div>
+        <OperationsCreateFullTxMessage />
       ),
     },
   ];

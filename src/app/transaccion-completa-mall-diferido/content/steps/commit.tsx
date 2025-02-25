@@ -1,8 +1,9 @@
 import { StepProps } from "@/components/step/Step";
-import { Text, TextVariant } from "@/components/text/Text";
+import { Text } from "@/components/text/Text";
 import * as commitSnippets from "../snippets/commit";
 import { TBKMallCommitTransactionResponse } from "@/types/transactions";
 import { OkCommitMessage } from "@/components/messages/OkCommitMessage";
+import { OperationsCommitDeferredMessage } from "@/components/messages/OperationsCommitDeferredMessage";
 
 export const getCommitSteps = (
   trxData: TBKMallCommitTransactionResponse
@@ -30,31 +31,10 @@ export const getCommitSteps = (
       code: commitSnippets.getStepTwo(trxData),
     },
     {
-      stepTitle: "Transaccion Confirmada!",
+      stepTitle: "¡Transaccion Confirmada!",
       stepId: "listo",
       content: (
-        <div>
-          <Text variant={TextVariant.PARAGRAPH} className="mt-2">
-            Con la transacción confirmada, puedes mostrar al usuario una página
-            de éxito de la transacción, proporcionándole la confirmación de que
-            el proceso se ha completado con éxito.
-          </Text>
-
-          <Text variant={TextVariant.PARAGRAPH} className="mt-4">
-            <b>Otras Utilidades:</b> Después de confirmar la transacción,
-            considera las siguientes utilidades adicionales:
-          </Text>
-          <ul className="list mt-2">
-            <li>
-              <b>Reembolso:</b> Evalúa la posibilidad de reversar o anular el
-              pago según ciertas condiciones comerciales.
-            </li>
-            <li className="mt-2">
-              <b>Consulta de Estado:</b> Hasta 7 días después de la transacción,
-              puedes consultar su estado para obtener más detalles.
-            </li>
-          </ul>
-        </div>
+        <OperationsCommitDeferredMessage />
       ),
     },
   ];

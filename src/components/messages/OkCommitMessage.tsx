@@ -1,4 +1,4 @@
-"use client";
+
 import { Text } from "@/components/text/Text";
 
 export const OkCommitMessage = () => {

@@ -1,6 +1,7 @@
 import { StepProps } from "@/components/step/Step";
 import { TBKfullTxCaptureResponse } from "@/types/transactions";
 import * as captureSnippets from "@/app/transaccion-completa-diferido/content/snippets/capture";
+import { OperationsCaptureMessage } from "@/components/messages/OperationsCaptureMessage";
 
 export const getCaptureSteps = (
   captureResponse: TBKfullTxCaptureResponse
@@ -29,27 +30,10 @@ export const getCaptureSteps = (
     },
 
     {
-      stepTitle: "Otras utilidades",
+      stepTitle: "¡Listo!",
       stepId: "other",
       content: (
-        <div className="instructions">
-          <p>
-            <span className="font-bold">Otras Utilidades:</span> Después de
-            confirmar la transacción, considera las siguientes utilidades
-            adicionales:
-          </p>
-          <ul className="list">
-            <li>
-              <span className="font-bold">Reembolsar:</span> Puedes reversar o
-              anular el pago según ciertas condiciones comerciales.
-            </li>
-            <li>
-              <span className="font-bold">Consultar Estado:</span> Hasta 7 días
-              después de realizada la transacción, podrás consultar el estado de
-              la transacción.
-            </li>
-          </ul>
-        </div>
+        <OperationsCaptureMessage />
       ),
     },
   ];

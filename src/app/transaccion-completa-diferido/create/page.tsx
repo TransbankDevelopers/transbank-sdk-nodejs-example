@@ -58,10 +58,10 @@ export default async function CreateWebpaytxfullPage({
   return (
     <>
       <Head>
-        <title>Transacción Completa diferido - crear transacción</title>
+        <title>Transacción Completa Diferido - Crear transacción</title>
       </Head>
       <Layout
-        pageTitle="Transacción Completa diferido - crear transacción"
+        pageTitle="Transacción Completa Diferido - crear transacción"
         pageDescription="En este paso sucede la creación de la transacción con el objetivo de obtener un identificador único para la misma."
         actualBread={actualBread}
         activeRoute="/transaccion-completa-diferido/create"

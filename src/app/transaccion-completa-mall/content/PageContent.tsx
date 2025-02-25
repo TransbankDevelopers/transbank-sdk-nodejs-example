@@ -91,7 +91,7 @@ export const PageContent = (props: PageContentProps) => {
       </Head>
       <Layout
         pageTitle="Transacción Completa Mall - Formulario"
-        pageDescription="En esta primera etapa necesitas obtener los datos esenciales de la tarjeta de crédito del titular. Utiliza el formulario para recolectar esta información de manera segura."
+        pageDescription="En esta primera etapa necesitas obtener los datos esenciales de la tarjeta de crédito, débito o prepago del titular. Utiliza el formulario para recolectar esta información de manera segura."
         actualBread={props.actualBread}
         activeRoute="/transaccion-completa-mall"
         navigationItems={props.navigationItems}

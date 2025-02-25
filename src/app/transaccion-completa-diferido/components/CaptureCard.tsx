@@ -37,7 +37,7 @@ export const CaptureCard = ({
   return (
     <Card className="tbk-tx-card">
       <InputText
-        label="N° de cuotas"
+        label="Monto"
         value={captureAmount}
         onChange={handleCapture}
       />

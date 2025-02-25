@@ -3,6 +3,7 @@ import { TBKMallCommitTransactionResponse } from "@/types/transactions";
 import * as commitSnippets from "@/app/webpay-mall/content/snippets/commit";
 import { Text } from "@/components/text/Text";
 import { OkCommitMessage } from "@/components/messages/OkCommitMessage";
+import { OperationsCommitDeferredMessage } from "@/components/messages/OperationsCommitDeferredMessage";
 
 export const getCommitSteps = (
   token: string,
@@ -38,31 +39,10 @@ export const getCommitSteps = (
       code: commitSnippets.getStepThree(commitResponse),
     },
     {
-      stepTitle: "¡Casi Listo!",
+      stepTitle: "¡Transaccion Confirmada!",
       stepId: "consultas",
       content: (
-        <div className="step-ready">
-          <p>
-            Es importante tener en cuenta que la transacción aún no ha sido
-            capturada, por lo que hay que dejarle saber al tarjetahabiente que
-            necesita un paso más; solo se ha retenido el saldo en su tarjeta.
-            Después de confirmar la transacción, puedes:
-          </p>
-          <div className="instructions">
-            <ul className="list">
-              <li>Capturar la transacción.</li>
-              <li>Revertir la transacción si es necesario.</li>
-              <li>
-                Consultar el estado de la transacción hasta 7 días después de
-                realizada.
-              </li>
-            </ul>
-            <p>
-              Este proceso te guiará en la confirmación exitosa de
-              transacciones.
-            </p>
-          </div>
-        </div>
+        <OperationsCommitDeferredMessage />
       ),
     },
   ];

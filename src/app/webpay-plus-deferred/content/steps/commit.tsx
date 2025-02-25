@@ -6,6 +6,7 @@ import {
 import * as commitSnippets from "@/app/webpay-plus/content/snippets/commit";
 import { Text } from "@/components/text/Text";
 import { OkCommitMessage } from "@/components/messages/OkCommitMessage";
+import { OperationsCommitDeferredMessage } from "@/components/messages/OperationsCommitDeferredMessage";
 
 export const getCommitSteps = (
   token: string,
@@ -43,31 +44,9 @@ export const getCommitSteps = (
 
   if (commitResponse.status === TBKTransactionStatus.AUTHORIZED) {
     steps.push({
-      stepTitle: "¡Listo!",
+      stepTitle: "¡Transaccion Confirmada!",
       content: (
-        <div className="step-ready">
-          <Text>
-            Con la confirmación exitosa, ya puedes mostrar al usuario una página
-            de éxito de la transacción, proporcionándole la tranquilidad de que
-            el proceso ha sido completado con éxito.
-          </Text>
-          <div className="instructions">
-            <Text>
-              Después de confirmar la transacción, podrás realizar otras
-              operaciones útiles:
-            </Text>
-            <ul className="list">
-              <li>
-                <b>Reembolsar:</b> Puedes reversar o anular el pago según
-                ciertas condiciones comerciales.
-              </li>
-              <li>
-                <b>Consultar Estado:</b> Hasta 7 días después de realizada la
-                transacción, podrás consultar el estado de la transacción.
-              </li>
-            </ul>
-          </div>
-        </div>
+        <OperationsCommitDeferredMessage />
       ),
     });
   }
