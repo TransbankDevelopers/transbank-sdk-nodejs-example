@@ -30,8 +30,7 @@ export default function ApiRefWebpay() {
 
         <h2 id="api-status">Obtener estado de una transacción</h2>
         <p>
-          Esta operación permite obtener el estado de la transacción en
-          cualquier momento. En condiciones normales es probable que no se
+          En condiciones normales es probable que no se
           requiera ejecutar, pero en caso de ocurrir un error inesperado permite
           conocer el estado y tomar las acciones que correspondan. La consulta
           de estado se puede realizar hasta 7 días desde la creación de la
