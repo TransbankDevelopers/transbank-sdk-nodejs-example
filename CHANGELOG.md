@@ -8,4 +8,4 @@ Versión inicial del proyecto de ejemplo.
 
 ### Agrega
 
-- Se agregan los productos Webpay Plus, Webpay Plus Mall, Webpay Oneclick Mall, Webpay Transacción Completa, Webpay Transacción Completa Mall y Patpass y sus diferentes modalidades.
+- Se agregan los productos Webpay Plus, Webpay Plus Mall, Webpay Oneclick Mall, Webpay Transacción Completa, Webpay Transacción Completa Mall, Patpass y sus diferentes modalidades.
