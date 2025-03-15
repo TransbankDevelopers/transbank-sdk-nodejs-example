@@ -14,7 +14,7 @@
     "classnames": "^2.5.1",
     "next": "14.2.23",
     "nextjs-toploader": "^1.6.12",
-    "postcss": "^8.5.1",
+    "postcss": "^8.5.3",
     "react": "^18.3.1",
     "react-copy-to-clipboard": "^5.1.0",
     "react-credit-cards-2": "^1.0.3",
