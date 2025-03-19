@@ -10,9 +10,8 @@ import { Card } from "@/components/card/Card";
 import { Layout } from "@/components/layout/Layout";
 import { getCreateTRXSteps } from "@/app/webpay-plus/content/steps/create";
 import Head from "next/head";
-import { createTransaction } from "../lib/webpay-plus/data";
+import { createTransaction } from "../lib/webpay-plus-deferred/data";
 import { NavigationItem } from "@/components/layout/Navigation";
-import { getWebpayPlusDeferredOptions } from "../lib/webpay-plus-deferred/data";
 import { CustomError } from "@/components/customError/CustomError";
 import { PageRefresh } from "@/components/pageRefresh/PageRefresh";
 import { Text } from "@/components/text/Text";
@@ -55,8 +54,7 @@ export type CreateTRXProps = TBKCreateTransactionResponse &
 
 export default async function CreateTransaction() {
   const trxData = await createTransaction(
-    "/webpay-plus-deferred/commit",
-    getWebpayPlusDeferredOptions()
+    "/webpay-plus-deferred/commit"
   );
   if ("errorMessage" in trxData) {
     return (
