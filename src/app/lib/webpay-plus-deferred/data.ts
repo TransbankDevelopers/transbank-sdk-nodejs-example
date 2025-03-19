@@ -1,4 +1,3 @@
-import { TBKCaptureTransactionResponse } from "@/types/transactions";
 import { ResultError } from "@/helpers/resultError";
 import { getErrorMessage } from "@/helpers/errorHandler";
 import {
@@ -18,6 +17,7 @@ import {
   TBKCreateTransactionResponse,
   TBKTransactionStatusResponse,
   TBKRefundTransactionResponse,
+  TBKCaptureTransactionResponse
 } from "@/types/transactions";
 import { headers } from "next/headers";
 
@@ -94,7 +94,7 @@ export const commitTransaction = async (
       const commitResponse: TBKCommitTransactionResponse =
         await new WebpayPlus.Transaction(
           getWebpayPlusDeferredOptions()
-        ).commit(parametersReceivedByTBK.token_ws as string);
+        ).commit(parametersReceivedByTBK.token_ws);
 
       return {
         type: TBKCallbackType.COMMIT_OK,
@@ -109,9 +109,9 @@ export const commitTransaction = async (
       return {
         type: TBKCallbackType.ABORTED,
         abortedResponse: {
-          TBK_TOKEN: TBK_TOKEN as string,
-          TBK_ORDEN_COMPRA: TBK_ORDEN_COMPRA as string,
-          TBK_ID_SESION: TBK_ID_SESION as string,
+          TBK_TOKEN: TBK_TOKEN,
+          TBK_ORDEN_COMPRA: TBK_ORDEN_COMPRA,
+          TBK_ID_SESION: TBK_ID_SESION,
         },
       };
     }
@@ -122,8 +122,8 @@ export const commitTransaction = async (
       return {
         type: TBKCallbackType.TIMEOUT,
         timeoutResponse: {
-          TBK_ORDEN_COMPRA: TBK_ORDEN_COMPRA as string,
-          TBK_ID_SESION: TBK_ID_SESION as string,
+          TBK_ORDEN_COMPRA: TBK_ORDEN_COMPRA,
+          TBK_ID_SESION: TBK_ID_SESION
         },
       };
     }
@@ -143,7 +143,7 @@ export const getStatusTransaction = async (
     const trxStatus: TBKTransactionStatusResponse =
       await new WebpayPlus.Transaction(
         getWebpayPlusDeferredOptions()
-      ).status(token_ws as string);
+      ).status(token_ws);
 
     return trxStatus;
   } catch (exception) {
@@ -159,7 +159,7 @@ export const refundTransaction = async (
   try {
     const refundResponse = await new WebpayPlus.Transaction(
       getWebpayPlusDeferredOptions()
-    ).refund(token_ws as string, amount);
+    ).refund(token_ws, amount);
 
     return refundResponse;
   } catch (exception) {
