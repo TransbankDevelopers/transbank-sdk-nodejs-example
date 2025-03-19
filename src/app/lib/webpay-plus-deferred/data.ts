@@ -31,8 +31,6 @@ export const captureTransaction = async (
   try {
     const { token, buyOrder, authorizationCode, captureAmount } = params;
 
-    WebpayPlus.configureForTestingDeferred();
-
     const captureResponse = await new WebpayPlus.Transaction(
       getWebpayPlusDeferredOptions()
     ).capture(token, buyOrder, authorizationCode, captureAmount);
