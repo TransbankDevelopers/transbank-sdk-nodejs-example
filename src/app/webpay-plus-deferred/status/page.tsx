@@ -26,7 +26,7 @@ export default async function StatusTransactionView({
 }: NextPageProps) {
   const { token_ws } = searchParams;
   const trxStatus = await getStatusTransaction(
-    token_ws as string
+    token_ws
   );
   if ("errorMessage" in trxStatus) {
     return (
