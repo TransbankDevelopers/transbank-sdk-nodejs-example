@@ -11,11 +11,11 @@ const actualBread: Route[] = [
   },
   {
     name: "Webpay Oneclick",
-    path: "/oneclick-plus",
+    path: "/oneclick-mall-deferred",
   },
   {
     name: "Time out",
-    path: "/oneclick-plus/finish",
+    path: "/oneclick-mall-deferred/finish",
   },
 ];
 
@@ -40,7 +40,7 @@ export const TimeoutView = async (props: TimeoutViewProps) => {
           </span>
         }
         actualBread={actualBread}
-        activeRoute="/oneclick-plus/finish"
+        activeRoute="/oneclick-mall-deferred/finish"
         steps={getErrorTimeoutSteps(props.timeoutResponse)}
       />
     </>
