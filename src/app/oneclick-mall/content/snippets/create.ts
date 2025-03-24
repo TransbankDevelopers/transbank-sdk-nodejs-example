@@ -18,7 +18,7 @@ export const getStepTwo = (token: string) => {
 
 export const getStepThree = (token: string) => {
   return `<form action="https://webpay3gint.transbank.cl/webpayserver/initTransaction" method="POST">
-  <input type="hidden" name="token_ws" value="${token}"/>
+  <input type="hidden" name="TBK_TOKEN" value="${token}"/>
   <input type="submit" value="Pagar"/>
 </form>`;
 };
