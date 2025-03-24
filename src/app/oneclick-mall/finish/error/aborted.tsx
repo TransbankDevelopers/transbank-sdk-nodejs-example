@@ -10,12 +10,12 @@ const actualBread: Route[] = [
     path: "/",
   },
   {
-    name: "Webpay Oneclick",
-    path: "/oneclick-plus",
+    name: "Webpay Oneclick Mall",
+    path: "/oneclick-mall",
   },
   {
     name: "Estado Anulada",
-    path: "/oneclick-plus/finish",
+    path: "/oneclick-mall/finish",
   },
 ];
 
@@ -33,7 +33,7 @@ export const AbortedView = async (props: AbortedViewProps) => {
         pageTitle="Webpay Oneclick Mall - Estado de compra anulada"
         pageDescription={`La inscripción ha sido anulada por el usuario. En esta instancia, la inscripción fue abandonada al seleccionar la opción 'Abandonar y volver al comercio'.`}
         actualBread={actualBread}
-        activeRoute="/oneclick-plus/finish"
+        activeRoute="/oneclick-mall/finish"
         steps={getErrorAbortedSteps(props.abortedResponse)}
       />
     </>
