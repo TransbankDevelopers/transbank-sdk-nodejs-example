@@ -14,7 +14,7 @@ const actualBread: Route[] = [
     path: "/",
   },
   {
-    name: "Webpay Oneclick",
+    name: "Webpay Oneclick Mall",
     path: "/oneclick-mall",
   },
 ];

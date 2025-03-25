@@ -1,11 +1,9 @@
 import "./page.css";
 import { Route } from "@/types/menu";
 import { Layout } from "@/components/layout/Layout";
-import Head from "next/head";
 import { getRefundTRXSteps } from "@/app/webpay-plus/content/steps/refund";
 import { NextPageProps } from "@/types/general";
-import { refundTransaction } from "@/app/lib/webpay-plus/data";
-import { getWebpayPlusDeferredOptions } from "@/app/lib/webpay-plus-deferred/data";
+import { refundTransaction } from "@/app/lib/webpay-plus-deferred/data";
 import { CustomError } from "@/components/customError/CustomError";
 import { Metadata } from "next";
 import { StatusButton } from "@/app/webpay-plus-deferred/components/StatusButton";
@@ -35,8 +33,7 @@ export default async function RefundTransaction({
   const { token_ws, amount } = searchParams;
   const refundResult = await refundTransaction(
     token_ws as string,
-    Number(amount),
-    getWebpayPlusDeferredOptions()
+    Number(amount)
   );
 
   if ("errorMessage" in refundResult) {

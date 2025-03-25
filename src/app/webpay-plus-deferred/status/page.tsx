@@ -3,8 +3,7 @@ import { Layout } from "@/components/layout/Layout";
 import Head from "next/head";
 import { getStatusTRXSteps } from "@/app/webpay-plus/content/steps/status";
 import { NextPageProps } from "@/types/general";
-import { getStatusTransaction } from "@/app/lib/webpay-plus/data";
-import { getWebpayPlusDeferredOptions } from "@/app/lib/webpay-plus-deferred/data";
+import { getStatusTransaction } from "@/app/lib/webpay-plus-deferred/data";
 import { CustomError } from "@/components/customError/CustomError";
 
 const actualBread: Route[] = [
@@ -27,8 +26,7 @@ export default async function StatusTransactionView({
 }: NextPageProps) {
   const { token_ws } = searchParams;
   const trxStatus = await getStatusTransaction(
-    token_ws as string,
-    getWebpayPlusDeferredOptions()
+    token_ws
   );
   if ("errorMessage" in trxStatus) {
     return (

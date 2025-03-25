@@ -11,7 +11,13 @@ import {
   TBKRefundTransactionResponse,
 } from "@/types/transactions";
 import { headers } from "next/headers";
-import { Options, WebpayPlus } from "transbank-sdk";
+import {
+  Environment,
+  IntegrationApiKeys,
+  IntegrationCommerceCodes,
+  Options,
+  WebpayPlus,
+} from "transbank-sdk";
 import { ResultError } from "@/helpers/resultError";
 
 export type CreateTransactionResult = TBKCreateTransactionResponse &
@@ -35,9 +41,16 @@ const getCallbackType = (parameters: SearchParams): TBKCallbackType => {
   return TBKCallbackType.INVALID_PAYMENT;
 };
 
+export const getWebpayPlusOptions = () => {
+  return new Options(
+    IntegrationCommerceCodes.WEBPAY_PLUS,
+    IntegrationApiKeys.WEBPAY,
+    Environment.Integration
+  );
+};
+
 export const createTransaction = async (
-  returnRoute: string = "/webpay-plus/commit",
-  options?: Options
+  returnRoute: string = "/webpay-plus/commit"
 ): Promise<CreateTransactionResult | ResultError> => {
   try {
     const headersList = headers();
@@ -52,7 +65,7 @@ export const createTransaction = async (
 
     const createResponse: TBKCreateTransactionResponse =
       await new WebpayPlus.Transaction(
-        options ?? WebpayPlus.getDefaultOptions()
+        getWebpayPlusOptions()
       ).create(
         startTransactionData.buyOrder,
         startTransactionData.sessionId,
@@ -70,15 +83,14 @@ export const createTransaction = async (
 };
 
 export const commitTransaction = async (
-  parametersReceivedByTBK: SearchParams,
-  options?: Options
+  parametersReceivedByTBK: SearchParams
 ): Promise<CommitTransactionResult | ResultError> => {
   try {
     const callbackType = getCallbackType(parametersReceivedByTBK);
     if (callbackType === TBKCallbackType.COMMIT_OK) {
       const commitResponse: TBKCommitTransactionResponse =
         await new WebpayPlus.Transaction(
-          options ?? WebpayPlus.getDefaultOptions()
+          getWebpayPlusOptions()
         ).commit(parametersReceivedByTBK.token_ws as string);
 
       return {
@@ -122,13 +134,12 @@ export const commitTransaction = async (
 };
 
 export const getStatusTransaction = async (
-  token_ws: string,
-  options?: Options
+  token_ws: string
 ): Promise<TBKTransactionStatusResponse | ResultError> => {
   try {
     const trxStatus: TBKTransactionStatusResponse =
       await new WebpayPlus.Transaction(
-        options ?? WebpayPlus.getDefaultOptions()
+        getWebpayPlusOptions()
       ).status(token_ws as string);
 
     return trxStatus;
@@ -139,13 +150,12 @@ export const getStatusTransaction = async (
 
 export const refundTransaction = async (
   token_ws: string,
-  amount: number,
-  options?: Options
+  amount: number
 ): Promise<TBKRefundTransactionResponse | ResultError> => {
 
   try {
     const refundResponse = await new WebpayPlus.Transaction(
-      options ?? WebpayPlus.getDefaultOptions()
+      getWebpayPlusOptions()
     ).refund(token_ws as string, amount);
 
     return refundResponse;
