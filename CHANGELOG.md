@@ -1,14 +1,17 @@
 # Historial de cambios
 
 Todos los cambios notables a este proyecto serán documentados en este archivo.
-
-## [1.0.0] 11-03-2025
-
-Versión inicial del proyecto de ejemplo.
+## [1.1.0] 25-03-2025
 
 ### Agrega
 
-- Se agregan los productos Webpay Plus, Webpay Plus Mall, Webpay Oneclick Mall, Webpay Transacción Completa, Webpay Transacción Completa Mall, Patpass y sus diferentes modalidades.
+- Se agrega Google Analytics.
+
+## [1.0.2] 25-03-2025
+
+### Elimina
+
+- Se elimina parámetros sin utilizar.
 
 ## [1.0.1] 25-03-2025
 
@@ -19,8 +22,10 @@ Versión inicial del proyecto de ejemplo.
 - Se actualiza la manera de trabajar con las credenciales del producto Webpay Plus en sus modalidades simultanea y diferida.
 - Se actualizan las dependencias necesarias para construir el proyecto.
 
-## [1.0.1] 25-03-2025
+## [1.0.0] 11-03-2025
 
-### Elimina
+Versión inicial del proyecto de ejemplo.
 
-- Se elimina parámetros sin utilizar.
+### Agrega
+
+- Se agregan los productos Webpay Plus, Webpay Plus Mall, Webpay Oneclick Mall, Webpay Transacción Completa, Webpay Transacción Completa Mall, Patpass y sus diferentes modalidades.
