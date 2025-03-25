@@ -14,7 +14,7 @@ Versión inicial del proyecto de ejemplo.
 
 ### Actualiza
 
-- Se modifica el snippet del formulario de redirección de Webpay Oneclick en su modalidades simultanea y diferida.
-- Se modifica homologa los nombres y enlaces utilizados en el breadcrumb de las vistas.
+- Se modifica el snippet del formulario de redirección de Webpay Oneclick en sus modalidades simultanea y diferida.
+- Se homologa los nombres y enlaces utilizados en los breadcrumbs de las vistas.
 - Se actualiza la manera de trabajar con las credenciales del producto Webpay Plus en sus modalidades simultanea y diferida.
 - Se actualizan las dependencias necesarias para construir el proyecto.
