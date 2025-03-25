@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import { getStatusTransaction } from "@/app/lib/webpay-plus/data";
-import { getWebpayPlusDeferredOptions } from "@/app/lib/webpay-plus-deferred/data";
 
 export async function POST(request: Request) {
   const formData = await request.formData();
@@ -8,8 +7,7 @@ export async function POST(request: Request) {
 
   try {
     const trxStatus = await getStatusTransaction(
-      token,
-      getWebpayPlusDeferredOptions()
+      token
     );
 
     return NextResponse.json(trxStatus);

@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import { refundTransaction } from "@/app/lib/webpay-plus/data";
-import { getWebpayPlusDeferredOptions } from "@/app/lib/webpay-plus-deferred/data";
 
 export async function POST(request: Request) {
   const formData = await request.formData();
@@ -10,8 +9,7 @@ export async function POST(request: Request) {
   try {
     const trxStatus = await refundTransaction(
       token,
-      amount,
-      getWebpayPlusDeferredOptions()
+      amount
     );
 
     return NextResponse.json(trxStatus);
