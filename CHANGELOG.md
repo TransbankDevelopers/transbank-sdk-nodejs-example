@@ -3,7 +3,7 @@
 Todos los cambios notables a este proyecto serán documentados en este archivo.
 ## [1.1.0] 25-03-2025
 
-### Elimina
+### Agrega
 
 - Se agrega Google Analytics.
 
