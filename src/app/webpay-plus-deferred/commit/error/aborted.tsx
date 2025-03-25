@@ -6,7 +6,6 @@ import { getStatusTRXSteps } from "../../content/steps/status";
 import { getStatusTransaction } from "@/app/lib/webpay-plus/data";
 import { getErrorAbortedSteps } from "../../content/steps/error-aborted";
 import { TBKAbortedResponse } from "@/types/transactions";
-import { getWebpayPlusDeferredOptions } from "@/app/lib/webpay-plus-deferred/data";
 import { CustomError } from "@/components/customError/CustomError";
 
 const actualBread: Route[] = [
