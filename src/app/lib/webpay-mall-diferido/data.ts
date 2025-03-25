@@ -199,7 +199,6 @@ export const captureTransaction = async (
       captureAmount,
     } = params;
 
-    WebpayPlus.configureForTestingDeferred();
     const captureResponse = await new WebpayPlus.MallTransaction(
       getWebpatMallDeferredOptions()
     ).capture(

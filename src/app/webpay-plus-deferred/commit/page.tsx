@@ -3,7 +3,7 @@ import { Route } from "@/types/menu";
 import { Layout } from "@/components/layout/Layout";
 import { getCommitSteps } from "@/app/webpay-plus-deferred/content/steps/commit";
 import Head from "next/head";
-import { commitTransaction } from "@/app/lib/webpay-plus/data";
+import { commitTransaction } from "@/app/lib/webpay-plus-deferred/data";
 import { NextPageProps } from "@/types/general";
 import { AbortedView } from "./error/aborted";
 import {
@@ -15,7 +15,6 @@ import {
 } from "@/types/transactions";
 import { TimeoutView } from "./error/timeout";
 import { Capture } from "./components/Capture";
-import { getWebpayPlusDeferredOptions } from "@/app/lib/webpay-plus-deferred/data";
 import { InvalidPaymentView } from "./error/invalid";
 import { CustomError } from "@/components/customError/CustomError";
 
@@ -64,7 +63,7 @@ const rejectedContent = {
 export default async function CommitTransaction({
   searchParams,
 }: NextPageProps) {
-  const result = await commitTransaction(searchParams,  getWebpayPlusDeferredOptions());
+  const result = await commitTransaction(searchParams);
   if ("errorMessage" in result) {
     return (
       <CustomError  errorMessage={result.errorMessage} actualBread={getActualBread(true)}/>
