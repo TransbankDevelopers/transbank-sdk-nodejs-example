@@ -10,8 +10,7 @@ export async function POST(request: Request) {
   try {
     const trxStatus = await refundTransaction(
       token,
-      amount,
-      getWebpayPlusDeferredOptions()
+      amount
     );
 
     return NextResponse.json(trxStatus);

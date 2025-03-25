@@ -30,8 +30,7 @@ export type AbortedViewProps = {
 
 export const AbortedView = async (props: AbortedViewProps) => {
   const statusResponse = await getStatusTransaction(
-    props.abortedResponse.TBK_TOKEN,
-    getWebpayPlusDeferredOptions()
+    props.abortedResponse.TBK_TOKEN
   );
 
   if ("errorMessage" in statusResponse) {

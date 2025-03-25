@@ -8,8 +8,7 @@ export async function POST(request: Request) {
 
   try {
     const trxStatus = await getStatusTransaction(
-      token,
-      getWebpayPlusDeferredOptions()
+      token
     );
 
     return NextResponse.json(trxStatus);
