@@ -7,6 +7,7 @@ import Sidebar from "@/components/sidebar/Sidebar";
 import { usePathname } from "next/navigation";
 import Footer from "@/components/Footer/Footer";
 import "@/components/sidebar/Sidebar.css";
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 const openSans = Open_Sans({
   weight: ["300", "400", "500", "700"],
@@ -40,9 +41,9 @@ export default function RootLayout({
               {children}
             </div>
           )}
-
           <Footer />
         </div>
+        <GoogleAnalytics gaId="G-2TL4G0EPBB"/>
       </body>
     </html>
   );
