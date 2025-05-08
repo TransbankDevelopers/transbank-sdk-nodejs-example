@@ -2,7 +2,7 @@
 import { CardPay, TokenPropNames } from "@/components/cardpay/CardPay";
 import { Layout } from "@/components/layout/Layout";
 import Head from "next/head";
-import { getCreateTRXSteps } from "../../oneclick-mall/content/steps/create";
+import { getCreateTRXSteps } from "../../oneclick-mall-deferred/content/steps/create";
 import { CreateTransactionResult } from "@/app/lib/oneclick-mall/data";
 import { Route } from "@/types/menu";
 import { NavigationItem } from "@/components/layout/Navigation";

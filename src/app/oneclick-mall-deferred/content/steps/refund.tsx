@@ -1,5 +1,5 @@
 import { StepProps } from "@/components/step/Step";
-import * as refundSnippets from "@/app/oneclick-mall/content/snippets/refund";
+import * as refundSnippets from "@/app/oneclick-mall-deferred/content/snippets/refund";
 import { Text } from "@/components/text/Text";
 import { TBKRefundMallTransactionResponse } from "@/types/transactions";
 
