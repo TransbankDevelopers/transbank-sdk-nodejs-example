@@ -1,6 +1,19 @@
 export const getStepOne = () => {
-  return `const WebpayPlus = require('transbank-sdk').WebpayPlus; // ES5
-import { WebpayPlus } from 'transbank-sdk'; // ES6
+  return `const {
+Environment,
+IntegrationApiKeys,
+IntegrationCommerceCodes,
+Options,
+WebpayPlus
+} = require('transbank-sdk') // ES5
+
+import { 
+Environment,
+IntegrationApiKeys,
+IntegrationCommerceCodes,
+Options,
+WebpayPlus 
+} from 'transbank-sdk'; // ES6
 
 const tx = new WebpayPlus.Transaction(new Options(
   IntegrationCommerceCodes.WEBPAY_PLUS,
