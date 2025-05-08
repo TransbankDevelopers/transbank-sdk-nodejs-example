@@ -1,6 +1,27 @@
 export const getStepOne = () => {
-  return `const Oneclick = require('transbank-sdk').Oneclick; // ES5
-import { Oneclick } from 'transbank-sdk'; // ES6
+  return `const {
+Environment,
+IntegrationApiKeys,
+IntegrationCommerceCodes,
+Oneclick,
+Options,
+TransactionDetail
+} = require('transbank-sdk'); // ES5
+
+import { 
+Environment,
+IntegrationApiKeys,
+IntegrationCommerceCodes,
+Oneclick,
+Options,
+TransactionDetail 
+} from 'transbank-sdk'; // ES6
+
+const tx = new Oneclick.MallInscription(new Options(
+  IntegrationCommerceCodes.ONECLICK_MALL,
+  IntegrationApiKeys.WEBPAY,
+  Environment.Integration
+));
 
 const startResponse = await (new Oneclick.MallInscription()).start(
   userName, 
