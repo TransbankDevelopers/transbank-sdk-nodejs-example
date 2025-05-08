@@ -23,7 +23,7 @@ const tx = new Oneclick.MallInscription(new Options(
   Environment.Integration
 ));
 
-const startResponse = await (new Oneclick.MallInscription()).start(
+const startResponse = await tx.start(
   userName, 
   email, 
   returnUrl

@@ -7,9 +7,15 @@ export const getStepOne = (token: string) => {
 };
 
 export const getStepTwo = () => {
-  return `// En el caso de Express
-let token = request.body.TBK_TOKEN;
-const commitResponse = await (new Oneclick.MallInscription()).finish(token);`;
+  return `const token = request.body.TBK_TOKEN;
+
+const tx = new Oneclick.MallInscription(new Options(
+  IntegrationCommerceCodes.ONECLICK_MALL_DEFERRED,
+  IntegrationApiKeys.WEBPAY,
+  Environment.Integration
+));
+
+const commitResponse = await tx.finish(token);`;
 };
 
 export const getStepThree = (

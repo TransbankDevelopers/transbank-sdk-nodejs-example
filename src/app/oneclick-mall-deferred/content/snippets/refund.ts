@@ -4,7 +4,13 @@ export const getStepOne = (buyOrder: string, amount: string) => {
   return `// BuyOrder: ${buyOrder}
 // Amount: ${amount}
 
-const refundRequest = await (new Oneclick.MallTransaction()).refund(
+const tx = new Oneclick.MallTransaction(new Options(
+  IntegrationCommerceCodes.ONECLICK_MALL_DEFERRED,
+  IntegrationApiKeys.WEBPAY,
+  Environment.Integration
+));
+
+const refundRequest = await tx.refund(
   buyOrder,
   childCommerceCode,
   childBuyOrder,
