@@ -1,10 +1,13 @@
 import { TBKFullTxCommitResponse } from "@/types/transactions";
 
 export const getStepOne = () => {
-  return `const TransaccionCompleta = require('transbank-sdk').TransaccionCompleta; // CommonJS
-import { TransaccionCompleta } from 'transbank-sdk'; // ES6 Modules
+  return `const tx = new TransaccionCompleta.Transaction(new Options (
+  IntegrationCommerceCodes.TRANSACCION_COMPLETA,
+  IntegrationApiKeys.WEBPAY,
+  Environment.Integration
+));
 
-const commitResponse = await (new TransaccionCompleta.Transaction()).commit(
+const commitResponse = await tx.commit(
   token,
   idQueryInstallments,(opcional)
   deferred_period_index, (opcional)
