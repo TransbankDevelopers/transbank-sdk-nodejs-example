@@ -1,9 +1,28 @@
 export const getStepOne = () => {
-  return `const TransaccionCompleta = require('transbank-sdk').TransaccionCompleta; // ES5
-import { TransaccionCompleta } from 'transbank-sdk'; // ES6
+  return `const {
+Options,
+IntegrationCommerceCodes,
+IntegrationApiKeys,
+Environment,
+TransaccionCompleta
+} = require('transbank-sdk'); // ES5
+
+import { 
+Options,
+IntegrationCommerceCodes,
+IntegrationApiKeys,
+Environment,
+TransaccionCompleta 
+} from 'transbank-sdk'; // ES6
+
+const tx = new TransaccionCompleta.Transaction(new Options(
+  IntegrationCommerceCodes.TRANSACCION_COMPLETA_DEFERRED,
+  IntergationApiKeys.WEBPAY,
+  Environment.Integration
+));
 
 // Es necesario ejecutar dentro de una función async para utilizar await
-const createResponse = await (new TransaccionCompleta.Transaction()).create(
+const createResponse = await tx.create(
   buyOrder, 
   sessionId, 
   amount, 

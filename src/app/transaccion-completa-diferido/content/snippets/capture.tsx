@@ -1,10 +1,13 @@
 import { TBKfullTxCaptureResponse } from "@/types/transactions";
 
 export const getStepOne = () => {
-  return `const TransaccionCompleta = require('transbank-sdk').TransaccionCompleta; // CommonJS
-import { TransaccionCompleta } from 'transbank-sdk'; // ES6 Modules
+  return `const tx = new TransaccionCompleta.Transaction(new Options(
+  IntegrationCommerceCodes.TRANSACCION_COMPLETA_DEFERRED,
+  IntegrationApiKeys.WEBPAY,
+  Environment.Integration
+));
 
-const resp = await (new TransaccionCompleta.Transaction()).capture(
+const resp = await tx.capture(
   token,
   buyOrder,
   authorizationCode,
