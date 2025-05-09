@@ -1,9 +1,11 @@
 import { TBKMallCommitTransactionResponse } from "@/types/transactions";
 
 export const getStepOne = () => {
-  return `const TransaccionCompleta = require('transbank-sdk').TransaccionCompleta; // CommonJS
-const CommitDetail = require('transbank-sdk').CommitDetail; // CommonJS
-import { TransaccionCompleta, CommitDetail } from 'transbank-sdk'; // ES6 Modules
+  return `const tx = new TransaccionCompleta.MallTransaction(new Options(
+  IntegrationCommerceCodes.TRANSACCION_COMPLETA_MALL,
+  IntegrationApiKeys.WEBPAY,
+  Environment.Integration
+));
 
 const details = [
   new CommitDetail(
@@ -22,7 +24,7 @@ const details = [
   )
 ];
 
-const commitResponse = await (new TransaccionCompleta.MallTransaction()).commit(
+const commitResponse = await tx.commit(
   token,
   details
 );`;
