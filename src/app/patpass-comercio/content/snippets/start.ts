@@ -1,22 +1,41 @@
 export const getStepOne = () => {
-  return `const startResponse = await (new PatpassComercio.Inscription()).start(
-  userName, 
-  email, 
-  responseUrl
-  url, 
-  name, 
-  lastName, 
-  secondLastName, 
-  rut, 
-  serviceId, 
-  finalUrl, 
-  maxAmount, 
-  phone, 
-  cellPhone, 
-  patpassName, 
-  personEmail, 
-  commerceEmail, 
-  address, 
+  return `const {
+Options,
+IntegrationCommerceCodes,
+IntegrationApiKeys,
+PatpassEnvironment,
+PatpassComercio
+} = require('transbank-sdk'); // ES5
+  
+import {
+Options,
+IntegrationCommerceCodes,
+IntegrationApiKeys,
+PatpassEnvironment,
+PatpassComercio
+} from "transbank-sdk" // ES6
+
+const tx = new PatpassComercio.Inscription(new Options(
+  IntegrationCommerceCodes.PATPASS_COMERCIO,
+  IntegrationApiKeys.PATPASS_COMERCIO,
+  PatpassEnvironment.Integration
+));
+  
+const startResponse = await tx.start(
+  returnUrl,
+  name,
+  lastName,
+  secondLastName,
+  rut,
+  serviceId,
+  finalUrl,
+  maxAmount,
+  phone,
+  cellPhone,
+  patpassName,
+  personEmail,
+  commerceEmail,
+  address,
   city
 );`;
 };
