@@ -10,7 +10,7 @@ export const getStepTwo = () => {
   return `const token = request.body.TBK_TOKEN;
 
 const tx = new Oneclick.MallInscription(new Options(
-  IntegrationCommerceCodes.ONECLICK_MALL_DEFERRED,
+  IntegrationCommerceCodes.ONECLICK_MALL_DEFERRED, // Código de comercio Mall
   IntegrationApiKeys.WEBPAY,
   Environment.Integration
 ));

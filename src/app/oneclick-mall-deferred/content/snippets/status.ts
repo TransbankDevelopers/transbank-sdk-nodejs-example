@@ -4,7 +4,7 @@ export const getStepOne = (buyOrder: string) => {
   return `const buyOrder = "${buyOrder}";
 
 const tx = new Oneclick.MallTransaction(new Options(
-  IntegrationCommerceCodes.ONECLICK_MALL_DEFERRED,
+  IntegrationCommerceCodes.ONECLICK_MALL_DEFERRED, // Código de comercio Mall
   IntegrationApiKeys.WEBPAY,
   Environment.Integration
 ));
