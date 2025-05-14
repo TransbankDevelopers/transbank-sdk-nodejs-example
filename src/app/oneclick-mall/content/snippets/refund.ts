@@ -12,9 +12,9 @@ const tx = new Oneclick.MallTransaction(new Options(
 
 const refundRequest = await tx.refund(
   buyOrder,
-  childCommerceCode,
-  childBuyOrder,
-  amount
+  commerceCodeStore,
+  buyOrderStore,
+  amount
 );`;
 };
 

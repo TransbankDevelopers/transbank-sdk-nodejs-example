@@ -8,8 +8,8 @@ export const getStepOne = () => {
 ));
 
 const installmentDetails = [
-  new InstallmentDetail(childCommerceCode1, childBuyOrder1, installmentsNumber)
-  new InstallmentDetail(childCommerceCode2, childBuyOrder2, installmentsNumber)
+  new InstallmentDetail(commerceCodeStore1, buyOrderStore1, installmentsNumber)
+  new InstallmentDetail(commerceCodeStore2, buyOrderStore2, installmentsNumber)
 ];
 
 // Es necesario ejecutar dentro de una función async para utilizar await

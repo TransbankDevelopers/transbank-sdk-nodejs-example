@@ -9,15 +9,15 @@ export const getStepOne = () => {
 
 const details = [
   new CommitDetail(
-    childCommerceCode1,
-    childBuyOrder1,
+    commerceCodeStore1,
+    buyOrderStore1,
     idQueryInstallments1,
     deferredPeriodIndex1,
     gracePeriod1
   ),
   new CommitDetail(
-    childCommerceCode2,
-    childBuyOrder2,
+    commerceCodeStore2,
+    buyOrderStore2,
     idQueryInstallments2,
     deferredPeriodIndex2,
     gracePeriod2
