@@ -1,7 +1,7 @@
 import { TBKCaptureTransactionResponse } from "@/types/transactions";
 
 export const getStepOne = (token: string) => {
-  return `//buyOrderTienda: ${token}
+  return `//buyOrderStore: ${token}
 
 const tx = new Oneclick.MallTransaction(new Options(
   IntegrationCommerceCodes.ONECLICK_MALL_DEFERRED,
