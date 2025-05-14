@@ -5,7 +5,7 @@ export const getStepOne = (token: string, amount: string) => {
 // Amount: ${amount}
 
 const tx = new TransaccionCompleta.MallTransaction(new Options(
-  IntegrationCommerceCodes.TRANSACCION_COMPLETA_MALL,
+  IntegrationCommerceCodes.TRANSACCION_COMPLETA_MALL, // Código de comercio Mall
   IntegrationApiKeys.WEBPAY,
   Environment.Integration
 ));

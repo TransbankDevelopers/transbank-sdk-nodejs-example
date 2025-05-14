@@ -3,7 +3,7 @@ import { TBKMallTransactionStatusResponse } from "@/types/transactions";
 export const getStepOne = (token: string) => {
   return `// Token: ${token}
 const tx = new TransaccionCompleta.MallTransaction(new Options(
-  IntegrationCommerceCodes.TRANSACCION_COMPLETA_MALL,
+  IntegrationCommerceCodes.TRANSACCION_COMPLETA_MALL, // Código de comercio Mall
   IntegrationApiKeys.WEBPAY,
   Environment.Integration
 ));
