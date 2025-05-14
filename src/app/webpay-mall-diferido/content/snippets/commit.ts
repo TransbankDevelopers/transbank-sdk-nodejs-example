@@ -10,7 +10,7 @@ export const getStepTwo = () => {
   return `const token = request.body.token_ws;
 
 const tx = new WebpayPlus.MallTransaction(new Options(
-  IntegrationCommerceCodes.WEBPAY_PLUS_MALL_DEFERRED,
+  IntegrationCommerceCodes.WEBPAY_PLUS_MALL_DEFERRED, // Código de comercio Mall
   IntegrationApiKeys.WEBPAY,
   Environment.Integration
 ));

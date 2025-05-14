@@ -3,7 +3,7 @@ import { TBKMallTransactionStatusResponse } from "@/types/transactions";
 export const getStepOne = (token_ws: string) => {
   return `// Token: ${token_ws}
 const tx = new WebpayPlus.MallTransaction(new Options(
-  IntegrationCommercecodes.WEBPAY_PLUS_MALL_DEFERRED,
+  IntegrationCommercecodes.WEBPAY_PLUS_MALL_DEFERRED, // Código de comercio Mall
   IntegrationApiKeys.WEBPAY,
   Environment.Integration
 ));

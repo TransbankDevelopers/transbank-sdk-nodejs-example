@@ -7,7 +7,7 @@ Options,
 TransactionDetail,
 WebpayPlus
 } = require('transbank-sdk') // ES5
- 
+
 import { 
 Environment,
 IntegrationApiKeys,
@@ -18,14 +18,14 @@ WebpayPlus
 } from 'transbank-sdk'; // ES6
 
 const tx = new WebpayPlus.MallTransaction(new Options(
-  IntegrationCommerceCodes.WEBPAY_PLUS_MALL_DEFERRED,
+  IntegrationCommerceCodes.WEBPAY_PLUS_MALL_DEFERRED, // Código de comercio Mall
   IntegrationApiKeys.WEBPAY,
   Environment.Integration
 ));
 
 let details = [
-  new TransactionDetail(135, "597055555536", "O-23101"),
-  new TransactionDetail(148, "597055555536", "O-10821"),
+  new TransactionDetail(amount1, commerceCodeStore1, buyOrderStore1), // Código de comercio Tienda 1
+  new TransactionDetail(amount2, commerceCodeStore2, buyOrderStore2), // Código de comercio Tienda 2
 ]
   
 const createResponse = await tx.create(
