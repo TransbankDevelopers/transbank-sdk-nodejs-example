@@ -5,16 +5,16 @@ export const getStepOne = (buyOrder: string, amount: string) => {
 // Amount: ${amount}
 
 const tx = new Oneclick.MallTransaction(new Options(
-  IntegrationCommerceCodes.ONECLICK_MALL_DEFERRED,
+  IntegrationCommerceCodes.ONECLICK_MALL_DEFERRED, // Código de comercio Mall
   IntegrationApiKeys.WEBPAY,
   Environment.Integration
 ));
 
 const refundRequest = await tx.refund(
   buyOrder,
-  commerceCodeStore,
+  commerceCodeStore, // Código de comercio Tienda
   buyOrderStore,
-  amount
+  amount
 );`;
 };
 

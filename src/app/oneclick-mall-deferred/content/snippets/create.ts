@@ -18,7 +18,7 @@ TransactionDetail
 } from 'transbank-sdk'; // ES6
 
 const tx = new Oneclick.MallInscription(new Options(
-  IntegrationCommerceCodes.ONECLICK_MALL_DEFERRED,
+  IntegrationCommerceCodes.ONECLICK_MALL_DEFERRED, // Código de comercio Mall
   IntegrationApiKeys.WEBPAY,
   Environment.Integration
 ));
@@ -27,7 +27,7 @@ const createResponse = await tx.start(
   userName,
   email,
   returnUrl
-);`;
+)`;
 };
 
 export const getStepTwo = (token: string) => {
