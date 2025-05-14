@@ -4,13 +4,16 @@ export const getStepOne = (token: string, amount: string) => {
   return `// Token: ${token}
 // Amount: ${amount}
 const tx = new TransaccionCompleta.MallTransaction(new Options(
-  IntegrationCommerceCodes.TRANSACCION_COMPLETA_MALL_DEFERRED,
+  IntegrationCommerceCodes.TRANSACCION_COMPLETA_MALL_DEFERRED, // Código de comercio Mall
   IntegrationApiKeys.WEBPAY,
   Environment.Integration
 ));
 
 const refundRequest = await tx.refund(
-  token, buyOrder, commerceCode, amount
+  token,
+  buyOrderStore,
+  commerceCodeStore, // Código de comercio Tienda
+  amount
 );`;
 };
 
