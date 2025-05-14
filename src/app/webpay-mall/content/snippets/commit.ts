@@ -9,7 +9,7 @@ export const getStepOne = (token: string) => {
 export const getStepTwo = () => {
   return `const token = request.body.token_ws;
 const tx = new WebpayPlus.MallTransaction(new Options(
-  IntegrationCommerceCodes.WEBPAY_PLUS_MALL,
+  IntegrationCommerceCodes.WEBPAY_PLUS_MALL, // Código de comercio Mall
   IntegrationApiKeys.WEBPAY,
   Environment.Integration
 ));

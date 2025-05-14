@@ -4,14 +4,15 @@ export const getStepOne = (amount: string, token_ws: string) => {
   return `// Token: ${token_ws}
 // Amount: ${amount}
 const tx = new WebpayPlus.MallTransaction(new Options(
-  IntegrationCommerceCodes.WEBPAY_PLUS_MALL,
+  IntegrationCommerceCodes.WEBPAY_PLUS_MALL, // Código de comercio Mall
   IntegrationApiKeys.WEBPAY,
   Environment.Integration
 ));
+
 const refundRequest = await tx.refund(
   token,
-  buyOrder,
-  commerceCode,
+  buyOrderStore,
+  commerceCodeStore, // Código de comercio Tienda
   amount
 );`;
 };
