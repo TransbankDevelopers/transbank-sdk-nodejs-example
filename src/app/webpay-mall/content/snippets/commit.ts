@@ -7,9 +7,13 @@ export const getStepOne = (token: string) => {
 };
 
 export const getStepTwo = () => {
-  return `
-const token = request.body.token_ws;
-const commitResponse = await (new WebpayPlus.MallTransaction()).commit(token);`;
+  return `const token = request.body.token_ws;
+const tx = new WebpayPlus.MallTransaction(new Options(
+  IntegrationCommerceCodes.WEBPAY_PLUS_MALL,
+  IntegrationApiKeys.WEBPAY,
+  Environment.Integration
+));
+const commitResponse = await tx.commit(token);`;
 };
 
 export const getStepThree = (

@@ -3,7 +3,7 @@ import {
   TBKCommitTransactionResponse,
   TBKTransactionStatus,
 } from "@/types/transactions";
-import * as commitSnippets from "@/app/webpay-plus/content/snippets/commit";
+import * as commitSnippets from "@/app/webpay-plus-deferred/content/snippets/commit";
 import { Text } from "@/components/text/Text";
 import { OkCommitMessage } from "@/components/messages/OkCommitMessage";
 import { OperationsCommitDeferredMessage } from "@/components/messages/OperationsCommitDeferredMessage";

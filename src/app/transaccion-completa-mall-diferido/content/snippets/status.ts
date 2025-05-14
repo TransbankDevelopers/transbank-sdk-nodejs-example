@@ -2,7 +2,13 @@ import { TBKMallTransactionStatusResponse } from "@/types/transactions";
 
 export const getStepOne = (token: string) => {
   return `// Token: ${token}
-const statusResponse = await (new TransaccionCompleta.MallTransaction()).status(token);`;
+const tx = new TransaccionCompleta.MallTransaction(new Options(
+  IntegrationCommerceCodes.TRANSACCION_COMPLETA_MALL_DEFERRED,
+  IntegrationApiKeys.WEBPAY,
+  Environment.Integration
+));
+
+const statusResponse = await tx.status(token);`;
 };
 
 export const getStepTwo = (statusResponse: TBKMallTransactionStatusResponse) =>

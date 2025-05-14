@@ -2,7 +2,7 @@ import "./page.css";
 import { Route } from "@/types/menu";
 import { Layout } from "@/components/layout/Layout";
 import Head from "next/head";
-import { getRefundTRXSteps } from "@/app/oneclick-mall/content/steps/refund";
+import { getRefundTRXSteps } from "@/app/oneclick-mall-deferred/content/steps/refund";
 import { NextPageProps } from "@/types/general";
 import { refundOneClickMallTransaction } from "@/app/lib/oneclick-mall/data";
 import { CustomError } from "@/components/customError/CustomError";

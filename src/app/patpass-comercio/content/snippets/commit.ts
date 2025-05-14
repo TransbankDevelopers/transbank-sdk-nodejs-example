@@ -8,7 +8,14 @@ export const getStepOne = (token: string) => {
 
 export const getStepTwo = () => {
   return `let token = request.body.J_TOKEN;
-const resp = await new PatpassComercio.Inscription().status(token);`;
+  
+const tx = new PatpassComercio.Inscription(new Options(
+  IntegrationCommerceCodes.PATPASS_COMERCIO,
+  IntegrationApiKeys.PATPASS_COMERCIO,
+  PatpassEnvironment.Integration
+));
+
+const statusResponse = await tx.status(token);`;
 };
 
 export const getStepThree = (commitResponse: TBKPatpassStatusTxResponse) => {

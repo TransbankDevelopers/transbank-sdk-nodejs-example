@@ -1,9 +1,12 @@
 import { InstallmentsFullTXResponse } from "@/types/transactions";
 export const getStepOne = () => {
-  return `const TransaccionCompleta = require('transbank-sdk').TransaccionCompleta; // ES5
-import { TransaccionCompleta } from 'transbank-sdk'; // ES6
+  return `const tx = new TransaccionCompleta.Transaction(new Options(
+  IntegrationCommerceCodes.TRANSACCION_COMPLETA_DEFERRED,
+  IntegrationApiKeys.WEBPAY,
+  Environment.Integration
+));
 
-const installmentsResponse = await (new TransaccionCompleta.Transaction()).installments(
+const installmentsResponse = await tx.installments(
   token, 
   installments, 
 );`;

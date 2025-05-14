@@ -1,11 +1,12 @@
 import { StepProps } from "@/components/step/Step";
-import * as refundSnippets from "@/app/webpay-plus/content/snippets/refund";
+import * as refundSnippets from "@/app/webpay-plus-deferred/content/snippets/refund";
 import { Text } from "@/components/text/Text";
 import { TBKRefundTransactionResponse } from "@/types/transactions";
 
 export const getRefundTRXSteps = (
   refundResult: TBKRefundTransactionResponse,
-  amount: string
+  amount: string,
+  token_ws: string
 ): StepProps[] => {
   return [
     {
@@ -37,7 +38,7 @@ export const getRefundTRXSteps = (
           </div>
         </div>
       ),
-      code: refundSnippets.getStepOne(amount),
+      code: refundSnippets.getStepOne(amount,token_ws),
     },
     {
       stepTitle: "Paso 2: Respuesta",

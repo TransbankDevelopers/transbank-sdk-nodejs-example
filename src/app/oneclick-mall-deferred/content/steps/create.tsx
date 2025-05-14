@@ -1,6 +1,6 @@
 import { StepProps } from "@/components/step/Step";
 import { StartTransactionDataOneclickMall } from "@/types/transactions";
-import * as createSnippets from "@/app/oneclick-mall/content/snippets/create";
+import * as createSnippets from "@/app/oneclick-mall-deferred/content/snippets/create";
 import { Table } from "@/components/table/Table";
 import {
   getColumnDefinition,

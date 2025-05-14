@@ -1,9 +1,13 @@
 import { TBKMallTransactionStatusResponse } from "@/types/transactions";
 
 export const getStepOne = (buyOrder: string) => {
-  return `// BuyOrder: 
-const buyOrder = "${buyOrder}";
-const statusResponse = await (new Oneclick.MallTransaction()).status(buyOrder);`;
+  return `const buyOrder = "${buyOrder}";
+const tx = new Oneclick.MallTransaction(new Options(
+  IntegrationCommerceCodes.ONECLICK_MALL,
+  IntegrationApiKeys.WEBPAY,
+  Environment.Integration
+));
+const statusResponse = await tx.status(buyOrder);`;
 };
 
 export const getStepTwo = (statusResponse: TBKMallTransactionStatusResponse) =>

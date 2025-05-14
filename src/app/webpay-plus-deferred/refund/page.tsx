@@ -1,7 +1,7 @@
 import "./page.css";
 import { Route } from "@/types/menu";
 import { Layout } from "@/components/layout/Layout";
-import { getRefundTRXSteps } from "@/app/webpay-plus/content/steps/refund";
+import { getRefundTRXSteps } from "@/app/webpay-plus-deferred/content/steps/refund";
 import { NextPageProps } from "@/types/general";
 import { refundTransaction } from "@/app/lib/webpay-plus-deferred/data";
 import { CustomError } from "@/components/customError/CustomError";
@@ -56,7 +56,7 @@ export default async function RefundTransaction({
                 están soportadas.`}
       actualBread={actualBread}
       activeRoute="/webpay-plus-deferred/refund"
-      steps={getRefundTRXSteps(refundResult, amount as string)}
+      steps={getRefundTRXSteps(refundResult, amount as string, token_ws)}
       additionalContent={
         <StatusButton className="mt-6" token={token_ws as string} />
       }

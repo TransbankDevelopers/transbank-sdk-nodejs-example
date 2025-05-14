@@ -8,6 +8,7 @@ import {
   Options,
   IntegrationCommerceCodes,
   IntegrationApiKeys,
+  PatpassEnvironment,
   PatpassComercio,
 } from "transbank-sdk";
 
@@ -15,7 +16,7 @@ export const getPatpassOptions = () => {
   return new Options(
     IntegrationCommerceCodes.PATPASS_COMERCIO,
     IntegrationApiKeys.PATPASS_COMERCIO,
-    "https://pagoautomaticocontarjetasint.transbank.cl"
+    PatpassEnvironment.Integration
   );
 };
 

@@ -1,17 +1,19 @@
 import { TBKInstallmentsFullTransactionResponse } from "@/types/transactions";
 
 export const getStepOne = () => {
-  return `const TransaccionCompleta = require('transbank-sdk').TransaccionCompleta; // CommonJS
-const InstallmentDetail = require('transbank-sdk').InstallmentDetail; // CommonJS
-import { TransaccionCompleta, InstallmentDetail } from 'transbank-sdk'; // ES6 Modules
+  return `const tx = new TransaccionCompleta.MallTransaction(new Options(
+  IntegrationCommerceCodes.TRANSACCION_COMPLETA_MALL,
+  IntegrationApiKeys.WEBPAY,
+  Environment.Integration
+));
 
 const installmentDetails = [
-  new InstallmentDetail(childCommerceCode1, childBuyOrder1, installmentsNumber)
-  new InstallmentDetail(childCommerceCode2, childBuyOrder2, installmentsNumber)
+  new InstallmentDetail(commerceCodeStore1, buyOrderStore1, installmentsNumber)
+  new InstallmentDetail(commerceCodeStore2, buyOrderStore2, installmentsNumber)
 ];
 
 // Es necesario ejecutar dentro de una función async para utilizar await
-const installmentsResponse = await (new TransaccionCompleta.MallTransaction()).installments(
+const installmentsResponse = await tx.installments(
   token, 
   installmentDetails
 );`;
