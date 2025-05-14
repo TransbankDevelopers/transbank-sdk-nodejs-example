@@ -3,7 +3,7 @@ export const getStepOne = (tbkUser: string, userName: string) => {
 //userName: ${userName}
 
 const tx = new Oneclick.MallInscription(
-  IntegrationCommerceCodes.ONECLICK_MALL,
+  IntegrationCommerceCodes.ONECLICK_MALL, // Código de comercio Mall
   IntegrationApiKeys.WEBPAY,
   Environment.Integration
 );
