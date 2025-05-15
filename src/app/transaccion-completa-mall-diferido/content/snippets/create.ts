@@ -28,8 +28,14 @@ const tx = new TransaccionCompleta.MallTransaction(new Options(
 ));
   
 const details = [
-  new TransactionDetail(amount, commerceCodeStore1, buyOrderStore1) // Código de comercio Tienda 1
-  new TransactionDetail(amount2, commerceCodeStore2, buyOrderStore2) // Código de comercio Tienda 2
+  new TransactionDetail(
+    amount, 
+    commerceCodeStore1, // Código de comercio Tienda 1 
+    buyOrderStore1), 
+  new TransactionDetail(
+    amount2,
+    commerceCodeStore2, // Código de comercio Tienda 2
+    buyOrderStore2)
 ];
   
 // Es necesario ejecutar dentro de una función async para utilizar await
