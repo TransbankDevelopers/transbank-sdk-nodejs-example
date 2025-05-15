@@ -22,14 +22,20 @@ TransactionDetail
 } from 'transbank-sdk'; // ES6
 
 const tx = new TransaccionCompleta.MallTransaction(new Options(
-  IntegrationCommerceCodes.TRANSACCION_COMPLETA_MALL,
+  IntegrationCommerceCodes.TRANSACCION_COMPLETA_MALL, // Código de comercio Mall
   IntegrationApiKeys.WEBPAY,
   Environment.Integration
 ));
   
 const details = [
-  new TransactionDetail(amount, commerceCodeStore1, buyOrderStore1)
-  new TransactionDetail(amount2, commerceCodeStore2, buyOrderStore2)
+  new TransactionDetail(
+    amount, 
+    commerceCodeStore1, // Código de comercio Tienda 1 
+    buyOrderStore1),
+  new TransactionDetail(
+    amount2,
+    commerceCodeStore2, // Código de comercio Tienda 2
+    buyOrderStore2)
 ];
   
 // Es necesario ejecutar dentro de una función async para utilizar await

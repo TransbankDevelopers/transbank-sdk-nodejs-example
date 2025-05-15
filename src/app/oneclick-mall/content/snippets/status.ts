@@ -3,7 +3,7 @@ import { TBKMallTransactionStatusResponse } from "@/types/transactions";
 export const getStepOne = (buyOrder: string) => {
   return `const buyOrder = "${buyOrder}";
 const tx = new Oneclick.MallTransaction(new Options(
-  IntegrationCommerceCodes.ONECLICK_MALL,
+  IntegrationCommerceCodes.ONECLICK_MALL, // Código de comercio Mall
   IntegrationApiKeys.WEBPAY,
   Environment.Integration
 ));

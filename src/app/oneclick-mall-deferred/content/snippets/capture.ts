@@ -4,13 +4,13 @@ export const getStepOne = (token: string) => {
   return `//buyOrderStore: ${token}
 
 const tx = new Oneclick.MallTransaction(new Options(
-  IntegrationCommerceCodes.ONECLICK_MALL_DEFERRED,
+  IntegrationCommerceCodes.ONECLICK_MALL_DEFERRED, // Código de comercio Mall
   IntegrationApiKeys.WEBPAY,
   Environment.Integration
 ));
 
 const captureResponse = await tx.capture(
-  commerceCode,
+  commerceCodeStore, // Código de comercio Tienda
   buyOrderStore,
   authorizationCode,
   captureAmount

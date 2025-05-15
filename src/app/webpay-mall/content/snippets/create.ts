@@ -18,14 +18,20 @@ WebpayPlus
 } from 'transbank-sdk'; // ES6
 
 const tx = new WebpayPlus.MallTransaction(new Options(
-  IntegrationCommerceCodes.WEBPAY_PLUS_MALL,
+  IntegrationCommerceCodes.WEBPAY_PLUS_MALL, // Código de comercio Mall
   IntegrationApiKeys.WEBPAY,
   Environment.Integration
 ));
 
 let details = [
-  new TransactionDetail(135, "597055555536", "O-23101"),
-  new TransactionDetail(148, "597055555536", "O-10821"),
+  new TransactionDetail(
+    amount,
+    commerceCodeStore1, // Código de comercio Tienda 1
+    buyOrderStore1),
+  new TransactionDetail(
+    amount2,
+    commerceCodeStore2, // Código de comercio Tienda 2
+    buyOrderStore2)
 ]
   
 const createResponse = await tx.create(

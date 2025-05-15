@@ -1,7 +1,7 @@
 import { Route } from "@/types/menu";
 import Head from "next/head";
 import { Layout } from "@/components/layout/Layout";
-import { getCaptureSteps } from "@/app/transaccion-completa-diferido/content/steps/capture";
+import { getCaptureSteps } from "@/app/transaccion-completa-mall-diferido/content/steps/capture";
 import { NavigationItem } from "@/components/layout/Navigation";
 import { NextPageProps } from "@/types/general";
 import { captureTransaccionCompletaMallDeferido } from "@/app/lib/transaccion-completa-mall-diferido/data";
