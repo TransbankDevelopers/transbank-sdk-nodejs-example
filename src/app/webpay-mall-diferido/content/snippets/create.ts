@@ -24,8 +24,14 @@ const tx = new WebpayPlus.MallTransaction(new Options(
 ));
 
 let details = [
-  new TransactionDetail(amount1, commerceCodeStore1, buyOrderStore1), // Código de comercio Tienda 1
-  new TransactionDetail(amount2, commerceCodeStore2, buyOrderStore2), // Código de comercio Tienda 2
+  new TransactionDetail(
+    amount,
+    commerceCodeStore1, // Código de comercio Tienda 1
+    buyOrderStore1),
+  new TransactionDetail(
+    amount2,
+    commerceCodeStore2, // Código de comercio Tienda 2
+    buyOrderStore2)
 ]
   
 const createResponse = await tx.create(

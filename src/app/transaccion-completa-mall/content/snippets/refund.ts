@@ -11,7 +11,10 @@ const tx = new TransaccionCompleta.MallTransaction(new Options(
 ));
 
 const refundRequest = await tx.refund(
-  token, buyOrder, commerceCode, amount
+  token,
+  buyOrderStore,
+  commerceCodeStore, // Código de comercio Tienda
+  amount
 );`;
 };
 
