@@ -88,7 +88,7 @@ export enum PaymentTypeCode {
 }
 
 export type TBKCommitTransactionResponse = {
-  vci: string,
+  vci: string;
   amount: number;
   status: TBKTransactionStatus;
   buy_order: string;
@@ -161,6 +161,12 @@ export type TBKMallTransactionStatusResponse = {
   card_detail?: TBKCardDetail;
   accounting_date: string;
   transaction_date: string;
+};
+
+export type infoBinResponse = {
+  Bin_issuer: string;
+  bin_payment_type: string;
+  bin_brand: string;
 };
 
 export type TBKFullTxStatusResponse = {
