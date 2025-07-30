@@ -67,7 +67,7 @@ export const ContentOneClickMall = (props: ContentOneclickProps) => {
             <div className="flex-start">
               <Button text="BORRAR USUARIO" link={removeUserLink} />
             </div>
-            <div className="flex-start">
+            <div className="flex-start mt-2">
               <InfoBinButton tbkUser={props.trxData.tbk_user} />
             </div>
           </div>
