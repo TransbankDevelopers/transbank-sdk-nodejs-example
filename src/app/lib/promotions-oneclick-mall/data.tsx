@@ -1,7 +1,5 @@
 import {
   Environment,
-  IntegrationApiKeys,
-  IntegrationCommerceCodes,
   Oneclick,
   Options,
   TransactionDetail,
@@ -16,7 +14,6 @@ import {
   TBKFinishInscriptionResponse,
   TBKRefundMallTransactionResponse,
 } from "@/types/transactions";
-import { getOneclickMallDeferredOptions } from "../oneclick-mall-deferred/data";
 import { ResultError } from "@/helpers/resultError";
 
 export type CreateTransactionResult = TBKCreateOneclickMallTransactionResponse &
@@ -107,7 +104,7 @@ export const authorizeOneClickMallTransaction = async (
       options || {};
     const details: TransactionDetail[] = [];
     const commerceCodes = ["597060000002", "597060000003"];
-
+    //NOSONAR: Math.random() is safe here because it is only used for sample/demo data
     const buyOrder = prmBuyOrder
       ? prmBuyOrder
       : "O-" + Math.floor(Math.random() * 10000) + 1;
@@ -116,7 +113,9 @@ export const authorizeOneClickMallTransaction = async (
       details.push(...prmDetails);
     } else {
       for (const childCommerceCode of commerceCodes) {
+        //NOSONAR: Math.random() is safe here because it is only used for sample/demo data
         const childBuyOrder = "O-" + Math.floor(Math.random() * 10000) + 1;
+        //NOSONAR: Math.random() is safe here because it is only used for sample/demo data
         const amount =
           deferredAmount ?? Math.floor(Math.random() * 1000) + 1001;
 
@@ -151,17 +150,18 @@ export const authorizeOneClickMallByDetails = async (
 ): Promise<TBKAuthorizeTransactionResponse | ResultError> => {
   try {
     const commerceCodes = ["597060000002", "597060000003"];
-
+    //NOSONAR: Math.random() is safe here because it is only used for sample/demo data
     const amounts = [
       amountStoreOne ?? Math.floor(Math.random() * 1000) + 1001,
       amountStoreTwo ?? Math.floor(Math.random() * 1000) + 1001,
     ];
     const installments = [installmentsStoreOne, installmentsStoreTwo];
-
+    //NOSONAR: Math.random() is safe here because it is only used for sample/demo data
     const buyOrder = "O-" + Math.floor(Math.random() * 10000) + 1;
 
     const details: TransactionDetail[] = commerceCodes.map(
       (childCommerceCode, index) => {
+        //NOSONAR: Math.random() is safe here because it is only used for sample/demo data
         const childBuyOrder = "O-" + Math.floor(Math.random() * 10000) + 1;
         return new TransactionDetail(
           amounts[index],
