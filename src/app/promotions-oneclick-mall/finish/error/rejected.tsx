@@ -21,7 +21,6 @@ const actualBread: Route[] = [
 
 export type RejectedInscriptionViewProps = {
   trxData: TBKFinishInscriptionResponse;
-  token: string;
 };
 
 export const RejectedInscriptionView = async (

@@ -71,7 +71,7 @@ export default async function FinishOneclickInscription({
   }
 
   if (trxData.response_code === -1) {
-    return <RejectedInscriptionView trxData={trxData} token={TBK_TOKEN} />;
+    return <RejectedInscriptionView trxData={trxData} />;
   }
 
   if (trxData.response_code === -96) {
