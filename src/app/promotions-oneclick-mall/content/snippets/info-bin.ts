@@ -3,8 +3,8 @@ import { infoBinResponse } from "@/types/transactions";
 export const getStepOne = (tbkUser: string) => {
   return `const tbkUser = "${tbkUser}";
 const tx = new Oneclick.MallBinInfo(new Options(
-  IntegrationCommerceCodes.ONECLICK_MALL, // Código de comercio Mall
-  IntegrationApiKeys.WEBPAY,
+  "597060000001", // Código de comercio
+  "d8f06df8-39c7-4f01-8e74-b383c19ae836", // API Key
   Environment.Integration
 ));
 const binResponse = await tx.queryBin(tbkUser);`;
