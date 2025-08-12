@@ -1,8 +1,5 @@
 import { StepProps } from "@/components/step/Step";
-import {
-  TBKAuthorizeTransactionResponse,
-  TBKMallCommitTransactionResponse,
-} from "@/types/transactions";
+import { TBKAuthorizeTransactionResponse } from "@/types/transactions";
 import * as authorizeSnippets from "@/app/oneclick-mall/content/snippets/authorize";
 import { Text, TextType } from "@/components/text/Text";
 import { OkAuthorizeMessage } from "@/components/messages/OkAuthorizeMessage";
@@ -26,9 +23,7 @@ export const getAuthorizeSteps = (
     {
       stepTitle: "Paso 2: Respuesta",
       stepId: "respuesta",
-      content: (
-        <OkAuthorizeMessage />
-      ),
+      content: <OkAuthorizeMessage />,
       code: authorizeSnippets.getStepTwo(trxData),
     },
     {

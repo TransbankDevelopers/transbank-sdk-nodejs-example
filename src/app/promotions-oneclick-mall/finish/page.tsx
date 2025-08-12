@@ -44,22 +44,22 @@ const navigationItems: NavigationItem[] = [
 
 export default async function FinishOneclickInscription({
   searchParams,
-}: NextPageProps) {
+}: Readonly<NextPageProps>) {
   const { TBK_TOKEN, TBK_ORDEN_COMPRA, TBK_ID_SESION } = searchParams;
 
   if (TBK_ORDEN_COMPRA) {
     return (
       <AbortedView
         abortedResponse={{
-          TBK_TOKEN: TBK_TOKEN as string,
-          TBK_ORDEN_COMPRA: TBK_ORDEN_COMPRA as string,
-          TBK_ID_SESION: TBK_ID_SESION as string,
+          TBK_TOKEN: TBK_TOKEN,
+          TBK_ORDEN_COMPRA: TBK_ORDEN_COMPRA,
+          TBK_ID_SESION: TBK_ID_SESION,
         }}
       />
     );
   }
 
-  const trxData = await finishOneclickMallTransaction(TBK_TOKEN as string);
+  const trxData = await finishOneclickMallTransaction(TBK_TOKEN);
 
   if ("errorMessage" in trxData) {
     return (
@@ -71,9 +71,7 @@ export default async function FinishOneclickInscription({
   }
 
   if (trxData.response_code === -1) {
-    return (
-      <RejectedInscriptionView trxData={trxData} token={TBK_TOKEN as string} />
-    );
+    return <RejectedInscriptionView trxData={trxData} token={TBK_TOKEN} />;
   }
 
   if (trxData.response_code === -96) {
@@ -90,7 +88,7 @@ export default async function FinishOneclickInscription({
     <ContentOneClickMall
       actualBread={actualBread}
       navigationItems={navigationItems}
-      token={TBK_TOKEN as string}
+      token={TBK_TOKEN}
       trxData={trxData}
     />
   );

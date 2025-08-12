@@ -35,9 +35,9 @@ const navigationItems: NavigationItem[] = [
 
 export default async function StatusTransactionView({
   searchParams,
-}: NextPageProps) {
+}: Readonly<NextPageProps>) {
   const { buy_order } = searchParams;
-  const trxStatus = await getStatusOneclickMallTransaction(buy_order as string);
+  const trxStatus = await getStatusOneclickMallTransaction(buy_order);
   if ("errorMessage" in trxStatus) {
     return (
       <CustomError
@@ -57,7 +57,7 @@ export default async function StatusTransactionView({
         pageDescription={`Con esta operación, puedes solicitar el estado actual de una transacción en cualquier momento.`}
         actualBread={actualBread}
         activeRoute="/promotions-oneclick-mall/status"
-        steps={getStatusTRXSteps(buy_order as string, trxStatus)}
+        steps={getStatusTRXSteps(buy_order, trxStatus)}
         navigationItems={navigationItems}
       />
     </>

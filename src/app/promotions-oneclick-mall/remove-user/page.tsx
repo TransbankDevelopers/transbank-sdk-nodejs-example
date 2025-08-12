@@ -31,7 +31,7 @@ const navigationItems: NavigationItem[] = [
 
 export default async function RemoveUserInscriptionOneClick({
   searchParams,
-}: NextPageProps) {
+}: Readonly<NextPageProps>) {
   const { tbk_user, user_name } = searchParams;
   const result = await removeUserInscriptionOneclick(tbk_user, user_name);
 
@@ -55,7 +55,7 @@ export default async function RemoveUserInscriptionOneClick({
         actualBread={actualBread}
         activeRoute="/oneclick-mall/remove-user"
         navigationItems={navigationItems}
-        steps={getRemoveUserSteps(tbk_user as string, user_name as string)}
+        steps={getRemoveUserSteps(tbk_user, user_name)}
       />
     </>
   );

@@ -44,7 +44,7 @@ const navigationItems: NavigationItem[] = [
 
 export default async function AuthorizeTransactionPage({
   searchParams,
-}: NextPageProps) {
+}: Readonly<NextPageProps>) {
   const {
     userName,
     tbkUser,

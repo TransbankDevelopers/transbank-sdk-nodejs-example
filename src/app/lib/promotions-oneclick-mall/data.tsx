@@ -33,10 +33,13 @@ export interface AuthorizeTransactionOptions {
   deferredInstallments?: number;
 }
 
+const integrationCommerceCode = "597060000001";
+const integrationApiKey = "d8f06df8-39c7-4f01-8e74-b383c19ae836";
+
 export const getOneclickMallPromotionsOptions = () => {
   return new Options(
-    "597060000001",
-    "d8f06df8-39c7-4f01-8e74-b383c19ae836",
+    integrationCommerceCode,
+    integrationApiKey,
     Environment.Integration
   );
 };
@@ -105,9 +108,8 @@ export const authorizeOneClickMallTransaction = async (
     const details: TransactionDetail[] = [];
     const commerceCodes = ["597060000002", "597060000003"];
     //NOSONAR: Math.random() is safe here because it is only used for sample/demo data
-    const buyOrder = prmBuyOrder
-      ? prmBuyOrder
-      : "O-" + Math.floor(Math.random() * 10000) + 1;
+    const buyOrder =
+      prmBuyOrder ?? "O-" + Math.floor(Math.random() * 10000) + 1;
 
     if (prmDetails) {
       details.push(...prmDetails);

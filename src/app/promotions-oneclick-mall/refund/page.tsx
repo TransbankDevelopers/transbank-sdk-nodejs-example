@@ -24,15 +24,15 @@ const actualBread: Route[] = [
 
 export default async function RefundTransaction({
   searchParams,
-}: NextPageProps) {
+}: Readonly<NextPageProps>) {
   const { buy_order, child_commerce_code, child_buy_order, amount } =
     searchParams;
 
   const refundResult = await refundOneClickMallTransaction({
-    buyOrder: buy_order as string,
-    childCommerceCode: child_commerce_code as string,
-    childBuyOrder: child_buy_order as string,
-    amount: Number(amount as string),
+    buyOrder: buy_order,
+    childCommerceCode: child_commerce_code,
+    childBuyOrder: child_buy_order,
+    amount: Number(amount),
   });
 
   if ("errorMessage" in refundResult) {
@@ -59,11 +59,7 @@ export default async function RefundTransaction({
                 están soportadas.`}
         actualBread={actualBread}
         activeRoute="/promotions-oneclick-mall/refund"
-        steps={getRefundTRXSteps(
-          refundResult,
-          amount as string,
-          buy_order as string
-        )}
+        steps={getRefundTRXSteps(refundResult, amount, buy_order)}
         additionalContent={
           <MallStatusButton
             buyOrder={buy_order}

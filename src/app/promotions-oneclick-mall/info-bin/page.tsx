@@ -29,9 +29,11 @@ const navigationItems: NavigationItem[] = [
   },
 ];
 
-export default async function InfoBinView({ searchParams }: NextPageProps) {
+export default async function InfoBinView({
+  searchParams,
+}: Readonly<NextPageProps>) {
   const { tbk_user } = searchParams;
-  const trxBin = await InfoBinOneclickMall(tbk_user as string);
+  const trxBin = await InfoBinOneclickMall(tbk_user);
   if ("errorMessage" in trxBin) {
     return (
       <CustomError
@@ -51,7 +53,7 @@ export default async function InfoBinView({ searchParams }: NextPageProps) {
         pageDescription={`Con esta operación puedes iniciar una consulta al servicio de bines`}
         actualBread={actualBread}
         activeRoute="/promotions-oneclick-mall/status"
-        steps={getInfoBinTRXSteps(tbk_user as string, trxBin)}
+        steps={getInfoBinTRXSteps(tbk_user, trxBin)}
         navigationItems={navigationItems}
       />
     </>
