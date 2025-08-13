@@ -136,6 +136,23 @@ export const generateRandomTransactionDataOneclickMall = (
   };
 };
 
+export const generateRandomTransactionDataOneclickMallPromo = (
+  protocol: string,
+  host: string
+): StartTransactionDataOneclickMall => {
+  //NOSONAR: Math.random() is safe here because it is only used for sample/demo data
+  const randomNumber = Math.floor(Math.random() * 100000) + 1;
+  const userName = "User-" + randomNumber;
+  const email = "user." + randomNumber + "@example.cl";
+  const returnUrl = `${protocol}://${host}/promotions-oneclick-mall/finish`;
+
+  return {
+    userName,
+    email,
+    returnUrl,
+  };
+};
+
 export const getColumnValues = (
   props: StartTransactionData
 ): ColumnValues[] => {
