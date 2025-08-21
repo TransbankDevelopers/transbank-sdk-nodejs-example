@@ -3,7 +3,13 @@ import { TBKRefundTransactionResponse } from "@/types/transactions";
 export const getStepOne = (token: string, amount: number) => {
   return `// Token: ${token}
 // Amount: ${amount}
-const refundRequest = await (new TransaccionCompleta.Transaction()).refund(token, amount);
+const tx = new TransaccionCompleta.Transaction(new Options(
+  IntegrationCommerceCodes.TRANSACCION_COMPLETA,
+  IntegrationApiKeys.WEBPAY,
+  Environment.Integration
+));
+
+const refundRequest = await tx.refund(token, amount);
 `;
 };
 

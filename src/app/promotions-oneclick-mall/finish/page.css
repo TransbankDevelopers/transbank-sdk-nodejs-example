@@ -1,0 +1,15 @@
+.finish-card {
+  padding: 18px 32px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.finish-card .button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.finish-card .finish-text {
+  width: 50%;
+}

@@ -9,6 +9,7 @@ export function middleware(request: NextRequest) {
     "/webpay-mall-diferido/commit": "/api/webpay-mall-diferido/commit",
     "/webpay-plus-deferred/commit": "/api/webpay-plus-deferred/commit",
     "/oneclick-mall/finish": "/api/oneclick-mall/finish",
+    "/promotions-oneclick-mall/finish": "/api/promotions-oneclick-mall/finish",
     "/oneclick-mall-deferred/finish": "/api/oneclick-mall-deferred/finish",
   };
 

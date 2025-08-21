@@ -1,5 +1,5 @@
 import { StepProps } from "@/components/step/Step";
-import * as removeUserSnippets from "@/app/oneclick-mall/content/snippets/remove-user";
+import * as removeUserSnippets from "@/app/oneclick-mall-deferred/content/snippets/remove-user";
 import { Text, TextVariant } from "@/components/text/Text";
 
 export const getRemoveUserSteps = (

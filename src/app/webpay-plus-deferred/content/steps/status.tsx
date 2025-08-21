@@ -1,6 +1,6 @@
 import { StepProps } from "@/components/step/Step";
 import { TBKTransactionStatusResponse } from "@/types/transactions";
-import * as statusSnippets from "@/app/webpay-plus/content/snippets/status";
+import * as statusSnippets from "@/app/webpay-plus-deferred/content/snippets/status";
 import { Text } from "@/components/text/Text";
 
 export const getStatusTRXSteps = (

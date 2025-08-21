@@ -1,10 +1,17 @@
 import { TBKCaptureTransactionResponse } from "@/types/transactions";
 
 export const getStepOne = (token: string) => {
-  return `//buyOrder: ${token}
-  const captureResponse = await (new WebpayPlus.Transaction()).capture(
-  commerceCode,
-  buyOrder,
+  return `//buyOrderStore: ${token}
+
+const tx = new Oneclick.MallTransaction(new Options(
+  IntegrationCommerceCodes.ONECLICK_MALL_DEFERRED, // Código de comercio Mall
+  IntegrationApiKeys.WEBPAY,
+  Environment.Integration
+));
+
+const captureResponse = await tx.capture(
+  commerceCodeStore, // Código de comercio Tienda
+  buyOrderStore,
   authorizationCode,
   captureAmount
 );`;
