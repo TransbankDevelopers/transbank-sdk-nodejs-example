@@ -1,6 +1,6 @@
 import { StepProps } from "@/components/step/Step";
 import { TBKMallCommitTransactionResponse } from "@/types/transactions";
-import * as commitSnippets from "@/app/webpay-mall/content/snippets/commit";
+import * as commitSnippets from "@/app/webpay-mall-diferido/content/snippets/commit";
 import { Text } from "@/components/text/Text";
 import { OkCommitMessage } from "@/components/messages/OkCommitMessage";
 import { OperationsCommitDeferredMessage } from "@/components/messages/OperationsCommitDeferredMessage";

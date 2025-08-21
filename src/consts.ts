@@ -140,6 +140,7 @@ export interface SidebarSection {
     title: string;
     fullRoute: string;
     apiReferenceRoute?: string;
+    promotions?: string;
   }[];
 }
 
@@ -176,6 +177,7 @@ export const sidebarConfig: SidebarSection[] = [
         title: "Oneclick Mall",
         fullRoute: "/oneclick-mall",
         apiReferenceRoute: "/api-reference/oneclick-mall",
+        promotions: "/promotions-oneclick-mall",
       },
       {
         title: "Oneclick Mall Diferido",

@@ -1,7 +1,7 @@
 import { Route } from "@/types/menu";
 import { Layout } from "@/components/layout/Layout";
 import Head from "next/head";
-import { getStatusTRXSteps } from "@/app/oneclick-mall/content/steps/status";
+import { getStatusTRXSteps } from "@/app/oneclick-mall-deferred/content/steps/status";
 import { NextPageProps } from "@/types/general";
 import { NavigationItem } from "@/components/layout/Navigation";
 import { getStatusOneclickMallTransaction } from "@/app/lib/oneclick-mall/data";

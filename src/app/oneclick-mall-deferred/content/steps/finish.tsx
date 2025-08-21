@@ -1,6 +1,6 @@
 import { StepProps } from "@/components/step/Step";
 import { TBKFinishInscriptionResponse } from "@/types/transactions";
-import * as finishInscriptionSnippets from "@/app/oneclick-mall/content/snippets/finish";
+import * as finishInscriptionSnippets from "@/app/oneclick-mall-deferred/content/snippets/finish";
 import { Table } from "@/components/table/Table";
 import {
   getColumnDefinition,

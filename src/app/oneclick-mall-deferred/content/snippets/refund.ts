@@ -4,11 +4,17 @@ export const getStepOne = (buyOrder: string, amount: string) => {
   return `// BuyOrder: ${buyOrder}
 // Amount: ${amount}
 
-const refundRequest = await (new Oneclick.MallTransaction()).refund(
+const tx = new Oneclick.MallTransaction(new Options(
+  IntegrationCommerceCodes.ONECLICK_MALL_DEFERRED, // Código de comercio Mall
+  IntegrationApiKeys.WEBPAY,
+  Environment.Integration
+));
+
+const refundRequest = await tx.refund(
   buyOrder,
-  childCommerceCode,
-  childBuyOrder,
-  amount
+  commerceCodeStore, // Código de comercio Tienda
+  buyOrderStore,
+  amount
 );`;
 };
 

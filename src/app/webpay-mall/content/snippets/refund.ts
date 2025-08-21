@@ -1,12 +1,18 @@
 import { TBKRefundTransactionResponse } from "@/types/transactions";
 
-export const getStepOne = (amount: string) => {
-  return `// Token: 01ab8fb16e5dee67fcc392b97d679a01d29b77b4cd8b9ee6ade278203feee1b4
+export const getStepOne = (amount: string, token_ws: string) => {
+  return `// Token: ${token_ws}
 // Amount: ${amount}
-const refundRequest = await (new WebpayPlus.MallTransaction()).refund(
+const tx = new WebpayPlus.MallTransaction(new Options(
+  IntegrationCommerceCodes.WEBPAY_PLUS_MALL, // Código de comercio Mall
+  IntegrationApiKeys.WEBPAY,
+  Environment.Integration
+));
+
+const refundRequest = await tx.refund(
   token,
-  buyOrder,
-  commerceCode,
+  buyOrderStore,
+  commerceCodeStore, // Código de comercio Tienda
   amount
 );`;
 };
