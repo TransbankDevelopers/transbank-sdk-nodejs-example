@@ -69,20 +69,20 @@ export default function SidebarItems({
               Operaciones API
             </Link>
           </li>
-          <li
-            className={`${cx(
-              basePath === collapsible.promotions && "active"
-            )} collapsible-items`}
-          >
-            {collapsible.promotions && (
+          {collapsible.promotions && (
+            <li
+              className={`${cx(
+                basePath === collapsible.promotions && "active"
+              )} collapsible-items hide-op`}
+            >
               <Link
                 href={`${collapsible.promotions}`}
                 className="tbk-sidebar-item"
               >
                 Flujo Promociones
               </Link>
-            )}
-          </li>
+            </li>
+          )}
         </ul>
       )}
     </li>
