@@ -8,9 +8,6 @@
     "start": "next start",
     "lint": "next lint"
   },
-  "engines": {
-    "node": ">=20.0.0"
-  },
   "dependencies": {
     "@next/third-parties": "^15.4.6",
     "@types/react-copy-to-clipboard": "^5.0.7",
@@ -28,11 +25,11 @@
     "transbank-sdk": "^6.1.0"
   },
   "devDependencies": {
-    "@types/node": "^20",
+    "@types/node": "^24.5.2",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "eslint": "9.36.0",
-    "eslint-config-next": "15.5.4",
-    "typescript": "5.9.2"
+    "eslint": "^8.57.1",
+    "eslint-config-next": "14.2.2",
+    "typescript": "^5.9.2"
   }
 }
