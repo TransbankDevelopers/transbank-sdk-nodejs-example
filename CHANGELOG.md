@@ -1,6 +1,18 @@
 # Historial de cambios
 
 Todos los cambios notables a este proyecto serán documentados en este archivo.
+
+## [1.2.0] 29-9-2025
+
+### Agrega
+
+- Se agrega Oneclick flujo promociones
+
+### Actualiza
+
+- Se actualizan las dependencias necesarias para construir el proyecto.
+- Se actualiza links de slack
+
 ## [1.1.0] 25-03-2025
 
 ### Agrega
