@@ -40,7 +40,7 @@ export const Questions = () => {
         <QuestionOption
           title="Escríbenos por slack"
           content="Únete a nuestra comunidad de integradores. Nuestro equipo está ahí para ayudarte"
-          link="https://transbank.continuumhq.dev/slack_community"
+          link="https://invitacion-slack.transbankdevelopers.cl/slack_community"
           logo={SlackLogo}
           width={124}
           height={32}

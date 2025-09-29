@@ -51,9 +51,10 @@ export default async function RefundTransaction({
       </Head>
       <Layout
         pageTitle="Webpay Oneclick Mall - Reembolsar"
-        pageDescription={`Esta operación te permite solicitar el reembolso del dinero al tarjeta habiente, considerando el monto y el tiempo transcurrido. El resultado puede ser una Reversa o Anulación, dependiendo de ciertas condiciones (Reversa
+        pageDescription={`En esta etapa, tienes la opción de solicitar el reembolso del monto al titular de la tarjeta. 
+        Dependiendo del monto y el tiempo transcurrido desde la autorización, este proceso podría resultar en una Reversa o Anulación, dependiendo de ciertas condiciones (Reversa
                 en las primeras 3 horas de la autorización, anulación posterior
-                a eso) o una Anulación parcial si el monto es menor al total.
+                a eso), o una Anulación parcial si el monto es menor al total.
                 Las anulaciones parciales para tarjetas débito y prepago no
                 están soportadas.`}
         actualBread={actualBread}

@@ -13,6 +13,7 @@ type SidebarItemsProps = Readonly<{
     title: string;
     fullRoute: string;
     apiReferenceRoute?: string;
+    promotions?: string;
   };
 }>;
 
@@ -68,6 +69,20 @@ export default function SidebarItems({
               Operaciones API
             </Link>
           </li>
+          {collapsible.promotions && (
+            <li
+              className={`${cx(
+                basePath === collapsible.promotions && "active"
+              )} collapsible-items hide-op`}
+            >
+              <Link
+                href={`${collapsible.promotions}`}
+                className="tbk-sidebar-item"
+              >
+                Flujo Promociones
+              </Link>
+            </li>
+          )}
         </ul>
       )}
     </li>

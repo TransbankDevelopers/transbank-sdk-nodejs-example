@@ -57,7 +57,7 @@ export default async function RefundTransaction({
                 están soportadas.`}
       actualBread={actualBread}
       activeRoute="/webpay-mall-diferido/refund"
-      steps={getRefundTRXSteps(refundResult, amount as string)}
+      steps={getRefundTRXSteps(refundResult, amount as string, token_ws)}
       additionalContent={
         <StatusButton className="mt-6" token={token_ws as string} />
       }

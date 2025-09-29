@@ -7,9 +7,13 @@ export const getStepOne = (token: string) => {
 };
 
 export const getStepTwo = () => {
-  return `
-const token = request.body.token_ws;
-const commitResponse = await (new WebpayPlus.Transaction()).commit(token);`;
+  return `const token = request.body.token_ws;
+const tx = new WebpayPlus.Transaction(new Options (
+  IntegrationCommerceCodes.WEBPAY_PLUS_DEFERRED,
+  IntegrationApiKeys.WEBPAY,
+  Environment.Integration
+));
+const commitResponse = await tx.commit(token);`;
 };
 
 export const getStepThree = (commitResponse: TBKCommitTransactionResponse) => {

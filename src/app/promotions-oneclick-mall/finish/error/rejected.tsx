@@ -1,0 +1,49 @@
+import Head from "next/head";
+import { Route } from "@/types/menu";
+import { Layout } from "@/components/layout/Layout";
+import { TBKFinishInscriptionResponse } from "@/types/transactions";
+import { getErrorRejectedSteps } from "../../content/steps/error-rejected";
+
+const actualBread: Route[] = [
+  {
+    name: "Inicio",
+    path: "/",
+  },
+  {
+    name: "Webpay Oneclick Mall",
+    path: "/promotions-oneclick-mall",
+  },
+  {
+    name: "Rechazo Bancario",
+    path: "/promotions-oneclick-mall/finish",
+  },
+];
+
+export type RejectedInscriptionViewProps = {
+  trxData: TBKFinishInscriptionResponse;
+};
+
+export const RejectedInscriptionView = async (
+  props: RejectedInscriptionViewProps
+) => {
+  return (
+    <>
+      <Head>
+        <title>Transbank SDK Node - Rechazo Bancario</title>
+      </Head>
+      <Layout
+        pageTitle="Webpay Oneclick Mall - Rechazo Bancario"
+        pageDescription={
+          <span>
+            En esta fase, pueden surgir inconvenientes, ya sea con el titular de
+            la tarjeta o a nivel bancario, lo que resulta en el estado final de
+            la transacción siendo marcado como &quot;FAILED&quot;.
+          </span>
+        }
+        actualBread={actualBread}
+        activeRoute="/promotions-oneclick-mall/finish"
+        steps={getErrorRejectedSteps(props.trxData)}
+      />
+    </>
+  );
+};

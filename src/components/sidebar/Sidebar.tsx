@@ -43,7 +43,8 @@ export default function Sidebar({
         const isCurrentCollapsible =
           basePath === collapsible.fullRoute ||
           (collapsible.apiReferenceRoute &&
-            pathname === collapsible.apiReferenceRoute);
+            pathname === collapsible.apiReferenceRoute) ||
+          (collapsible.promotions && basePath === collapsible.promotions);
 
         state[collapsible.title] = Boolean(isCurrentCollapsible);
       });

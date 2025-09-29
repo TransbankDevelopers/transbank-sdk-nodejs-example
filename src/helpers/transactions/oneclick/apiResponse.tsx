@@ -81,37 +81,91 @@ export const OneClickMallAuthorize: ColumnValues[] = [
 
 export const OneClickMallStatus: ColumnValues[] = [
   {
-    field: "type",
-    value:
-      "Tipo de reembolso, REVERSED o NULLIFIED, si es REVERSED no se devolverán datos de la transacción (authorization code, etc). Largo máximo: 10",
-  },
-  {
-    field: "authorization_code",
-    value: "(Solo si es NULLIFIED) Código de autorización. Largo máximo: 6",
-  },
-  {
-    field: "authorization_date",
-    value: "(Solo si es NULLIFIED) Fecha de la autorización de la transacción",
-  },
-  {
-    field: "nullified_amount",
-    value: "(Solo si es NULLIFIED) Monto anulado. Largo máximo: 17",
-  },
-  {
-    field: "balance",
-    value:
-      "(Solo si es NULLIFIED) Monto restante de la transacción de pago original: monto inicial – monto anulado. Largo máximo: 17",
-  },
-  {
-    field: "response_code",
-    value:
-      "(Solo si es NULLIFIED) Código del resultado del pago, donde: 0 (cero) es aprobado. Largo máximo: 2",
-  },
-  {
     field: "buy_order",
     value:
-      "(Solo si es NULLIFIED) Orden de compra generada por el comercio hijo para la transacción de pago. Largo máximo: 26.",
+      "Orden de compra generada por el comercio padre.",
   },
+  {
+    field: "card_detail",
+    value: "Objeto que contiene información de la tarjeta utilizado por el tarjetahabiente.",
+  },
+  {
+    field: "card_detail.card_number",
+    value: "Los últimos 4 dígitos de la tarjeta usada en la transacción.",
+  },
+  {
+    field: "accounting_date",
+    value: "Fecha contable de la autorización del pago.",
+  },
+  {
+    field: "transaction_date",
+    value:
+      "Fecha completa (timestamp) de la autorización del pago. Largo: 24, formato: ISO 8601 (Ej: yyyy-mm-ddTHH:mm:ss.xxxZ)",
+  },
+  {
+    field: "details",
+    value:
+      "Lista con el resultado de cada transacción de las tiendas hijas.",
+  },
+  {
+    field: "details [].amount",
+    value:
+      "Monto de la sub-transacción de pago.",
+  },
+  {
+    field: "details [].status",
+    value:
+      "Estado de la transacción (INITIALIZED, AUTHORIZED, REVERSED, FAILED, NULLIFIED, PATRIALLY_NULLIFIED, CAPTURED)."
+  },
+  {
+    field: "details [].authorization_code",
+    value:
+      "Código de autorización de la sub-transacción de pago."
+  },
+  {
+    field: "details [].payment_type_code",
+    value: [
+      "Tipo de pago de la transacción.",
+      "VD = Venta Débito.",
+      "VP = Venta prepago.",
+      "VN = Venta Normal.",
+      "VC = Venta en cuotas.",
+      "SI = 3 cuotas sin interés.",
+      "S2 = 2 cuotas sin interés.",
+      "NC = N cuotas sin interés."
+    ]
+  },
+  {
+    field: "details [].response_code",
+    value: [
+      "Código de retorno del proceso de pago, donde 0 (cero) es aprobado.",
+      "Algunos códigos específicos para Oneclick son:",
+      "-96: tbk_user no existente.",
+      "-97: Límites Oneclick, máximo monto diario de pago excedido.",
+      "-98: Límites Oneclick, máximo monto de pago excedido.",
+      "-99: Límites Oneclick, máxima cantidad de pagos diarios excedido."
+    ]
+  },
+  {
+    field: "details [].installments_number",
+    value: "Cantidad de cuotas de la sub-transacción de pago."
+  },
+  {
+    field: "details [].commerce_code",
+    value: "Código de comercio del comercio hijo (tienda)."
+  },
+  {
+    field: "details [].buy_order",
+    value: "Orden de compra generada por el comercio hijo para la sub-transacción de pago"
+  },
+  {
+    field: "details [].balance",
+    value: "Monto restante de la sub-transacción de pago original: monto inicial - monto anulado. Largo máximo: 17"
+  },
+  {
+    field: "status",
+    value: "Estado de la transacción (INITIALIZED, AUTHORIZED, REVERSED, FAILED, NULLIFIED, PARTIALLY_NULLIFIED, CAPTURED). Largo máximo: 64"
+  }
 ];
 
 export const OneClickMallRefund: ColumnValues[] = [

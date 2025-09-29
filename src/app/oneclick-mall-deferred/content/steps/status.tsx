@@ -1,6 +1,6 @@
 import { StepProps } from "@/components/step/Step";
 import { TBKMallTransactionStatusResponse } from "@/types/transactions";
-import * as statusSnippets from "@/app/oneclick-mall/content/snippets/status";
+import * as statusSnippets from "@/app/oneclick-mall-deferred/content/snippets/status";
 import { Text } from "@/components/text/Text";
 
 export const getStatusTRXSteps = (

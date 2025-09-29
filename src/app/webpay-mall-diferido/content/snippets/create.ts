@@ -1,20 +1,45 @@
 export const getStepOne = () => {
-  return `const WebpayPlus = require('transbank-sdk').WebpayPlus; // ES5
-  const TransactionDetail = require("transbank-sdk").TransactionDetail;
-  
-  import { WebpayPlus, TransactionDetail } from 'transbank-sdk'; // ES6
+  return `const {
+Environment,
+IntegrationApiKeys,
+IntegrationCommerceCodes,
+Options,
+TransactionDetail,
+WebpayPlus
+} = require('transbank-sdk') // ES5
 
-  let details = [
-    new TransactionDetail(135, "597055555536", "O-23101"),
-    new TransactionDetail(148, "597055555536", "O-10821"),
-  ]
+import { 
+Environment,
+IntegrationApiKeys,
+IntegrationCommerceCodes,
+Options,
+TransactionDetail,
+WebpayPlus 
+} from 'transbank-sdk'; // ES6
+
+const tx = new WebpayPlus.MallTransaction(new Options(
+  IntegrationCommerceCodes.WEBPAY_PLUS_MALL_DEFERRED, // Código de comercio Mall
+  IntegrationApiKeys.WEBPAY,
+  Environment.Integration
+));
+
+let details = [
+  new TransactionDetail(
+    amount,
+    commerceCodeStore1, // Código de comercio Tienda 1
+    buyOrderStore1),
+  new TransactionDetail(
+    amount2,
+    commerceCodeStore2, // Código de comercio Tienda 2
+    buyOrderStore2)
+]
   
-  const createResponse = await (new WebpayPlus.MallTransaction()).create(
-    buyOrder, 
-    sessionId, 
-    returnUrl,
-    details
-  );`;
+const createResponse = await tx.create(
+  buyOrder, 
+  sessionId, 
+  returnUrl,
+  details
+);`;
 };
 
 export const getStepTwo = (token: string) => {

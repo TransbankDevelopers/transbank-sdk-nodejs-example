@@ -1,6 +1,6 @@
 import { StepProps } from "@/components/step/Step";
 import { StartTransactionData } from "@/types/transactions";
-import * as createSnippets from "@/app/webpay-plus/content/snippets/create";
+import * as createSnippets from "@/app/webpay-plus-deferred/content/snippets/create";
 import { Table } from "@/components/table/Table";
 import {
   getColumnDefinition,

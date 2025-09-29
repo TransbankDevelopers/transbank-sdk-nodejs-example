@@ -1,21 +1,51 @@
 export const getStepOne = () => {
-  return `const TransaccionCompleta = require('transbank-sdk').TransaccionCompleta; // CommonJS
-const TransactionDetail = require('transbank-sdk').TransactionDetail; // CommonJS
-import { TransaccionCompleta, TransactionDetail } from 'transbank-sdk'; // ES6 Modules
+  return `const {
+CommitDetail,
+Environment,
+InstallmentDetail,
+IntegrationApiKeys,
+IntegrationCommerceCodes,
+Options,
+TransaccionCompleta,
+TransactionDetail
+} = require('transbank-sdk'); // ES5
+
+import { 
+CommitDetail,
+Environment,
+InstallmentDetail,
+IntegrationApiKeys,
+IntegrationCommerceCodes,
+Options,
+TransaccionCompleta,
+TransactionDetail
+} from 'transbank-sdk'; // ES6
+
+const tx = new TransaccionCompleta.MallTransaction(new Options(
+  IntegrationCommerceCodes.TRANSACCION_COMPLETA_MALL_DEFERRED, // Código de comercio Mall
+  IntegrationApiKeys.WEBPAY,
+  Environment.Integration
+));
   
 const details = [
-  new TransactionDetail(amount, childCommerceCode, childBuyOrder)
-  new TransactionDetail(amount2, childCommerceCode2, childBuyOrder2)
+  new TransactionDetail(
+    amount, 
+    commerceCodeStore1, // Código de comercio Tienda 1 
+    buyOrderStore1), 
+  new TransactionDetail(
+    amount2,
+    commerceCodeStore2, // Código de comercio Tienda 2
+    buyOrderStore2)
 ];
   
 // Es necesario ejecutar dentro de una función async para utilizar await
-const createResponse = await (new TransaccionCompleta.MallTransaction()).create(
+const createResponse = await tx.create(
   buyOrder, 
   sessionId, 
-  cvv,
   cardNumber,
   cardExpirationDate,
-  details 
+  details,
+  cvv
 );`;
 };
 

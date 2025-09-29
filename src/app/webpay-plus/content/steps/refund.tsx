@@ -6,7 +6,8 @@ import Link from "next/link";
 
 export const getRefundTRXSteps = (
   refundResult: TBKRefundTransactionResponse,
-  amount: string
+  amount: string,
+  token_ws: string
 ): StepProps[] => {
   return [
     {
@@ -45,7 +46,7 @@ export const getRefundTRXSteps = (
           </div>
         </div>
       ),
-      code: refundSnippets.getStepOne(amount),
+      code: refundSnippets.getStepOne(amount, token_ws),
     },
     {
       stepTitle: "Paso 2: Respuesta",
