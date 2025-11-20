@@ -53,7 +53,7 @@ export default async function StatusTransactionView({
         <title>Transbank SDK Node - Estado de transacción</title>
       </Head>
       <Layout
-        pageTitle="Webpay Oneclick Mall - Estado de transacción"
+        pageTitle="Webpay Oneclick Mall Promociones - Estado de transacción"
         pageDescription={`Con esta operación, puedes solicitar el estado actual de una transacción en cualquier momento.`}
         actualBread={actualBread}
         activeRoute="/promotions-oneclick-mall/status"

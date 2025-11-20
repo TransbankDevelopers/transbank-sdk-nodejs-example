@@ -30,7 +30,7 @@ export const AbortedView = async (props: AbortedViewProps) => {
         <title>Transbank SDK Node - Estado de compra anulada</title>
       </Head>
       <Layout
-        pageTitle="Webpay Oneclick Mall - Estado de compra anulada"
+        pageTitle="Webpay Oneclick Mall Promociones - Estado de compra anulada"
         pageDescription={`La inscripción ha sido anulada por el usuario. En esta instancia, la inscripción fue abandonada al seleccionar la opción 'Abandonar y volver al comercio'.`}
         actualBread={actualBread}
         activeRoute="/promotions-oneclick-mall/finish"
