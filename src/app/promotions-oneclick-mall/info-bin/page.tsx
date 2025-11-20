@@ -53,7 +53,7 @@ export default async function InfoBinView({
         <title>Transbank SDK Node - Consulta servicio de bines</title>
       </Head>
       <Layout
-        pageTitle="Webpay Oneclick Mall  Promociones - Promociones"
+        pageTitle="Webpay Oneclick Mall Promociones - Promociones"
         pageDescription={`Con esta operación puedes iniciar una consulta al servicio de consulta de bines contratado`}
         actualBread={actualBread}
         activeRoute="/promotions-oneclick-mall/info-bin"
