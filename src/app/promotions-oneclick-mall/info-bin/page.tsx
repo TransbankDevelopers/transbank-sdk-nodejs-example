@@ -16,6 +16,10 @@ const actualBread: Route[] = [
     name: "Webpay Oneclick",
     path: "/promotions-oneclick-mall",
   },
+  {
+    name: "Webpay Oneclick",
+    path: "/promotions-oneclick-mall/info-bin",
+  },
 ];
 
 const navigationItems: NavigationItem[] = [
@@ -49,10 +53,10 @@ export default async function InfoBinView({
         <title>Transbank SDK Node - Consulta servicio de bines</title>
       </Head>
       <Layout
-        pageTitle="Webpay Oneclick Mall - promociones"
-        pageDescription={`Con esta operación puedes iniciar una consulta al servicio de bines`}
+        pageTitle="Webpay Oneclick Mall - Promociones"
+        pageDescription={`Con esta operación puedes iniciar una consulta al servicio de consulta de bines contratado`}
         actualBread={actualBread}
-        activeRoute="/promotions-oneclick-mall/status"
+        activeRoute="/promotions-oneclick-mall/info-bin"
         steps={getInfoBinTRXSteps(tbk_user, trxBin)}
         navigationItems={navigationItems}
       />
