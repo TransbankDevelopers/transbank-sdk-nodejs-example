@@ -17,7 +17,7 @@ const actualBread: Route[] = [
     path: "/promotions-oneclick-mall",
   },
   {
-    name: "Webpay Oneclick",
+    name: "Consulta Bines",
     path: "/promotions-oneclick-mall/info-bin",
   },
 ];
