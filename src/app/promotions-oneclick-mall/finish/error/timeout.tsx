@@ -30,7 +30,7 @@ export const TimeoutView = async (props: TimeoutViewProps) => {
         <title>Transbank SDK Node - Time out</title>
       </Head>
       <Layout
-        pageTitle="Webpay Oneclick Mall - Time out"
+        pageTitle="Webpay Oneclick Mall Promociones - Time out"
         pageDescription={
           <span>
             Cuando una transacción expira debido a un timeout, es crucial

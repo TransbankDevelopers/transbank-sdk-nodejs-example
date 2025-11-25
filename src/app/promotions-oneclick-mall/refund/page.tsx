@@ -50,7 +50,7 @@ export default async function RefundTransaction({
         <title>Transbank SDK Node - Reembolsar transacción</title>
       </Head>
       <Layout
-        pageTitle="Webpay Oneclick Mall - Reembolsar"
+        pageTitle="Webpay Oneclick Mall Promociones - Reembolsar"
         pageDescription={`En esta etapa, tienes la opción de solicitar el reembolso del monto al titular de la tarjeta. 
         Dependiendo del monto y el tiempo transcurrido desde la autorización, este proceso podría resultar en una Reversa o Anulación, dependiendo de ciertas condiciones (Reversa
                 en las primeras 3 horas de la autorización, anulación posterior

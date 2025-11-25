@@ -43,6 +43,11 @@ export const getFinishInscritionSteps = (
         <Text>
           Transbank responderá con información crucial. Guarda estos detalles,
           ya que serán necesarios para autorizar transacciones futuras.
+          <p className="mt-4">
+            Para esta versión del producto, la principal diferencia dentro de
+            este método recae en el cambio card_number donde encontrarás tanto
+            el BIN como los últimos 4 dígitos de la tarjeta inscrita.
+          </p>
         </Text>
       ),
       code: finishInscriptionSnippets.getStepThree(finishTransactionResponse),

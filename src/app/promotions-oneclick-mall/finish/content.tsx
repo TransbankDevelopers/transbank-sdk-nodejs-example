@@ -43,7 +43,7 @@ export const ContentOneClickMall = (props: ContentOneclickProps) => {
         <title>Transbank SDK Node - Finalizar inscripción</title>
       </Head>
       <Layout
-        pageTitle="Webpay Oneclick Mall - Finalizar inscripción"
+        pageTitle="Webpay Oneclick Mall Promociones - Finalizar inscripción"
         pageDescription="En esta fase, completaremos el proceso de inscripción, permitiéndonos posteriormente realizar cargos a la tarjeta que el tarjetahabiente haya inscrito."
         actualBread={props.actualBread}
         activeRoute="/promotions-oneclick-mall/finish"
