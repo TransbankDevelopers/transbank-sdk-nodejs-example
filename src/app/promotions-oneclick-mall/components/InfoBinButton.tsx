@@ -11,7 +11,7 @@ export const InfoBinButton = ({ tbkUser, className }: InfoBinButtonProps) => {
         href={`/promotions-oneclick-mall/info-bin?tbk_user=${tbkUser}`}
         className="tbk-button primary"
       >
-        Info Bin
+        CONSULTA BINES
       </a>
     </div>
   );

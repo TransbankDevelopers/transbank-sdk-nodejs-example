@@ -32,8 +32,9 @@ export const PageContent = (props: PageContentProps) => {
         <title>Transbank SDK Node - Creación de inscripción</title>
       </Head>
       <Layout
-        pageTitle="Webpay Oneclick Mall - Creación de Inscripción"
-        pageDescription="En esta etapa comienza el proceso de inscripción del medio de pago. Este paso inicial es fundamental, para dirigir al tarjetahabiente al formulario de inscripción."
+        pageTitle="Webpay Oneclick Mall Promociones - Creación de Inscripción"
+        pageDescription="En esta etapa comienza el proceso de inscripción del medio de pago. Este paso inicial es fundamental para redirigir al tarjetahabiente al formulario de
+inscripción. Durante esta etapa no verás diferencias en la experiencia de usuario ni en la integración de tu producto."
         actualBread={props.actualBread}
         activeRoute="/promotions-oneclick-mall"
         navigationItems={props.navigationItems}

@@ -77,7 +77,7 @@ export default async function AuthorizeTransactionPage({
         </title>
       </Head>
       <Layout
-        pageTitle="Webpay Oneclick Mall - Autorizar pago"
+        pageTitle="Webpay Oneclick Mall Promociones - Autorizar pago"
         pageDescription="En este primer paso, procederemos a autorizar una transacción en la tarjeta que ha sido previamente inscrita."
         actualBread={getActualBread()}
         navigationItems={navigationItems}

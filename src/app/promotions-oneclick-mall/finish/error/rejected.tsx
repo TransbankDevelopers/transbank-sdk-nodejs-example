@@ -32,7 +32,7 @@ export const RejectedInscriptionView = async (
         <title>Transbank SDK Node - Rechazo Bancario</title>
       </Head>
       <Layout
-        pageTitle="Webpay Oneclick Mall - Rechazo Bancario"
+        pageTitle="Webpay Oneclick Mall Promociones - Rechazo Bancario"
         pageDescription={
           <span>
             En esta fase, pueden surgir inconvenientes, ya sea con el titular de
