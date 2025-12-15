@@ -64,7 +64,6 @@
         "formulahendry.auto-rename-tag", // Auto Rename Tag
         "bradgashler.htmltagwrap", // HTML Tag Wrap
         "kisstkondoros.vscode-gutter-preview", // Gutter Preview
-        "gruntfuggly.todo-tree", // TODO Tree
         "naumovs.color-highlight" // Color Highlight
       ]
     }
