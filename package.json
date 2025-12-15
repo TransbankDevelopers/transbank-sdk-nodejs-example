@@ -13,14 +13,14 @@
     "@types/react-copy-to-clipboard": "^5.0.7",
     "@types/react-syntax-highlighter": "^15.5.13",
     "classnames": "^2.5.1",
-    "next": "14.2.35",
+    "next": "16.0.10",
     "nextjs-toploader": "^1.6.12",
     "postcss": "^8.5.6",
     "react": "^18.3.1",
     "react-copy-to-clipboard": "^5.1.0",
     "react-credit-cards-2": "^1.0.3",
     "react-dom": "^18.3.1",
-    "react-syntax-highlighter": "15.6.6",
+    "react-syntax-highlighter": "16.1.0",
     "tailwindcss": "3.4.19",
     "transbank-sdk": "6.1.1"
   },
@@ -29,7 +29,7 @@
     "@types/react": "18.3.27",
     "@types/react-dom": "18.3.7",
     "eslint": "^8.57.1",
-    "eslint-config-next": "14.2.35",
+    "eslint-config-next": "16.0.10",
     "typescript": "^5.9.3"
   }
 }
