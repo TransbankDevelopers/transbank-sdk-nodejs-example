@@ -56,7 +56,7 @@ export const ContentOneClickMall = (props: ContentOneclickProps) => {
         additionalContent={
           <div className="mt-8">
             <p>
-              Después de una inscripción exitosa, tienen dos opciones: autorizar
+              Después de una inscripción exitosa, tienen tres opciones: consultar un BIN, autorizar
               un pago o borrar al usuario que se acaba de inscribir.
             </p>
             <AuthorizeForm

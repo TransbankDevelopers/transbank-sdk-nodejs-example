@@ -2,6 +2,17 @@
 
 Todos los cambios notables a este proyecto serán documentados en este archivo.
 
+## [1.2.1] 15-12-2025
+
+### Agrega
+
+- Se agrega Oneclick flujo promociones al menú.
+- Se agrega devcontainer al proyecto.
+
+### Actualiza
+
+- Se actualizan las dependencias necesarias para construir el proyecto.
+
 ## [1.2.0] 29-9-2025
 
 ### Agrega
