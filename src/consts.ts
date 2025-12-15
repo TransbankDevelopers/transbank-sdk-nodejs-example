@@ -9,128 +9,128 @@ export const patpassJToken = "tbk-patpass-jtoken";
 export const webpayPlusRoutes: Route[] = [
   {
     name: "Webpay Plus",
-    path: "/webpay-plus",
+    path: "/webpay-plus"
   },
   {
     name: "Webpay Plus Diferido",
-    path: "/webpay-plus-deferred",
+    path: "/webpay-plus-deferred"
   },
   {
     name: "Webpay Mall",
-    path: "/webpay-mall",
+    path: "/webpay-mall"
   },
   {
     name: "Webpay Mall Diferido",
-    path: "/webpay-mall-diferido",
-  },
+    path: "/webpay-mall-diferido"
+  }
 ];
 
 export const webpayOneClickRoutes: Route[] = [
   {
     name: "Oneclick Mall",
-    path: "/oneclick-mall",
+    path: "/oneclick-mall"
   },
   {
     name: "Oneclick Mall Diferido",
-    path: "/oneclick-mall-deferred",
-  },
+    path: "/oneclick-mall-deferred"
+  }
 ];
 
 export const webpayFullTransactionRoutes: Route[] = [
   {
     name: "Transacción Completa",
-    path: "/transaccion-completa",
+    path: "/transaccion-completa"
   },
   {
     name: "Transacción Completa Diferido",
-    path: "/transaccion-completa-diferido",
+    path: "/transaccion-completa-diferido"
   },
   {
     name: "Transacción Completa Mall",
-    path: "/transaccion-completa-mall",
+    path: "/transaccion-completa-mall"
   },
   {
     name: "Transacción Completa Mall Diferido",
-    path: "/transaccion-completa-mall-diferido",
-  },
+    path: "/transaccion-completa-mall-diferido"
+  }
 ];
 
 export const patpassTransactionRoutes: Route[] = [
   {
     name: "Patpass Comercio",
-    path: "/patpass-comercio",
-  },
+    path: "/patpass-comercio"
+  }
 ];
 
 export const apiWebpayPlusRoutes: Route[] = [
   {
     name: "Webpay Plus",
-    path: "/api-reference/webpay-plus",
+    path: "/api-reference/webpay-plus"
   },
   {
     name: "Webpay Plus Diferido",
-    path: "/api-reference/webpay-plus-deferred",
+    path: "/api-reference/webpay-plus-deferred"
   },
   {
     name: "Webpay Mall",
-    path: "/api-reference/webpay-mall",
+    path: "/api-reference/webpay-mall"
   },
   {
     name: "Webpay Mall Diferido",
-    path: "/api-reference/webpay-mall-deferred",
-  },
+    path: "/api-reference/webpay-mall-deferred"
+  }
 ];
 
 export const apiWebpayOneClickRoutes: Route[] = [
   {
     name: "Oneclick Mall",
-    path: "/api-reference/oneclick-mall",
+    path: "/api-reference/oneclick-mall"
   },
   {
     name: "Oneclick Mall Diferido",
-    path: "/api-reference/oneclick-mall-deferred",
-  },
+    path: "/api-reference/oneclick-mall-deferred"
+  }
 ];
 
 export const apiWebpayFullTransactionRoutes: Route[] = [
   {
     name: "Transacción Completa",
-    path: "/api-reference/transaccion-completa",
+    path: "/api-reference/transaccion-completa"
   },
   {
     name: "Transacción Completa Diferido",
-    path: "/api-reference/transaccion-completa-diferido",
+    path: "/api-reference/transaccion-completa-diferido"
   },
   {
     name: "Transacción Completa Mall",
-    path: "/api-reference/transaccion-completa-mall",
+    path: "/api-reference/transaccion-completa-mall"
   },
   {
     name: "Transacción Completa Mall Diferido",
-    path: "/api-reference/transaccion-completa-mall-diferido",
-  },
+    path: "/api-reference/transaccion-completa-mall-diferido"
+  }
 ];
 
 export const apiPatpassTransactionRoutes: Route[] = [
   {
     name: "Patpass Comercio",
-    path: "/api-reference/patpass-comercio",
-  },
+    path: "/api-reference/patpass-comercio"
+  }
 ];
 
 export const apiRefSidebar: MenuRoute[] = [
   {
     category: "Webpay Plus",
-    routes: apiWebpayPlusRoutes,
+    routes: apiWebpayPlusRoutes
   },
   {
     category: "Webpay Oneclick",
-    routes: apiWebpayOneClickRoutes,
+    routes: apiWebpayOneClickRoutes
   },
   {
     category: "Webpay Transacción Completa",
-    routes: apiWebpayFullTransactionRoutes,
-  },
+    routes: apiWebpayFullTransactionRoutes
+  }
 ];
 
 export interface SidebarSection {
@@ -151,24 +151,24 @@ export const sidebarConfig: SidebarSection[] = [
       {
         title: "Webpay Plus",
         fullRoute: "/webpay-plus",
-        apiReferenceRoute: "/api-reference/webpay-plus",
+        apiReferenceRoute: "/api-reference/webpay-plus"
       },
       {
         title: "Webpay Plus Mall",
         fullRoute: "/webpay-mall",
-        apiReferenceRoute: "/api-reference/webpay-mall",
+        apiReferenceRoute: "/api-reference/webpay-mall"
       },
       {
         title: "Webpay Plus Diferido",
         fullRoute: "/webpay-plus-deferred",
-        apiReferenceRoute: "/api-reference/webpay-plus-deferred",
+        apiReferenceRoute: "/api-reference/webpay-plus-deferred"
       },
       {
         title: "Webpay Plus Mall Diferido",
         fullRoute: "/webpay-mall-diferido",
-        apiReferenceRoute: "/api-reference/webpay-mall-deferred",
-      },
-    ],
+        apiReferenceRoute: "/api-reference/webpay-mall-deferred"
+      }
+    ]
   },
   {
     title: "Webpay Oneclick",
@@ -176,15 +176,18 @@ export const sidebarConfig: SidebarSection[] = [
       {
         title: "Oneclick Mall",
         fullRoute: "/oneclick-mall",
-        apiReferenceRoute: "/api-reference/oneclick-mall",
-        promotions: "/promotions-oneclick-mall",
+        apiReferenceRoute: "/api-reference/oneclick-mall"
       },
       {
         title: "Oneclick Mall Diferido",
         fullRoute: "/oneclick-mall-deferred",
-        apiReferenceRoute: "/api-reference/oneclick-mall-deferred",
+        apiReferenceRoute: "/api-reference/oneclick-mall-deferred"
       },
-    ],
+      {
+        title: "Oneclick Mall Promociones",
+        fullRoute: "/promotions-oneclick-mall"
+      }
+    ]
   },
   {
     title: "Webpay transaccion completa",
@@ -192,27 +195,27 @@ export const sidebarConfig: SidebarSection[] = [
       {
         title: "Transaccion Completa",
         fullRoute: "/transaccion-completa",
-        apiReferenceRoute: "/api-reference/transaccion-completa",
+        apiReferenceRoute: "/api-reference/transaccion-completa"
       },
       {
         title: "Transaccion Completa Mall",
         fullRoute: "/transaccion-completa-mall",
-        apiReferenceRoute: "/api-reference/transaccion-completa-mall",
+        apiReferenceRoute: "/api-reference/transaccion-completa-mall"
       },
       {
         title: "Transaccion Completa Diferido",
         fullRoute: "/transaccion-completa-diferido",
-        apiReferenceRoute: "/api-reference/transaccion-completa-diferido",
+        apiReferenceRoute: "/api-reference/transaccion-completa-diferido"
       },
       {
         title: "Transaccion Completa Mall Diferido",
         fullRoute: "/transaccion-completa-mall-diferido",
-        apiReferenceRoute: "/api-reference/transaccion-completa-mall-diferido",
-      },
-    ],
+        apiReferenceRoute: "/api-reference/transaccion-completa-mall-diferido"
+      }
+    ]
   },
   {
     title: "Patpass",
-    fullRoute: "/patpass-comercio",
-  },
+    fullRoute: "/patpass-comercio"
+  }
 ];

@@ -22,7 +22,7 @@ export default function SidebarItems({
   basePath,
   collapseState,
   toggle,
-  collapsible,
+  collapsible
 }: SidebarItemsProps) {
   if (!collapsible) {
     return null;
@@ -57,18 +57,20 @@ export default function SidebarItems({
             </Link>
           </li>
 
-          <li
-            className={`${cx(
-              pathname === collapsible.apiReferenceRoute && "active"
-            )} collapsible-items`}
-          >
-            <Link
-              href={`${collapsible.apiReferenceRoute}`}
-              className="tbk-sidebar-item"
+          {collapsible.apiReferenceRoute && (
+            <li
+              className={`${cx(
+                pathname === collapsible.apiReferenceRoute && "active"
+              )} collapsible-items`}
             >
-              Operaciones API
-            </Link>
-          </li>
+              <Link
+                href={`${collapsible.apiReferenceRoute}`}
+                className="tbk-sidebar-item"
+              >
+                Operaciones API
+              </Link>
+            </li>
+          )}
           {collapsible.promotions && (
             <li
               className={`${cx(
