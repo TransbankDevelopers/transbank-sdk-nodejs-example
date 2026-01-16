@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { TestData } from './data/constants';
 
 test('transaccion-exitosa', async ({ page }) => {
   await page.goto('http://localhost:3000/');
@@ -12,16 +13,16 @@ test('transaccion-exitosa', async ({ page }) => {
   await page.getByRole('button', { name: 'PAGAR' }).click();
   await page.getByRole('button', { name: 'Tarjetas Crédito, Débito,' }).click();
   await page.getByRole('textbox', { name: 'Número de tarjeta' }).click();
-  // TODO: Set card number from test variables
-  await page.getByRole('textbox', { name: 'Número de tarjeta' }).fill('4051 8842 3993 7763');
-  await page.locator('main-panel').click();
+  // Set card number from test variables
+  const cardInput = page.getByRole('textbox', { name: 'Número de tarjeta' });
+  await cardInput.fill(TestData.debitCardNumber);
   await page.getByRole('button', { name: 'Pagar' }).click();
   await page.locator('#rutClient').click();
-  // TODO: Set rut from test variables
-  await page.locator('#rutClient').fill('11.111.111-1');
+  // Set rut from test variables
+  await page.locator('#rutClient').fill(TestData.transbankRut);
   await page.locator('#rutClient').press('Tab');
-  // TODO: Set password from test variables
-  await page.locator('#passwordClient').fill('123');
+  // Set password from test variables
+  await page.locator('#passwordClient').fill(TestData.transbankPassword);
   await page.getByRole('button', { name: 'Aceptar' }).click();
   await page.getByRole('button', { name: 'Continuar' }).click();
 });
