@@ -38,5 +38,13 @@ test('transaccion-exitosa', async ({ page }) => {
   await page.locator('#rutClient').press('Tab');
   await page.locator('#passwordClient').fill(TestData.transbankPassword);
   await page.getByRole('button', { name: 'Aceptar' }).click();
+  await page.locator('#vci').selectOption('TSY');
   await page.getByRole('button', { name: 'Continuar' }).click();
+
+  // Assert transaction success
+  const finalPre = page.locator('pre').filter({ hasText: '{ "vci": "TSY", "amount":' });
+  await expect(finalPre).toBeVisible();
+  const finalText = (await finalPre.textContent()) ?? '';
+  expect(finalText).toMatch(/"status":\s*"AUTHORIZED"/);
+  expect(finalText).toMatch(/"response_code":\s*0/);
 });
