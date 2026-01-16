@@ -11,17 +11,31 @@ test('transaccion-exitosa', async ({ page }) => {
   expect(textContent).toMatch(/'token':\s*'[^']+'/); // Token not empty
   expect(textContent).toMatch(/'url':\s*'[^']+'/);   // URL not empty
   await page.getByRole('button', { name: 'PAGAR' }).click();
+  // Fill payment information in Webpay
   await page.getByRole('button', { name: 'Tarjetas Crédito, Débito,' }).click();
   await page.getByRole('textbox', { name: 'Número de tarjeta' }).click();
-  // Set card number from test variables
   const cardInput = page.getByRole('textbox', { name: 'Número de tarjeta' });
   await cardInput.fill(TestData.debitCardNumber);
+
+  // Click panel to trigger validation/refresh (simulating user action)
+  await page.locator('main-panel').click();
+
+  // Check for error message
+  const errorMsg = page.getByText('Intenta pagar con otra tarjeta');
+  if (await errorMsg.isVisible({ timeout: 3000 })) {
+    console.log('Detected card error, switching to Credit Card');
+    await cardInput.clear();
+    await cardInput.fill(TestData.creditCardNumber);
+    await page.locator('main-panel').click();
+    await page.getByRole('textbox', { name: 'Fecha de expiración' }).fill(TestData.creditCardExpirationDate);
+    await page.getByRole('textbox', { name: 'CVV' }).fill(TestData.creditCardCvv);
+  }
+
   await page.getByRole('button', { name: 'Pagar' }).click();
+  // Authorize transaction
   await page.locator('#rutClient').click();
-  // Set rut from test variables
   await page.locator('#rutClient').fill(TestData.transbankRut);
   await page.locator('#rutClient').press('Tab');
-  // Set password from test variables
   await page.locator('#passwordClient').fill(TestData.transbankPassword);
   await page.getByRole('button', { name: 'Aceptar' }).click();
   await page.getByRole('button', { name: 'Continuar' }).click();
