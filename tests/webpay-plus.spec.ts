@@ -20,15 +20,10 @@ test('transaccion-exitosa', async ({ page }) => {
   // Click panel to trigger validation/refresh (simulating user action)
   await page.locator('main-panel').click();
 
-  // Check for error message
+  // Check for error message and fail fast to trigger retry
   const errorMsg = page.getByText('Intenta pagar con otra tarjeta');
   if (await errorMsg.isVisible({ timeout: 3000 })) {
-    console.log('Detected card error, switching to Credit Card');
-    await cardInput.clear();
-    await cardInput.fill(TestData.creditCardNumber);
-    await page.locator('main-panel').click();
-    await page.getByRole('textbox', { name: 'Fecha de expiración' }).fill(TestData.creditCardExpirationDate);
-    await page.getByRole('textbox', { name: 'CVV' }).fill(TestData.creditCardCvv);
+    throw new Error('Webpay form : Card rejected. Triggering retry.');
   }
 
   await page.getByRole('button', { name: 'Pagar' }).click();
