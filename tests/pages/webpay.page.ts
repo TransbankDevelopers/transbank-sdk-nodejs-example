@@ -11,6 +11,8 @@ export class WebpayPage {
   readonly acceptButton: Locator;
   readonly vciSelect: Locator;
   readonly continueButton: Locator;
+  readonly abortButton: Locator;
+
 
   constructor(page: Page) {
     this.page = page;
@@ -23,6 +25,7 @@ export class WebpayPage {
     this.acceptButton = page.getByRole('button', { name: 'Aceptar' });
     this.vciSelect = page.locator('#vci');
     this.continueButton = page.getByRole('button', { name: 'Continuar' });
+    this.abortButton = page.getByRole('button', { name: 'Anular compra y volver' });
   }
 
   async validateTransactionCreation() {
@@ -59,5 +62,9 @@ export class WebpayPage {
     await this.acceptButton.click();
     await this.vciSelect.selectOption(vci);
     await this.continueButton.click();
+  }
+
+  async abortTransaction() {
+    await this.abortButton.click();
   }
 }

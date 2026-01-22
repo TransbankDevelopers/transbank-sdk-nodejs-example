@@ -39,3 +39,23 @@ test('rechazo-bancario', async ({ page }) => {
   expect(finalText).toMatch(/"status":\s*"FAILED"/);
   expect(finalText).toMatch(/"response_code":\s*-1/);
 });
+
+test('pago-abortado-webpay', async ({ page }) => {
+  const webpay = new WebpayPage(page);
+  await page.goto('http://localhost:3000/webpay-plus');
+
+  await webpay.validateTransactionCreation();
+  await webpay.abortTransaction();
+
+  // Check page title
+  await expect(page.getByRole('heading', { name: 'Webpay Plus - Estado de compra cancelada' })).toBeVisible();
+
+  // Assert transaction abortion
+  const abortPre = page.locator('pre').filter({ hasText: '{ "TBK_TOKEN": "' });
+  await expect(abortPre).toBeVisible();
+  const abortText = (await abortPre.textContent()) ?? '';
+  expect(abortText).toMatch(/"TBK_TOKEN":\s*"[^"]+"/);
+  expect(abortText).toMatch(/"TBK_ORDEN_COMPRA":\s*"[^"]+"/);
+  expect(abortText).toMatch(/"TBK_ID_SESION":\s*"[^"]+"/);
+
+});
