@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { TestData } from './data/constants';
 import { WebpayPage } from './pages/webpay.page';
 
-test('transaccion-exitosa', async ({ page }) => {
+test('transaction-success', async ({ page }) => {
   const webpay = new WebpayPage(page);
   await page.goto('http://localhost:3000/webpay-plus');
 
@@ -21,7 +21,7 @@ test('transaccion-exitosa', async ({ page }) => {
   expect(finalText).toMatch(/"response_code":\s*0/);
 });
 
-test('rechazo-bancario', async ({ page }) => {
+test('transaction-rejected', async ({ page }) => {
   const webpay = new WebpayPage(page);
   await page.goto('http://localhost:3000/webpay-plus');
 
@@ -40,7 +40,7 @@ test('rechazo-bancario', async ({ page }) => {
   expect(finalText).toMatch(/"response_code":\s*-1/);
 });
 
-test('pago-abortado-webpay', async ({ page }) => {
+test('aborted-from-webpay', async ({ page }) => {
   const webpay = new WebpayPage(page);
   await page.goto('http://localhost:3000/webpay-plus');
 
