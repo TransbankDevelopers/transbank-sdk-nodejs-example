@@ -1,11 +1,10 @@
 import { test as base } from '@playwright/test';
 import { TbkDevelopersExamplePage } from '../pages/tbkdevelopers-example.page';
-import { WebpayPage } from '../pages/webpay.page'; // Importación correcta
+import { WebpayPage } from '../pages/webpay.page';
 
-// Definimos los tipos para el autocompletado en los tests
 type MyFixtures = {
   tbkDevelopersExamplePage: TbkDevelopersExamplePage;
-  webpayPage: WebpayPage; // Nombre alineado con el negocio
+  webpayPage: WebpayPage;
 };
 
 export const test = base.extend<MyFixtures>({

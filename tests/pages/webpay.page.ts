@@ -19,14 +19,12 @@ export class WebpayPage {
   constructor(page: Page) {
     this.page = page;
     
-    // Selectores de Webpay
     this.cardButtonClick = page.getByRole('button', { name: 'Tarjetas Crédito, Débito,' });
     this.cardNumberInput = page.getByRole('textbox', { name: 'Número de tarjeta' });
     this.mainPanel = page.locator('main-panel'); 
     this.payButton = page.getByRole('button', { name: 'Pagar' });
     this.abortButton = page.getByRole('button', { name: 'Anular compra y volver' });
     
-    // Selectores del Banco
     this.rutInput = page.locator('#rutClient');
     this.passwordInput = page.locator('#passwordClient');
     this.acceptButton = page.getByRole('button', { name: 'Aceptar' });

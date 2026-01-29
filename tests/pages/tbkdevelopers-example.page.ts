@@ -2,6 +2,7 @@ import { Page, expect, Locator } from '@playwright/test';
 
 export class TbkDevelopersExamplePage {
   readonly page: Page;
+  readonly mainTitle: Locator;
   readonly payButton: Locator;
   readonly tokenInput: Locator;
   readonly resultPreTag: Locator;
@@ -9,6 +10,7 @@ export class TbkDevelopersExamplePage {
   constructor(page: Page) {
     this.page = page;
     // Elementos específicos del sitio de ejemplo de Transbank Developers
+    this.mainTitle = page.getByRole('heading', { level: 1 });
     this.payButton = page.getByRole('button', { name: 'PAGAR' });
     this.tokenInput = page.getByRole('textbox');
     this.resultPreTag = page.locator('pre').filter({ hasText: '{ "vci":' }).first();
@@ -16,32 +18,28 @@ export class TbkDevelopersExamplePage {
 
   async gotoWebpayPlus() {
     await this.page.goto('/webpay-plus');
+    await expect(this.mainTitle).toBeVisible();
   }
 
-  /**
-   * Inicia la transacción en el sitio de ejemplo.
-   * Valida que se haya generado el token antes de redirigir.
-   */
+  async validatePageTitle(expectedTitle: string) {
+    await expect(this.mainTitle).toHaveText(expectedTitle);
+  }
+
   async initiateTransaction() {
     await expect(this.tokenInput).toBeVisible();
     const token = await this.tokenInput.inputValue();
-    expect(token).toBeTruthy(); // Aserción rápida de sanidad
+    expect(token).toBeTruthy();
     
     await this.payButton.click();
   }
 
-  /**
-   * Valida el JSON de respuesta en la pantalla de "voucher" del sitio de ejemplo.
-   */
   async validateTransactionResult(expectedStatus: 'AUTHORIZED' | 'FAILED', responseCode: number) {
-    // Validamos que volvimos al sitio de ejemplo buscando el título correcto
     const title = expectedStatus === 'AUTHORIZED' 
       ? 'Webpay Plus - Confirmar transacción' 
       : 'Webpay Plus - Rechazo Bancario';
       
-    await expect(this.page.getByRole('heading', { name: title })).toBeVisible();
+    await this.validatePageTitle(title);
 
-    // Validamos el contenido del JSON mostrado en pantalla
     await expect(this.resultPreTag).toBeVisible();
     const textContent = (await this.resultPreTag.textContent()) || '';
     
@@ -50,10 +48,8 @@ export class TbkDevelopersExamplePage {
   }
 
   async validateAbortedResult() {
-    // Assert age title
-    await expect(this.page.getByRole('heading', { name: 'Webpay Plus - Estado de compra cancelada' })).toBeVisible();
+    await this.validatePageTitle('Webpay Plus - Estado de compra cancelada');
     
-    // Assert transaction abortion
     const abortPre = this.page.locator('pre').filter({ hasText: '{ "TBK_TOKEN": "' });
     await expect(abortPre).toBeVisible();
     const abortText = (await abortPre.textContent()) ?? '';
