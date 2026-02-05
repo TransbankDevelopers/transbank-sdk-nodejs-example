@@ -9,28 +9,29 @@ test.describe('Webpay Plus', () => {
 
   test('transaction-success', async ({ tbkDevelopersExamplePage, webpayPage }) => {
     await tbkDevelopersExamplePage.validatePageTitle('Webpay Plus - Creación de transacción');
-    
+    const token = await tbkDevelopersExamplePage.validateCreateTransactionContent();
+
     await tbkDevelopersExamplePage.initiateTransaction();
     await webpayPage.payWithCard(TestData.debitCardNumber);
-    
+
     await webpayPage.performBankSimulation(
-      TestData.transbankRut, 
-      TestData.transbankPassword, 
+      TestData.transbankRut,
+      TestData.transbankPassword,
       'TSY'
     );
 
+    await tbkDevelopersExamplePage.validatePageTitle('Webpay Plus - Confirmar transacción');
+    await tbkDevelopersExamplePage.validateCommitTransactionContent(token);
     await tbkDevelopersExamplePage.validateTransactionResult('AUTHORIZED', 0);
   });
 
   test('transaction-rejected', async ({ tbkDevelopersExamplePage, webpayPage }) => {
-    await tbkDevelopersExamplePage.validatePageTitle('Webpay Plus - Creación de transacción');
-    
     await tbkDevelopersExamplePage.initiateTransaction();
     await webpayPage.payWithCard(TestData.debitCardNumber);
-    
+
     await webpayPage.performBankSimulation(
-      TestData.transbankRut, 
-      TestData.transbankPassword, 
+      TestData.transbankRut,
+      TestData.transbankPassword,
       'TSN'
     );
 
@@ -38,8 +39,6 @@ test.describe('Webpay Plus', () => {
   });
 
   test('aborted-from-webpay', async ({ tbkDevelopersExamplePage, webpayPage }) => {
-    await tbkDevelopersExamplePage.validatePageTitle('Webpay Plus - Creación de transacción');
-    
     await tbkDevelopersExamplePage.initiateTransaction();
     await webpayPage.abortTransaction();
 
