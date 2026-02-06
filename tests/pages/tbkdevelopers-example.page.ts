@@ -334,7 +334,6 @@ const statusResponse = await tx.status(token);`;
     for (const key of expectedKeys) {
       expect(textStep2).toContain(key);
     }
-  
   }
 
   async clickCheckStatus() {
@@ -452,6 +451,20 @@ const refundRequest = await tx.refund(token, amount);`;
     ];
     for (const key of expectedKeys) {
       expect(textStep2).toContain(key);
+    }
+  }
+
+  async validateTransactionFormErrorContent() {
+    await this.validatePageTitle('Recuperar transacción');
+    await expect(this.page.getByText('Se ha producido un error en el formulario de pago. Si ha hecho clic en el enlace "volver al sitio" desde la pantalla de error después de cerrar inesperadamente la pestaña del navegador y trata de recuperarla, es posible que haya recibido los siguientes tokens: token_ws, TBK_TOKEN, TBK_ID_SESION, TBK_ORDEN_COMPRA.')).toBeVisible();
+    const textCode = this.page.locator('pre').first();
+    await expect(textCode).toBeVisible();
+    const text = await textCode.textContent();
+    const expectedKeys = [
+      '"TBK_TOKEN":', '"token_ws":', '"TBK_ID_SESION":','"TBK_ORDEN_COMPRA":'
+    ];
+    for (const key of expectedKeys) {
+      expect(text).toContain(key);
     }
   }
 }

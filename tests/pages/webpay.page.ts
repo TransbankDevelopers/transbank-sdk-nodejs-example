@@ -63,4 +63,14 @@ export class WebpayPage {
       throw new Error(`🔴 Fallo en la pasarela de Webpay. Se debe reintentar la prueba.`);
     }
   }
+
+  async triggerFormError() {
+    try {
+      await this.page.goBack();
+      await this.page.reload();
+      await this.page.getByRole('button', { name: 'Intentar nuevamente' }).click();
+    } catch (error: any) {
+      throw new Error(`🔴 Fallo en la pasarela de Webpay. Se debe reintentar la prueba.`);
+    }
+  }
 }

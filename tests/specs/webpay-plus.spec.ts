@@ -40,7 +40,7 @@ test.describe('Webpay Plus', () => {
   });
 
   test('aborted-from-webpay', async ({ tbkDevelopersExamplePage, webpayPage }) => {
-    const token =  await tbkDevelopersExamplePage.initiateTransaction();
+    const token = await tbkDevelopersExamplePage.initiateTransaction();
     await webpayPage.abortTransaction();
 
     await tbkDevelopersExamplePage.validateAbortedResult();
@@ -87,5 +87,13 @@ test.describe('Webpay Plus', () => {
 
     await tbkDevelopersExamplePage.makePartialRefund();
     await tbkDevelopersExamplePage.validatePartialRefundResponse();
+  });
+
+  test('generic-form-error', async ({ tbkDevelopersExamplePage, webpayPage }) => {
+    await tbkDevelopersExamplePage.initiateTransaction();
+    await webpayPage.payWithCard(TestData.debitCardNumber);
+    await webpayPage.triggerFormError();
+
+    await tbkDevelopersExamplePage.validateTransactionFormErrorContent();
   });
 });
