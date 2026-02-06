@@ -269,7 +269,7 @@ const statusResponse = await tx.status(token);`;
     await expect(step2.getByText('Una vez que hayas creado la transacción, aquí encontrarás los datos de respuesta generados por el proceso.')).toBeVisible();
     const codeStep2 = step2.locator('pre').filter({ hasText: '"vci":' }).first();
     await expect(codeStep2).toBeVisible();
-    const textStep3 = await codeStep2.textContent();
+    const textStep2 = await codeStep2.textContent();
     const expectedKeys = [
       '"vci":', '"amount":', '"status":', '"buy_order":', '"session_id":',
       '"card_detail":', '"card_number":', '"accounting_date":', '"transaction_date":',
@@ -277,7 +277,60 @@ const statusResponse = await tx.status(token);`;
       '"installments_amount":', '"installments_number":', '"balance":'
     ];
     for (const key of expectedKeys) {
-      expect(textStep3).toContain(key);
+      expect(textStep2).toContain(key);
     }
+  }
+
+  async clickRefund() {
+    const refundInput = this.page.locator('.refund-card input');
+    await expect(refundInput).toBeVisible();
+    const refundAmountValue = await refundInput.inputValue();
+
+    await this.page.getByRole('link', { name: 'REEMBOLSAR' }).click();
+
+    return refundAmountValue;
+  }
+
+  async validateRefundContent(expectedToken: string, expectedAmount: string) {
+    await this.validatePageTitle('Webpay Plus - Reembolsar');
+
+    // Top description
+    await expect(this.page.getByText('En esta etapa, tienes la opción de solicitar el reembolso del monto al titular de la tarjeta. Dependiendo del monto y el tiempo transcurrido desde la transacción, este proceso podría resultar en una Reversa o Anulación, dependiendo de ciertas condiciones (Reversa en las primeras 3 horas de la autorización, anulación posterior a eso), o una Anulación parcial si el monto es menor al total. Las anulaciones parciales para tarjetas débito y prepago no están soportadas.')).toBeVisible();
+
+    // Step 1
+    const step1 = this.page.locator('div[class="flex-col"]').filter({ hasText: 'Paso 1: Petición' }).last();
+    await expect(step1).toBeVisible();
+    await expect(step1.getByText('Para llevar a cabo el reembolso, necesitas proporcionar el token de la transacción y el monto que deseas reversar. Si anulas el monto total, podría ser una Reversa o Anulación, dependiendo de ciertas condiciones (Reversa en las primeras 3 horas de la autorización, anulación posterior a eso), o una Anulación Parcial si el monto es menor al total.')).toBeVisible();
+    await expect(this.page.getByText('Algunas consideraciones a tener en cuenta:')).toBeVisible();
+    await expect(this.page.getByText('No es posible realizar Anulaciones Parciales en pagos con cuotas.')).toBeVisible();
+    await expect(this.page.getByText('En este link podrás ver mayor información sobre las condiciones y casos para anular o reversar transacciones.')).toBeVisible();
+    const docLink = this.page.getByRole('link', { name: 'este link' });
+    await expect(docLink).toBeVisible();
+    await expect(docLink).toHaveAttribute('href', 'https://transbankdevelopers.cl/producto/webpay#anulaciones-y-reversas');
+    const scriptStep1 = `// Token: ${expectedToken}
+// Amount: ${expectedAmount}
+
+const tx = new WebpayPlus.Transaction(new Options(
+  IntegrationCommerceCodes.WEBPAY_PLUS,
+  IntegrationApiKeys.WEBPAY,
+  Environment.Integration
+));
+const refundRequest = await tx.refund(token, amount);`;
+    await expect(step1.locator('pre')).toContainText(scriptStep1);
+
+    // Step 2
+    const step2 = this.page.locator('div[class="flex-col"]').filter({ hasText: 'Paso 2: Respuesta' }).last();
+    await expect(step2).toBeVisible();
+    await expect(step2.getByText('Transbank responderá con el resultado del proceso de reembolso, indicando si se ha realizado una Reversa, Anulación o Anulación Parcial.')).toBeVisible();
+    const scriptStep2 = `{
+  "type": "REVERSED"
+}`;
+    await expect(step2.locator('pre')).toContainText(scriptStep2);
+
+    // Validate Status Button
+    const statusButton = this.page.getByRole('link', { name: 'CONSULTAR ESTADO' });
+    await expect(statusButton).toBeVisible();
+    const expectedUrlRegex = new RegExp(`webpay-plus/status\\?token_ws=${expectedToken}$`);
+    await expect(statusButton).toHaveAttribute('href', expectedUrlRegex);
   }
 }
