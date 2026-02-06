@@ -45,4 +45,17 @@ test.describe('Webpay Plus', () => {
     await tbkDevelopersExamplePage.validateAbortedResult();
   });
 
+  test('check-status', async ({ tbkDevelopersExamplePage, webpayPage }) => {
+    const token = await tbkDevelopersExamplePage.initiateTransaction();
+    await webpayPage.payWithCard(TestData.debitCardNumber);
+
+    await webpayPage.performBankSimulation(
+      TestData.transbankRut,
+      TestData.transbankPassword,
+      'TSY'
+    );
+
+    await tbkDevelopersExamplePage.clickCheckStatus();
+    await tbkDevelopersExamplePage.validateStatusTransactionContent(token);
+  });
 });

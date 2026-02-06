@@ -29,6 +29,7 @@ export class TbkDevelopersExamplePage {
     const token = await this.tokenInput.inputValue();
     expect(token).toBeTruthy();
     await this.payButton.click();
+    return token;
   }
 
   async validateTransactionResult(expectedStatus: 'AUTHORIZED' | 'FAILED', responseCode: number) {
@@ -237,5 +238,46 @@ const commitResponse = await tx.commit(token);`;
     expect(jsonAmount).toBeTruthy();
     expect(refundAmountValue).toBeTruthy();
     expect(jsonAmount).toBe(refundAmountValue);
+  }
+
+  async clickCheckStatus() {
+    await this.page.getByRole('link', { name: 'CONSULTAR ESTADO' }).click();
+  }
+
+  async validateStatusTransactionContent(expectedToken: string) {
+    await this.validatePageTitle('Webpay Plus - Consultar estado de transacción');
+
+    // Top description
+    await expect(this.page.getByText('Puedes solicitar el estado de una transacción hasta 7 días después de su realización. No hay límite de solicitudes de este tipo durante ese período. Sin embargo, una vez pasados los 7 días, ya no podrás revisar su estado.')).toBeVisible();
+
+    // Step 1
+    const step1 = this.page.locator('div[class="flex-col"]').filter({ hasText: 'Paso 1: Petición' }).last();
+    await expect(step1).toBeVisible();
+    await expect(step1.getByText('Para realizar la consulta, necesitas el token de la transacción de la cual deseas obtener el estado. Utiliza este token para realizar una llamada al SDK.')).toBeVisible();
+    const scriptStep1 = `// Token: ${expectedToken}
+const tx = new WebpayPlus.Transaction(new Options(
+  IntegrationCommerceCodes.WEBPAY_PLUS,
+  IntegrationApiKeys.WEBPAY,
+  Environment.Integration
+));
+const statusResponse = await tx.status(token);`;
+    await expect(step1.locator('pre')).toContainText(scriptStep1);
+
+    // Step 2
+    const step2 = this.page.locator('div[class="flex-col"]').filter({ hasText: 'Paso 2: Respuesta' }).last();
+    await expect(step2).toBeVisible();
+    await expect(step2.getByText('Una vez que hayas creado la transacción, aquí encontrarás los datos de respuesta generados por el proceso.')).toBeVisible();
+    const codeStep2 = step2.locator('pre').filter({ hasText: '"vci":' }).first();
+    await expect(codeStep2).toBeVisible();
+    const textStep3 = await codeStep2.textContent();
+    const expectedKeys = [
+      '"vci":', '"amount":', '"status":', '"buy_order":', '"session_id":',
+      '"card_detail":', '"card_number":', '"accounting_date":', '"transaction_date":',
+      '"authorization_code":', '"payment_type_code":', '"response_code":',
+      '"installments_amount":', '"installments_number":', '"balance":'
+    ];
+    for (const key of expectedKeys) {
+      expect(textStep3).toContain(key);
+    }
   }
 }
