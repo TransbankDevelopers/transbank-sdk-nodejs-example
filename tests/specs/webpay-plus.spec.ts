@@ -40,10 +40,11 @@ test.describe('Webpay Plus', () => {
   });
 
   test('aborted-from-webpay', async ({ tbkDevelopersExamplePage, webpayPage }) => {
-    await tbkDevelopersExamplePage.initiateTransaction();
+    const token =  await tbkDevelopersExamplePage.initiateTransaction();
     await webpayPage.abortTransaction();
 
     await tbkDevelopersExamplePage.validateAbortedResult();
+    await tbkDevelopersExamplePage.validateTransactionCanceledContent(token);
   });
 
   test('check-status', async ({ tbkDevelopersExamplePage, webpayPage }) => {

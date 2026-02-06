@@ -47,7 +47,6 @@ export class TbkDevelopersExamplePage {
   }
 
   async validateAbortedResult() {
-    await this.validatePageTitle('Webpay Plus - Estado de compra cancelada');
     const abortPre = this.page.locator('pre').filter({ hasText: '{ "TBK_TOKEN": "' });
     await expect(abortPre).toBeVisible();
     const abortText = (await abortPre.textContent()) ?? '';
@@ -283,6 +282,61 @@ const commitResponse = await tx.commit(token);`;
     }
   }
 
+  async validateTransactionCanceledContent(expectedToken: string) {
+    await this.validatePageTitle('Webpay Plus - Estado de compra cancelada');
+
+    // Top description
+    await expect(this.page.getByText('El pago de la compra ha sido anulado por el usuario. En esta etapa, después de abandonar el formulario de pago, no es necesario realizar la confirmación. Aquí te proporcionamos información esencial sobre el estado de la transacción anulada:')).toBeVisible();
+
+    // Received Data
+    const step1 = this.page.locator('div[class="flex-col"]').filter({ hasText: 'Datos Recibidos:' }).last();
+    await expect(step1).toBeVisible();
+    await expect(step1.getByText('Después de que el usuario anule la compra en el formulario de pago, recibirás un GET con la siguiente información:')).toBeVisible();
+    const jsonSnippet = await step1.locator('pre').textContent();
+    expect(jsonSnippet).toContain(`"TBK_TOKEN": "${expectedToken}"`);
+
+    // Other Utilities
+    const step2 = this.page.locator('div[class="flex-col"]').filter({ hasText: 'Otras Utilidades' }).last();
+    await expect(step2).toBeVisible();
+    await expect(step2.getByText('Tras la anulación de la compra, solo podrás consultar el estado de la transacción en los próximos 7 días después de su realización. Asegúrate de realizar las consultas dentro de este período.')).toBeVisible();
+
+    // Nested Status Check Section
+    const statusSection = this.page.locator('.aborted-status');
+    await expect(statusSection.getByText('Consulta de Estado de Transacción')).toBeVisible();
+    await expect(statusSection.getByText('Puedes solicitar el estado de una transacción hasta 7 días después de su realización. No hay límite de solicitudes de este tipo durante ese período. Sin embargo, después de pasar los 7 días, ya no podrás revisar el estado de la transacción.')).toBeVisible();
+
+    // Status Step 1
+    const statusStep1 = statusSection.locator('div[class="flex-col"]').filter({ hasText: 'Paso 1: Petición' }).last();
+    await expect(statusStep1).toBeVisible();
+    await expect(statusStep1.getByText('Para realizar la consulta, necesitas el token de la transacción de la cual deseas obtener el estado. Utiliza este token para realizar una llamada al SDK.')).toBeVisible();
+    const scriptStep1 = `// Token: ${expectedToken}
+const tx = new WebpayPlus.Transaction(new Options(
+  IntegrationCommerceCodes.WEBPAY_PLUS,
+  IntegrationApiKeys.WEBPAY,
+  Environment.Integration
+));
+const statusResponse = await tx.status(token);`;
+    await expect(statusStep1.locator('pre')).toContainText(scriptStep1);
+
+    // Status Step 2
+    const statusStep2 = statusSection.locator('div[class="flex-col"]').filter({ hasText: 'Paso 2: Respuesta' }).last();
+    await expect(statusStep2).toBeVisible();
+    await expect(statusStep2.getByText('Una vez que hayas creado la transacción, aquí encontrarás los datos de respuesta generados por el proceso.')).toBeVisible();
+    const codeStep2 = statusStep2.locator('pre').filter({ hasText: '"vci":' }).first();
+    await expect(codeStep2).toBeVisible();
+    const textStep2 = await codeStep2.textContent();
+    const expectedKeys = [
+      '"vci":', '"amount":', '"status":', '"buy_order":', '"session_id":',
+      '"card_detail":', '"card_number":', '"accounting_date":', '"transaction_date":',
+      '"authorization_code":', '"payment_type_code":', '"response_code":',
+      '"installments_amount":', '"installments_number":', '"balance":'
+    ];
+    for (const key of expectedKeys) {
+      expect(textStep2).toContain(key);
+    }
+  
+  }
+
   async clickCheckStatus() {
     await this.page.getByRole('link', { name: 'CONSULTAR ESTADO' }).click();
   }
@@ -393,7 +447,7 @@ const refundRequest = await tx.refund(token, amount);`;
     const step2 = this.page.locator('div[class="flex-col"]').filter({ hasText: 'Paso 2: Respuesta' }).last();
     const textStep2 = await step2.locator('pre').textContent();
     const expectedKeys = [
-      '"type":', '"balance":', '"authorization_code":', 
+      '"type":', '"balance":', '"authorization_code":',
       '"response_code":', '"authorization_date":', '"nullified_amount":'
     ];
     for (const key of expectedKeys) {
