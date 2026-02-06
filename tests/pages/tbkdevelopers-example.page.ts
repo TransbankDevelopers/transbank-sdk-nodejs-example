@@ -240,6 +240,49 @@ const commitResponse = await tx.commit(token);`;
     expect(jsonAmount).toBe(refundAmountValue);
   }
 
+  async validateTransactionRejectedContent(expectedToken: string) {
+    // Top description
+    await expect(this.page.getByText('En esta fase, pueden surgir inconvenientes, ya sea con el titular de la tarjeta o a nivel bancario, lo que resulta en el estado final de la transacción siendo marcado como "FAILED".')).toBeVisible();
+
+    // Step 1
+    const step1Title = this.page.getByText('Paso 1: Datos recibidos', { exact: true });
+    await expect(step1Title).toBeVisible();
+    await expect(this.page.getByText('Después de completar el flujo en el formulario de pago, recibirás un GET con la siguiente información:')).toBeVisible();
+    const codeStep1Text = (await this.page.locator('pre').filter({ hasText: "'token_ws':" }).first().textContent()) || '';
+    expect(codeStep1Text).toMatch(/'token_ws':\s*.+/);
+
+    // Verify Token Consistency in Commit Step
+    expect(codeStep1Text).toContain(`'token_ws': ${expectedToken}`);
+
+    // Step 2
+    await expect(this.page.getByText('Paso 2: Petición', { exact: true })).toBeVisible();
+    await expect(this.page.getByText('Utilizarás el token recibido para confirmar la transacción mediante el SDK.')).toBeVisible();
+    const snippetStep2 = `const token = request.body.token_ws;
+const tx = new WebpayPlus.Transaction(new Options(
+  IntegrationCommerceCodes.WEBPAY_PLUS,
+  IntegrationApiKeys.WEBPAY,
+  Environment.Integration
+));
+const commitResponse = await tx.commit(token);`;
+    await expect(this.page.locator('pre').filter({ hasText: "const token = request.body.token_ws;" })).toContainText(snippetStep2);
+
+    // Step 3
+    await expect(this.page.getByText('Paso 3: Respuesta', { exact: true })).toBeVisible();
+    await expect(this.page.getByText('Una vez que la transacción ha sido confirmada Transbank proporcionará la siguiente información. Es fundamental conservar esta respuesta y verificar que el campo "response_code" tenga un valor de cero y que el campo "status" sea "AUTHORIZED".')).toBeVisible();
+    const codeStep3 = this.page.locator('pre').filter({ hasText: '"vci":' }).first();
+    await expect(codeStep3).toBeVisible();
+    const textStep3 = await codeStep3.textContent();
+    const expectedKeys = [
+      '"vci":', '"amount":', '"status":', '"buy_order":', '"session_id":',
+      '"card_detail":', '"card_number":', '"accounting_date":', '"transaction_date":',
+      '"authorization_code":', '"payment_type_code":', '"response_code":',
+      '"installments_amount":', '"installments_number":', '"balance":'
+    ];
+    for (const key of expectedKeys) {
+      expect(textStep3).toContain(key);
+    }
+  }
+
   async clickCheckStatus() {
     await this.page.getByRole('link', { name: 'CONSULTAR ESTADO' }).click();
   }

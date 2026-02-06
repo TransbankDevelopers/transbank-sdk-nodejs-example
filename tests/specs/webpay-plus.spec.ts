@@ -26,7 +26,7 @@ test.describe('Webpay Plus', () => {
   });
 
   test('transaction-rejected', async ({ tbkDevelopersExamplePage, webpayPage }) => {
-    await tbkDevelopersExamplePage.initiateTransaction();
+    const token = await tbkDevelopersExamplePage.initiateTransaction();
     await webpayPage.payWithCard(TestData.debitCardNumber);
 
     await webpayPage.performBankSimulation(
@@ -36,6 +36,7 @@ test.describe('Webpay Plus', () => {
     );
 
     await tbkDevelopersExamplePage.validateTransactionResult('FAILED', -1);
+    await tbkDevelopersExamplePage.validateTransactionRejectedContent(token);
   });
 
   test('aborted-from-webpay', async ({ tbkDevelopersExamplePage, webpayPage }) => {
