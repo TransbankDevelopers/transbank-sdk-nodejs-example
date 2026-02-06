@@ -333,4 +333,28 @@ const refundRequest = await tx.refund(token, amount);`;
     const expectedUrlRegex = new RegExp(`webpay-plus/status\\?token_ws=${expectedToken}$`);
     await expect(statusButton).toHaveAttribute('href', expectedUrlRegex);
   }
+
+  async makePartialRefund() {
+    const refundInput = this.page.locator('.refund-card input');
+    await expect(refundInput).toBeVisible();
+    const originalAmount = await refundInput.inputValue();
+    const newAmount = Number(originalAmount) - 50;
+
+    await refundInput.fill(newAmount.toString());
+    await this.page.getByRole('link', { name: 'REEMBOLSAR' }).click();
+
+    return newAmount.toString();
+  }
+
+  async validatePartialRefundResponse() {
+    const step2 = this.page.locator('div[class="flex-col"]').filter({ hasText: 'Paso 2: Respuesta' }).last();
+    const textStep2 = await step2.locator('pre').textContent();
+    const expectedKeys = [
+      '"type":', '"balance":', '"authorization_code":', 
+      '"response_code":', '"authorization_date":', '"nullified_amount":'
+    ];
+    for (const key of expectedKeys) {
+      expect(textStep2).toContain(key);
+    }
+  }
 }

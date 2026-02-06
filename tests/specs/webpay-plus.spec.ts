@@ -72,4 +72,18 @@ test.describe('Webpay Plus', () => {
     const refundAmount = await tbkDevelopersExamplePage.clickRefund();
     await tbkDevelopersExamplePage.validateRefundContent(token, refundAmount);
   });
+
+  test('partial-refund', async ({ tbkDevelopersExamplePage, webpayPage }) => {
+    await tbkDevelopersExamplePage.initiateTransaction();
+    await webpayPage.payWithCard(TestData.debitCardNumber);
+
+    await webpayPage.performBankSimulation(
+      TestData.transbankRut,
+      TestData.transbankPassword,
+      'TSY'
+    );
+
+    await tbkDevelopersExamplePage.makePartialRefund();
+    await tbkDevelopersExamplePage.validatePartialRefundResponse();
+  });
 });
