@@ -10,7 +10,6 @@ test.describe('Webpay Plus', () => {
   test('transaction-success', async ({ tbkDevelopersExamplePage, webpayPage }) => {
     await tbkDevelopersExamplePage.validatePageTitle('Webpay Plus - Creación de transacción');
     const token = await tbkDevelopersExamplePage.validateCreateTransactionContent();
-
     await tbkDevelopersExamplePage.initiateTransaction();
     await webpayPage.payWithCard(TestData.debitCardNumber);
 
@@ -26,7 +25,7 @@ test.describe('Webpay Plus', () => {
   });
 
   test('transaction-rejected', async ({ tbkDevelopersExamplePage, webpayPage }) => {
-    const token = await tbkDevelopersExamplePage.initiateTransaction();
+    const { token } = await tbkDevelopersExamplePage.initiateTransaction();
     await webpayPage.payWithCard(TestData.debitCardNumber);
 
     await webpayPage.performBankSimulation(
@@ -40,7 +39,7 @@ test.describe('Webpay Plus', () => {
   });
 
   test('aborted-from-webpay', async ({ tbkDevelopersExamplePage, webpayPage }) => {
-    const token = await tbkDevelopersExamplePage.initiateTransaction();
+    const { token } = await tbkDevelopersExamplePage.initiateTransaction();
     await webpayPage.abortTransaction();
 
     await tbkDevelopersExamplePage.validateAbortedResult();
@@ -48,7 +47,7 @@ test.describe('Webpay Plus', () => {
   });
 
   test('check-status', async ({ tbkDevelopersExamplePage, webpayPage }) => {
-    const token = await tbkDevelopersExamplePage.initiateTransaction();
+    const { token } = await tbkDevelopersExamplePage.initiateTransaction();
     await webpayPage.payWithCard(TestData.debitCardNumber);
 
     await webpayPage.performBankSimulation(
@@ -62,7 +61,7 @@ test.describe('Webpay Plus', () => {
   });
 
   test('refund', async ({ tbkDevelopersExamplePage, webpayPage }) => {
-    const token = await tbkDevelopersExamplePage.initiateTransaction();
+    const { token } = await tbkDevelopersExamplePage.initiateTransaction();
     await webpayPage.payWithCard(TestData.debitCardNumber);
 
     await webpayPage.performBankSimulation(
@@ -95,5 +94,15 @@ test.describe('Webpay Plus', () => {
     await webpayPage.triggerFormError();
 
     await tbkDevelopersExamplePage.validateTransactionFormErrorContent();
+  });
+
+  test('timeout', async ({ tbkDevelopersExamplePage }) => {
+    await tbkDevelopersExamplePage.validateCreateTransactionContent();
+    const { buyOrder, sessionId } = await tbkDevelopersExamplePage.initiateTransaction();
+
+    // Simulate timeout callback
+    await tbkDevelopersExamplePage.page.goto(`/webpay-plus/commit?TBK_ID_SESION=${sessionId}&TBK_ORDEN_COMPRA=${buyOrder}`);
+
+    await tbkDevelopersExamplePage.validateTransactionTimeoutContent(buyOrder, sessionId);
   });
 });

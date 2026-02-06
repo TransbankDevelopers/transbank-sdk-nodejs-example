@@ -25,11 +25,21 @@ export class TbkDevelopersExamplePage {
   }
 
   async initiateTransaction() {
+    // Capture Buy Order and Session ID
+    const table = this.page.locator('#ejemplo .table-container');
+    const rowBuyOrder = table.locator('.row').filter({ hasText: 'Orden de compra (buyOrder)' });
+    const buyOrder = (await rowBuyOrder.locator('.tbk-column').textContent())?.trim() || '';
+
+    const rowSessionId = table.locator('.row').filter({ hasText: 'ID de sesión (sessionid)' });
+    const sessionId = (await rowSessionId.locator('.tbk-column').textContent())?.trim() || '';
+
+    // Capture Token
     await expect(this.tokenInput).toBeVisible();
     const token = await this.tokenInput.inputValue();
     expect(token).toBeTruthy();
     await this.payButton.click();
-    return token;
+
+    return { token, buyOrder, sessionId };
   }
 
   async validateTransactionResult(expectedStatus: 'AUTHORIZED' | 'FAILED', responseCode: number) {
@@ -138,11 +148,13 @@ const createResponse = await tx.create(
 
     const rowBuyOrder = rows.filter({ hasText: 'Orden de compra (buyOrder)' });
     await expect(rowBuyOrder).toBeVisible();
-    await expect(rowBuyOrder.locator('.tbk-column')).toHaveText(/^O-\d+$/);
+    const buyOrder = (await rowBuyOrder.locator('.tbk-column').textContent())?.trim() || '';
+    expect(buyOrder).toMatch(/^O-\d+$/);
 
     const rowSessionId = rows.filter({ hasText: 'ID de sesión (sessionid)' });
     await expect(rowSessionId).toBeVisible();
-    await expect(rowSessionId.locator('.tbk-column')).toHaveText(/^S-\d+$/);
+    const sessionId = (await rowSessionId.locator('.tbk-column').textContent())?.trim() || '';
+    expect(sessionId).toMatch(/^S-\d+$/);
 
     const rowAmount = rows.filter({ hasText: 'Monto (amount)' });
     await expect(rowAmount).toBeVisible();
@@ -461,10 +473,26 @@ const refundRequest = await tx.refund(token, amount);`;
     await expect(textCode).toBeVisible();
     const text = await textCode.textContent();
     const expectedKeys = [
-      '"TBK_TOKEN":', '"token_ws":', '"TBK_ID_SESION":','"TBK_ORDEN_COMPRA":'
+      '"TBK_TOKEN":', '"token_ws":', '"TBK_ID_SESION":', '"TBK_ORDEN_COMPRA":'
     ];
     for (const key of expectedKeys) {
       expect(text).toContain(key);
     }
+  }
+
+  async validateTransactionTimeoutContent(expectedBuyOrder: string, expectedSessionId: string) {
+    await this.validatePageTitle('Webpay Plus - Time out');
+
+    // Description
+    await expect(this.page.getByText('Cuando una transacción expira debido a un timeout, es crucial gestionar este escenario de manera adecuada para garantizar la transparencia y la experiencia del usuario, para la prueba en integración son de 10 minutos.')).toBeVisible();
+
+    // Step 1: Datos Recibidos
+    const step1 = this.page.locator('div[class="flex-col"]').filter({ hasText: 'Datos Recibidos:' }).last();
+    await expect(step1).toBeVisible();
+    await expect(step1.getByText('Después de 10 minutos en el que no se haya recibido ninguna acción o interacción del usuario, recibirás un GET con la siguiente información:')).toBeVisible();
+
+    const jsonSnippet = await step1.locator('pre').textContent();
+    expect(jsonSnippet).toContain(`"TBK_ORDEN_COMPRA": "${expectedBuyOrder}"`);
+    expect(jsonSnippet).toContain(`"TBK_ID_SESION": "${expectedSessionId}"`);
   }
 }
