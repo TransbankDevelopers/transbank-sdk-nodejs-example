@@ -28,20 +28,10 @@ const getBaseUrl = () => {
   return process.env.TBK_TCC_SB_BASE_URL || DEFAULT_BASE_URL;
 };
 
-const parseResponseBody = async (response: Response) => {
-  const text = await response.text();
-  if (!text) return null;
-  try {
-    return JSON.parse(text);
-  } catch {
-    return text;
-  }
-};
-
-export const tbkRequest = async <T>(
+export const tbkRequest = async <T, U = unknown>(
   method: "GET" | "POST" | "PUT",
   endpoint: string,
-  payload?: unknown,
+  payload?: U,
 ): Promise<T> => {
   const url = `${getBaseUrl().replace(/\/$/, "")}/${endpoint.replace(
     /^\//,
@@ -57,10 +47,16 @@ export const tbkRequest = async <T>(
   if (payload && method !== "GET") {
     options.body = JSON.stringify(payload);
   }
-  console.log(`Making ${method} request to ${url} with payload:`, payload);
 
-  const response = await fetch(url, options);
-  const body = await parseResponseBody(response);
+  let response: Response;
+  try {
+    response = await fetch(url, options);
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
+    throw new Error(`Error Transbank (network): ${message}`);
+  }
+
+  const body = await response.json();
 
   if (!response.ok) {
     const message =

@@ -1,36 +1,17 @@
 import { tbkRequest } from "./tbkClient";
+import {
+  StandardBrandCreatePayload,
+  StandardBrandCreateResponse,
+} from "@/types/transactions";
 
 const BASE_PATH = "rswebpaytransaction/api/webpay/v1.4/transactions";
 const ACCOUNT_VERIFY_PATH =
   "rswebpaytransaction/api/webpay/v1.4/account-verify";
 
-export type StandardBrandCreatePayload = {
-  buy_order: string;
-  session_id: string;
-  card_number: string;
-  card_expiration_date: string;
-  cvv: number;
-  details: Array<{
-    amount: number;
-    commerce_code: string;
-    buy_order: string;
-    post_entry_mod?: string;
-    eci?: string | null;
-    authentication_value?: string | null;
-    message_version?: string | null;
-    trans_status?: string | null;
-    ds_trans_id?: string | null;
-    authentication_type?: string | null;
-    identify_initiated_trx?: number;
-    pmnt_ind?: string | null;
-    recur_pmnt?: string | null;
-  }>;
-};
-
 export const createStandardBrandTransaction = async (
   payload: StandardBrandCreatePayload,
 ) => {
-  return tbkRequest("POST", BASE_PATH, payload);
+  return tbkRequest<StandardBrandCreateResponse>("POST", BASE_PATH, payload);
 };
 
 export const installmentsStandardBrandTransaction = async (
