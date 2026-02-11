@@ -4,7 +4,7 @@ const getEnvOrThrow = (name: string) => {
   const value = process.env[name];
   if (!value) {
     throw new Error(
-      `Falta la variable de entorno ${name}. Revisa tu .env o .env.local.`,
+      `Algo salio mal en la configuracion si el problema persiste, contacta al soporte de Transbank.`,
     );
   }
   return value;
