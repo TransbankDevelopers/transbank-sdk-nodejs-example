@@ -14,7 +14,7 @@ import {
 
 export const isSomeTransactionRejected = (details: TransactionDetail[]) => {
   return details.some(
-    (detail) => detail.status === TBKTransactionStatus.FAILED
+    (detail) => detail.status === TBKTransactionStatus.FAILED,
   );
 };
 
@@ -33,7 +33,7 @@ export const generateRandomTxCompletaData = (): StartTxCompletedData => {
 export const generateRandomTransactionData = (
   protocol: string,
   host: string,
-  returnRoute: string
+  returnRoute: string,
 ): StartTransactionData => {
   const buyOrder = "O-" + Math.floor(Math.random() * 10000) + 1;
   const sessionId = "S-" + Math.floor(Math.random() * 10000) + 1;
@@ -49,7 +49,7 @@ export const generateRandomTransactionData = (
 };
 export const generateRandomPatpassStartData = (
   protocol: string,
-  host: string
+  host: string,
 ): StartPatpassData => {
   const serviceId = "Service_" + Math.floor(Math.random() * 10000) + 1;
   const maxAmount = 100;
@@ -69,7 +69,7 @@ export const generateRandomPatpassStartData = (
 
 export const generateRandomTransactionDataMall = (
   protocol: string,
-  host: string
+  host: string,
 ): StartTransactionDataMall => {
   const commerceCode = "597055555536";
   const buyOrder = "O-" + Math.floor(Math.random() * 10000) + 1;
@@ -94,7 +94,7 @@ export const generateRandomTransactionDataMall = (
 
 export const generateRandomTransactionDataMallDeferred = (
   protocol: string,
-  host: string
+  host: string,
 ): StartTransactionDataMall => {
   const commerceCode = "597055555582";
   const buyOrder = "O-" + Math.floor(Math.random() * 10000) + 1;
@@ -120,7 +120,7 @@ export const generateRandomTransactionDataMallDeferred = (
 export const generateRandomTransactionDataOneclickMall = (
   protocol: string,
   host: string,
-  isDeferred = false
+  isDeferred = false,
 ): StartTransactionDataOneclickMall => {
   const randomNumber = Math.floor(Math.random() * 100000) + 1;
   const userName = "User-" + randomNumber;
@@ -138,7 +138,7 @@ export const generateRandomTransactionDataOneclickMall = (
 
 export const generateRandomTransactionDataOneclickMallPromo = (
   protocol: string,
-  host: string
+  host: string,
 ): StartTransactionDataOneclickMall => {
   //NOSONAR: Math.random() is safe here because it is only used for sample/demo data
   const randomNumber = Math.floor(Math.random() * 100000) + 1;
@@ -154,7 +154,7 @@ export const generateRandomTransactionDataOneclickMallPromo = (
 };
 
 export const getColumnValues = (
-  props: StartTransactionData
+  props: StartTransactionData,
 ): ColumnValues[] => {
   return [
     {
@@ -176,7 +176,7 @@ export const getColumnValues = (
   ];
 };
 export const getColumnMallValues = (
-  props: StartTransactionDataMall
+  props: StartTransactionDataMall,
 ): ColumnValues[] => {
   return [
     {
@@ -210,7 +210,7 @@ export const getColumnMallValues = (
   ];
 };
 export const getColumnPatpassValues = (
-  props: StartTxPatPassType
+  props: StartTxPatPassType,
 ): ColumnValues[] => {
   return [
     {
@@ -273,7 +273,7 @@ export const getColumnPatpassValues = (
 };
 
 export const getColumnOneclickMallValues = (
-  props: StartTransactionDataOneclickMall
+  props: StartTransactionDataOneclickMall,
 ): ColumnValues[] => {
   const { showReturnUrl = true } = props;
   const values = [
@@ -299,7 +299,7 @@ export const getColumnOneclickMallValues = (
 
 export const getColumnFinishOneclickMallValues = (
   userName: string,
-  TBK_USER: string
+  TBK_USER: string,
 ): ColumnValues[] => {
   const values = [
     {
@@ -345,4 +345,26 @@ export const getCardExpiry = (expiry: string): CardExpiry => {
     month: expiry.slice(0, 2),
     year: expiry.slice(2),
   };
+};
+
+export const normalizeEmptyStrings = <T>(value: T): T | null => {
+  if (typeof value === "string") {
+    const trimmed = value.trim();
+    return (trimmed === "" ? null : trimmed) as T | null;
+  }
+
+  if (Array.isArray(value)) {
+    return value.map((item) => normalizeEmptyStrings(item)) as T | null;
+  }
+
+  if (value && typeof value === "object") {
+    return Object.fromEntries(
+      Object.entries(value).map(([key, entryValue]) => [
+        key,
+        normalizeEmptyStrings(entryValue),
+      ]),
+    ) as T | null;
+  }
+
+  return value as T | null;
 };

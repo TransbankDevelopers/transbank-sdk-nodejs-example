@@ -22,69 +22,77 @@ export type CreditCardState = {
 export type CreditCardProps = {
   linkTo?: Url;
   onPay?: () => void;
+  embedded?: boolean;
+  hidePayButton?: boolean;
   handleInputChange: (value: string, name: string) => void;
   handleInputFocus: (name: string) => void;
 } & CreditCardState;
 
 export const CreditCard = (props: CreditCardProps) => {
-  return (
-    <Card>
-      <div className="card-container">
-        <Cards
-          number={props.number}
-          expiry={props.expiry}
-          cvc={props.cvc}
-          name={props.name}
-          focused={props.focus}
-        />
+  const content = (
+    <div className="card-container">
+      <Cards
+        number={props.number}
+        expiry={props.expiry}
+        cvc={props.cvc}
+        name={props.name}
+        focused={props.focus}
+      />
 
-        <div className="card-inputs-container">
+      <div className="card-inputs-container">
+        <InputText
+          label="Número de tarjeta"
+          name="number"
+          value={props.number}
+          onChange={(value, name) =>
+            props.handleInputChange(value, name as string)
+          }
+          onFocus={props.handleInputFocus}
+          maxLength={19}
+        />
+        <div className="card-split-inputs">
           <InputText
-            label="Número de tarjeta"
-            name="number"
-            value={props.number}
+            label="Fecha de expiración"
+            name="expiry"
+            value={props.expiry}
             onChange={(value, name) =>
               props.handleInputChange(value, name as string)
             }
             onFocus={props.handleInputFocus}
-            maxLength={19}
           />
-          <div className="card-split-inputs">
-            <InputText
-              label="Fecha de expiración"
-              name="expiry"
-              value={props.expiry}
-              onChange={(value, name) =>
-                props.handleInputChange(value, name as string)
-              }
-              onFocus={props.handleInputFocus}
-            />
-            <InputText
-              label="CVC"
-              name="cvc"
-              value={props.cvc}
-              onChange={(value, name) =>
-                props.handleInputChange(value, name as string)
-              }
-              onFocus={props.handleInputFocus}
-              maxLength={3}
-            />
-          </div>
-        </div>
-        <div className="card-border" />
-        <div className="card-footer">
-          <div className="card-companies">
-            <Image
-              unoptimized
-              src={Credit}
-              alt="credit"
-              width={230}
-              height={20}
-            />
-          </div>
-          <Button text="PAGAR" link={props.linkTo} onClick={props.onPay} />
+          <InputText
+            label="CVC"
+            name="cvc"
+            value={props.cvc}
+            onChange={(value, name) =>
+              props.handleInputChange(value, name as string)
+            }
+            onFocus={props.handleInputFocus}
+            maxLength={3}
+          />
         </div>
       </div>
-    </Card>
+      {!props.hidePayButton && (
+        <>
+          <div className="card-border" />
+          <div className="card-footer">
+            <div className="card-companies">
+              <Image
+                unoptimized
+                src={Credit}
+                alt="credit"
+                width={230}
+                height={20}
+              />
+            </div>
+            <Button text="PAGAR" link={props.linkTo} onClick={props.onPay} />
+          </div>
+        </>
+      )}
+    </div>
   );
+
+  if (props.embedded) return content;
+
+  return <Card>{content}</Card>;
 };

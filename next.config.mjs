@@ -1,5 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  env: {
+    TRANSACCION_COMPLETA_MALL_STANDARD_BRAND_CHILD_CC:
+      process.env.TRANSACCION_COMPLETA_MALL_STANDARD_BRAND_CHILD_CC,
+  },
   experimental: {
     serverActions: {
       allowedForwardedHosts: ["*"],
