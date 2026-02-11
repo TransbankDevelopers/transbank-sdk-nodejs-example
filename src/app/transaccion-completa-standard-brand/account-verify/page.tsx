@@ -27,6 +27,32 @@ const navigationItems: NavigationItem[] = [
   { title: "Respuesta", sectionId: "respuesta" },
 ];
 
+type SelectFieldProps = {
+  label: string;
+  name: string;
+  value: string;
+  onChange: (value: string, name?: string) => void;
+  options: Array<{ value: string; label: string }>;
+};
+
+const SelectField = ({ label, name, value, onChange, options }: SelectFieldProps) => (
+  <div className="flex-col">
+    <span className="tbk-label mb-2">{label}</span>
+    <select
+      name={name}
+      value={value}
+      onChange={(e) => onChange(e.target.value, e.target.name)}
+      className="tbk-input-text"
+    >
+      {options.map((option) => (
+        <option key={`${name}-${option.label}`} value={option.value}>
+          {option.label}
+        </option>
+      ))}
+    </select>
+  </div>
+);
+
 export default function StandardBrandAccountVerifyPage() {
   const [isPending, startTransition] = useTransition();
   const [result, setResult] = useState("");
@@ -121,11 +147,20 @@ export default function StandardBrandAccountVerifyPage() {
                   value={form.cvv}
                   onChange={handleChange}
                 />
-                <InputText
+                <SelectField
                   label="ECI"
                   name="eci"
                   value={form.eci}
                   onChange={handleChange}
+                  options={[
+                    { value: "", label: "null - Transacción no autenticada" },
+                    { value: "05", label: "VISA 05" },
+                    { value: "06", label: "VISA 06" },
+                    { value: "02", label: "MASTERCARD 02" },
+                    { value: "01", label: "MASTERCARD 01" },
+                    { value: "05", label: "AMEX 05" },
+                    { value: "06", label: "AMEX 06" },
+                  ]}
                 />
                 <InputText
                   label="Authentication value"
@@ -133,11 +168,22 @@ export default function StandardBrandAccountVerifyPage() {
                   value={form.authentication_value}
                   onChange={handleChange}
                 />
-                <InputText
+                <SelectField
                   label="Transaction status"
                   name="trans_status"
                   value={form.trans_status}
                   onChange={handleChange}
+                  options={[
+                    { value: "", label: "No autenticada (null)" },
+                    { value: "C", label: "C - Desafio requerido" },
+                    { value: "Y", label: "Y - Elegible/Exitosa" },
+                    { value: "A", label: "A - Intento de autenticacion" },
+                    { value: "N", label: "N - No autenticada/Denegada" },
+                    { value: "R", label: "R - Autenticacion rechazada" },
+                    { value: "D", label: "D - Desafio desacoplado" },
+                    { value: "U", label: "U - No se pudo autenticar" },
+                    { value: "I", label: "I - Informativo/Exencion" },
+                  ]}
                 />
                 <InputText
                   label="Message version"
