@@ -1,14 +1,11 @@
 import { NextResponse } from "next/server";
 import { installmentsStandardBrandTransaction } from "@/app/lib/transaccion-completa-standard-brand/data";
+import { TransactionCompleteStandardBrandInstallmentsRequest } from "@/types/transactions";
 
 export async function POST(request: Request) {
   try {
-    const body = (await request.json()) as {
-      token: string;
-      buy_order: string;
-      commerce_code: string;
-      installments_number: number;
-    };
+    const body =
+      (await request.json()) as TransactionCompleteStandardBrandInstallmentsRequest;
 
     const response = await installmentsStandardBrandTransaction(body.token, {
       buy_order: body.buy_order,
@@ -18,7 +15,6 @@ export async function POST(request: Request) {
 
     return NextResponse.json(response);
   } catch (error) {
-    console.error(error);
     const message =
       error instanceof Error
         ? error.message

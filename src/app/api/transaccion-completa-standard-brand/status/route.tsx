@@ -7,7 +7,6 @@ export async function POST(request: Request) {
     const response = await statusStandardBrandTransaction(body.token);
     return NextResponse.json(response);
   } catch (error) {
-    console.error(error);
     const message =
       error instanceof Error
         ? error.message

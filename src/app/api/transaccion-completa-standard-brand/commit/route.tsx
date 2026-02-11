@@ -1,14 +1,11 @@
 import { NextResponse } from "next/server";
 import { commitStandardBrandTransaction } from "@/app/lib/transaccion-completa-standard-brand/data";
+import { TransactionCompleteStandardBrandCommitRequest } from "@/types/transactions";
 
 export async function POST(request: Request) {
   try {
-    const body = (await request.json()) as {
-      token: string;
-      commerce_code: string;
-      buy_order: string;
-      id_query_installments?: number;
-    };
+    const body =
+      (await request.json()) as TransactionCompleteStandardBrandCommitRequest;
 
     const response = await commitStandardBrandTransaction(body.token, {
       details: [
@@ -25,7 +22,6 @@ export async function POST(request: Request) {
 
     return NextResponse.json(response);
   } catch (error) {
-    console.error(error);
     const message =
       error instanceof Error
         ? error.message
