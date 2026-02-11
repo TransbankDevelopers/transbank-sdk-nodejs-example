@@ -41,7 +41,8 @@ export default function StandardBrandAccountVerifyPage() {
     trans_status: "",
     message_version: "",
     ds_trans_id: "",
-    commerce_code: "597055555639",
+    commerce_code:
+      process.env.TRANSACCION_COMPLETA_MALL_STANDARD_BRAND_CHILD_CC || "",
   });
 
   const handleChange = (value: string, name?: string) => {

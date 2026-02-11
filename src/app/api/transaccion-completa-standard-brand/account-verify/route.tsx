@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { accountVerifyStandardBrand } from "@/app/lib/transaccion-completa-standard-brand/data";
 import { TransactionCompleteStandardBrandVerifyRequest } from "@/types/transactions";
 import { normalizeEmptyStrings } from "@/helpers/transactions/transactionHelper";
+
 export async function POST(request: Request) {
   try {
     const body =
@@ -23,7 +24,6 @@ export async function POST(request: Request) {
 
     return NextResponse.json(response);
   } catch (error) {
-    console.error(error);
     const message =
       error instanceof Error
         ? error.message

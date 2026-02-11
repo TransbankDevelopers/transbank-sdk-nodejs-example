@@ -35,7 +35,8 @@ export default function TransaccionCompletaStandardBrandPage() {
     card_expiration_date: "31/12",
     cvv: "123",
     detail_amount: String(randomData.amount),
-    detail_commerce_code: "597055555639",
+    detail_commerce_code:
+      process.env.TRANSACCION_COMPLETA_MALL_STANDARD_BRAND_CHILD_CC || "",
     detail_buy_order: buildChildBuyOrder(),
     detail_post_entry_mod: "810",
     detail_eci: "",
@@ -56,7 +57,7 @@ export default function TransaccionCompletaStandardBrandPage() {
 
   const createLink = {
     pathname: "/transaccion-completa-standard-brand/create",
-    query: { ...form },
+    query: form,
   };
 
   return (

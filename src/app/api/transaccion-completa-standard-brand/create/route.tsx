@@ -12,7 +12,6 @@ export async function POST(request: Request) {
     const response = await createStandardBrandTransaction(normalizedPayload);
     return NextResponse.json(response);
   } catch (error) {
-    console.error(error);
     const message =
       error instanceof Error
         ? error.message
