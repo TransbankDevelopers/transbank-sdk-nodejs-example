@@ -43,7 +43,7 @@ const normalizeDetailNumber = (value?: string) => {
 
 export default async function StandardBrandCreatePage({
   searchParams,
-}: NextPageProps) {
+}: Readonly<NextPageProps>) {
   const {
     buy_order: buyOrder,
     session_id: sessionId,

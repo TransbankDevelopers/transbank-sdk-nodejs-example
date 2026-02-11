@@ -21,8 +21,8 @@ export const CreateActionsCard = ({
   const [installmentsNumber, setInstallmentsNumber] = useState<number>(3);
 
   const handleInstallments = (value: string) => {
-    if (isNaN(parseFloat(value))) return;
-    setInstallmentsNumber(parseFloat(value));
+    if (Number.isNaN(Number.parseFloat(value))) return;
+    setInstallmentsNumber(Number.parseFloat(value));
   };
 
   const installmentsLink = {
