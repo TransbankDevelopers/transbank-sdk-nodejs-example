@@ -1,7 +1,3 @@
-const stringifyPayload = (payload: unknown) => {
-  return JSON.stringify(payload, null, 2);
-};
-
 export const getRequestSnippet = (payload: unknown) => {
   return `fetch("https://webpay3gint.transbank.cl/rswebpaytransaction/api/webpay/v1.4/transactions", {
   method: "POST",
@@ -11,7 +7,7 @@ export const getRequestSnippet = (payload: unknown) => {
     "Tbk-Api-Key-Id": "<API_KEY_ID>",
     "Tbk-Api-Key-Secret": "<API_KEY_SECRET>"
   },
-  body: JSON.stringify(${stringifyPayload(payload)})
+  body: JSON.stringify(${JSON.stringify(payload, null, 2)})
 });`;
 };
 

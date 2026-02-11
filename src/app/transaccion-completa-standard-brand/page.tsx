@@ -22,7 +22,8 @@ const navigationItems: NavigationItem[] = [
   { title: "Formulario", sectionId: "formulario" },
 ];
 
-const buildChildBuyOrder = () => "O-" + (Math.floor(Math.random() * 10000) + 1);
+const buildChildBuyOrder = () =>
+  `O-${crypto.randomUUID().replaceAll("-", "").slice(0, 6)}`;
 
 export default function TransaccionCompletaStandardBrandPage() {
   const randomData = useMemo(() => generateRandomTxCompletaData(), []);
@@ -55,26 +56,7 @@ export default function TransaccionCompletaStandardBrandPage() {
 
   const createLink = {
     pathname: "/transaccion-completa-standard-brand/create",
-    query: {
-      buy_order: form.buy_order,
-      session_id: form.session_id,
-      card_number: form.card_number,
-      card_expiration_date: form.card_expiration_date,
-      cvv: form.cvv,
-      detail_amount: form.detail_amount,
-      detail_commerce_code: form.detail_commerce_code,
-      detail_buy_order: form.detail_buy_order,
-      detail_post_entry_mod: form.detail_post_entry_mod,
-      detail_eci: form.detail_eci,
-      detail_authentication_value: form.detail_authentication_value,
-      detail_message_version: form.detail_message_version,
-      detail_trans_status: form.detail_trans_status,
-      detail_ds_trans_id: form.detail_ds_trans_id,
-      detail_authentication_type: form.detail_authentication_type,
-      detail_identify_initiated_trx: form.detail_identify_initiated_trx,
-      detail_pmnt_ind: form.detail_pmnt_ind,
-      detail_recur_pmnt: form.detail_recur_pmnt,
-    },
+    query: { ...form },
   };
 
   return (

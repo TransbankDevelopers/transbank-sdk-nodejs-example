@@ -1,33 +1,10 @@
 import { NextResponse } from "next/server";
-import {
-  createStandardBrandTransaction,
-  StandardBrandCreatePayload,
-} from "@/app/lib/transaccion-completa-standard-brand/data";
+import { createStandardBrandTransaction } from "@/app/lib/transaccion-completa-standard-brand/data";
+import { StandardBrandCreatePayload } from "@/types/transactions";
+import { normalizeEmptyStrings } from "@/helpers/transactions/transactionHelper";
 
 export async function POST(request: Request) {
   try {
-    const normalizeEmptyStrings = (value: unknown): unknown => {
-      if (typeof value === "string") {
-        const trimmed = value.trim();
-        return trimmed === "" ? null : trimmed;
-      }
-
-      if (Array.isArray(value)) {
-        return value.map((item) => normalizeEmptyStrings(item));
-      }
-
-      if (value && typeof value === "object") {
-        return Object.fromEntries(
-          Object.entries(value).map(([key, entryValue]) => [
-            key,
-            normalizeEmptyStrings(entryValue),
-          ]),
-        );
-      }
-
-      return value;
-    };
-
     const payload = (await request.json()) as StandardBrandCreatePayload;
     const normalizedPayload = normalizeEmptyStrings(
       payload,

@@ -4,11 +4,13 @@ import { Route } from "@/types/menu";
 import { NavigationItem } from "@/components/layout/Navigation";
 import { NextPageProps } from "@/types/general";
 import {
-  createStandardBrandTransaction,
   StandardBrandCreatePayload,
-} from "@/app/lib/transaccion-completa-standard-brand/data";
+  StandardBrandCreateResponse,
+} from "@/types/transactions";
+import { createStandardBrandTransaction } from "@/app/lib/transaccion-completa-standard-brand/data";
 import { getCreateStandardBrandSteps } from "@/app/transaccion-completa-standard-brand/content/steps/create";
 import { CreateActionsCard } from "@/app/transaccion-completa-standard-brand/create/components/CreateActionsCard";
+import { ErrorContent } from "@/app/transaccion-completa-standard-brand/errorContent";
 
 const actualBread: Route[] = [
   { name: "Inicio", path: "/" },
@@ -42,40 +44,44 @@ const normalizeDetailNumber = (value?: string) => {
 export default async function StandardBrandCreatePage({
   searchParams,
 }: NextPageProps) {
-  const buyOrder = searchParams.buy_order;
-  const sessionId = searchParams.session_id;
-  const cardNumber = searchParams.card_number;
-  const cardExpirationDate = searchParams.card_expiration_date;
-  const cvv = searchParams.cvv;
-  const detailAmount = searchParams.detail_amount;
-  const detailCommerceCode = searchParams.detail_commerce_code;
-  const detailBuyOrder = searchParams.detail_buy_order;
+  const {
+    buy_order: buyOrder,
+    session_id: sessionId,
+    card_number: cardNumber,
+    card_expiration_date: cardExpirationDate,
+    cvv,
+    detail_amount: detailAmount,
+    detail_commerce_code: detailCommerceCode,
+    detail_buy_order: detailBuyOrder,
+    detail_post_entry_mod: detailPostEntryMod,
+    detail_eci: detailEci,
+    detail_authentication_value: detailAuthenticationValue,
+    detail_message_version: detailMessageVersion,
+    detail_trans_status: detailTransStatus,
+    detail_ds_trans_id: detailDsTransId,
+    detail_authentication_type: detailAuthenticationType,
+    detail_identify_initiated_trx: detailIdentifyInitiatedTrx,
+    detail_pmnt_ind: detailPmntInd,
+    detail_recur_pmnt: detailRecurPmnt,
+  } = searchParams;
 
-  let response: unknown = null;
+  let response: StandardBrandCreateResponse | null = null;
   let error: string | null = null;
 
   const detail: StandardBrandCreatePayload["details"][number] = {
     amount: normalizeDetailNumber(detailAmount),
     commerce_code: normalizeDetailField(detailCommerceCode),
     buy_order: normalizeDetailField(detailBuyOrder),
-    post_entry_mod: normalizeDetailField(searchParams.detail_post_entry_mod),
-    eci: normalizeDetailFieldOrNull(searchParams.detail_eci),
-    authentication_value: normalizeDetailFieldOrNull(
-      searchParams.detail_authentication_value,
-    ),
-    message_version: normalizeDetailFieldOrNull(
-      searchParams.detail_message_version,
-    ),
-    trans_status: normalizeDetailFieldOrNull(searchParams.detail_trans_status),
-    ds_trans_id: normalizeDetailFieldOrNull(searchParams.detail_ds_trans_id),
-    authentication_type: normalizeDetailFieldOrNull(
-      searchParams.detail_authentication_type,
-    ),
-    identify_initiated_trx: normalizeDetailNumber(
-      searchParams.detail_identify_initiated_trx,
-    ),
-    pmnt_ind: normalizeDetailFieldOrNull(searchParams.detail_pmnt_ind),
-    recur_pmnt: normalizeDetailFieldOrNull(searchParams.detail_recur_pmnt),
+    post_entry_mod: normalizeDetailField(detailPostEntryMod),
+    eci: normalizeDetailFieldOrNull(detailEci),
+    authentication_value: normalizeDetailFieldOrNull(detailAuthenticationValue),
+    message_version: normalizeDetailFieldOrNull(detailMessageVersion),
+    trans_status: normalizeDetailFieldOrNull(detailTransStatus),
+    ds_trans_id: normalizeDetailFieldOrNull(detailDsTransId),
+    authentication_type: normalizeDetailFieldOrNull(detailAuthenticationType),
+    identify_initiated_trx: normalizeDetailNumber(detailIdentifyInitiatedTrx),
+    pmnt_ind: normalizeDetailFieldOrNull(detailPmntInd),
+    recur_pmnt: normalizeDetailFieldOrNull(detailRecurPmnt),
   };
 
   const requestPayload: StandardBrandCreatePayload = {
@@ -93,15 +99,13 @@ export default async function StandardBrandCreatePage({
     error = err instanceof Error ? err.message : "Error inesperado.";
   }
 
-  const token =
-    response && typeof response === "object" && "token" in response
-      ? String((response as { token?: string }).token || "")
-      : "";
+  if (error) {
+    return <ErrorContent errorMessage={error} actualRoute="/create" />;
+  }
 
-  const steps = getCreateStandardBrandSteps(
-    requestPayload,
-    error ? { error } : response || {},
-  );
+  const token = response?.token ?? "";
+
+  const steps = getCreateStandardBrandSteps(requestPayload, response || {});
 
   return (
     <>

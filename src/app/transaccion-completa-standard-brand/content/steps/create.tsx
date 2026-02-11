@@ -1,10 +1,11 @@
 import { StepProps } from "@/components/step/Step";
 import * as createSnippets from "@/app/transaccion-completa-standard-brand/content/snippets/create";
 import { OperationsCreateFullTxMessage } from "@/components/messages/OperationsCreateFullTxMessage";
+import { StandardBrandCreatePayload } from "@/types/transactions";
 
 export const getCreateStandardBrandSteps = (
-  requestPayload: unknown,
-  responsePayload: unknown
+  requestPayload: StandardBrandCreatePayload,
+  responsePayload: unknown,
 ): StepProps[] => {
   return [
     {
