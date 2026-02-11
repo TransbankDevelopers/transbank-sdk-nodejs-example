@@ -9,6 +9,8 @@ import { Card } from "@/components/card/Card";
 import { InputText } from "@/components/input/InputText";
 import { Button } from "@/components/button/Button";
 import { generateRandomTxCompletaData } from "@/helpers/transactions/transactionHelper";
+import { CreditCard, CreditCardState } from "@/components/creditcard/CreditCard";
+import { Focused } from "react-credit-cards-2";
 
 const actualBread: Route[] = [
   { name: "Inicio", path: "/" },
@@ -25,15 +27,45 @@ const navigationItems: NavigationItem[] = [
 const buildChildBuyOrder = () =>
   `O-${crypto.randomUUID().replaceAll("-", "").slice(0, 6)}`;
 
+type SelectFieldProps = {
+  label: string;
+  name: string;
+  value: string;
+  onChange: (value: string, name?: string) => void;
+  options: Array<{ value: string; label: string }>;
+};
+
+const SelectField = ({ label, name, value, onChange, options }: SelectFieldProps) => (
+  <div className="flex-col">
+    <span className="tbk-label mb-2">{label}</span>
+    <select
+      name={name}
+      value={value}
+      onChange={(e) => onChange(e.target.value, e.target.name)}
+      className="tbk-input-text"
+    >
+      {options.map((option) => (
+        <option key={`${name}-${option.label}`} value={option.value}>
+          {option.label}
+        </option>
+      ))}
+    </select>
+  </div>
+);
+
 export default function TransaccionCompletaStandardBrandPage() {
   const randomData = useMemo(() => generateRandomTxCompletaData(), []);
+  const [cardState, setCardState] = useState<CreditCardState>({
+    number: "4051885600446623",
+    expiry: "31/12",
+    cvc: "123",
+    name: "Transbank User",
+    focus: "number",
+  });
 
   const [form, setForm] = useState({
     buy_order: randomData.buyOrder,
     session_id: randomData.sessionId,
-    card_number: "4051885600446623",
-    card_expiration_date: "31/12",
-    cvv: "123",
     detail_amount: String(randomData.amount),
     detail_commerce_code:
       process.env.TRANSACCION_COMPLETA_MALL_STANDARD_BRAND_CHILD_CC || "",
@@ -55,9 +87,25 @@ export default function TransaccionCompletaStandardBrandPage() {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleCardInputChange = (value: string, name: string) => {
+    setCardState((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleCardInputFocus = (name: string) => {
+    setCardState((prev) => ({
+      ...prev,
+      focus: name as Focused,
+    }));
+  };
+
   const createLink = {
     pathname: "/transaccion-completa-standard-brand/create",
-    query: form,
+    query: {
+      ...form,
+      card_number: cardState.number,
+      card_expiration_date: cardState.expiry,
+      cvv: cardState.cvc,
+    },
   };
 
   return (
@@ -75,6 +123,13 @@ export default function TransaccionCompletaStandardBrandPage() {
           <div className="flex-col gap-6">
             <Card className="tbk-tx-card column-card">
               <div id="formulario" className="flex-col gap-4">
+                <CreditCard
+                  {...cardState}
+                  embedded
+                  hidePayButton
+                  handleInputChange={handleCardInputChange}
+                  handleInputFocus={handleCardInputFocus}
+                />
                 <InputText
                   label="Orden de compra"
                   name="buy_order"
@@ -85,24 +140,6 @@ export default function TransaccionCompletaStandardBrandPage() {
                   label="Id de sesion"
                   name="session_id"
                   value={form.session_id}
-                  onChange={handleChange}
-                />
-                <InputText
-                  label="Numero de tarjeta"
-                  name="card_number"
-                  value={form.card_number}
-                  onChange={handleChange}
-                />
-                <InputText
-                  label="Fecha expiracion (MM/YY)"
-                  name="card_expiration_date"
-                  value={form.card_expiration_date}
-                  onChange={handleChange}
-                />
-                <InputText
-                  label="CVV"
-                  name="cvv"
-                  value={form.cvv}
                   onChange={handleChange}
                 />
                 <InputText
@@ -123,17 +160,31 @@ export default function TransaccionCompletaStandardBrandPage() {
                   value={form.detail_buy_order}
                   onChange={handleChange}
                 />
-                <InputText
+                <SelectField
                   label="Post entry mode"
                   name="detail_post_entry_mod"
                   value={form.detail_post_entry_mod}
                   onChange={handleChange}
+                  options={[
+                    { value: "010", label: "010" },
+                    { value: "810", label: "810" },
+                    { value: "100", label: "100" },
+                  ]}
                 />
-                <InputText
+                <SelectField
                   label="ECI"
                   name="detail_eci"
                   value={form.detail_eci}
                   onChange={handleChange}
+                  options={[
+                    { value: "", label: "null - Transacción no autenticada" },
+                    { value: "05", label: "VISA 05" },
+                    { value: "06", label: "VISA 06" },
+                    { value: "02", label: "MASTERCARD 02" },
+                    { value: "01", label: "MASTERCARD 01" },
+                    { value: "05", label: "AMEX 05" },
+                    { value: "06", label: "AMEX 06" },
+                  ]}
                 />
                 <InputText
                   label="Authentication value"
@@ -147,11 +198,22 @@ export default function TransaccionCompletaStandardBrandPage() {
                   value={form.detail_message_version}
                   onChange={handleChange}
                 />
-                <InputText
+                <SelectField
                   label="Transaction status"
                   name="detail_trans_status"
                   value={form.detail_trans_status}
                   onChange={handleChange}
+                  options={[
+                    { value: "", label: "No autenticada (null)" },
+                    { value: "C", label: "C - Desafio requerido" },
+                    { value: "Y", label: "Y - Elegible/Exitosa" },
+                    { value: "A", label: "A - Intento de autenticacion" },
+                    { value: "N", label: "N - No autenticada/Denegada" },
+                    { value: "R", label: "R - Autenticacion rechazada" },
+                    { value: "D", label: "D - Desafio desacoplado" },
+                    { value: "U", label: "U - No se pudo autenticar" },
+                    { value: "I", label: "I - Informativo/Exencion" },
+                  ]}
                 />
                 <InputText
                   label="DS Trans ID"
@@ -159,29 +221,51 @@ export default function TransaccionCompletaStandardBrandPage() {
                   value={form.detail_ds_trans_id}
                   onChange={handleChange}
                 />
-                <InputText
+                <SelectField
                   label="Authentication type"
                   name="detail_authentication_type"
                   value={form.detail_authentication_type}
                   onChange={handleChange}
+                  options={[
+                    { value: "", label: "No challenge (null)" },
+                    { value: "C", label: "C - Challenge" },
+                  ]}
                 />
-                <InputText
+                <SelectField
                   label="Identify initiated trx"
                   name="detail_identify_initiated_trx"
                   value={form.detail_identify_initiated_trx}
                   onChange={handleChange}
+                  options={[
+                    { value: "", label: "Seleccionar" },
+                    { value: "0", label: "0 - Venta Unica" },
+                    { value: "1", label: "1 - Primera CIT" },
+                    { value: "2", label: "2 - Primera CIT Recurrencia MIT" },
+                    { value: "3", label: "3 - Subsecuente CIT" },
+                    { value: "4", label: "4 - Recurrente MIT" },
+                  ]}
                 />
-                <InputText
+                <SelectField
                   label="pmnt_ind"
                   name="detail_pmnt_ind"
                   value={form.detail_pmnt_ind}
                   onChange={handleChange}
+                  options={[
+                    { value: "", label: "Ventas únicas" },
+                    { value: "C", label: "C - Transacciones COF" },
+                    { value: "R", label: "R - Transacciones recurrentes" },
+                  ]}
                 />
-                <InputText
+                <SelectField
                   label="recur_pmnt"
                   name="detail_recur_pmnt"
                   value={form.detail_recur_pmnt}
                   onChange={handleChange}
+                  options={[
+                    { value: "", label: "Seleccionar" },
+                    { value: "F", label: "F - Fijo" },
+                    { value: "V", label: "V - Variable" },
+                  ]}
                 />
                 <div className="button-container">
                   <Button text="PAGAR" className="button" link={createLink} />
