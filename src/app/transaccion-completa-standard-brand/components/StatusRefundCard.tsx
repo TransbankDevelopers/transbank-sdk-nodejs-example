@@ -14,8 +14,8 @@ export const StatusRefundCard = ({ token, amount }: StatusRefundCardProps) => {
   const [refundAmount, setRefundAmount] = useState<number>(amount || 0);
 
   const handleRefund = (value: string) => {
-    if (isNaN(parseFloat(value))) return;
-    setRefundAmount(parseFloat(value));
+    if (Number.isNaN(Number.parseFloat(value))) return;
+    setRefundAmount(Number.parseFloat(value));
   };
 
   const statusLink = {

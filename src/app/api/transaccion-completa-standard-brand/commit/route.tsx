@@ -13,9 +13,9 @@ export async function POST(request: Request) {
           commerce_code: body.commerce_code,
           buy_order: body.buy_order,
           id_query_installments:
-            body.id_query_installments !== undefined
-              ? Number(body.id_query_installments)
-              : undefined,
+            body.id_query_installments === undefined
+              ? undefined
+              : Number(body.id_query_installments),
         },
       ],
     });

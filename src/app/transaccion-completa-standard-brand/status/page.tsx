@@ -29,9 +29,7 @@ export default async function StandardBrandStatusPage({
   let response: Record<string, unknown> | null = null;
   let error: string | null = null;
 
-  if (!token) {
-    error = "Falta el token para consultar el estado.";
-  } else {
+  if (token) {
     try {
       response = (await statusStandardBrandTransaction(token)) as Record<
         string,
@@ -40,6 +38,8 @@ export default async function StandardBrandStatusPage({
     } catch (err) {
       error = err instanceof Error ? err.message : "Error inesperado.";
     }
+  } else {
+    error = "Falta el token para consultar el estado.";
   }
 
   if (error) {
