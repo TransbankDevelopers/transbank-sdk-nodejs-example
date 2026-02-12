@@ -63,8 +63,7 @@ export default async function StandardBrandCommitPage({
   }
 
   const steps = response ? getCommitSteps(response) : [];
-  const refundDetails: TransactionDetail[] = response
-    ? response.details.map((detail) => ({
+  const refundDetails: TransactionDetail[] = response?.details?.map?.((detail) => ({
         amount: detail.amount,
         status: detail.status,
         authorization_code: detail.authorization_code,
@@ -74,7 +73,7 @@ export default async function StandardBrandCommitPage({
         commerce_code: detail.commerce_code,
         buy_order: detail.buy_order,
       }))
-    : [];
+     ?? [];
 
   return (
     <>
