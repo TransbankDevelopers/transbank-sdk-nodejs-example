@@ -25,7 +25,7 @@ const navigationItems: NavigationItem[] = [
 
 export default async function StandardBrandRefundPage({
   searchParams,
-}: NextPageProps) {
+}: Readonly<NextPageProps>) {
   const token = searchParams.token;
   const commerceCode = searchParams.child_commerce_code;
   const buyOrder = searchParams.child_buy_order;
