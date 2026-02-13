@@ -276,4 +276,23 @@ const commitResponse = await tx.commit(token);`;
     expect(textContent).toContain(`"response_code": ${responseCode}`);
   }
 
+  async validateTransactionFormErrorContent() {
+    await this.validatePageTitle('Recuperar transacción');
+    await expect(this.page.getByText('Se ha producido un error en el formulario de pago. Si ha hecho clic en el enlace "volver al sitio" desde la pantalla de error después de cerrar inesperadamente la pestaña del navegador y trata de recuperarla, es posible que haya recibido los siguientes tokens: token_ws, TBK_TOKEN, TBK_ID_SESION, TBK_ORDEN_COMPRA.')).toBeVisible();
+
+    const textCode = this.page.locator('pre').first();
+    if (await textCode.isVisible()) {
+      const text = await textCode.textContent();
+      const expectedKeys = [
+        '"TBK_TOKEN":',
+        '"token_ws":',
+        '"TBK_ID_SESION":',
+        '"TBK_ORDEN_COMPRA":'
+      ];
+      for (const key of expectedKeys) {
+        expect(text).toContain(key);
+      }
+    }
+  }
+
 }

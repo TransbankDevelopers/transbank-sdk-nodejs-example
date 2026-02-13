@@ -24,4 +24,12 @@ test.describe('Webpay Plus Mall', () => {
     await webpayPlusMallPage.validateCommitTransactionContent(token);
     await webpayPlusMallPage.validateTransactionResult('AUTHORIZED', 0);
   });
+
+  test('generic-form-error', async ({ webpayPlusMallPage, webpayPage }) => {
+    await webpayPlusMallPage.initiateTransaction();
+    await webpayPage.payWithCard(TestData.debitCardNumber);
+    await webpayPage.triggerFormError();
+
+    await webpayPlusMallPage.validateTransactionFormErrorContent();
+  });
 });
