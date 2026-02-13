@@ -63,17 +63,17 @@ export default async function StandardBrandCommitPage({
   }
 
   const steps = response ? getCommitSteps(response) : [];
-  const refundDetails: TransactionDetail[] = response?.details?.map?.((detail) => ({
-        amount: detail.amount,
-        status: detail.status,
-        authorization_code: detail.authorization_code,
-        payment_type_code: detail.payment_type_code,
-        response_code: Number(detail.response_code_reference ?? 0),
-        installments_number: detail.installments_number,
-        commerce_code: detail.commerce_code,
-        buy_order: detail.buy_order,
-      }))
-     ?? [];
+  const refundDetails: TransactionDetail[] =
+    response?.details?.map?.((detail) => ({
+      amount: detail.amount,
+      status: detail.status,
+      authorization_code: detail.authorization_code,
+      payment_type_code: detail.payment_type_code,
+      response_code: Number(detail.response_code_reference ?? 0),
+      installments_number: detail.installments_number,
+      commerce_code: detail.commerce_code,
+      buy_order: detail.buy_order,
+    })) ?? [];
 
   return (
     <>
@@ -81,8 +81,8 @@ export default async function StandardBrandCommitPage({
         <title>Transacción Completa Estándar Marca - Confirmar</title>
       </Head>
       <Layout
-        pageTitle="Transacción Completa Estándar Marca - Confirmar"
-        pageDescription="Confirma la transaccion utilizando el token y la informacion de cuotas."
+        pageTitle="Transacción Completa Estándar Marca - Confirmar Transacción"
+        pageDescription="En este paso tenemos que confirmar la transacción con el objetivo de avisar a Transbank que hemos recibido la transacción ha sido recibida exitosamente. En caso de que no se confirme la transacción, ésta será caducada."
         actualBread={actualBread}
         activeRoute="/transaccion-completa-standard-brand/commit"
         navigationItems={navigationItems}
