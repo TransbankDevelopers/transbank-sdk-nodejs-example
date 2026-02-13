@@ -8,7 +8,7 @@ export const getStepOne = () => {
 };
 
 const response = await fetch(
-  "https://web1qa.test.transbank.cl:5443/rswebpaytransaction/api/webpay/v1.4/transactions/{token}/installments",
+  "https://webpay3gint.transbank.cl/rswebpaytransaction/api/webpay/v1.4/transactions/{token}/installments",
   {
     method: "POST",
     headers: { "Content-Type": "application/json" },
