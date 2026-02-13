@@ -10,7 +10,7 @@ test.describe('Webpay Plus Mall', () => {
 
   test('transaction-success', async ({ webpayPlusMallPage, webpayPage }) => {
     await webpayPlusMallPage.validatePageTitle('Webpay Mall - Creación de transacción Mall');
-    // const token = await webpayPlusMallPage.validateCreateTransactionContent();
+    const token = await webpayPlusMallPage.validateCreateTransactionContent();
     await webpayPlusMallPage.initiateTransaction();
     await webpayPage.payWithCard(TestData.debitCardNumber);
 
@@ -21,7 +21,7 @@ test.describe('Webpay Plus Mall', () => {
     );
 
     await webpayPlusMallPage.validatePageTitle('Webpay Mall - Confirmar transacción');
-    // await webpayPlusMallPage.validateCommitTransactionContent(token);
-    // await webpayPlusMallPage.validateTransactionResult('AUTHORIZED', 0);
+    await webpayPlusMallPage.validateCommitTransactionContent(token);
+    await webpayPlusMallPage.validateTransactionResult('AUTHORIZED', 0);
   });
 });
