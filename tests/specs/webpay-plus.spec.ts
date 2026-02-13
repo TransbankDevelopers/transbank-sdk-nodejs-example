@@ -1,10 +1,11 @@
-import { test } from '../fixtures/test-setup';
+import { expect, test } from '../fixtures/test-setup';
 import { TestData } from '../data/constants';
 
 test.describe('Webpay Plus', () => {
 
   test.beforeEach(async ({ tbkDevelopersExamplePage }) => {
-    await tbkDevelopersExamplePage.gotoWebpayPlus();
+    await tbkDevelopersExamplePage.page.goto('/webpay-plus');
+    await expect(tbkDevelopersExamplePage.mainTitle).toBeVisible();
   });
 
   test('transaction-success', async ({ tbkDevelopersExamplePage, webpayPage }) => {
