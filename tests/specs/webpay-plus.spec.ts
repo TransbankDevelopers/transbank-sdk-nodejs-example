@@ -3,15 +3,15 @@ import { TestData } from '../data/constants';
 
 test.describe('Webpay Plus', () => {
 
-  test.beforeEach(async ({ tbkDevelopersExamplePage }) => {
-    await tbkDevelopersExamplePage.page.goto('/webpay-plus');
-    await expect(tbkDevelopersExamplePage.mainTitle).toBeVisible();
+  test.beforeEach(async ({ webpayPlusPage }) => {
+    await webpayPlusPage.page.goto('/webpay-plus');
+    await expect(webpayPlusPage.mainTitle).toBeVisible();
   });
 
-  test('transaction-success', async ({ tbkDevelopersExamplePage, webpayPage }) => {
-    await tbkDevelopersExamplePage.validatePageTitle('Webpay Plus - Creación de transacción');
-    const token = await tbkDevelopersExamplePage.validateCreateTransactionContent();
-    await tbkDevelopersExamplePage.initiateTransaction();
+  test('transaction-success', async ({ webpayPlusPage, webpayPage }) => {
+    await webpayPlusPage.validatePageTitle('Webpay Plus - Creación de transacción');
+    const token = await webpayPlusPage.validateCreateTransactionContent();
+    await webpayPlusPage.initiateTransaction();
     await webpayPage.payWithCard(TestData.debitCardNumber);
 
     await webpayPage.performBankSimulation(
@@ -20,13 +20,13 @@ test.describe('Webpay Plus', () => {
       'TSY'
     );
 
-    await tbkDevelopersExamplePage.validatePageTitle('Webpay Plus - Confirmar transacción');
-    await tbkDevelopersExamplePage.validateCommitTransactionContent(token);
-    await tbkDevelopersExamplePage.validateTransactionResult('AUTHORIZED', 0);
+    await webpayPlusPage.validatePageTitle('Webpay Plus - Confirmar transacción');
+    await webpayPlusPage.validateCommitTransactionContent(token);
+    await webpayPlusPage.validateTransactionResult('AUTHORIZED', 0);
   });
 
-  test('transaction-rejected', async ({ tbkDevelopersExamplePage, webpayPage }) => {
-    const { token } = await tbkDevelopersExamplePage.initiateTransaction();
+  test('transaction-rejected', async ({ webpayPlusPage, webpayPage }) => {
+    const { token } = await webpayPlusPage.initiateTransaction();
     await webpayPage.payWithCard(TestData.debitCardNumber);
 
     await webpayPage.performBankSimulation(
@@ -35,20 +35,20 @@ test.describe('Webpay Plus', () => {
       'TSN'
     );
 
-    await tbkDevelopersExamplePage.validateTransactionResult('FAILED', -1);
-    await tbkDevelopersExamplePage.validateTransactionRejectedContent(token);
+    await webpayPlusPage.validateTransactionResult('FAILED', -1);
+    await webpayPlusPage.validateTransactionRejectedContent(token);
   });
 
-  test('aborted-from-webpay', async ({ tbkDevelopersExamplePage, webpayPage }) => {
-    const { token } = await tbkDevelopersExamplePage.initiateTransaction();
+  test('aborted-from-webpay', async ({ webpayPlusPage, webpayPage }) => {
+    const { token } = await webpayPlusPage.initiateTransaction();
     await webpayPage.abortTransaction();
 
-    await tbkDevelopersExamplePage.validateAbortedResult();
-    await tbkDevelopersExamplePage.validateTransactionCanceledContent(token);
+    await webpayPlusPage.validateAbortedResult();
+    await webpayPlusPage.validateTransactionCanceledContent(token);
   });
 
-  test('check-status', async ({ tbkDevelopersExamplePage, webpayPage }) => {
-    const { token } = await tbkDevelopersExamplePage.initiateTransaction();
+  test('check-status', async ({ webpayPlusPage, webpayPage }) => {
+    const { token } = await webpayPlusPage.initiateTransaction();
     await webpayPage.payWithCard(TestData.debitCardNumber);
 
     await webpayPage.performBankSimulation(
@@ -57,12 +57,12 @@ test.describe('Webpay Plus', () => {
       'TSY'
     );
 
-    await tbkDevelopersExamplePage.clickCheckStatus();
-    await tbkDevelopersExamplePage.validateStatusTransactionContent(token);
+    await webpayPlusPage.clickCheckStatus();
+    await webpayPlusPage.validateStatusTransactionContent(token);
   });
 
-  test('refund', async ({ tbkDevelopersExamplePage, webpayPage }) => {
-    const { token } = await tbkDevelopersExamplePage.initiateTransaction();
+  test('refund', async ({ webpayPlusPage, webpayPage }) => {
+    const { token } = await webpayPlusPage.initiateTransaction();
     await webpayPage.payWithCard(TestData.debitCardNumber);
 
     await webpayPage.performBankSimulation(
@@ -71,12 +71,12 @@ test.describe('Webpay Plus', () => {
       'TSY'
     );
 
-    const refundAmount = await tbkDevelopersExamplePage.clickRefund();
-    await tbkDevelopersExamplePage.validateRefundContent(token, refundAmount);
+    const refundAmount = await webpayPlusPage.clickRefund();
+    await webpayPlusPage.validateRefundContent(token, refundAmount);
   });
 
-  test('partial-refund', async ({ tbkDevelopersExamplePage, webpayPage }) => {
-    await tbkDevelopersExamplePage.initiateTransaction();
+  test('partial-refund', async ({ webpayPlusPage, webpayPage }) => {
+    await webpayPlusPage.initiateTransaction();
     await webpayPage.payWithCard(TestData.debitCardNumber);
 
     await webpayPage.performBankSimulation(
@@ -85,25 +85,25 @@ test.describe('Webpay Plus', () => {
       'TSY'
     );
 
-    await tbkDevelopersExamplePage.makePartialRefund();
-    await tbkDevelopersExamplePage.validatePartialRefundResponse();
+    await webpayPlusPage.makePartialRefund();
+    await webpayPlusPage.validatePartialRefundResponse();
   });
 
-  test('generic-form-error', async ({ tbkDevelopersExamplePage, webpayPage }) => {
-    await tbkDevelopersExamplePage.initiateTransaction();
+  test('generic-form-error', async ({ webpayPlusPage, webpayPage }) => {
+    await webpayPlusPage.initiateTransaction();
     await webpayPage.payWithCard(TestData.debitCardNumber);
     await webpayPage.triggerFormError();
 
-    await tbkDevelopersExamplePage.validateTransactionFormErrorContent();
+    await webpayPlusPage.validateTransactionFormErrorContent();
   });
 
-  test('timeout', async ({ tbkDevelopersExamplePage }) => {
-    await tbkDevelopersExamplePage.validateCreateTransactionContent();
-    const { buyOrder, sessionId } = await tbkDevelopersExamplePage.initiateTransaction();
+  test('timeout', async ({ webpayPlusPage }) => {
+    await webpayPlusPage.validateCreateTransactionContent();
+    const { buyOrder, sessionId } = await webpayPlusPage.initiateTransaction();
 
     // Simulate timeout callback
-    await tbkDevelopersExamplePage.page.goto(`/webpay-plus/commit?TBK_ID_SESION=${sessionId}&TBK_ORDEN_COMPRA=${buyOrder}`);
+    await webpayPlusPage.page.goto(`/webpay-plus/commit?TBK_ID_SESION=${sessionId}&TBK_ORDEN_COMPRA=${buyOrder}`);
 
-    await tbkDevelopersExamplePage.validateTransactionTimeoutContent(buyOrder, sessionId);
+    await webpayPlusPage.validateTransactionTimeoutContent(buyOrder, sessionId);
   });
 });

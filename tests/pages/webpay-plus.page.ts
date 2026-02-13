@@ -1,6 +1,6 @@
 import { Page, expect, Locator } from '@playwright/test';
 
-export class TbkDevelopersExamplePage {
+export class WebpayPlusPage {
   readonly page: Page;
   readonly mainTitle: Locator;
   readonly payButton: Locator;

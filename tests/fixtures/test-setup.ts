@@ -1,15 +1,15 @@
 import { test as base } from '@playwright/test';
-import { TbkDevelopersExamplePage } from '../pages/tbkdevelopers-example.page';
+import { WebpayPlusPage } from '../pages/webpay-plus.page';
 import { WebpayPage } from '../pages/webpay.page';
 
 type MyFixtures = {
-  tbkDevelopersExamplePage: TbkDevelopersExamplePage;
+  webpayPlusPage: WebpayPlusPage;
   webpayPage: WebpayPage;
 };
 
 export const test = base.extend<MyFixtures>({
-  tbkDevelopersExamplePage: async ({ page }, use) => {
-    await use(new TbkDevelopersExamplePage(page));
+  webpayPlusPage: async ({ page }, use) => {
+    await use(new WebpayPlusPage(page));
   },
   webpayPage: async ({ page }, use) => {
     await use(new WebpayPage(page));
