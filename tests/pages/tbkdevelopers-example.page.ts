@@ -15,11 +15,6 @@ export class TbkDevelopersExamplePage {
     this.resultPreTag = page.locator('pre').filter({ hasText: '{ "vci":' }).first();
   }
 
-  async gotoWebpayPlus() {
-    await this.page.goto('/webpay-plus');
-    await expect(this.mainTitle).toBeVisible();
-  }
-
   async validatePageTitle(expectedTitle: string) {
     await expect(this.page.getByRole('heading', { name: expectedTitle, level: 1, exact: true })).toBeVisible();
   }
