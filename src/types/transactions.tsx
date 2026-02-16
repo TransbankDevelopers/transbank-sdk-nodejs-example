@@ -354,6 +354,27 @@ export type StandardBrandCreatePayload = {
   }>;
 };
 
+export type TransactionCompleteStandardBrandCommitRequest = {
+  token: string;
+  commerce_code: string;
+  buy_order: string;
+  id_query_installments?: number;
+};
+
+export type TransactionCompleteStandardBrandInstallmentsRequest = {
+  token: string;
+  buy_order: string;
+  commerce_code: string;
+  installments_number: number;
+};
+
+export type TransactionCompleteStandardBrandRefundRequest = {
+  token: string;
+  commerce_code: string;
+  buy_order: string;
+  amount: number;
+};
+
 export type TransactionCompleteStandardBrandVerifyRequest = {
   card_number: string;
   card_expiration_date: string;
