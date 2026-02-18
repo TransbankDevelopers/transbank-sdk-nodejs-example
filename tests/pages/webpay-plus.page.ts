@@ -287,6 +287,17 @@ const commitResponse = await tx.commit(token);`;
     for (const key of expectedKeys) {
       expect(textStep3).toContain(key);
     }
+
+    // Success-only section must not be present in rejected flow
+    await expect(this.page.getByText('¡Listo!', { exact: true })).toHaveCount(0);
+    await expect(this.page.getByText('Con la confirmación exitosa, ya puedes mostrar al usuario una página de éxito de la transacción, proporcionándole la tranquilidad de que el proceso ha sido completado con éxito.')).toHaveCount(0);
+    await expect(this.page.getByText('Después de confirmar la transacción, podrás realizar otras operaciones útiles:')).toHaveCount(0);
+    await expect(this.page.getByText('Reembolsar: Puedes reversar o anular el pago según ciertas condiciones comerciales.')).toHaveCount(0);
+    await expect(this.page.getByText('Consultar Estado: Hasta 7 días después de realizada la transacción, podrás consultar el estado de la transacción.')).toHaveCount(0);
+    
+    // refund/status actions should not be displayed
+    await expect(this.page.locator('.refund-card')).toHaveCount(0);
+    await expect(this.page.getByRole('link', { name: 'CONSULTAR ESTADO' })).toHaveCount(0);
   }
 
   async validateTransactionCanceledContent(expectedToken: string) {
