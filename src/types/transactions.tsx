@@ -67,6 +67,10 @@ export type TBKCreateTransactionResponse = {
   url: string;
 };
 
+export type StandardBrandCreateResponse = {
+  token: string;
+};
+
 export type TBKCreateOneclickMallTransactionResponse = {
   token: string;
   url_webpay: string;
@@ -123,9 +127,34 @@ export type TransactionDetail = {
   buy_order: string;
 };
 
+export type TBKCommitStandardBrandDetail = {
+  amount: number;
+  status: string;
+  tid: string;
+  sli: string | null;
+  glosa: string;
+  authentication_mode: number;
+  response_code_reference: string;
+  installments_type: string | null;
+  authorization_code: string;
+  payment_type_code: string;
+  installments_number: number;
+  commerce_code: string;
+  buy_order: string;
+};
+
 export type TBKMallCommitTransactionResponse = {
   vci: string;
   details: TransactionDetail[];
+  buy_order: string;
+  session_id: string;
+  card_detail: TBKCardDetail;
+  accounting_date: string;
+  transaction_date: string;
+};
+
+export type TBKMallCommitTransactionSBResponse = {
+  details: TBKCommitStandardBrandDetail[];
   buy_order: string;
   session_id: string;
   card_detail: TBKCardDetail;
@@ -300,4 +329,60 @@ export type TBKInstallmentsFullTransactionResponse = {
   installments_amount: number;
   id_query_installments: number;
   deferred_periods: any[];
+};
+
+export type StandardBrandCreatePayload = {
+  buy_order: string;
+  session_id: string;
+  card_number: string;
+  card_expiration_date: string;
+  cvv: number;
+  details: Array<{
+    amount: number;
+    commerce_code: string;
+    buy_order: string;
+    post_entry_mod?: string;
+    eci?: string | null;
+    authentication_value?: string | null;
+    message_version?: string | null;
+    trans_status?: string | null;
+    ds_trans_id?: string | null;
+    authentication_type?: string | null;
+    identify_initiated_trx?: number;
+    pmnt_ind?: string | null;
+    recur_pmnt?: string | null;
+  }>;
+};
+
+export type TransactionCompleteStandardBrandCommitRequest = {
+  token: string;
+  commerce_code: string;
+  buy_order: string;
+  id_query_installments?: number;
+};
+
+export type TransactionCompleteStandardBrandInstallmentsRequest = {
+  token: string;
+  buy_order: string;
+  commerce_code: string;
+  installments_number: number;
+};
+
+export type TransactionCompleteStandardBrandRefundRequest = {
+  token: string;
+  commerce_code: string;
+  buy_order: string;
+  amount: number;
+};
+
+export type TransactionCompleteStandardBrandVerifyRequest = {
+  card_number: string;
+  card_expiration_date: string;
+  cvv: string;
+  eci: string | null;
+  authentication_value: string | null;
+  trans_status: string | null;
+  message_version: string | null;
+  ds_trans_id: string | null;
+  commerce_code: string;
 };

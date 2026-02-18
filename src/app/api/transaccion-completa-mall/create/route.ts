@@ -10,7 +10,6 @@ export async function POST(req: Request) {
 
   if (!body) {
     const errorMessage = "No credit card data found";
-    console.log(errorMessage);
     return new Response(errorMessage, {
       status: 500,
     });
@@ -32,13 +31,12 @@ export async function POST(req: Request) {
   };
 
   try {
-    const { token, details } = await createFullTransactionMallTransaction(
-      cardState
-    );
+    const { token, details } =
+      await createFullTransactionMallTransaction(cardState);
 
     cookiesStore.set(
       localStorageFullTransactionDetails,
-      JSON.stringify(details)
+      JSON.stringify(details),
     );
 
     return new Response(token, {

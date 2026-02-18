@@ -1,0 +1,10 @@
+.confirm-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+}

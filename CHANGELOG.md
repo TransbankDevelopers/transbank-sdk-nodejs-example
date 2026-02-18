@@ -2,6 +2,12 @@
 
 Todos los cambios notables a este proyecto serán documentados en este archivo.
 
+## [1.3.0] 18-02-2026
+
+### Agrega
+
+- Se agrega Transacción completa estándar marca.
+
 ## [1.2.1] 15-12-2025
 
 ### Agrega

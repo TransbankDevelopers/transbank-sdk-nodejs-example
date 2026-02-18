@@ -42,6 +42,10 @@ export const webpayFullTransactionRoutes: Route[] = [
     path: "/transaccion-completa"
   },
   {
+    name: "Transacción Completa Estándar Marca",
+    path: "/transaccion-completa-standard-brand"
+  },
+  {
     name: "Transacción Completa Diferido",
     path: "/transaccion-completa-diferido"
   },
