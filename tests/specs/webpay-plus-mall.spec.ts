@@ -25,6 +25,20 @@ test.describe('Webpay Plus Mall', () => {
     await webpayPlusMallPage.validateTransactionResult('AUTHORIZED', 0);
   });
 
+  test('transaction-rejected', async ({ webpayPlusMallPage, webpayPage }) => {
+    const { token } = await webpayPlusMallPage.initiateTransaction();
+    await webpayPage.payWithCard(TestData.debitCardNumber);
+
+    await webpayPage.performBankSimulation(
+      TestData.transbankRut,
+      TestData.transbankPassword,
+      'TSN'
+    );
+
+    await webpayPlusMallPage.validateTransactionResult('FAILED', -1);
+    await webpayPlusMallPage.validateTransactionRejectedContent(token);
+  });
+
   test('generic-form-error', async ({ webpayPlusMallPage, webpayPage }) => {
     await webpayPlusMallPage.initiateTransaction();
     await webpayPage.payWithCard(TestData.debitCardNumber);

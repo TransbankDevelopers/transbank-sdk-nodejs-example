@@ -295,4 +295,70 @@ const commitResponse = await tx.commit(token);`;
     }
   }
 
+  async validateTransactionRejectedContent(expectedToken: string) {
+    // Top description
+    await expect(this.page.getByText('En esta fase, pueden surgir inconvenientes, ya sea con el titular de la tarjeta o a nivel bancario, lo que resulta en el estado final de la transacción siendo marcado como "FAILED".')).toBeVisible();
+
+    // Step 1
+    await expect(this.page.getByText('Paso 1: Datos recibidos', { exact: true })).toBeVisible();
+    await expect(this.page.getByText('Después de completar el flujo en el formulario de pago, recibirás un GET con la siguiente información:')).toBeVisible();
+    const codeStep1Text = (await this.page.locator('pre').filter({ hasText: "'token_ws':" }).first().textContent()) || '';
+    expect(codeStep1Text).toMatch(/'token_ws':\s*.+/);
+    expect(codeStep1Text).toContain(`'token_ws': ${expectedToken}`);
+
+    // Step 2
+    await expect(this.page.getByText('Paso 2: Petición', { exact: true })).toBeVisible();
+    await expect(this.page.getByText('Utilizarás el token recibido para confirmar la transacción mediante el SDK.')).toBeVisible();
+    const snippetStep2 = `const token = request.body.token_ws;
+const tx = new WebpayPlus.MallTransaction(new Options(
+  IntegrationCommerceCodes.WEBPAY_PLUS_MALL, // Código de comercio Mall
+  IntegrationApiKeys.WEBPAY,
+  Environment.Integration
+));
+const commitResponse = await tx.commit(token);`;
+    await expect(this.page.locator('pre').filter({ hasText: 'const token = request.body.token_ws;' })).toContainText(snippetStep2);
+
+    // Step 3
+    await expect(this.page.getByText('Paso 3: Respuesta', { exact: true })).toBeVisible();
+    await expect(this.page.getByText('Una vez que la transacción ha sido confirmada Transbank proporcionará la siguiente información. Es fundamental conservar esta respuesta y verificar que el campo "response_code" tenga un valor de cero y que el campo "status" sea "AUTHORIZED".')).toBeVisible();
+    const codeStep3 = this.page.locator('pre').filter({ hasText: '"vci":' }).first();
+    await expect(codeStep3).toBeVisible();
+    const textStep3 = (await codeStep3.textContent()) || '';
+    const expectedKeys = [
+      '"vci":',
+      '"buy_order":',
+      '"session_id":',
+      '"card_detail":',
+      '"card_number":',
+      '"accounting_date":',
+      '"transaction_date":',
+      '"details":',
+      '"amount":',
+      '"status":',
+      '"authorization_code":',
+      '"payment_type_code":',
+      '"response_code":',
+      '"installments_number":',
+      '"commerce_code":'
+    ];
+    for (const key of expectedKeys) {
+      expect(textStep3).toContain(key);
+    }
+
+    // Rejected response markers
+    expect(textStep3).toContain('"status": "FAILED"');
+    expect(textStep3).toContain('"response_code": -1');
+
+    // Success-only section must not be present in rejected flow
+    await expect(this.page.getByText('¡Listo!', { exact: true })).toHaveCount(0);
+    await expect(this.page.getByText('Con la confirmación exitosa, ya puedes mostrar al usuario una página de éxito de la transacción, proporcionándole la tranquilidad de que el proceso ha sido completado con éxito.')).toHaveCount(0);
+    await expect(this.page.getByText('Después de confirmar la transacción, podrás realizar otras operaciones útiles:')).toHaveCount(0);
+    await expect(this.page.getByText('Reembolsar: Puedes reversar o anular el pago según ciertas condiciones comerciales.')).toHaveCount(0);
+    await expect(this.page.getByText('Consultar Estado: Hasta 7 días después de realizada la transacción, podrás consultar el estado de la transacción.')).toHaveCount(0);
+    
+    // refund/status actions should not be displayed
+    await expect(this.page.locator('.refund-card')).toHaveCount(0);
+    await expect(this.page.getByRole('link', { name: 'CONSULTAR ESTADO' })).toHaveCount(0);
+  }
+
 }
