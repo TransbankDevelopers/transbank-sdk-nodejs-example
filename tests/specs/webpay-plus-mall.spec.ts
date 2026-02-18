@@ -46,4 +46,12 @@ test.describe('Webpay Plus Mall', () => {
 
     await webpayPlusMallPage.validateTransactionFormErrorContent();
   });
+
+  test('aborted-from-webpay', async ({ webpayPlusMallPage, webpayPage }) => {
+    const { token } = await webpayPlusMallPage.initiateTransaction();
+    await webpayPage.abortTransaction();
+
+    await webpayPlusMallPage.validateAbortedResult();
+    await webpayPlusMallPage.validateTransactionCanceledContent(token);
+  });
 });
