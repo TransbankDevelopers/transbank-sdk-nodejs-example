@@ -404,13 +404,66 @@ const tx = new WebpayPlus.MallTransaction(new Options(
   Environment.Integration
 ));
 const statusResponse = await tx.status(token);`;
-    await expect(statusStep1.locator('pre')).toContainText(scriptStep1);
+    const statusStep1Snippet = statusStep1.locator('pre').filter({ hasText: '// Token:' }).first();
+    await expect(statusStep1Snippet).toContainText(scriptStep1);
 
     // Status Step 2
     const statusStep2 = statusSection.locator('div[class="flex-col"]').filter({ hasText: 'Paso 2: Respuesta' }).first();
     await expect(statusStep2).toBeVisible();
     await expect(statusStep2.getByText('Una vez que hayas creado la transacción, aquí encontrarás los datos de respuesta generados por el proceso.')).toBeVisible();
-    const codeStep2 = statusStep2.locator('pre').first();
+    const codeStep2 = statusStep2.locator('pre').filter({ hasText: 'details:' }).first();
+    await expect(codeStep2).toBeVisible();
+    const textStep2 = (await codeStep2.textContent()) || '';
+    const expectedKeys = [
+      'details:',
+      'amount:',
+      'status:',
+      'authorization_code:',
+      'payment_type_code:',
+      'response_code:',
+      'installments_number:',
+      'commerce_code:',
+      'buy_order:',
+      'session_id:',
+      'accounting_date:',
+      'transaction_date:'
+    ];
+    for (const key of expectedKeys) {
+      expect(textStep2).toContain(key);
+    }
+  }
+
+  async clickCheckStatus() {
+    await this.page.getByRole('link', { name: 'CONSULTAR ESTADO' }).click();
+  }
+
+  async validateStatusTransactionContent(expectedToken: string) {
+    await this.validatePageTitle('Webpay Mall - Consultar estado de transacción');
+
+    // Top description
+    await expect(this.page.getByText('Puedes solicitar el estado de una transacción hasta 7 días después de su realización.')).toBeVisible();
+    await expect(this.page.getByText('No hay límite de solicitudes de este tipo durante ese período.')).toBeVisible();
+    await expect(this.page.getByText('Sin embargo, una vez pasados los 7 días, ya no podrás revisar su estado.')).toBeVisible();
+
+    // Step 1
+    const step1 = this.page.locator('div[class="flex-col"]').filter({ hasText: 'Paso 1: Petición' }).first();
+    await expect(step1).toBeVisible();
+    await expect(step1.getByText('Para realizar la consulta, necesitas el token de la transacción de la cual deseas obtener el estado. Utiliza este token para realizar una llamada al SDK.')).toBeVisible();
+    const scriptStep1 = `// Token: ${expectedToken}
+const tx = new WebpayPlus.MallTransaction(new Options(
+  IntegrationCommerceCodes.WEBPAY_PLUS_MALL, // Código de comercio Mall
+  IntegrationApiKeys.WEBPAY,
+  Environment.Integration
+));
+const statusResponse = await tx.status(token);`;
+    const statusStep1Snippet = step1.locator('pre').filter({ hasText: '// Token:' }).first();
+    await expect(statusStep1Snippet).toContainText(scriptStep1);
+
+    // Step 2
+    const step2 = this.page.locator('div[class="flex-col"]').filter({ hasText: 'Paso 2: Respuesta' }).first();
+    await expect(step2).toBeVisible();
+    await expect(step2.getByText('Una vez que hayas creado la transacción, aquí encontrarás los datos de respuesta generados por el proceso.')).toBeVisible();
+    const codeStep2 = step2.locator('pre').filter({ hasText: 'details:' }).first();
     await expect(codeStep2).toBeVisible();
     const textStep2 = (await codeStep2.textContent()) || '';
     const expectedKeys = [

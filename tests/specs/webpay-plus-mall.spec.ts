@@ -20,7 +20,6 @@ test.describe('Webpay Plus Mall', () => {
       'TSY'
     );
 
-    await webpayPlusMallPage.validatePageTitle('Webpay Mall - Confirmar transacción');
     await webpayPlusMallPage.validateCommitTransactionContent(token);
     await webpayPlusMallPage.validateTransactionResult('AUTHORIZED', 0);
   });
@@ -53,5 +52,19 @@ test.describe('Webpay Plus Mall', () => {
 
     await webpayPlusMallPage.validateAbortedResult();
     await webpayPlusMallPage.validateTransactionCanceledContent(token);
+  });
+
+  test('check-status', async ({ webpayPlusMallPage, webpayPage }) => {
+    const { token } = await webpayPlusMallPage.initiateTransaction();
+    await webpayPage.payWithCard(TestData.debitCardNumber);
+
+    await webpayPage.performBankSimulation(
+      TestData.transbankRut,
+      TestData.transbankPassword,
+      'TSY'
+    );
+
+    await webpayPlusMallPage.clickCheckStatus();
+    await webpayPlusMallPage.validateStatusTransactionContent(token);
   });
 });
