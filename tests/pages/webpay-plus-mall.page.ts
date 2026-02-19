@@ -485,4 +485,67 @@ const statusResponse = await tx.status(token);`;
     }
   }
 
+  async clickRefund() {
+    const refundCard = this.page.locator('.refund-card').first();
+    await expect(refundCard).toBeVisible();
+
+    const refundInput = refundCard.locator('input');
+    await expect(refundInput).toBeVisible();
+    const refundAmountValue = await refundInput.inputValue();
+
+    await refundCard.getByRole('link', { name: 'REEMBOLSAR' }).click();
+
+    return refundAmountValue;
+  }
+
+  async validateRefundContent(expectedToken: string, expectedAmount: string) {
+    await this.validatePageTitle('Webpay Mall - Reembolsar');
+
+    // Top description
+    await expect(this.page.getByText('En esta etapa, tienes la opción de solicitar el reembolso del monto al titular de la tarjeta.')).toBeVisible();
+    await expect(this.page.getByText('Dependiendo del monto y el tiempo transcurrido desde la transacción, este proceso podría resultar en una Reversa o Anulación, dependiendo de ciertas condiciones (Reversa en las primeras 3 horas de la autorización, anulación posterior a eso), o una Anulación parcial si el monto es menor al total. Las anulaciones parciales para tarjetas débito y prepago no están soportadas.')).toBeVisible();
+
+    // Step 1
+    const step1 = this.page.locator('div[class="flex-col"]').filter({ hasText: 'Paso 1: Petición' }).first();
+    await expect(step1).toBeVisible();
+    await expect(step1.getByText('Para llevar a cabo el reembolso, necesitas proporcionar el token de la transacción, el monto que quieres reversar, el código de comercio de la tienda y la orden de compra del detalle de la transacción. Si anulas el monto total, podría ser una Reversa o Anulación, dependiendo de ciertas condiciones (Reversa en las primeras 3 horas de la autorización, anulación posterior a eso), o una Anulación Parcial si el monto es menor al total.')).toBeVisible();
+    await expect(step1.getByText('Algunas consideraciones a tener en cuenta:')).toBeVisible();
+    await expect(step1.getByText('No es posible realizar Anulaciones Parciales en pagos con cuotas.')).toBeVisible();
+    await expect(step1.getByText('En este link podrás ver mayor información sobre las condiciones y casos para anular o reversar transacciones.')).toBeVisible();
+    const docLink = this.page.getByRole('link', { name: 'link' });
+    await expect(docLink).toBeVisible();
+    await expect(docLink).toHaveAttribute('href', 'https://www.transbankdevelopers.cl/producto/webpay#anulaciones-y-reversas');
+
+    const scriptStep1 = `// Token: ${expectedToken}
+// Amount: ${expectedAmount}
+const tx = new WebpayPlus.MallTransaction(new Options(
+  IntegrationCommerceCodes.WEBPAY_PLUS_MALL, // Código de comercio Mall
+  IntegrationApiKeys.WEBPAY,
+  Environment.Integration
+));
+
+const refundRequest = await tx.refund(
+  token,
+  buyOrderStore,
+  commerceCodeStore, // Código de comercio Tienda
+  amount
+);`;
+    const step1Snippet = step1.locator('pre').filter({ hasText: '// Token:' }).first();
+    await expect(step1Snippet).toContainText(scriptStep1);
+
+    // Step 2
+    const step2 = this.page.locator('div[class="flex-col"]').filter({ hasText: 'Paso 2: Respuesta' }).first();
+    await expect(step2).toBeVisible();
+    await expect(step2.getByText('Transbank responderá con el resultado del proceso de reembolso, indicando si se ha realizado una Reversa, Anulación o Anulación Parcial.')).toBeVisible();
+    const step2Snippet = step2.locator('pre').filter({ hasText: '"type":' }).first();
+    await expect(step2Snippet).toBeVisible();
+    const textStep2 = (await step2Snippet.textContent()) || '';
+    expect(textStep2).toContain('"type": "REVERSED"');
+
+    // Validate Status Button
+    const statusButton = this.page.getByRole('link', { name: 'CONSULTAR ESTADO' });
+    await expect(statusButton).toBeVisible();
+    await expect(statusButton).toHaveAttribute('href', `/webpay-mall/status?token_ws=${expectedToken}`);
+  }
+
 }
