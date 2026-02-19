@@ -548,4 +548,32 @@ const refundRequest = await tx.refund(
     await expect(statusButton).toHaveAttribute('href', `/webpay-mall/status?token_ws=${expectedToken}`);
   }
 
+  async makePartialRefund() {
+    const refundCard = this.page.locator('.refund-card').first();
+    await expect(refundCard).toBeVisible();
+
+    const refundInput = refundCard.locator('input');
+    await expect(refundInput).toBeVisible();
+    const originalAmount = await refundInput.inputValue();
+    const newAmount = Number(originalAmount) - 50;
+
+    await refundInput.fill(newAmount.toString());
+    await refundCard.getByRole('link', { name: 'REEMBOLSAR' }).click();
+
+    return newAmount.toString();
+  }
+
+  async validatePartialRefundResponse() {
+    const step2 = this.page.locator('div[class="flex-col"]').filter({ hasText: 'Paso 2: Respuesta' }).first();
+    await expect(step2).toBeVisible();
+    const textStep2 = (await step2.locator('pre').filter({ hasText: '"type":' }).first().textContent()) || '';
+    const expectedKeys = [
+      '"type":', '"balance":', '"authorization_code":',
+      '"response_code":', '"authorization_date":', '"nullified_amount":'
+    ];
+    for (const key of expectedKeys) {
+      expect(textStep2).toContain(key);
+    }
+  }
+
 }
