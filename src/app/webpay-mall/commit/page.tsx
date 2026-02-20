@@ -28,7 +28,7 @@ const getActualBread = (isRejected: boolean): Route[] => {
       path: "/",
     },
     {
-      name: "Webpay Plus",
+      name: "Webpay Mall",
       path: "/webpay-mall",
     },
     {
