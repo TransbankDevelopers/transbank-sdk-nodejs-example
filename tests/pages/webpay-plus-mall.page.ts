@@ -576,4 +576,20 @@ const refundRequest = await tx.refund(
     }
   }
 
+  async validateTransactionTimeoutContent(expectedBuyOrder: string, expectedSessionId: string) {
+    await this.validatePageTitle('Webpay Mall - Time out');
+
+    // Description
+    await expect(this.page.getByText('Cuando una transacción expira debido a un timeout, es crucial gestionar este escenario de manera adecuada para garantizar la transparencia y la experiencia del usuario, para la prueba en integración son de 10 minutos.')).toBeVisible();
+
+    // Step 1: Datos Recibidos
+    const step1 = this.page.locator('div[class="flex-col"]').filter({ hasText: 'Datos Recibidos:' }).first();
+    await expect(step1).toBeVisible();
+    await expect(step1.getByText('Después de 10 minutos en el que no se haya recibido ninguna acción o interacción del usuario, recibirás un GET con la siguiente información:')).toBeVisible();
+
+    const jsonSnippet = (await step1.locator('pre').filter({ hasText: '"TBK_ORDEN_COMPRA":' }).first().textContent()) || '';
+    expect(jsonSnippet).toContain(`"TBK_ORDEN_COMPRA": "${expectedBuyOrder}"`);
+    expect(jsonSnippet).toContain(`"TBK_ID_SESION": "${expectedSessionId}"`);
+  }
+
 }

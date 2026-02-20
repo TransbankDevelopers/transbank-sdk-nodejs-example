@@ -95,4 +95,23 @@ test.describe('Webpay Plus Mall', () => {
     await webpayPlusMallPage.makePartialRefund();
     await webpayPlusMallPage.validatePartialRefundResponse();
   });
+
+  test('timeout', async ({ webpayPlusMallPage }) => {
+    await webpayPlusMallPage.validateCreateTransactionContent();
+    const table = webpayPlusMallPage.page.locator('#ejemplo .table-container');
+    const rowBuyOrder = table.locator('.row').filter({ hasText: 'Orden de compra (buyOrder)' });
+    const buyOrder = (await rowBuyOrder.locator('.tbk-column').textContent())?.trim() || '';
+
+    const rowSessionId = table.locator('.row').filter({ hasText: 'ID de sesión (sessionid)' });
+    const sessionId = (await rowSessionId.locator('.tbk-column').textContent())?.trim() || '';
+
+    // Simulate timeout callback
+    const timeoutQuery = new URLSearchParams({
+      TBK_ID_SESION: sessionId,
+      TBK_ORDEN_COMPRA: buyOrder,
+    }).toString();
+    await webpayPlusMallPage.page.goto(`/webpay-mall/commit?${timeoutQuery}`, { waitUntil: 'domcontentloaded' });
+
+    await webpayPlusMallPage.validateTransactionTimeoutContent(buyOrder, sessionId);
+  });
 });
