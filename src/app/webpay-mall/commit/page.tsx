@@ -28,7 +28,7 @@ const getActualBread = (isRejected: boolean): Route[] => {
       path: "/",
     },
     {
-      name: "Webpay Plus",
+      name: "Webpay Mall",
       path: "/webpay-mall",
     },
     {
@@ -64,7 +64,7 @@ const commitContent = {
 };
 
 const rejectedContent = {
-  title: "Webpay Mall - Rechazo Bancario",
+  title: "Webpay Mall - Rechazo bancario",
   description: (
     <span>
       En esta fase, pueden surgir inconvenientes, ya sea con el titular de la

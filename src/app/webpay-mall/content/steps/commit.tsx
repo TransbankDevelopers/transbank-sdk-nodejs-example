@@ -3,12 +3,13 @@ import { TBKMallCommitTransactionResponse } from "@/types/transactions";
 import * as commitSnippets from "@/app/webpay-mall/content/snippets/commit";
 import { Text } from "@/components/text/Text";
 import { OkCommitMessage } from "@/components/messages/OkCommitMessage";
+import { isSomeTransactionRejected } from "@/helpers/transactions/transactionHelper";
 
 export const getCommitSteps = (
   token: string,
   commitResponse: TBKMallCommitTransactionResponse
 ): StepProps[] => {
-  return [
+  const steps: StepProps[] = [
     {
       stepTitle: "Paso 1: Datos recibidos",
       stepId: "confirmar",
@@ -37,7 +38,14 @@ export const getCommitSteps = (
       ),
       code: commitSnippets.getStepThree(commitResponse),
     },
-    {
+  ];
+
+  const isAuthorizedCommit = !isSomeTransactionRejected(
+    commitResponse.details,
+  );
+
+  if (isAuthorizedCommit) {
+    steps.push({
       stepTitle: "¡Listo!",
       stepId: "consultas",
       content: (
@@ -65,6 +73,8 @@ export const getCommitSteps = (
           </div>
         </div>
       ),
-    },
-  ];
+    });
+  }
+
+  return steps;
 };

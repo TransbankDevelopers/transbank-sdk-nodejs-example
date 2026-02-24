@@ -10,12 +10,12 @@ const actualBread: Route[] = [
     path: "/",
   },
   {
-    name: "Webpay Plus",
-    path: "/webpay-plus",
+    name: "Webpay Mall",
+    path: "/webpay-mall",
   },
   {
     name: "Time out",
-    path: "/webpay-plus/commit",
+    path: "/webpay-mall/commit",
   },
 ];
 
@@ -31,7 +31,7 @@ export const TimeoutView = async (props: TimeoutViewProps) => {
         <title>Transbank SDK Node - Time out</title>
       </Head>
       <Layout
-        pageTitle="Webpay Plus - Time out"
+        pageTitle="Webpay Mall - Time out"
         pageDescription={
           <span>
             Cuando una transacción expira debido a un timeout, es crucial
@@ -41,7 +41,7 @@ export const TimeoutView = async (props: TimeoutViewProps) => {
           </span>
         }
         actualBread={actualBread}
-        activeRoute="/webpay-plus/commit"
+        activeRoute="/webpay-mall/commit"
         steps={getErrorTimeoutSteps(props.timeoutResponse)}
       />
     </>

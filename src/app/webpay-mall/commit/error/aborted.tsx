@@ -14,12 +14,12 @@ const actualBread: Route[] = [
     path: "/",
   },
   {
-    name: "Webpay Plus",
-    path: "/webpay-plus",
+    name: "Webpay Mall",
+    path: "/webpay-mall",
   },
   {
     name: "Estado cancelada",
-    path: "/webpay-plus/commit",
+    path: "/webpay-mall/commit",
   },
 ];
 
@@ -44,7 +44,7 @@ export const AbortedView = async (props: AbortedViewProps) => {
         <title>Transbank SDK Node - Estado cancelada</title>
       </Head>
       <Layout
-        pageTitle="Webpay Plus - Estado de compra cancelada"
+        pageTitle="Webpay Mall - Estado de compra cancelada"
         pageDescription={
           <span>
             El pago de la compra ha sido anulado por el usuario. En esta etapa,
@@ -54,7 +54,7 @@ export const AbortedView = async (props: AbortedViewProps) => {
           </span>
         }
         actualBread={actualBread}
-        activeRoute="/webpay-plus/commit"
+        activeRoute="/webpay-mall/commit"
         steps={getErrorAbortedSteps(props.abortedResponse)}
         additionalContent={
           <div className="aborted-status">
